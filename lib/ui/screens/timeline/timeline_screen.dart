@@ -1,25 +1,25 @@
 import 'dart:async';
-import 'dart:math' as Math;
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/animate_utils.dart';
-import 'package:wonders/logic/common/debouncer.dart';
-import 'package:wonders/logic/common/string_utils.dart';
-import 'package:wonders/logic/data/timeline_data.dart';
-import 'package:wonders/logic/data/wonder_data.dart';
-import 'package:wonders/ui/common/blend_mask.dart';
-import 'package:wonders/ui/common/centered_box.dart';
-import 'package:wonders/ui/common/controls/app_header.dart';
-import 'package:wonders/ui/common/dashed_line.dart';
-import 'package:wonders/ui/common/ignore_pointer.dart';
-import 'package:wonders/ui/common/list_gradient.dart';
-import 'package:wonders/ui/common/timeline_event_card.dart';
-import 'package:wonders/ui/common/utils/app_haptics.dart';
-import 'package:wonders/ui/common/utils/duration_utils.dart';
-import 'package:wonders/ui/common/wonders_timeline_builder.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/animate_utils.dart';
+import 'package:travel_buddy/logic/common/debouncer.dart';
+import 'package:travel_buddy/logic/common/string_utils.dart';
+import 'package:travel_buddy/logic/data/timeline_data.dart';
+import 'package:travel_buddy/logic/data/destination_data.dart';
+import 'package:travel_buddy/ui/common/blend_mask.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
+import 'package:travel_buddy/ui/common/controls/app_header.dart';
+import 'package:travel_buddy/ui/common/dashed_line.dart';
+import 'package:travel_buddy/ui/common/ignore_pointer.dart';
+import 'package:travel_buddy/ui/common/list_gradient.dart';
+import 'package:travel_buddy/ui/common/timeline_event_card.dart';
+import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
+import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:travel_buddy/ui/common/destinations_timeline_builder.dart';
 
 part 'widgets/_animated_era_text.dart';
 part 'widgets/_bottom_scrubber.dart';
@@ -32,7 +32,7 @@ part 'widgets/_timeline_section.dart';
 part 'widgets/_year_markers.dart';
 
 class TimelineScreen extends StatefulWidget {
-  final WonderType? type;
+  final DestinationType? type;
 
   const TimelineScreen({super.key, required this.type});
 
@@ -69,7 +69,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
                     scroller: _scroller,
                     minSize: minSize,
                     maxSize: maxSize,
-                    selectedWonder: widget.type,
+                    selectedDestination: widget.type,
                     onYearChanged: _handleViewportYearChanged,
                   ),
                 ),
@@ -77,7 +77,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
                 /// Era Text (classical, modern etc)
                 ValueListenableBuilder<int>(
                   valueListenable: _year,
-                  builder: (_, value, __) => _AnimatedEraText(value),
+                  builder: (_, value, _) => _AnimatedEraText(value),
                 ),
                 Gap($styles.insets.xs),
 
@@ -91,7 +91,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
                       _scroller,
                       size: scrubberSize,
                       timelineMinSize: minSize,
-                      selectedWonder: widget.type,
+                      selectedDestination: widget.type,
                     ),
                   ),
                 ),

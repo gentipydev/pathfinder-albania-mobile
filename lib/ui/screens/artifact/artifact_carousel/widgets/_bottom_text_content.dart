@@ -2,7 +2,6 @@ part of '../artifact_carousel_screen.dart';
 
 class _BottomTextContent extends StatelessWidget {
   const _BottomTextContent({
-    super.key,
     required this.artifact,
     required this.height,
     required this.state,
@@ -88,12 +87,6 @@ class _BottomTextContent extends StatelessWidget {
                   controller: state._pageController!,
                   semanticPageTitle: $strings.artifactsSemanticArtifact,
                 ),
-              if (!shortMode) Gap($styles.insets.md),
-              AppBtn.from(
-                text: $strings.artifactsButtonBrowse,
-                expand: true,
-                onPressed: state._handleSearchTap,
-              ),
               if (!shortMode) Gap($styles.insets.lg) else Gap($styles.insets.md),
             ],
           ),

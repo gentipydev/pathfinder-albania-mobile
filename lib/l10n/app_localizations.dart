@@ -6,7 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
-import 'app_localizations_zh.dart';
+import 'app_localizations_sq.dart';
 
 // ignore_for_file: type=lint
 
@@ -90,18 +90,18 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en'), Locale('zh')];
+  static const List<Locale> supportedLocales = <Locale>[Locale('en'), Locale('sq')];
 
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:
-  /// **'Wonderous'**
+  /// **'Travel Buddy'**
   String get appName;
 
   /// No description provided for @localeSwapButton.
   ///
   /// In en, this message translates to:
-  /// **'简体中文'**
+  /// **'Shqip'**
   String get localeSwapButton;
 
   /// No description provided for @animatedArrowSemanticSwipe.
@@ -296,12 +296,6 @@ abstract class AppLocalizations {
   /// **'Artifact'**
   String get artifactsSemanticArtifact;
 
-  /// No description provided for @artifactsButtonBrowse.
-  ///
-  /// In en, this message translates to:
-  /// **'Browse all artifacts'**
-  String get artifactsButtonBrowse;
-
   /// No description provided for @artifactDetailsLabelDate.
   ///
   /// In en, this message translates to:
@@ -349,54 +343,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unable to find info for artifact {artifactId} '**
   String artifactDetailsErrorNotFound(Object artifactId);
-
-  /// No description provided for @artifactsSearchTitleBrowse.
-  ///
-  /// In en, this message translates to:
-  /// **'Browse Artifacts'**
-  String get artifactsSearchTitleBrowse;
-
-  /// No description provided for @artifactsSearchLabelNotFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No artifacts found'**
-  String get artifactsSearchLabelNotFound;
-
-  /// No description provided for @artifactsSearchButtonToggle.
-  ///
-  /// In en, this message translates to:
-  /// **'Toggle Timeframe'**
-  String get artifactsSearchButtonToggle;
-
-  /// No description provided for @artifactsSearchSemanticTimeframe.
-  ///
-  /// In en, this message translates to:
-  /// **'timeframe'**
-  String get artifactsSearchSemanticTimeframe;
-
-  /// No description provided for @artifactsSearchLabelFound.
-  ///
-  /// In en, this message translates to:
-  /// **'{numFound} artifacts found, {numResults} in '**
-  String artifactsSearchLabelFound(Object numFound, Object numResults);
-
-  /// No description provided for @artifactsSearchLabelAdjust.
-  ///
-  /// In en, this message translates to:
-  /// **'Adjust your'**
-  String get artifactsSearchLabelAdjust;
-
-  /// No description provided for @artifactsSearchLabelSearch.
-  ///
-  /// In en, this message translates to:
-  /// **'search terms'**
-  String get artifactsSearchLabelSearch;
-
-  /// No description provided for @artifactsSearchLabelTimeframe.
-  ///
-  /// In en, this message translates to:
-  /// **'timeframe'**
-  String get artifactsSearchLabelTimeframe;
 
   /// No description provided for @circleButtonsSemanticClose.
   ///
@@ -476,23 +422,23 @@ abstract class AppLocalizations {
   /// **'About this app'**
   String get homeMenuButtonAbout;
 
-  /// No description provided for @homeMenuAboutWonderous.
+  /// No description provided for @homeMenuAboutTagline.
   ///
   /// In en, this message translates to:
-  /// **'Wonderous is a visual showcase of eight wonders of the world. '**
-  String get homeMenuAboutWonderous;
+  /// **'Travel Buddy is your AI-powered guide to the eight destinations of Albania. '**
+  String get homeMenuAboutTagline;
 
   /// No description provided for @homeMenuAboutBuilt.
   ///
   /// In en, this message translates to:
-  /// **'Built with {flutterUrl} by the team at {gskinnerUrl}.'**
-  String homeMenuAboutBuilt(Object flutterUrl, Object gskinnerUrl);
+  /// **'Built with {flutterUrl}.'**
+  String homeMenuAboutBuilt(Object flutterUrl);
 
   /// No description provided for @homeMenuAboutLearn.
   ///
   /// In en, this message translates to:
-  /// **'Learn more at {wonderousUrl}.'**
-  String homeMenuAboutLearn(Object wonderousUrl);
+  /// **'Learn more at {appUrl}.'**
+  String homeMenuAboutLearn(Object appUrl);
 
   /// No description provided for @homeMenuAboutSource.
   ///
@@ -503,7 +449,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeMenuAboutRepo.
   ///
   /// In en, this message translates to:
-  /// **'Wonderous github repo'**
+  /// **'Travel Buddy github repo'**
   String get homeMenuAboutRepo;
 
   /// No description provided for @homeMenuAboutFlutter.
@@ -512,16 +458,10 @@ abstract class AppLocalizations {
   /// **'Flutter'**
   String get homeMenuAboutFlutter;
 
-  /// No description provided for @homeMenuAboutGskinner.
-  ///
-  /// In en, this message translates to:
-  /// **'gskinner'**
-  String get homeMenuAboutGskinner;
-
   /// No description provided for @homeMenuAboutApp.
   ///
   /// In en, this message translates to:
-  /// **'wonderous.app'**
+  /// **'travelbuddy.app'**
   String get homeMenuAboutApp;
 
   /// No description provided for @homeMenuAboutPublic.
@@ -602,11 +542,11 @@ abstract class AppLocalizations {
   /// **'Enter the app'**
   String get introSemanticEnterApp;
 
-  /// No description provided for @introSemanticWonderous.
+  /// No description provided for @introSemanticAppName.
   ///
   /// In en, this message translates to:
-  /// **'Wonderous'**
-  String get introSemanticWonderous;
+  /// **'Travel Buddy'**
+  String get introSemanticAppName;
 
   /// No description provided for @labelledToggleSemanticToggle.
   ///
@@ -728,35 +668,35 @@ abstract class AppLocalizations {
   /// **'Show Title'**
   String get wallpaperCheckboxShowTitle;
 
-  /// No description provided for @wonderDetailsTabLabelInformation.
+  /// No description provided for @destinationDetailsTabLabelInformation.
   ///
   /// In en, this message translates to:
   /// **'information and history'**
-  String get wonderDetailsTabLabelInformation;
+  String get destinationDetailsTabLabelInformation;
 
-  /// No description provided for @wonderDetailsTabLabelImages.
+  /// No description provided for @destinationDetailsTabLabelImages.
   ///
   /// In en, this message translates to:
   /// **'photo gallery'**
-  String get wonderDetailsTabLabelImages;
+  String get destinationDetailsTabLabelImages;
 
-  /// No description provided for @wonderDetailsTabLabelArtifacts.
+  /// No description provided for @destinationDetailsTabLabelArtifacts.
   ///
   /// In en, this message translates to:
   /// **'artifacts'**
-  String get wonderDetailsTabLabelArtifacts;
+  String get destinationDetailsTabLabelArtifacts;
 
-  /// No description provided for @wonderDetailsTabLabelEvents.
+  /// No description provided for @destinationDetailsTabLabelEvents.
   ///
   /// In en, this message translates to:
   /// **'events'**
-  String get wonderDetailsTabLabelEvents;
+  String get destinationDetailsTabLabelEvents;
 
-  /// No description provided for @wonderDetailsTabSemanticBack.
+  /// No description provided for @destinationDetailsTabSemanticBack.
   ///
   /// In en, this message translates to:
-  /// **'back to wonder selection'**
-  String get wonderDetailsTabSemanticBack;
+  /// **'back to destination selection'**
+  String get destinationDetailsTabSemanticBack;
 
   /// No description provided for @homeSemanticOpenMain.
   ///
@@ -764,1769 +704,1787 @@ abstract class AppLocalizations {
   /// **'Open main menu'**
   String get homeSemanticOpenMain;
 
-  /// No description provided for @homeSemanticWonder.
+  /// No description provided for @homeSemanticDestination.
   ///
   /// In en, this message translates to:
-  /// **'wonder'**
-  String get homeSemanticWonder;
+  /// **'destination'**
+  String get homeSemanticDestination;
 
-  /// No description provided for @chichenItzaTitle.
+  /// No description provided for @butrintTitle.
   ///
   /// In en, this message translates to:
-  /// **'Chichen Itza'**
-  String get chichenItzaTitle;
+  /// **'Butrint'**
+  String get butrintTitle;
 
-  /// No description provided for @chichenItzaSubTitle.
+  /// No description provided for @butrintSubTitle.
   ///
   /// In en, this message translates to:
-  /// **'The Great Mayan City'**
-  String get chichenItzaSubTitle;
+  /// **'The Ancient Crossroads'**
+  String get butrintSubTitle;
 
-  /// No description provided for @chichenItzaRegionTitle.
+  /// No description provided for @butrintRegionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Yucatan, Mexico'**
-  String get chichenItzaRegionTitle;
+  /// **'Sarandë, Albania'**
+  String get butrintRegionTitle;
 
-  /// No description provided for @chichenItzaArtifactCulture.
+  /// No description provided for @butrintArtifactCulture.
   ///
   /// In en, this message translates to:
-  /// **'Maya'**
-  String get chichenItzaArtifactCulture;
+  /// **'Illyrian-Roman'**
+  String get butrintArtifactCulture;
 
-  /// No description provided for @chichenItzaArtifactGeolocation.
+  /// No description provided for @butrintArtifactGeolocation.
   ///
   /// In en, this message translates to:
-  /// **'North and Central America'**
-  String get chichenItzaArtifactGeolocation;
+  /// **'Southern Albania'**
+  String get butrintArtifactGeolocation;
 
-  /// No description provided for @chichenItzaPullQuote1Top.
+  /// No description provided for @butrintPullQuote1Top.
   ///
   /// In en, this message translates to:
-  /// **'The Beauty Between'**
-  String get chichenItzaPullQuote1Top;
+  /// **'A Microcosm of'**
+  String get butrintPullQuote1Top;
 
-  /// No description provided for @chichenItzaPullQuote1Bottom.
+  /// No description provided for @butrintPullQuote1Bottom.
   ///
   /// In en, this message translates to:
-  /// **'the Heavens and the Underworld'**
-  String get chichenItzaPullQuote1Bottom;
+  /// **'Mediterranean History'**
+  String get butrintPullQuote1Bottom;
 
-  /// No description provided for @chichenItzaPullQuote2.
+  /// No description provided for @butrintPullQuote2.
   ///
   /// In en, this message translates to:
-  /// **'The Maya and Toltec vision of the world and the universe is revealed in their stone monuments and artistic works.'**
-  String get chichenItzaPullQuote2;
+  /// **'Butrint is a testament to the richness and diversity of a cultural landscape shaped by centuries of human settlement.'**
+  String get butrintPullQuote2;
 
-  /// No description provided for @chichenItzaPullQuote2Author.
+  /// No description provided for @butrintPullQuote2Author.
   ///
   /// In en, this message translates to:
   /// **'UNESCO'**
-  String get chichenItzaPullQuote2Author;
+  String get butrintPullQuote2Author;
 
-  /// No description provided for @chichenItzaCallout1.
+  /// No description provided for @butrintCallout1.
   ///
   /// In en, this message translates to:
-  /// **'The site exhibits a multitude of architectural styles, reminiscent of styles seen in central Mexico and of the Puuc and Chenes styles of the Northern Maya lowlands.'**
-  String get chichenItzaCallout1;
+  /// **'Butrint has been inhabited since at least the 8th century BCE and served as a Greek colony, a Roman city, a Byzantine bishopric, and a Venetian outpost.'**
+  String get butrintCallout1;
 
-  /// No description provided for @chichenItzaCallout2.
+  /// No description provided for @butrintCallout2.
   ///
   /// In en, this message translates to:
-  /// **'The city comprised an area of at least 1.9 sq miles (5 sq km) of densely clustered architecture.'**
-  String get chichenItzaCallout2;
+  /// **'The ancient theater, built in the 3rd century BCE, could seat approximately 1,500 spectators and is one of the best-preserved in the region.'**
+  String get butrintCallout2;
 
-  /// No description provided for @chichenItzaVideoCaption.
+  /// No description provided for @butrintVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“Ancient Maya 101 | National Geographic.” Youtube, uploaded by National Geographic.'**
-  String get chichenItzaVideoCaption;
+  /// **'“Butrint - Albania\'s UNESCO World Heritage Site.” Youtube.'**
+  String get butrintVideoCaption;
 
-  /// No description provided for @chichenItzaMapCaption.
+  /// No description provided for @butrintMapCaption.
   ///
   /// In en, this message translates to:
-  /// **'Map showing location of Chichen Itza in Yucatán State, Mexico.'**
-  String get chichenItzaMapCaption;
+  /// **'Map showing location of Butrint National Park in southern Albania.'**
+  String get butrintMapCaption;
 
-  /// No description provided for @chichenItzaHistoryInfo1.
+  /// No description provided for @butrintHistoryInfo1.
   ///
   /// In en, this message translates to:
-  /// **'Chichen Itza was a powerful regional capital controlling north and central Yucatán. The earliest hieroglyphic date discovered at Chichen Itza is equivalent to 832 CE, while the last known date was recorded in the Osario temple in 998 CE.\nDominating the North Platform of Chichen Itza is the famous Temple of Kukulcán. The temple was identified by the first Spaniards to see it, as El Castillo (\"the castle\"), and it regularly is referred to as such.'**
-  String get chichenItzaHistoryInfo1;
+  /// **'Butrint is an archaeological site in southern Albania, opposite the Greek island of Corfu. First settled by Greek colonists from Corfu in the 8th century BCE, it grew into an important city of the ancient world. According to legend, the city was founded by Trojan refugees led by Aeneas.\nThe Romans conquered Butrint in 167 BCE, and Julius Caesar later designated it a colony for veterans. Under Roman rule, the city flourished with the construction of an aqueduct, public baths, and a forum.'**
+  String get butrintHistoryInfo1;
 
-  /// No description provided for @chichenItzaHistoryInfo2.
+  /// No description provided for @butrintHistoryInfo2.
   ///
   /// In en, this message translates to:
-  /// **'The city was thought to have the most diverse population in the Maya world, a factor that could have contributed to this architectural variety.'**
-  String get chichenItzaHistoryInfo2;
+  /// **'Butrint continued to thrive as an important ecclesiastical center in the Byzantine period. A large basilica and baptistery were built in the 6th century CE. The site changed hands many times — from Byzantines to Angevins, from Venetians to Ottomans — each leaving their architectural mark on this remarkable landscape.'**
+  String get butrintHistoryInfo2;
 
-  /// No description provided for @chichenItzaConstructionInfo1.
+  /// No description provided for @butrintConstructionInfo1.
   ///
   /// In en, this message translates to:
-  /// **'The structures of Chichen Itza were built from precisely chiseled limestone blocks that fit together perfectly without the mortar. Many of these stone buildings were originally painted in red, green, blue and purple colors depending on the availability of the pigments.\nThe stepped pyramid El Castillo stands about 98 feet (30 m) high and consists of a series of nine square terraces, each approximately 8.4 feet (2.57 m) high, with a 20 foot (6 m) high temple upon the summit.'**
-  String get chichenItzaConstructionInfo1;
+  /// **'The ancient theater is carved into the southern slope of the acropolis hill, taking advantage of the natural terrain. Built with local limestone in the Hellenistic period, the theater features a semicircular orchestra, tiered seating (cavea), and a stage building (skene).\nThe nearby Asclepion sanctuary, dedicated to the god of healing, features finely carved stone reliefs and columns in the Corinthian style.'**
+  String get butrintConstructionInfo1;
 
-  /// No description provided for @chichenItzaConstructionInfo2.
+  /// No description provided for @butrintConstructionInfo2.
   ///
   /// In en, this message translates to:
-  /// **'It was built upon broken terrain, which was artificially leveled to support structures such as the Castillo pyramid. Important buildings within the center were connected by a dense network of paved roads called sacbeob.'**
-  String get chichenItzaConstructionInfo2;
+  /// **'The 6th-century baptistery is one of the largest early Christian structures in the Balkans. Its floor is adorned with intricate mosaics depicting animals and geometric patterns, showcasing the artistic sophistication of the era. The structure uses a circular plan with 16 granite columns supporting the interior.'**
+  String get butrintConstructionInfo2;
 
-  /// No description provided for @chichenItzaLocationInfo1.
+  /// No description provided for @butrintLocationInfo1.
   ///
   /// In en, this message translates to:
-  /// **'Chichen Itza is located in the eastern portion of Yucatán state in Mexico. Nearby, four large sinkholes, called cenotes, could have provided plentiful water year round at Chichen, making it attractive for settlement.'**
-  String get chichenItzaLocationInfo1;
+  /// **'Butrint is located on a peninsula between the Vivari Channel and Lake Butrint in the Ksamil area of southern Albania, approximately 14 miles (23 km) south of Sarandë. The site sits within a national park encompassing wetlands, forests, and the lake itself.'**
+  String get butrintLocationInfo1;
 
-  /// No description provided for @chichenItzaLocationInfo2.
+  /// No description provided for @butrintLocationInfo2.
   ///
   /// In en, this message translates to:
-  /// **'Of these cenotes, the \"Cenote Sagrado\" or Sacred Cenote, was used for the sacrifice of precious objects and human beings as a form of worship to the Maya rain god Chaac.'**
-  String get chichenItzaLocationInfo2;
+  /// **'The strategic position of Butrint, on a narrow strait between the mainland and Corfu, made it an important stop along ancient Mediterranean trade routes. The surrounding landscape of marshes, lagoons, and the Ionian Sea coast has been crucial to the site\'s history as both a defensive position and a thriving port.'**
+  String get butrintLocationInfo2;
 
-  /// No description provided for @chichenItza600ce.
+  /// No description provided for @butrint600ce.
   ///
   /// In en, this message translates to:
-  /// **'Chichen Itza rises to regional prominence toward the end of the Early Classic period'**
-  String get chichenItza600ce;
+  /// **'Greek colonists from Corfu establish a settlement at Butrint, which grows into a significant trading post'**
+  String get butrint600ce;
 
-  /// No description provided for @chichenItza832ce.
+  /// No description provided for @butrint832ce.
   ///
   /// In en, this message translates to:
-  /// **'The earliest hieroglyphic date discovered at Chichen Itza'**
-  String get chichenItza832ce;
+  /// **'Butrint serves as a major Byzantine ecclesiastical center with construction of the Great Basilica'**
+  String get butrint832ce;
 
-  /// No description provided for @chichenItza998ce.
+  /// No description provided for @butrint998ce.
   ///
   /// In en, this message translates to:
-  /// **'Last known date recorded in the Osario temple'**
-  String get chichenItza998ce;
+  /// **'The city comes under various regional powers as the Byzantine Empire\'s control weakens'**
+  String get butrint998ce;
 
-  /// No description provided for @chichenItza1100ce.
+  /// No description provided for @butrint1100ce.
   ///
   /// In en, this message translates to:
-  /// **'Chichen Itza declines as a regional center'**
-  String get chichenItza1100ce;
+  /// **'Normans and Angevins contest control of Butrint as part of broader Mediterranean conflicts'**
+  String get butrint1100ce;
 
-  /// No description provided for @chichenItza1527ce.
+  /// No description provided for @butrint1527ce.
   ///
   /// In en, this message translates to:
-  /// **'Invaded by Spanish Conquistador Francisco de Montejo'**
-  String get chichenItza1527ce;
+  /// **'The Venetian Republic fortifies Butrint, constructing a castle and tower to defend against Ottoman expansion'**
+  String get butrint1527ce;
 
-  /// No description provided for @chichenItza1535ce.
+  /// No description provided for @butrint1535ce.
   ///
   /// In en, this message translates to:
-  /// **'All Spanish are driven from the Yucatán Peninsula'**
-  String get chichenItza1535ce;
+  /// **'Ottoman forces gain control of the wider region, and Butrint gradually declines as a settlement'**
+  String get butrint1535ce;
 
-  /// No description provided for @chichenItzaCollectible1Title.
+  /// No description provided for @butrintCollectible1Title.
   ///
   /// In en, this message translates to:
   /// **'Pendant'**
-  String get chichenItzaCollectible1Title;
+  String get butrintCollectible1Title;
 
-  /// No description provided for @chichenItzaCollectible1Icon.
+  /// No description provided for @butrintCollectible1Icon.
   ///
   /// In en, this message translates to:
   /// **'jewelry'**
-  String get chichenItzaCollectible1Icon;
+  String get butrintCollectible1Icon;
 
-  /// No description provided for @chichenItzaCollectible2Title.
+  /// No description provided for @butrintCollectible2Title.
   ///
   /// In en, this message translates to:
   /// **'Bird Ornament'**
-  String get chichenItzaCollectible2Title;
+  String get butrintCollectible2Title;
 
-  /// No description provided for @chichenItzaCollectible2Icon.
+  /// No description provided for @butrintCollectible2Icon.
   ///
   /// In en, this message translates to:
   /// **'jewelry'**
-  String get chichenItzaCollectible2Icon;
+  String get butrintCollectible2Icon;
 
-  /// No description provided for @chichenItzaCollectible3Title.
+  /// No description provided for @butrintCollectible3Title.
   ///
   /// In en, this message translates to:
-  /// **'La Prison, à Chichen-Itza'**
-  String get chichenItzaCollectible3Title;
+  /// **'Vue de Buthrotum'**
+  String get butrintCollectible3Title;
 
-  /// No description provided for @chichenItzaCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'picture'**
-  String get chichenItzaCollectible3Icon;
-
-  /// No description provided for @christRedeemerTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Christ the Redeemer'**
-  String get christRedeemerTitle;
-
-  /// No description provided for @christRedeemerSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'A symbol of peace'**
-  String get christRedeemerSubTitle;
-
-  /// No description provided for @christRedeemerRegionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Rio de Janeiro, Brazil'**
-  String get christRedeemerRegionTitle;
-
-  /// No description provided for @christRedeemerArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Brazil'**
-  String get christRedeemerArtifactGeolocation;
-
-  /// No description provided for @christRedeemerPullQuote1Top.
-  ///
-  /// In en, this message translates to:
-  /// **'A Perfect Union Between'**
-  String get christRedeemerPullQuote1Top;
-
-  /// No description provided for @christRedeemerPullQuote1Bottom.
-  ///
-  /// In en, this message translates to:
-  /// **'Nature and Architecture'**
-  String get christRedeemerPullQuote1Bottom;
-
-  /// No description provided for @christRedeemerPullQuote2.
-  ///
-  /// In en, this message translates to:
-  /// **'The statue looms large on the landscape, but it hides as much as it reveals about the diverse religious life of Brazilians.'**
-  String get christRedeemerPullQuote2;
-
-  /// No description provided for @christRedeemerPullQuote2Author.
-  ///
-  /// In en, this message translates to:
-  /// **'Thomas Tweed'**
-  String get christRedeemerPullQuote2Author;
-
-  /// No description provided for @christRedeemerCallout1.
-  ///
-  /// In en, this message translates to:
-  /// **'The statue of Christ the Redeemer with open arms, a symbol of peace, was chosen.'**
-  String get christRedeemerCallout1;
-
-  /// No description provided for @christRedeemerCallout2.
-  ///
-  /// In en, this message translates to:
-  /// **'Construction took nine years, from 1922 to 1931, and cost the equivalent of US\$250,000 (equivalent to \$3,600,000 in 2020) and the monument opened on October 12, 1931.'**
-  String get christRedeemerCallout2;
-
-  /// No description provided for @christRedeemerVideoCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'“The Majestic Statue of Christ the Redeemer - Seven Wonders of the Modern World - See U in History.” Youtube, uploaded by See U in History / Mythology.'**
-  String get christRedeemerVideoCaption;
-
-  /// No description provided for @christRedeemerMapCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'Map showing location of Christ the Redeemer in Rio de Janeiro, Brazil.'**
-  String get christRedeemerMapCaption;
-
-  /// No description provided for @christRedeemerHistoryInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'The placement of a Christian monument on Mount Corcovado was first suggested in the mid-1850s to honor Princess Isabel, regent of Brazil and the daughter of Emperor Pedro II, but the project was not approved.\nIn 1889 the country became a republic, and owing to the separation of church and state the proposed statue was dismissed.'**
-  String get christRedeemerHistoryInfo1;
-
-  /// No description provided for @christRedeemerHistoryInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'The Catholic Circle of Rio made a second proposal for a landmark statue on the mountain in 1920. The group organized an event called Semana do Monumento (\"Monument Week\") to attract donations and collect signatures to support the building of the statue. The organization was motivated by what they perceived as \"Godlessness\" in the society.\nThe designs considered for the \"Statue of the Christ\" included a representation of the Christian cross, a statue of Jesus with a globe in his hands, and a pedestal symbolizing the world.'**
-  String get christRedeemerHistoryInfo2;
-
-  /// No description provided for @christRedeemerConstructionInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'Artist Carlos Oswald and local engineer Heitor da Silva Costa designed the statue. French sculptor Paul Landowski created the work. In 1922, Landowski commissioned fellow Parisian Romanian sculptor Gheorghe Leonida, who studied sculpture at the Fine Arts Conservatory in Bucharest and in Italy.'**
-  String get christRedeemerConstructionInfo1;
-
-  /// No description provided for @christRedeemerConstructionInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'A group of engineers and technicians studied Landowski\'s submissions and felt building the structure of reinforced concrete instead of steel was more suitable for the cross-shaped statue. The concrete making up the base was supplied from Limhamn, Sweden. The outer layers are soapstone, chosen for its enduring qualities and ease of use.'**
-  String get christRedeemerConstructionInfo2;
-
-  /// No description provided for @christRedeemerLocationInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'Corcovado, which means \"hunchback\" in Portuguese, is a mountain in central Rio de Janeiro, Brazil. It is a 2,329 foot (710 m) granite peak located in the Tijuca Forest, a national park.'**
-  String get christRedeemerLocationInfo1;
-
-  /// No description provided for @christRedeemerLocationInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'Corcovado hill lies just west of the city center but is wholly within the city limits and visible from great distances.'**
-  String get christRedeemerLocationInfo2;
-
-  /// No description provided for @christRedeemer1850ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Plans for the statue were first proposed by Pedro Maria Boss upon Mount Corcovado. This was never approved, however.'**
-  String get christRedeemer1850ce;
-
-  /// No description provided for @christRedeemer1921ce.
-  ///
-  /// In en, this message translates to:
-  /// **'A new plan was proposed by the Roman Catholic archdiocese, and after the citizens of Rio de Janeiro petitioned the president, it was finally approved.'**
-  String get christRedeemer1921ce;
-
-  /// No description provided for @christRedeemer1922ce.
-  ///
-  /// In en, this message translates to:
-  /// **'The foundation of the statue was ceremoniously laid out to commemorate Brazil’s independence from Portugal.'**
-  String get christRedeemer1922ce;
-
-  /// No description provided for @christRedeemer1926ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Construction officially began after the initial design was chosen via a competition and amended by Brazilian artists and engineers.'**
-  String get christRedeemer1926ce;
-
-  /// No description provided for @christRedeemer1931ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Construction of the statue was completed, standing 98’ tall with a 92’ wide arm span.'**
-  String get christRedeemer1931ce;
-
-  /// No description provided for @christRedeemer2006ce.
-  ///
-  /// In en, this message translates to:
-  /// **'A chapel was consecrated at the statue’s base to Our Lady of Aparecida to mark the statue’s 75th anniversary.'**
-  String get christRedeemer2006ce;
-
-  /// No description provided for @christRedeemerCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Engraved Horn'**
-  String get christRedeemerCollectible1Title;
-
-  /// No description provided for @christRedeemerCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'statue'**
-  String get christRedeemerCollectible1Icon;
-
-  /// No description provided for @christRedeemerCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Fixed fan'**
-  String get christRedeemerCollectible2Title;
-
-  /// No description provided for @christRedeemerCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'jewelry'**
-  String get christRedeemerCollectible2Icon;
-
-  /// No description provided for @christRedeemerCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Handkerchiefs (one of two)'**
-  String get christRedeemerCollectible3Title;
-
-  /// No description provided for @christRedeemerCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'textile'**
-  String get christRedeemerCollectible3Icon;
-
-  /// No description provided for @colosseumTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Colosseum'**
-  String get colosseumTitle;
-
-  /// No description provided for @colosseumSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The icon of Rome'**
-  String get colosseumSubTitle;
-
-  /// No description provided for @colosseumRegionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Rome, Italy'**
-  String get colosseumRegionTitle;
-
-  /// No description provided for @colosseumArtifactCulture.
-  ///
-  /// In en, this message translates to:
-  /// **'Roman'**
-  String get colosseumArtifactCulture;
-
-  /// No description provided for @colosseumArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Roman Empire'**
-  String get colosseumArtifactGeolocation;
-
-  /// No description provided for @colosseumPullQuote1Top.
-  ///
-  /// In en, this message translates to:
-  /// **'Still the Largest Standing'**
-  String get colosseumPullQuote1Top;
-
-  /// No description provided for @colosseumPullQuote1Bottom.
-  ///
-  /// In en, this message translates to:
-  /// **'Amphitheater in the World Today'**
-  String get colosseumPullQuote1Bottom;
-
-  /// No description provided for @colosseumPullQuote2.
-  ///
-  /// In en, this message translates to:
-  /// **'When falls the Coliseum, Rome shall fall; And when Rome falls - the World.'**
-  String get colosseumPullQuote2;
-
-  /// No description provided for @colosseumPullQuote2Author.
-  ///
-  /// In en, this message translates to:
-  /// **'Lord Byron'**
-  String get colosseumPullQuote2Author;
-
-  /// No description provided for @colosseumCallout1.
-  ///
-  /// In en, this message translates to:
-  /// **'It was used for gladiatorial contests and public spectacles including animal hunts, executions, reenactments of famous battles, and dramas based on Roman mythology, and mock sea battles.'**
-  String get colosseumCallout1;
-
-  /// No description provided for @colosseumCallout2.
-  ///
-  /// In en, this message translates to:
-  /// **'It is the largest ancient amphitheater ever built, and is still the largest standing amphitheater in the world today, despite its age.'**
-  String get colosseumCallout2;
-
-  /// No description provided for @colosseumVideoCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'“Ancient Rome 101 | National Geographic.” Youtube, uploaded by National Geographic.'**
-  String get colosseumVideoCaption;
-
-  /// No description provided for @colosseumMapCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'Map showing location of Colosseum in Rome, Italy,'**
-  String get colosseumMapCaption;
-
-  /// No description provided for @colosseumHistoryInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'The Colosseum is an oval amphitheater in the center of the city of Rome, Italy. Unlike Roman theaters that were built into hillsides, the Colosseum is an entirely free-standing structure.'**
-  String get colosseumHistoryInfo1;
-
-  /// No description provided for @colosseumHistoryInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'The building ceased to be used for entertainment in the early medieval era. By the late 6th century a small chapel had been built into the structure of the amphitheater, and the arena was converted into a cemetery. \nThe numerous vaulted spaces in the arcades under the seating were converted into housing and workshops, and are recorded as still being rented out as late as the 12th century.'**
-  String get colosseumHistoryInfo2;
-
-  /// No description provided for @colosseumConstructionInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'Construction began under the emperor Vespasian (r. 69-79 CE) in 72 and was completed in 80 CE under his successor and heir, Titus (r. 79-81). Further modifications were made during the reign of Domitian (r. 81-96).\nThe Colosseum is built of travertine limestone, tuff (volcanic rock), and brick-faced concrete. The outer wall is estimated to have required over 3.5 million cubic feet of travertine stone which were set without mortar; they were held together by 300 tons of iron clamps.'**
-  String get colosseumConstructionInfo1;
-
-  /// No description provided for @colosseumConstructionInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'It could hold an estimated 50,000 to 80,000 spectators at various points in its history, having an average audience of some 65,000.'**
-  String get colosseumConstructionInfo2;
-
-  /// No description provided for @colosseumLocationInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'Following the Great Fire of Rome in 64 CE, Emperor Nero seized much of the destroyed area to build his grandiose Domus Aurea (\"Golden House\"). A severe embarrassment to Nero\'s successors, parts of this extravagant palace and grounds, encompassing 1 sq mile, were filled with earth and built over.'**
-  String get colosseumLocationInfo1;
-
-  /// No description provided for @colosseumLocationInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'On the site of the lake, in the middle of the palace grounds, Emperor Vespasian would build the Colosseum as part of a Roman resurgence.'**
-  String get colosseumLocationInfo2;
-
-  /// No description provided for @colosseum70ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Colosseum construction was started during the Vespasian reign overtop what used to be a private lake for the previous four emperors. This was done in an attempt to revitalize Rome from their tyrannical reign.'**
-  String get colosseum70ce;
-
-  /// No description provided for @colosseum82ce.
-  ///
-  /// In en, this message translates to:
-  /// **'The uppermost floor was built, and the structure was officially completed by Domitian.'**
-  String get colosseum82ce;
-
-  /// No description provided for @colosseum1140ce.
-  ///
-  /// In en, this message translates to:
-  /// **'The arena was repurposed as a fortress for the Frangipane and Annibaldi families. It was also at one point used as a church.'**
-  String get colosseum1140ce;
-
-  /// No description provided for @colosseum1490ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Pope Alexander VI permitted the site to be used as a quarry, for both storing and salvaging building materials.'**
-  String get colosseum1490ce;
-
-  /// No description provided for @colosseum1829ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Preservation of the colosseum officially began, after more than a millennia of dilapidation and vandalism. Pope Pius VIII was notably devoted to this project.'**
-  String get colosseum1829ce;
-
-  /// No description provided for @colosseum1990ce.
-  ///
-  /// In en, this message translates to:
-  /// **'A restoration project was undertaken to ensure the colosseum remained a major tourist attraction for Rome. It currently stands as one of the greatest sources of tourism revenue in Italy.'**
-  String get colosseum1990ce;
-
-  /// No description provided for @colosseumCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Glass hexagonal amphoriskos'**
-  String get colosseumCollectible1Title;
-
-  /// No description provided for @colosseumCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get colosseumCollectible1Icon;
-
-  /// No description provided for @colosseumCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Bronze plaque of Mithras slaying the bull'**
-  String get colosseumCollectible2Title;
-
-  /// No description provided for @colosseumCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'statue'**
-  String get colosseumCollectible2Icon;
-
-  /// No description provided for @colosseumCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Interno del Colosseo'**
-  String get colosseumCollectible3Title;
-
-  /// No description provided for @colosseumCollectible3Icon.
+  /// No description provided for @butrintCollectible3Icon.
   ///
   /// In en, this message translates to:
   /// **'picture'**
-  String get colosseumCollectible3Icon;
+  String get butrintCollectible3Icon;
 
-  /// No description provided for @greatWallTitle.
+  /// No description provided for @beratTitle.
   ///
   /// In en, this message translates to:
-  /// **'The Great Wall'**
-  String get greatWallTitle;
+  /// **'Berat'**
+  String get beratTitle;
 
-  /// No description provided for @greatWallSubTitle.
+  /// No description provided for @beratSubTitle.
   ///
   /// In en, this message translates to:
-  /// **'Longest structure on Earth'**
-  String get greatWallSubTitle;
+  /// **'City of a Thousand Windows'**
+  String get beratSubTitle;
 
-  /// No description provided for @greatWallRegionTitle.
+  /// No description provided for @beratRegionTitle.
   ///
   /// In en, this message translates to:
-  /// **'China'**
-  String get greatWallRegionTitle;
+  /// **'Berat, Albania'**
+  String get beratRegionTitle;
 
-  /// No description provided for @greatWallArtifactCulture.
+  /// No description provided for @beratArtifactGeolocation.
   ///
   /// In en, this message translates to:
-  /// **'Chinese'**
-  String get greatWallArtifactCulture;
+  /// **'Central Albania'**
+  String get beratArtifactGeolocation;
 
-  /// No description provided for @greatWallArtifactGeolocation.
+  /// No description provided for @beratPullQuote1Top.
   ///
   /// In en, this message translates to:
-  /// **'China'**
-  String get greatWallArtifactGeolocation;
+  /// **'A Rare Example of'**
+  String get beratPullQuote1Top;
 
-  /// No description provided for @greatWallPullQuote1Top.
+  /// No description provided for @beratPullQuote1Bottom.
   ///
   /// In en, this message translates to:
-  /// **'The Longest Man-Made'**
-  String get greatWallPullQuote1Top;
+  /// **'Well-Preserved Ottoman Architecture'**
+  String get beratPullQuote1Bottom;
 
-  /// No description provided for @greatWallPullQuote1Bottom.
+  /// No description provided for @beratPullQuote2.
   ///
   /// In en, this message translates to:
-  /// **'Structure in the World'**
-  String get greatWallPullQuote1Bottom;
+  /// **'Berat bears witness to the coexistence of various religious and cultural communities down the centuries.'**
+  String get beratPullQuote2;
 
-  /// No description provided for @greatWallPullQuote2.
-  ///
-  /// In en, this message translates to:
-  /// **'Its historic and strategic importance is matched only by its architectural significance.'**
-  String get greatWallPullQuote2;
-
-  /// No description provided for @greatWallPullQuote2Author.
+  /// No description provided for @beratPullQuote2Author.
   ///
   /// In en, this message translates to:
   /// **'UNESCO'**
-  String get greatWallPullQuote2Author;
+  String get beratPullQuote2Author;
 
-  /// No description provided for @greatWallCallout1.
+  /// No description provided for @beratCallout1.
   ///
   /// In en, this message translates to:
-  /// **'The best-known sections of the wall were built by the Ming dynasty (1368-1644).'**
-  String get greatWallCallout1;
+  /// **'Berat is known for its distinctive white Ottoman houses climbing up the hillside, their many windows giving the city its famous epithet.'**
+  String get beratCallout1;
 
-  /// No description provided for @greatWallCallout2.
+  /// No description provided for @beratCallout2.
   ///
   /// In en, this message translates to:
-  /// **'During the Ming dynasty, however, bricks were heavily used in many areas of the wall, as were materials such as tiles, lime, and stone.'**
-  String get greatWallCallout2;
+  /// **'The castle quarter (Kalaja) has been continuously inhabited for over 2,400 years and still houses a living community within its 13th-century walls.'**
+  String get beratCallout2;
 
-  /// No description provided for @greatWallVideoCaption.
+  /// No description provided for @beratVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“See China’s Iconic Great Wall From Above | National Geographic.” Youtube, uploaded by National Geographic.'**
-  String get greatWallVideoCaption;
+  /// **'“Berat - City of a Thousand Windows, Albania.” Youtube.'**
+  String get beratVideoCaption;
 
-  /// No description provided for @greatWallMapCaption.
+  /// No description provided for @beratMapCaption.
   ///
   /// In en, this message translates to:
-  /// **'Map showing location of Great Wall of China in northern China.'**
-  String get greatWallMapCaption;
+  /// **'Map showing location of Berat in central Albania.'**
+  String get beratMapCaption;
 
-  /// No description provided for @greatWallHistoryInfo1.
+  /// No description provided for @beratHistoryInfo1.
   ///
   /// In en, this message translates to:
-  /// **'The Great Wall of China is a series of fortifications that were built across the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups from the Eurasian Steppe. The total length of all sections ever built is over 13,000 miles.'**
-  String get greatWallHistoryInfo1;
+  /// **'Berat is one of the oldest continuously inhabited cities in Albania, located along the banks of the Osum River. The castle on the hilltop has been inhabited since the 4th century BCE, when it was an important Illyrian settlement known as Antipatrea, founded by the Illyrian king Antipater.\nUnder Roman rule, the city served as a strategic military outpost along the Via Egnatia trade route.'**
+  String get beratHistoryInfo1;
 
-  /// No description provided for @greatWallHistoryInfo2.
+  /// No description provided for @beratHistoryInfo2.
   ///
   /// In en, this message translates to:
-  /// **'Several walls were built from as early as the 7th century BCE, with selective stretches later joined together by Qin Shi Huang (220-206  BCE), the first emperor of China. Little of the Qin wall remains. \nLater on, many successive dynasties built and maintained multiple stretches of border walls.'**
-  String get greatWallHistoryInfo2;
+  /// **'During the Byzantine period, the city was known as Pulcheriopolis and later Beligrad. The Ottomans captured Berat in 1417 and it became a major center of trade and craftsmanship.\nThe city\'s three historic quarters — Mangalem, Gorica, and Kalaja — preserve an extraordinary blend of Eastern and Western architecture, earning it UNESCO World Heritage status in 2008 as part of the \"Historic Centres of Berat and Gjirokastër.\"'**
+  String get beratHistoryInfo2;
 
-  /// No description provided for @greatWallConstructionInfo1.
+  /// No description provided for @beratConstructionInfo1.
   ///
   /// In en, this message translates to:
-  /// **'Transporting the large quantity of materials required for construction was difficult, so builders always tried to use local resources. Stones from the mountains were used over mountain ranges, while rammed earth was used for construction in the plains. Most of the ancient walls have eroded away over the centuries.'**
-  String get greatWallConstructionInfo1;
+  /// **'The Berat Castle sits at 614 feet (187 m) above sea level atop a rocky hill. The current walls date primarily to the 13th century under the Despotate of Epirus, though foundations are much older. The fortress encompasses an area of about 24 acres (10 hectares) and originally had 24 towers along its walls.\nWithin the castle walls, several Byzantine churches survive, including the Church of the Holy Trinity and the Church of St. Mary of Blachernae, featuring remarkable 16th-century frescoes by the renowned painter Onufri.'**
+  String get beratConstructionInfo1;
 
-  /// No description provided for @greatWallConstructionInfo2.
+  /// No description provided for @beratConstructionInfo2.
   ///
   /// In en, this message translates to:
-  /// **'Stones cut into rectangular shapes were used for the foundation, inner and outer brims, and gateways of the wall. \nUnder the rule of the Qing dynasty, China\'s borders extended beyond the walls and Mongolia was annexed into the empire, so construction was discontinued.'**
-  String get greatWallConstructionInfo2;
+  /// **'The Mangalem quarter below the castle is famous for its Ottoman-era houses built on the steep hillside. These traditional houses feature stone foundations, timber-framed upper stories, and large windows arranged symmetrically on whitewashed facades — the architectural signature that gives Berat its name \"City of a Thousand Windows.\"'**
+  String get beratConstructionInfo2;
 
-  /// No description provided for @greatWallLocationInfo1.
+  /// No description provided for @beratLocationInfo1.
   ///
   /// In en, this message translates to:
-  /// **'The frontier walls built by different dynasties have multiple courses. Collectively, they stretch from Liaodong in the east to Lop Lake in the west, from the present-day Sino-Russian border in the north to Tao River in the south; along an arc that roughly delineates the edge of the Mongolian steppe.'**
-  String get greatWallLocationInfo1;
+  /// **'Berat is situated in south-central Albania, approximately 75 miles (120 km) south of the capital Tirana. The city is built along both banks of the Osum River, at the foot of Mount Tomorr, one of Albania\'s most sacred mountains reaching 8,042 feet (2,416 m).'**
+  String get beratLocationInfo1;
 
-  /// No description provided for @greatWallLocationInfo2.
+  /// No description provided for @beratLocationInfo2.
   ///
   /// In en, this message translates to:
-  /// **'Apart from defense, other purposes of the Great Wall have included border controls, allowing the imposition of duties on goods transported along the Silk Road, regulation or encouragement of trade and the control of immigration and emigration.'**
-  String get greatWallLocationInfo2;
+  /// **'The Osum River canyon, stretching southeast of the city, is one of the most dramatic natural features in Albania, with vertical canyon walls reaching over 260 feet (80 m). The surrounding region has been cultivated since antiquity, producing olives, grapes, and figs in the mild Mediterranean-influenced climate.'**
+  String get beratLocationInfo2;
 
-  /// No description provided for @greatWall700bce.
+  /// No description provided for @berat1850ce.
   ///
   /// In en, this message translates to:
-  /// **'First landmark of the Great Wall began originally as a square wall surrounding the state of Chu. Over the years, additional walls would be built and added to it to expand and connect territory.'**
-  String get greatWall700bce;
+  /// **'Berat experiences a cultural renaissance under the Ottoman Tanzimat reforms, with new schools and civic buildings constructed'**
+  String get berat1850ce;
 
-  /// No description provided for @greatWall214bce.
+  /// No description provided for @berat1921ce.
   ///
   /// In en, this message translates to:
-  /// **'The first Qin Emperor unifies China and links the wall of the surrounding states of Qin, Yan, and Zhao into the Great Wall of China, taking 10 years to build with hundreds of thousands of laborers.'**
-  String get greatWall214bce;
+  /// **'Following Albanian independence, Berat becomes an important administrative center of the new Albanian state'**
+  String get berat1921ce;
 
-  /// No description provided for @greatWall121bce.
+  /// No description provided for @berat1922ce.
   ///
   /// In en, this message translates to:
-  /// **'A 20-year construction project was started by the Han emperor to build east and west sections of the wall, including beacons, towers, and castles. Not just for defense, but also to control trade routes like the Silk Road.'**
-  String get greatWall121bce;
+  /// **'The first modern schools in Albanian language are established in Berat, advancing the national education movement'**
+  String get berat1922ce;
 
-  /// No description provided for @greatWall556ce.
+  /// No description provided for @berat1926ce.
   ///
   /// In en, this message translates to:
-  /// **'The Bei Qi kingdom also launched several construction projects, utilizing over 1.8 million workers to repair and extend sections of the wall, adding to its length and even building a second inner wall around Shanxi.'**
-  String get greatWall556ce;
+  /// **'Archaeological surveys begin documenting the historic architecture of Berat\'s castle and Ottoman quarters'**
+  String get berat1926ce;
 
-  /// No description provided for @greatWall618ce.
+  /// No description provided for @berat1931ce.
   ///
   /// In en, this message translates to:
-  /// **'The Great Wall was repaired during the Sui Dynasty and used to defend against Tujue attacks. Before and after the Sui Dynasty, the wall saw very little use and fell into disrepair.'**
-  String get greatWall618ce;
+  /// **'Restoration work begins on the castle walls and Byzantine churches within the Kalaja quarter'**
+  String get berat1931ce;
 
-  /// No description provided for @greatWall1487ce.
+  /// No description provided for @berat2006ce.
   ///
   /// In en, this message translates to:
-  /// **'Hongzhi Emperor split the walls into north and south lines, eventually shaping it into how it is today. Since then, it has gradually fallen into disrepair and remains mostly unused.'**
-  String get greatWall1487ce;
+  /// **'Berat\'s historic center receives preliminary recognition leading to its UNESCO World Heritage inscription in 2008'**
+  String get berat2006ce;
 
-  /// No description provided for @greatWallCollectible1Title.
+  /// No description provided for @beratCollectible1Title.
   ///
   /// In en, this message translates to:
-  /// **'Biographies of Lian Po and Lin Xiangru'**
-  String get greatWallCollectible1Title;
+  /// **'Engraved Horn'**
+  String get beratCollectible1Title;
 
-  /// No description provided for @greatWallCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'scroll'**
-  String get greatWallCollectible1Icon;
-
-  /// No description provided for @greatWallCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Jar with Dragon'**
-  String get greatWallCollectible2Title;
-
-  /// No description provided for @greatWallCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get greatWallCollectible2Icon;
-
-  /// No description provided for @greatWallCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Panel with Peonies and Butterfly'**
-  String get greatWallCollectible3Title;
-
-  /// No description provided for @greatWallCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'textile'**
-  String get greatWallCollectible3Icon;
-
-  /// No description provided for @machuPicchuTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Machu Picchu'**
-  String get machuPicchuTitle;
-
-  /// No description provided for @machuPicchuSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Citadel of the Inca'**
-  String get machuPicchuSubTitle;
-
-  /// No description provided for @machuPicchuRegionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Cusco Region, Peru'**
-  String get machuPicchuRegionTitle;
-
-  /// No description provided for @machuPicchuArtifactCulture.
-  ///
-  /// In en, this message translates to:
-  /// **'Inca'**
-  String get machuPicchuArtifactCulture;
-
-  /// No description provided for @machuPicchuArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'South America'**
-  String get machuPicchuArtifactGeolocation;
-
-  /// No description provided for @machuPicchuPullQuote1Top.
-  ///
-  /// In en, this message translates to:
-  /// **'Few Romances Can Ever Surpass'**
-  String get machuPicchuPullQuote1Top;
-
-  /// No description provided for @machuPicchuPullQuote1Bottom.
-  ///
-  /// In en, this message translates to:
-  /// **'That of the Granite Citadel'**
-  String get machuPicchuPullQuote1Bottom;
-
-  /// No description provided for @machuPicchuPullQuote1Author.
-  ///
-  /// In en, this message translates to:
-  /// **'Hiram Bingham'**
-  String get machuPicchuPullQuote1Author;
-
-  /// No description provided for @machuPicchuPullQuote2.
-  ///
-  /// In en, this message translates to:
-  /// **'In the variety of its charms and the power of its spell, I know of no other place in the world which can compare with it.'**
-  String get machuPicchuPullQuote2;
-
-  /// No description provided for @machuPicchuPullQuote2Author.
-  ///
-  /// In en, this message translates to:
-  /// **'Hiram Bingham'**
-  String get machuPicchuPullQuote2Author;
-
-  /// No description provided for @machuPicchuCallout1.
-  ///
-  /// In en, this message translates to:
-  /// **'During its use as a royal estate, it is estimated that about 750 people lived there, with most serving as support staff who lived there permanently.'**
-  String get machuPicchuCallout1;
-
-  /// No description provided for @machuPicchuCallout2.
-  ///
-  /// In en, this message translates to:
-  /// **'The Incas were masters of this technique, called ashlar, in which blocks of stone are cut to fit together tightly without mortar.'**
-  String get machuPicchuCallout2;
-
-  /// No description provided for @machuPicchuVideoCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'“Machu Picchu 101 | National Geographic.” Youtube, uploaded by National Geographic.'**
-  String get machuPicchuVideoCaption;
-
-  /// No description provided for @machuPicchuMapCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'Map showing location of Machu Picchu in the Eastern Cordillera of southern Peru.'**
-  String get machuPicchuMapCaption;
-
-  /// No description provided for @machuPicchuHistoryInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a 2,430-meter (7,970 ft) mountain ridge. Construction appears to date from two great Inca rulers, Pachacutec Inca Yupanqui (1438–1471 CE) and Túpac Inca Yupanqui (1472–1493 CE).'**
-  String get machuPicchuHistoryInfo1;
-
-  /// No description provided for @machuPicchuHistoryInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'There is a consensus among archeologists that Pachacutec ordered the construction of the royal estate for his use as a retreat, most likely after a successful military campaign.\nRather it was used for 80 years before being abandoned, seemingly because of the Spanish conquests in other parts of the Inca Empire.'**
-  String get machuPicchuHistoryInfo2;
-
-  /// No description provided for @machuPicchuConstructionInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'The central buildings use the classical Inca architectural style of polished dry-stone walls of regular shape. \nInca walls have many stabilizing features: doors and windows are trapezoidal, narrowing from bottom to top; corners usually are rounded; inside corners often incline slightly into the rooms, and outside corners were often tied together by \"L\"-shaped blocks.'**
-  String get machuPicchuConstructionInfo1;
-
-  /// No description provided for @machuPicchuConstructionInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'This precision construction method made the structures at Machu Picchu resistant to seismic activity.\nThe site itself may have been intentionally built on fault lines to afford better drainage and a ready supply of fractured stone.'**
-  String get machuPicchuConstructionInfo2;
-
-  /// No description provided for @machuPicchuLocationInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'Machu Picchu is situated above a bow of the Urubamba River, which surrounds the site on three sides, where cliffs drop vertically for 1,480 feet (450 m) to the river at their base. The location of the city was a military secret, and its deep precipices and steep mountains provided natural defenses.'**
-  String get machuPicchuLocationInfo1;
-
-  /// No description provided for @machuPicchuLocationInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'The Inca Bridge, an Inca grass rope bridge, across the Urubamba River in the Pongo de Mainique, provided a secret entrance for the Inca army. Another Inca bridge was built to the west of Machu Picchu, the tree-trunk bridge, at a location where a gap occurs in the cliff that measures 20 feet (6 m).'**
-  String get machuPicchuLocationInfo2;
-
-  /// No description provided for @machuPicchu1438ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Speculated to be built and occupied by Inca ruler Pachacuti Inca Yupanqui.'**
-  String get machuPicchu1438ce;
-
-  /// No description provided for @machuPicchu1572ce.
-  ///
-  /// In en, this message translates to:
-  /// **'The last Inca rulers used the site as a bastion to rebel against Spanish rule until they were ultimately wiped out.'**
-  String get machuPicchu1572ce;
-
-  /// No description provided for @machuPicchu1867ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Speculated to have been originally discovered by German explorer Augusto Berns, but his findings were never effectively publicized.'**
-  String get machuPicchu1867ce;
-
-  /// No description provided for @machuPicchu1911ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Introduced to the world by Hiram Bingham of Yale University, who was led there by locals after disclosing he was searching for Vilcabamba, the ’lost city of the Incas’.'**
-  String get machuPicchu1911ce;
-
-  /// No description provided for @machuPicchu1964ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Surrounding sites were excavated thoroughly by Gene Savoy, who found a much more suitable candidate for Vilcabamba in the ruin known as Espíritu Pampa.'**
-  String get machuPicchu1964ce;
-
-  /// No description provided for @machuPicchu1997ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Since its rediscovery, growing numbers of tourists have visited the Machu Picchu each year, with numbers exceeding 1.4 million in 2017.'**
-  String get machuPicchu1997ce;
-
-  /// No description provided for @machuPicchuCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Eight-Pointed Star Tunic'**
-  String get machuPicchuCollectible1Title;
-
-  /// No description provided for @machuPicchuCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'textile'**
-  String get machuPicchuCollectible1Icon;
-
-  /// No description provided for @machuPicchuCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Camelid figurine'**
-  String get machuPicchuCollectible2Title;
-
-  /// No description provided for @machuPicchuCollectible2Icon.
+  /// No description provided for @beratCollectible1Icon.
   ///
   /// In en, this message translates to:
   /// **'statue'**
-  String get machuPicchuCollectible2Icon;
+  String get beratCollectible1Icon;
 
-  /// No description provided for @machuPicchuCollectible3Title.
+  /// No description provided for @beratCollectible2Title.
   ///
   /// In en, this message translates to:
-  /// **'Double Bowl'**
-  String get machuPicchuCollectible3Title;
+  /// **'Fixed fan'**
+  String get beratCollectible2Title;
 
-  /// No description provided for @machuPicchuCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get machuPicchuCollectible3Icon;
-
-  /// No description provided for @petraTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Petra'**
-  String get petraTitle;
-
-  /// No description provided for @petraSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The Lost City'**
-  String get petraSubTitle;
-
-  /// No description provided for @petraRegionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Ma’an, Jordan'**
-  String get petraRegionTitle;
-
-  /// No description provided for @petraArtifactCulture.
-  ///
-  /// In en, this message translates to:
-  /// **'Nabataean'**
-  String get petraArtifactCulture;
-
-  /// No description provided for @petraArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Levant'**
-  String get petraArtifactGeolocation;
-
-  /// No description provided for @petraPullQuote1Top.
-  ///
-  /// In en, this message translates to:
-  /// **'A Rose-Red City'**
-  String get petraPullQuote1Top;
-
-  /// No description provided for @petraPullQuote1Bottom.
-  ///
-  /// In en, this message translates to:
-  /// **'Half as Old as Time'**
-  String get petraPullQuote1Bottom;
-
-  /// No description provided for @petraPullQuote1Author.
-  ///
-  /// In en, this message translates to:
-  /// **'John William Burgon'**
-  String get petraPullQuote1Author;
-
-  /// No description provided for @petraPullQuote2.
-  ///
-  /// In en, this message translates to:
-  /// **'Petra is a brilliant display of man’s artistry in turning barren rock into a majestic wonder.'**
-  String get petraPullQuote2;
-
-  /// No description provided for @petraPullQuote2Author.
-  ///
-  /// In en, this message translates to:
-  /// **'Edward Dawson'**
-  String get petraPullQuote2Author;
-
-  /// No description provided for @petraCallout1.
-  ///
-  /// In en, this message translates to:
-  /// **'They were particularly skillful in harvesting rainwater, agriculture and stone carving.'**
-  String get petraCallout1;
-
-  /// No description provided for @petraCallout2.
-  ///
-  /// In en, this message translates to:
-  /// **'Perhaps a more prominent resemblance to Hellenistic style in Petra comes with its Treasury.'**
-  String get petraCallout2;
-
-  /// No description provided for @petraVideoCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'“Stunning Stone Monuments of Petra | National Geographic.” Youtube, uploaded by National Geographic.'**
-  String get petraVideoCaption;
-
-  /// No description provided for @petraMapCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'Map showing location of Petra in Ma’an Governorate, Jordan.'**
-  String get petraMapCaption;
-
-  /// No description provided for @petraHistoryInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'The area around Petra has been inhabited from as early as 7000  BCE, and the Nabataeans might have settled in what would become the capital city of their kingdom as early as the 4th century BCE.\nThe trading business gained the Nabataeans considerable revenue and Petra became the focus of their wealth. The Nabataeans were accustomed to living in the barren deserts, unlike their enemies, and were able to repel attacks by taking advantage of the area\'s mountainous terrain.'**
-  String get petraHistoryInfo1;
-
-  /// No description provided for @petraHistoryInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'Petra flourished in the 1st century CE, when its famous Al-Khazneh structure - believed to be the mausoleum of Nabataean king Aretas IV - was constructed, and its population peaked at an estimated 20,000 inhabitants.\nAccess to the city is through a 3/4 mile-long (1.2 km) gorge called the Siq, which leads directly to the Khazneh.'**
-  String get petraHistoryInfo2;
-
-  /// No description provided for @petraConstructionInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'Famous for its rock-cut architecture and water conduit system, Petra is also called the \"Red Rose City\" because of the color of the stone from which it is carved.\nAnother thing Petra is known for is its Hellenistic (“Greek”) architecture. These influences can be seen in many of the facades at Petra and are a reflection of the cultures that the Nabataens traded with.'**
-  String get petraConstructionInfo1;
-
-  /// No description provided for @petraConstructionInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'The facade of the Treasury features a broken pediment with a central tholos (“dome”) inside, and two obelisks appear to form into the rock of Petra at the top. Near the bottom of the Treasury we see twin Greek Gods: Pollux, Castor, and Dioscuri, who protect travelers on their journeys. \nNear the top of the Treasury, two victories are seen standing on each side of a female figure on the tholos. This female figure is believed to be the Isis-Tyche, Isis being the Egyptian Goddess and Tyche being the Greek Goddess of good fortune.'**
-  String get petraConstructionInfo2;
-
-  /// No description provided for @petraLocationInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'Petra is located in southern Jordan. It is adjacent to the mountain of Jabal Al-Madbah, in a basin surrounded by mountains forming the eastern flank of the Arabah valley running from the Dead Sea to the Gulf of Aqaba.'**
-  String get petraLocationInfo1;
-
-  /// No description provided for @petraLocationInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'The area around Petra has been inhabited from as early as 7000 BC, and the Nabataeans might have settled in what would become the capital city of their kingdom as early as the 4th century BC.\nArchaeological work has only discovered evidence of Nabataean presence dating back to the second century BC, by which time Petra had become their capital. The Nabataeans were nomadic Arabs who invested in Petra\'s proximity to the incense trade routes by establishing it as a major regional trading hub.'**
-  String get petraLocationInfo2;
-
-  /// No description provided for @petra1200bce.
-  ///
-  /// In en, this message translates to:
-  /// **'First Edomites occupied the area and established a foothold.'**
-  String get petra1200bce;
-
-  /// No description provided for @petra106bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Became part of the Roman province Arabia'**
-  String get petra106bce;
-
-  /// No description provided for @petra551ce.
-  ///
-  /// In en, this message translates to:
-  /// **'After being damaged by earthquakes, habitation of the city all but ceased.'**
-  String get petra551ce;
-
-  /// No description provided for @petra1812ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Rediscovered by the Swiss traveler Johann Ludwig Burckhardt.'**
-  String get petra1812ce;
-
-  /// No description provided for @petra1958ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Excavations led on the site by the British School of Archaeology and the American Center of Oriental Research.'**
-  String get petra1958ce;
-
-  /// No description provided for @petra1989ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Appeared in the film Indiana Jones and The Last Crusade.'**
-  String get petra1989ce;
-
-  /// No description provided for @petraCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Camel and riders'**
-  String get petraCollectible1Title;
-
-  /// No description provided for @petraCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'statue'**
-  String get petraCollectible1Icon;
-
-  /// No description provided for @petraCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Vessel'**
-  String get petraCollectible2Title;
-
-  /// No description provided for @petraCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get petraCollectible2Icon;
-
-  /// No description provided for @petraCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Open bowl'**
-  String get petraCollectible3Title;
-
-  /// No description provided for @petraCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get petraCollectible3Icon;
-
-  /// No description provided for @pyramidsGizaTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Pyramids of Giza'**
-  String get pyramidsGizaTitle;
-
-  /// No description provided for @pyramidsGizaSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The ancient wonder'**
-  String get pyramidsGizaSubTitle;
-
-  /// No description provided for @pyramidsGizaRegionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Cairo, Egypt'**
-  String get pyramidsGizaRegionTitle;
-
-  /// No description provided for @pyramidsGizaArtifactCulture.
-  ///
-  /// In en, this message translates to:
-  /// **'Egyptian'**
-  String get pyramidsGizaArtifactCulture;
-
-  /// No description provided for @pyramidsGizaArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Egypt'**
-  String get pyramidsGizaArtifactGeolocation;
-
-  /// No description provided for @pyramidsGizaPullQuote1Top.
-  ///
-  /// In en, this message translates to:
-  /// **'The Tallest Structures on Earth'**
-  String get pyramidsGizaPullQuote1Top;
-
-  /// No description provided for @pyramidsGizaPullQuote1Bottom.
-  ///
-  /// In en, this message translates to:
-  /// **'Until the Advent of Modern Skyscrapers'**
-  String get pyramidsGizaPullQuote1Bottom;
-
-  /// No description provided for @pyramidsGizaPullQuote2.
-  ///
-  /// In en, this message translates to:
-  /// **'From the heights of these pyramids, forty centuries look down on us.'**
-  String get pyramidsGizaPullQuote2;
-
-  /// No description provided for @pyramidsGizaPullQuote2Author.
-  ///
-  /// In en, this message translates to:
-  /// **'Napoleon Bonaparte'**
-  String get pyramidsGizaPullQuote2Author;
-
-  /// No description provided for @pyramidsGizaCallout1.
-  ///
-  /// In en, this message translates to:
-  /// **'It is theorized the pyramid not only served as a tomb for the pharaoh, but also as a storage pit for various items he would need in the afterlife.'**
-  String get pyramidsGizaCallout1;
-
-  /// No description provided for @pyramidsGizaCallout2.
-  ///
-  /// In en, this message translates to:
-  /// **'The Great Pyramid consists of an estimated 2.3 million blocks. Approximately 5.5 million tonnes of limestone, 8,000 tonnes of granite, and 500,000 tonnes of mortar were used in the construction.'**
-  String get pyramidsGizaCallout2;
-
-  /// No description provided for @pyramidsGizaVideoCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'“The Great Pyramids of Giza | Egypt’s Ancient Mysteries | National Geographic UK.” Youtube, uploaded by National Geographic UK.'**
-  String get pyramidsGizaVideoCaption;
-
-  /// No description provided for @pyramidsGizaMapCaption.
-  ///
-  /// In en, this message translates to:
-  /// **'Map showing location of Giza Pyramids in Greater Cairo, Egypt.'**
-  String get pyramidsGizaMapCaption;
-
-  /// No description provided for @pyramidsGizaHistoryInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'The Giza pyramid complex, also called the Giza necropolis, is the site on the Giza Plateau in Greater Cairo, Egypt that includes the Great Pyramid of Giza, the Pyramid of Khafre, and the Pyramid of Menkaure, along with their associated pyramid complexes and the Great Sphinx of Giza. All were built during the Fourth Dynasty of the Old Kingdom of Ancient Egypt, between 2600 and 2500 BCE.'**
-  String get pyramidsGizaHistoryInfo1;
-
-  /// No description provided for @pyramidsGizaHistoryInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'The pyramids of Giza and others are thought to have been constructed to house the remains of the deceased pharaohs who ruled over Ancient Egypt. A portion of the pharaoh\'s spirit called his ka was believed to remain with his corpse. Proper care of the remains was necessary in order for the former Pharaoh to perform his new duties as king of the dead.'**
-  String get pyramidsGizaHistoryInfo2;
-
-  /// No description provided for @pyramidsGizaConstructionInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'Most construction theories are based on the idea that the pyramids were built by moving huge stones from a quarry and dragging and lifting them into place. In building the pyramids, the architects might have developed their techniques over time.\nThey would select a site on a relatively flat area of bedrock — not sand — which provided a stable foundation. After carefully surveying the site and laying down the first level of stones, they constructed the pyramids in horizontal levels, one on top of the other.'**
-  String get pyramidsGizaConstructionInfo1;
-
-  /// No description provided for @pyramidsGizaConstructionInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'For the Great Pyramid, most of the stone for the interior seems to have been quarried immediately to the south of the construction site. The smooth exterior of the pyramid was made of a fine grade of white limestone that was quarried across the Nile.\nTo ensure that the pyramid remained symmetrical, the exterior casing stones all had to be equal in height and width. Workers might have marked all the blocks to indicate the angle of the pyramid wall and trimmed the surfaces carefully so that the blocks fit together. During construction, the outer surface of the stone was smooth limestone; excess stone has eroded as time has passed.'**
-  String get pyramidsGizaConstructionInfo2;
-
-  /// No description provided for @pyramidsGizaLocationInfo1.
-  ///
-  /// In en, this message translates to:
-  /// **'The site is at the edges of the Western Desert, approximately 5.6 miles (9 km) west of the Nile River in the city of Giza, and about 8 miles (13 km) southwest of the city center of Cairo.'**
-  String get pyramidsGizaLocationInfo1;
-
-  /// No description provided for @pyramidsGizaLocationInfo2.
-  ///
-  /// In en, this message translates to:
-  /// **'Currently, the pyramids are located in the northwestern side of the Western Desert, and it is considered to be one of the best recognizable and the most visited tourist attractions of the planet.'**
-  String get pyramidsGizaLocationInfo2;
-
-  /// No description provided for @pyramidsGiza2575bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Construction of the 3 pyramids began for three kings of the 4th dynasty; Khufu, Khafre, and Menkaure.'**
-  String get pyramidsGiza2575bce;
-
-  /// No description provided for @pyramidsGiza2465bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Construction began on the smaller surrounding structures called Mastabas for royalty of the 5th and 6th dynasties.'**
-  String get pyramidsGiza2465bce;
-
-  /// No description provided for @pyramidsGiza443bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Greek Author Herodotus speculated that the pyramids were built in the span of 20 years with over 100,000 slave labourers. This assumption would last for over 1500 years'**
-  String get pyramidsGiza443bce;
-
-  /// No description provided for @pyramidsGiza1925ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Tomb of Queen Hetepheres was discovered, containing furniture and jewelry. One of the last remaining treasure-filled tombs after many years of looting and plundering.'**
-  String get pyramidsGiza1925ce;
-
-  /// No description provided for @pyramidsGiza1979ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Designated a UNESCO World Heritage Site to prevent any more unauthorized plundering and vandalism.'**
-  String get pyramidsGiza1979ce;
-
-  /// No description provided for @pyramidsGiza1990ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Discovery of labouror’s districts suggest that the workers building the pyramids were not slaves, and an ingenious building method proved a relatively small work-force was required to build such immense structures.'**
-  String get pyramidsGiza1990ce;
-
-  /// No description provided for @pyramidsGizaCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Two papyrus fragments'**
-  String get pyramidsGizaCollectible1Title;
-
-  /// No description provided for @pyramidsGizaCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'scroll'**
-  String get pyramidsGizaCollectible1Icon;
-
-  /// No description provided for @pyramidsGizaCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Fragmentary Face of King Khafre'**
-  String get pyramidsGizaCollectible2Title;
-
-  /// No description provided for @pyramidsGizaCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'statue'**
-  String get pyramidsGizaCollectible2Icon;
-
-  /// No description provided for @pyramidsGizaCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Jewelry Elements'**
-  String get pyramidsGizaCollectible3Title;
-
-  /// No description provided for @pyramidsGizaCollectible3Icon.
+  /// No description provided for @beratCollectible2Icon.
   ///
   /// In en, this message translates to:
   /// **'jewelry'**
-  String get pyramidsGizaCollectible3Icon;
+  String get beratCollectible2Icon;
 
-  /// No description provided for @tajMahalTitle.
+  /// No description provided for @beratCollectible3Title.
   ///
   /// In en, this message translates to:
-  /// **'Taj Mahal'**
-  String get tajMahalTitle;
+  /// **'Handkerchiefs (one of two)'**
+  String get beratCollectible3Title;
 
-  /// No description provided for @tajMahalSubTitle.
+  /// No description provided for @beratCollectible3Icon.
   ///
   /// In en, this message translates to:
-  /// **'Heaven on Earth'**
-  String get tajMahalSubTitle;
+  /// **'textile'**
+  String get beratCollectible3Icon;
 
-  /// No description provided for @tajMahalRegionTitle.
+  /// No description provided for @gjirokasterTitle.
   ///
   /// In en, this message translates to:
-  /// **'Agra, India'**
-  String get tajMahalRegionTitle;
+  /// **'Gjirokastër'**
+  String get gjirokasterTitle;
 
-  /// No description provided for @tajMahalArtifactCulture.
+  /// No description provided for @gjirokasterSubTitle.
   ///
   /// In en, this message translates to:
-  /// **'Mughal'**
-  String get tajMahalArtifactCulture;
+  /// **'The Stone City'**
+  String get gjirokasterSubTitle;
 
-  /// No description provided for @tajMahalArtifactGeolocation.
+  /// No description provided for @gjirokasterRegionTitle.
   ///
   /// In en, this message translates to:
-  /// **'India'**
-  String get tajMahalArtifactGeolocation;
+  /// **'Gjirokastër, Albania'**
+  String get gjirokasterRegionTitle;
 
-  /// No description provided for @tajMahalPullQuote1Top.
+  /// No description provided for @gjirokasterArtifactCulture.
   ///
   /// In en, this message translates to:
-  /// **'Not just a Monument,'**
-  String get tajMahalPullQuote1Top;
+  /// **'Ottoman-Albanian'**
+  String get gjirokasterArtifactCulture;
 
-  /// No description provided for @tajMahalPullQuote1Bottom.
+  /// No description provided for @gjirokasterArtifactGeolocation.
   ///
   /// In en, this message translates to:
-  /// **'but a Symbol of Love.'**
-  String get tajMahalPullQuote1Bottom;
+  /// **'Southern Albania'**
+  String get gjirokasterArtifactGeolocation;
 
-  /// No description provided for @tajMahalPullQuote1Author.
+  /// No description provided for @gjirokasterPullQuote1Top.
   ///
   /// In en, this message translates to:
-  /// **'Suman Pokhrel'**
-  String get tajMahalPullQuote1Author;
+  /// **'A Rare Example of'**
+  String get gjirokasterPullQuote1Top;
 
-  /// No description provided for @tajMahalPullQuote2.
+  /// No description provided for @gjirokasterPullQuote1Bottom.
   ///
   /// In en, this message translates to:
-  /// **'The Taj Mahal rises above the banks of the river like a solitary tear suspended on the cheek of time.'**
-  String get tajMahalPullQuote2;
+  /// **'a Well-Preserved Ottoman Town'**
+  String get gjirokasterPullQuote1Bottom;
 
-  /// No description provided for @tajMahalPullQuote2Author.
+  /// No description provided for @gjirokasterPullQuote2.
   ///
   /// In en, this message translates to:
-  /// **'Rabindranath Tagore'**
-  String get tajMahalPullQuote2Author;
+  /// **'Gjirokastër is an outstanding example of a well-preserved Ottoman town, built by farmers of large estates.'**
+  String get gjirokasterPullQuote2;
 
-  /// No description provided for @tajMahalCallout1.
+  /// No description provided for @gjirokasterPullQuote2Author.
   ///
   /// In en, this message translates to:
-  /// **'The Taj Mahal is distinguished as the finest example of Mughal architecture, a blend of Indian, Persian, and Islamic styles.'**
-  String get tajMahalCallout1;
+  /// **'UNESCO'**
+  String get gjirokasterPullQuote2Author;
 
-  /// No description provided for @tajMahalCallout2.
+  /// No description provided for @gjirokasterCallout1.
   ///
   /// In en, this message translates to:
-  /// **'It took the efforts of 22,000 laborers, painters, embroidery artists and stonecutters to shape the Taj Mahal.'**
-  String get tajMahalCallout2;
+  /// **'The Gjirokastër Fortress is one of the largest in the Balkans, dominating the city from a hilltop at over 1,100 feet (336 m) above sea level.'**
+  String get gjirokasterCallout1;
 
-  /// No description provided for @tajMahalVideoCaption.
+  /// No description provided for @gjirokasterCallout2.
   ///
   /// In en, this message translates to:
-  /// **'“India’s Taj Mahal Is an Enduring Monument to Love | National Geographic.” Youtube, uploaded by National Geographic.'**
-  String get tajMahalVideoCaption;
+  /// **'The city\'s distinctive tower houses, known as \"kullë,\" feature slate-stone roofs and fortified architecture unique to the region, giving Gjirokastër its name \"The Stone City.\"'**
+  String get gjirokasterCallout2;
 
-  /// No description provided for @tajMahalMapCaption.
+  /// No description provided for @gjirokasterVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'Map showing location of Taj Mahal in Uttar Pradesh, India.'**
-  String get tajMahalMapCaption;
+  /// **'“Gjirokastër - Albania\'s Stone City, UNESCO World Heritage.” Youtube.'**
+  String get gjirokasterVideoCaption;
 
-  /// No description provided for @tajMahalHistoryInfo1.
+  /// No description provided for @gjirokasterMapCaption.
   ///
   /// In en, this message translates to:
-  /// **'The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1632 CE by the Mughal emperor Shah Jahan (r. 1628-1658) to house the tomb of his favorite wife, Mumtaz Mahal; it also houses the tomb of Shah Jahan himself.'**
-  String get tajMahalHistoryInfo1;
+  /// **'Map showing location of Gjirokastër in southern Albania.'**
+  String get gjirokasterMapCaption;
 
-  /// No description provided for @tajMahalHistoryInfo2.
+  /// No description provided for @gjirokasterHistoryInfo1.
   ///
   /// In en, this message translates to:
-  /// **'The tomb is the centerpiece of a 42-acre (17-hectare) complex, which include twin mosque buildings (placed symmetrically on either side of the mausoleum), a guest house, and is set in formal gardens bounded on three sides by walls.'**
-  String get tajMahalHistoryInfo2;
+  /// **'Gjirokastër is a city in southern Albania, situated in the Drino River valley. The area has been settled since at least the 1st century CE, and a fortress has stood on the hilltop since the 3rd century. The name Gjirokastër likely derives from the medieval Greek \"Argyrokastron\" meaning \"Silver Castle.\"\nThe city rose to prominence in the 13th century as a center of the Despotate of Epirus and later became an important stronghold contested between Byzantine, Serbian, and Ottoman forces.'**
+  String get gjirokasterHistoryInfo1;
 
-  /// No description provided for @tajMahalConstructionInfo1.
+  /// No description provided for @gjirokasterHistoryInfo2.
   ///
   /// In en, this message translates to:
-  /// **'The Taj Mahal was constructed using materials from all over India and Asia. It is believed over 1,000 elephants were used to transport building materials.\nThe translucent white marble was brought from Rajasthan, the jasper from Punjab, jade and crystal from China. The turquoise was from Tibet and the lapis from Afghanistan, while the sapphire came from Sri Lanka. In all, twenty-eight types of precious and semi-precious stones were inlaid into the white marble.'**
-  String get tajMahalConstructionInfo1;
+  /// **'Under Ottoman rule from 1417 onward, Gjirokastër became the center of a large sanjak (administrative district) and thrived as a bazaar city. Wealthy landowners built the distinctive fortified tower houses that define the city\'s character.\nThe city was inscribed as a UNESCO World Heritage Site in 2005 as \"a rare example of a well-preserved Ottoman town, built by farmers of large estates.\" It is the birthplace of both former Albanian dictator Enver Hoxha and Nobel Prize-winning author Ismail Kadare.'**
+  String get gjirokasterHistoryInfo2;
 
-  /// No description provided for @tajMahalConstructionInfo2.
+  /// No description provided for @gjirokasterConstructionInfo1.
   ///
   /// In en, this message translates to:
-  /// **'An area of roughly 3 acres was excavated, filled with dirt to reduce seepage, and leveled at 160 ft above riverbank. In the tomb area, wells were dug and filled with stone and rubble to form the footings of the tomb.\nThe plinth and tomb took roughly 12 years to complete. The remaining parts of the complex took an additional 10 years.'**
-  String get tajMahalConstructionInfo2;
+  /// **'The Gjirokastër Fortress covers an area of approximately 18 acres (7.3 hectares) on the hilltop. Expanded significantly by Ali Pasha of Ioannina in the early 19th century, the fortress features massive stone walls, a clock tower, an aqueduct, and a series of underground tunnels and chambers.\nDuring the communist era, the fortress was used as a prison and later converted into a Museum of Armaments. Today it hosts the Gjirokastër National Folklore Festival every five years.'**
+  String get gjirokasterConstructionInfo1;
 
-  /// No description provided for @tajMahalLocationInfo1.
+  /// No description provided for @gjirokasterConstructionInfo2.
   ///
   /// In en, this message translates to:
-  /// **'India\'s most famed building, it is situated in the eastern part of the city on the southern bank of the Yamuna River, nearly 1 mile east of the Agra Fort, also on the right bank of the Yamuna.'**
-  String get tajMahalLocationInfo1;
+  /// **'The city\'s iconic tower houses (kullë) are typically three to four stories tall, built of solid stone with slate roofs. The ground floor served as a cistern and storage, the first floor for winter living, and the upper floors for summer quarters and guest reception. Defensive features include small windows on lower floors and fortified entrances.'**
+  String get gjirokasterConstructionInfo2;
 
-  /// No description provided for @tajMahalLocationInfo2.
+  /// No description provided for @gjirokasterLocationInfo1.
   ///
   /// In en, this message translates to:
-  /// **'The Taj Mahal is built on a parcel of land to the south of the walled city of Agra. Shah Jahan presented Maharaja Jai Singh with a large palace in the center of Agra in exchange for the land.'**
-  String get tajMahalLocationInfo2;
+  /// **'Gjirokastër is located in the Drino River valley in southern Albania, about 18 miles (29 km) from the Greek border. The city is built on the steep slopes of the Mali i Gjerë mountain range, rising from the valley floor at approximately 980 feet (300 m) to the castle at over 1,100 feet (336 m).'**
+  String get gjirokasterLocationInfo1;
 
-  /// No description provided for @tajMahal1631ce.
+  /// No description provided for @gjirokasterLocationInfo2.
   ///
   /// In en, this message translates to:
-  /// **'Built by Mughal Emperor Shah Jahān to immortalize his deceased wife.'**
-  String get tajMahal1631ce;
+  /// **'The surrounding region, known as Dropull, has been a crossroads of cultures for millennia. The Drino Valley connects the Adriatic coast with the interior Balkans, and the ancient route from the coast at Butrint passed through this valley toward the Via Egnatia.'**
+  String get gjirokasterLocationInfo2;
 
-  /// No description provided for @tajMahal1647ce.
+  /// No description provided for @gjirokaster70ce.
   ///
   /// In en, this message translates to:
-  /// **'Construction completed. The project involved over 20,000 workers and spanned 42 acres.'**
-  String get tajMahal1647ce;
+  /// **'Early Roman-era settlement exists in the Drino Valley region, with fortifications on the hilltop that would later become Gjirokastër'**
+  String get gjirokaster70ce;
 
-  /// No description provided for @tajMahal1658ce.
+  /// No description provided for @gjirokaster82ce.
   ///
   /// In en, this message translates to:
-  /// **'There were plans for a second mausoleum for his own remains, but Shah Jahān was imprisoned by his son for the rest of his life in Agra Fort, and this never came to pass.'**
-  String get tajMahal1658ce;
+  /// **'The hilltop fortress is expanded as a strategic defensive position guarding the Drino Valley trade routes'**
+  String get gjirokaster82ce;
 
-  /// No description provided for @tajMahal1901ce.
+  /// No description provided for @gjirokaster1140ce.
   ///
   /// In en, this message translates to:
-  /// **'Lord Curzon and the British Viceroy of India carried out a major restoration to the monument after over 350 years of decay and corrosion due to factory pollution and exhaust.'**
-  String get tajMahal1901ce;
+  /// **'Argyrokastron emerges as a significant Byzantine settlement and is contested during the Norman invasions of the Balkans'**
+  String get gjirokaster1140ce;
 
-  /// No description provided for @tajMahal1984ce.
+  /// No description provided for @gjirokaster1490ce.
   ///
   /// In en, this message translates to:
-  /// **'To protect the structure from Sikh militants and some Hindu nationalist groups, night viewing was banned to tourists. This ban would last 20 years.'**
-  String get tajMahal1984ce;
+  /// **'Under Ottoman rule, Gjirokastër develops into a thriving bazaar town with construction of the Old Bazaar and early tower houses'**
+  String get gjirokaster1490ce;
 
-  /// No description provided for @tajMahal1998ce.
+  /// No description provided for @gjirokaster1829ce.
   ///
   /// In en, this message translates to:
-  /// **'Restoration and research program put into action to help preserve the monument.'**
-  String get tajMahal1998ce;
+  /// **'Ali Pasha of Ioannina undertakes major expansion of the fortress, adding fortifications, an aqueduct, and a clock tower'**
+  String get gjirokaster1829ce;
 
-  /// No description provided for @tajMahalCollectible1Title.
+  /// No description provided for @gjirokaster1990ce.
   ///
   /// In en, this message translates to:
-  /// **'Dagger with Scabbard'**
-  String get tajMahalCollectible1Title;
+  /// **'Following the fall of communism, restoration efforts begin and Gjirokastër receives UNESCO World Heritage status in 2005'**
+  String get gjirokaster1990ce;
 
-  /// No description provided for @tajMahalCollectible1Icon.
+  /// No description provided for @gjirokasterCollectible1Title.
   ///
   /// In en, this message translates to:
-  /// **'jewelry'**
-  String get tajMahalCollectible1Icon;
+  /// **'Glass hexagonal amphoriskos'**
+  String get gjirokasterCollectible1Title;
 
-  /// No description provided for @tajMahalCollectible2Title.
+  /// No description provided for @gjirokasterCollectible1Icon.
   ///
   /// In en, this message translates to:
-  /// **'The House of Bijapur'**
-  String get tajMahalCollectible2Title;
+  /// **'vase'**
+  String get gjirokasterCollectible1Icon;
 
-  /// No description provided for @tajMahalCollectible2Icon.
+  /// No description provided for @gjirokasterCollectible2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Bronze plaque of Mithras slaying the bull'**
+  String get gjirokasterCollectible2Title;
+
+  /// No description provided for @gjirokasterCollectible2Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'statue'**
+  String get gjirokasterCollectible2Icon;
+
+  /// No description provided for @gjirokasterCollectible3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Veduta di Argirocastro'**
+  String get gjirokasterCollectible3Title;
+
+  /// No description provided for @gjirokasterCollectible3Icon.
   ///
   /// In en, this message translates to:
   /// **'picture'**
-  String get tajMahalCollectible2Icon;
+  String get gjirokasterCollectible3Icon;
 
-  /// No description provided for @tajMahalCollectible3Title.
+  /// No description provided for @apolloniaTitle.
   ///
   /// In en, this message translates to:
-  /// **'Panel of Nasta\'liq Calligraphy'**
-  String get tajMahalCollectible3Title;
+  /// **'Apollonia'**
+  String get apolloniaTitle;
 
-  /// No description provided for @tajMahalCollectible3Icon.
+  /// No description provided for @apolloniaSubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Ancient City of Learning'**
+  String get apolloniaSubTitle;
+
+  /// No description provided for @apolloniaRegionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fier, Albania'**
+  String get apolloniaRegionTitle;
+
+  /// No description provided for @apolloniaArtifactCulture.
+  ///
+  /// In en, this message translates to:
+  /// **'Illyrian-Greek'**
+  String get apolloniaArtifactCulture;
+
+  /// No description provided for @apolloniaArtifactGeolocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Central Albania'**
+  String get apolloniaArtifactGeolocation;
+
+  /// No description provided for @apolloniaPullQuote1Top.
+  ///
+  /// In en, this message translates to:
+  /// **'An Admirable City'**
+  String get apolloniaPullQuote1Top;
+
+  /// No description provided for @apolloniaPullQuote1Bottom.
+  ///
+  /// In en, this message translates to:
+  /// **'With Excellent Laws'**
+  String get apolloniaPullQuote1Bottom;
+
+  /// No description provided for @apolloniaPullQuote2.
+  ///
+  /// In en, this message translates to:
+  /// **'Apollonia is considered one of the most important cities of the ancient world, a center of learning where the young Octavian studied.'**
+  String get apolloniaPullQuote2;
+
+  /// No description provided for @apolloniaPullQuote2Author.
+  ///
+  /// In en, this message translates to:
+  /// **'Strabo'**
+  String get apolloniaPullQuote2Author;
+
+  /// No description provided for @apolloniaCallout1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Roman statesman and orator Cicero described Apollonia as \"a great and important city\" (magna urbs et gravis) in his work Philippics.'**
+  String get apolloniaCallout1;
+
+  /// No description provided for @apolloniaCallout2.
+  ///
+  /// In en, this message translates to:
+  /// **'The young Octavian (later Emperor Augustus) was studying in Apollonia when he received news of Julius Caesar\'s assassination in 44 BCE, a pivotal moment in Roman history.'**
+  String get apolloniaCallout2;
+
+  /// No description provided for @apolloniaVideoCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'“Apollonia Archaeological Park - Ancient Albania.” Youtube.'**
+  String get apolloniaVideoCaption;
+
+  /// No description provided for @apolloniaMapCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Map showing location of Apollonia near Fier in central Albania.'**
+  String get apolloniaMapCaption;
+
+  /// No description provided for @apolloniaHistoryInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Apollonia was an ancient Greek colony founded in 588 BCE by settlers from Corinth and Corcyra (modern Corfu) on the banks of the Aous River (modern Vjosa) in Illyria. Named after the god Apollo, the city quickly grew into one of the most important settlements on the eastern Adriatic coast.\nAt its peak, Apollonia had a population of around 60,000 and was a major stop along the Via Egnatia, the great Roman road connecting the Adriatic to Constantinople.'**
+  String get apolloniaHistoryInfo1;
+
+  /// No description provided for @apolloniaHistoryInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The city was renowned as a center of philosophy and learning. Numerous Roman nobles sent their sons to study there, most notably Octavian, the future Emperor Augustus. Apollonia\'s importance declined after the 3rd century CE when an earthquake altered the course of the Vjosa River, destroying the city\'s harbor and cutting off its trade routes.\nThe site was partially built over by the Byzantine-era Monastery of St. Mary, which still stands and houses an archaeological museum.'**
+  String get apolloniaHistoryInfo2;
+
+  /// No description provided for @apolloniaConstructionInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'The archaeological park covers approximately 237 acres (96 hectares), though only a fraction has been excavated. Major structures include a monumental bouleuterion (council house) with 19 rows of stone seating, an impressive stoa (covered walkway) measuring over 260 feet (80 m) in length, and a well-preserved odeon (small theater).\nThe remains of a nymphaeum (ornamental fountain) and several temples demonstrate the city\'s wealth and architectural sophistication.'**
+  String get apolloniaConstructionInfo1;
+
+  /// No description provided for @apolloniaConstructionInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The city was built using locally quarried limestone and followed classical Greek urban planning with an agora, temples, and public buildings arranged along paved streets. The defensive walls, encircling approximately 1 square mile (2.5 sq km), were built with polygonal masonry typical of Hellenistic military architecture.\nThe 13th-century Monastery of St. Mary, built atop ancient ruins within the archaeological zone, features a beautifully decorated Byzantine church with carved stone facades.'**
+  String get apolloniaConstructionInfo2;
+
+  /// No description provided for @apolloniaLocationInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Apollonia is situated on a hilltop near the village of Pojani, approximately 7 miles (12 km) west of the city of Fier in central Albania. The site overlooks the Myzeqe plain and the Vjosa River valley, commanding views extending to the Adriatic Sea.'**
+  String get apolloniaLocationInfo1;
+
+  /// No description provided for @apolloniaLocationInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'In antiquity, the Vjosa River flowed much closer to the city, providing direct access to the Adriatic coast and enabling Apollonia to function as an important port city. The fertile surrounding plain supported agricultural production, while the hilltop position offered natural defensive advantages.'**
+  String get apolloniaLocationInfo2;
+
+  /// No description provided for @apollonia700bce.
+  ///
+  /// In en, this message translates to:
+  /// **'Greek colonists from Corinth and Corcyra found Apollonia in 588 BCE on Illyrian territory, establishing a settlement that would grow into a major city'**
+  String get apollonia700bce;
+
+  /// No description provided for @apollonia214bce.
+  ///
+  /// In en, this message translates to:
+  /// **'Apollonia becomes a key Roman ally during the Illyrian Wars and serves as a staging ground for Roman military campaigns in the eastern Mediterranean'**
+  String get apollonia214bce;
+
+  /// No description provided for @apollonia121bce.
+  ///
+  /// In en, this message translates to:
+  /// **'The city flourishes as a center of trade along the Via Egnatia, connecting Rome to its eastern provinces'**
+  String get apollonia121bce;
+
+  /// No description provided for @apollonia556ce.
+  ///
+  /// In en, this message translates to:
+  /// **'An earthquake alters the course of the Vjosa River, destroying Apollonia\'s harbor and beginning the city\'s irreversible decline'**
+  String get apollonia556ce;
+
+  /// No description provided for @apollonia618ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The remains of the city serve as a quarry for building materials; the Byzantine Monastery of St. Mary is constructed within the ancient walls'**
+  String get apollonia618ce;
+
+  /// No description provided for @apollonia1487ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The site lies largely forgotten and overgrown until systematic archaeological excavations begin under Austrian and later French archaeologists in the early 20th century'**
+  String get apollonia1487ce;
+
+  /// No description provided for @apolloniaCollectible1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Biographies of Lian Po and Lin Xiangru'**
+  String get apolloniaCollectible1Title;
+
+  /// No description provided for @apolloniaCollectible1Icon.
   ///
   /// In en, this message translates to:
   /// **'scroll'**
-  String get tajMahalCollectible3Icon;
+  String get apolloniaCollectible1Icon;
+
+  /// No description provided for @apolloniaCollectible2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Jar with Dragon'**
+  String get apolloniaCollectible2Title;
+
+  /// No description provided for @apolloniaCollectible2Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'vase'**
+  String get apolloniaCollectible2Icon;
+
+  /// No description provided for @apolloniaCollectible3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Panel with Peonies and Butterfly'**
+  String get apolloniaCollectible3Title;
+
+  /// No description provided for @apolloniaCollectible3Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'textile'**
+  String get apolloniaCollectible3Icon;
+
+  /// No description provided for @thethTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Thethi'**
+  String get thethTitle;
+
+  /// No description provided for @thethSubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Alpine Sanctuary'**
+  String get thethSubTitle;
+
+  /// No description provided for @thethRegionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shkodër, Albania'**
+  String get thethRegionTitle;
+
+  /// No description provided for @thethArtifactCulture.
+  ///
+  /// In en, this message translates to:
+  /// **'Albanian Highland'**
+  String get thethArtifactCulture;
+
+  /// No description provided for @thethArtifactGeolocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Northern Albania'**
+  String get thethArtifactGeolocation;
+
+  /// No description provided for @thethPullQuote1Top.
+  ///
+  /// In en, this message translates to:
+  /// **'A Living Fragment of'**
+  String get thethPullQuote1Top;
+
+  /// No description provided for @thethPullQuote1Bottom.
+  ///
+  /// In en, this message translates to:
+  /// **'Europe\'s Last Wilderness'**
+  String get thethPullQuote1Bottom;
+
+  /// No description provided for @thethPullQuote1Author.
+  ///
+  /// In en, this message translates to:
+  /// **'Edith Durham'**
+  String get thethPullQuote1Author;
+
+  /// No description provided for @thethPullQuote2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Albanian Alps are perhaps the last great wilderness in Europe, a place where time seems to have stood still.'**
+  String get thethPullQuote2;
+
+  /// No description provided for @thethPullQuote2Author.
+  ///
+  /// In en, this message translates to:
+  /// **'Edith Durham'**
+  String get thethPullQuote2Author;
+
+  /// No description provided for @thethCallout1.
+  ///
+  /// In en, this message translates to:
+  /// **'Thethi\'s iconic Lock-in Tower (Kulla e Ngujimit) was used as a refuge for men involved in blood feuds under the Kanun of Lëkë Dukagjini, the traditional Albanian code of law.'**
+  String get thethCallout1;
+
+  /// No description provided for @thethCallout2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Thethi valley sits at approximately 2,500 feet (760 m) above sea level, surrounded by peaks exceeding 8,000 feet (2,500 m), including the dramatic Radohima massif.'**
+  String get thethCallout2;
+
+  /// No description provided for @thethVideoCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'“Thethi National Park - Albania\'s Hidden Alpine Paradise.” Youtube.'**
+  String get thethVideoCaption;
+
+  /// No description provided for @thethMapCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Map showing location of Thethi in the Albanian Alps, northern Albania.'**
+  String get thethMapCaption;
+
+  /// No description provided for @thethHistoryInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Thethi is a remote alpine village nestled in a glacial valley in the Albanian Alps (Bjeshkët e Nemuna), in the Shkodër district of northern Albania. The valley has been inhabited for centuries by Albanian highland clans, who maintained a fiercely independent way of life governed by the Kanun, a set of customary laws attributed to Lëkë Dukagjini.\nThe isolation of the valley — accessible only by mountain passes for most of its history — preserved a traditional way of life largely unchanged until the 20th century.'**
+  String get thethHistoryInfo1;
+
+  /// No description provided for @thethHistoryInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'During the communist period (1944-1991), the Albanian government attempted to modernize the highlands, building roads and schools but also restricting traditional customs. After the fall of communism, many highland villages were depopulated as residents moved to lowland cities.\nIn recent years, Thethi has experienced a revival as a destination for hiking and ecotourism, with the Peaks of the Balkans trail bringing international attention to the region\'s natural beauty and cultural heritage.'**
+  String get thethHistoryInfo2;
+
+  /// No description provided for @thethConstructionInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Thethi\'s traditional stone houses (shtëpi) are built from local limestone and timber, designed to withstand harsh mountain winters. The houses typically feature thick stone walls, small windows to conserve heat, and wooden balconies. Stone-slab roofs, anchored with heavy rocks, protect against the heavy snowfall that blankets the valley for several months each year.\nThe most famous structure in Thethi is the Lock-in Tower (Kulla e Ngujimit), a stone tower used historically as a place of refuge for men targeted in blood feuds.'**
+  String get thethConstructionInfo1;
+
+  /// No description provided for @thethConstructionInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Church of Thethi (Kisha e Thethit), built in the 19th century, is a small but picturesque stone church set against the dramatic mountain backdrop. Traditional highland architecture throughout the valley includes watermills along the Thethi River, stone bridges, and livestock enclosures built with dry-stone walling techniques passed down through generations.'**
+  String get thethConstructionInfo2;
+
+  /// No description provided for @thethLocationInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Thethi lies within the Thethi National Park, established in 1966, covering approximately 5,200 acres (2,100 hectares) of pristine alpine wilderness. The valley is surrounded by the peaks of the Albanian Alps, including Radohima at 8,146 feet (2,568 m) and Haj-Nehaj at 8,524 feet (2,598 m).'**
+  String get thethLocationInfo1;
+
+  /// No description provided for @thethLocationInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Blue Eye of Thethi (Syri i Kaltër), a stunning natural spring pool of vivid turquoise water, is one of the valley\'s most remarkable natural features. The Grunas Waterfall, cascading 100 feet (30 m) down a limestone cliff, is another iconic landmark. The valley connects to Valbona via a popular mountain pass trek at approximately 5,900 feet (1,800 m).'**
+  String get thethLocationInfo2;
+
+  /// No description provided for @theth1438ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Albanian highland clans are well established in the Thethi valley, governed by the Kanun of Lëkë Dukagjini'**
+  String get theth1438ce;
+
+  /// No description provided for @theth1572ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The highland communities resist Ottoman control, maintaining autonomy through the rugged terrain of the Albanian Alps'**
+  String get theth1572ce;
+
+  /// No description provided for @theth1867ce.
+  ///
+  /// In en, this message translates to:
+  /// **'British traveler and diplomat Edith Durham visits the Albanian highlands, later documenting the traditional way of life in her celebrated writings'**
+  String get theth1867ce;
+
+  /// No description provided for @theth1911ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Albania declares independence in 1912; the highland regions play a crucial role in the national awakening and resistance movements'**
+  String get theth1911ce;
+
+  /// No description provided for @theth1964ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Thethi National Park is established in 1966, one of Albania\'s first protected areas, preserving the alpine ecosystem'**
+  String get theth1964ce;
+
+  /// No description provided for @theth1997ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The Peaks of the Balkans trail is inaugurated, connecting Albania, Kosovo, and Montenegro and bringing renewed international attention to Thethi'**
+  String get theth1997ce;
+
+  /// No description provided for @thethCollectible1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Eight-Pointed Star Tunic'**
+  String get thethCollectible1Title;
+
+  /// No description provided for @thethCollectible1Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'textile'**
+  String get thethCollectible1Icon;
+
+  /// No description provided for @thethCollectible2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Camelid figurine'**
+  String get thethCollectible2Title;
+
+  /// No description provided for @thethCollectible2Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'statue'**
+  String get thethCollectible2Icon;
+
+  /// No description provided for @thethCollectible3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Double Bowl'**
+  String get thethCollectible3Title;
+
+  /// No description provided for @thethCollectible3Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'vase'**
+  String get thethCollectible3Icon;
+
+  /// No description provided for @krujaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Krujë'**
+  String get krujaTitle;
+
+  /// No description provided for @krujaSubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Fortress of Skanderbeg'**
+  String get krujaSubTitle;
+
+  /// No description provided for @krujaRegionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Durrës County, Albania'**
+  String get krujaRegionTitle;
+
+  /// No description provided for @krujaArtifactCulture.
+  ///
+  /// In en, this message translates to:
+  /// **'Medieval Albanian'**
+  String get krujaArtifactCulture;
+
+  /// No description provided for @krujaArtifactGeolocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Central Albania'**
+  String get krujaArtifactGeolocation;
+
+  /// No description provided for @krujaPullQuote1Top.
+  ///
+  /// In en, this message translates to:
+  /// **'The Shield of Christendom'**
+  String get krujaPullQuote1Top;
+
+  /// No description provided for @krujaPullQuote1Bottom.
+  ///
+  /// In en, this message translates to:
+  /// **'Against the Ottoman Tide'**
+  String get krujaPullQuote1Bottom;
+
+  /// No description provided for @krujaPullQuote1Author.
+  ///
+  /// In en, this message translates to:
+  /// **'Pope Callixtus III'**
+  String get krujaPullQuote1Author;
+
+  /// No description provided for @krujaPullQuote2.
+  ///
+  /// In en, this message translates to:
+  /// **'Skanderbeg\'s defense of Krujë is one of the most remarkable episodes of resistance in European military history.'**
+  String get krujaPullQuote2;
+
+  /// No description provided for @krujaPullQuote2Author.
+  ///
+  /// In en, this message translates to:
+  /// **'Fan Noli'**
+  String get krujaPullQuote2Author;
+
+  /// No description provided for @krujaCallout1.
+  ///
+  /// In en, this message translates to:
+  /// **'Gjergj Kastrioti Skanderbeg successfully defended Krujë against three major Ottoman sieges, earning him the title \"Athleta Christi\" (Champion of Christ) from the Pope.'**
+  String get krujaCallout1;
+
+  /// No description provided for @krujaCallout2.
+  ///
+  /// In en, this message translates to:
+  /// **'The castle sits at an elevation of approximately 1,970 feet (600 m) atop the Skanderbeg Mountain (Mali i Sariut), providing a commanding view of the surrounding plains.'**
+  String get krujaCallout2;
+
+  /// No description provided for @krujaVideoCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'“Krujë Castle and the Legacy of Skanderbeg - Albania.” Youtube.'**
+  String get krujaVideoCaption;
+
+  /// No description provided for @krujaMapCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Map showing location of Krujë in central Albania.'**
+  String get krujaMapCaption;
+
+  /// No description provided for @krujaHistoryInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Krujë is a city in north-central Albania, historically renowned as the seat of Gjergj Kastrioti Skanderbeg (1405-1468), Albania\'s national hero. The castle of Krujë has been fortified since at least the 5th century and became the capital of the Principality of Kastrioti in the 15th century.\nIn 1443, Skanderbeg raised the Albanian flag over the castle after abandoning his forced service in the Ottoman army, beginning a 25-year campaign of resistance against the Ottoman Empire.'**
+  String get krujaHistoryInfo1;
+
+  /// No description provided for @krujaHistoryInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'Skanderbeg successfully defended Krujë against three major Ottoman sieges — in 1450, 1466, and 1467 — each time repelling vastly superior forces. His resistance prevented Ottoman expansion into Western Europe for decades and earned him admiration across the Christian world.\nAfter Skanderbeg\'s death in 1468, the castle fell to the Ottomans in 1478 after a prolonged fourth siege. The city remained under Ottoman control until Albanian independence in 1912.'**
+  String get krujaHistoryInfo2;
+
+  /// No description provided for @krujaConstructionInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Krujë Castle is perched on a rocky outcrop at the edge of Skanderbeg Mountain (Mali i Sariut). The fortress walls follow the natural contours of the terrain, encircling an area that once contained a small town with houses, churches, and a bazaar.\nThe Skanderbeg Museum, designed by architects Pranvera Hoxha and Pirro Vaso and opened in 1982, sits within the castle walls. Built in a modernist style inspired by medieval Albanian architecture, it houses artifacts from the period of Albanian resistance.'**
+  String get krujaConstructionInfo1;
+
+  /// No description provided for @krujaConstructionInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'Below the castle, the restored Old Bazaar (Pazari i Vjetër) stretches along a cobblestone street with traditional stone and timber shops. The bazaar has been in continuous use since the 15th century and today sells traditional Albanian crafts, antiques, and locally made goods. The Dollma Tekke, a small Bektashi shrine within the castle complex, features elegant Ottoman-era architecture with painted interiors.'**
+  String get krujaConstructionInfo2;
+
+  /// No description provided for @krujaLocationInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Krujë is located approximately 20 miles (32 km) north of Tirana in central Albania. The castle sits atop a mountain spur overlooking the vast western Albanian plain that stretches to the Adriatic Sea, providing strategic visibility over approaching forces — a key factor in Skanderbeg\'s successful defense.'**
+  String get krujaLocationInfo1;
+
+  /// No description provided for @krujaLocationInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Skanderbeg Mountain (Mali i Sariut) rises steeply behind the castle to approximately 3,500 feet (1,070 m). The surrounding terrain of steep gorges and dense forests provided natural defensive advantages that Skanderbeg exploited in his guerrilla tactics against the much larger Ottoman forces. The nearby Sarisalltiku peak features a cave shrine venerated by both Muslims and Christians.'**
+  String get krujaLocationInfo2;
+
+  /// No description provided for @kruja1200bce.
+  ///
+  /// In en, this message translates to:
+  /// **'Early Illyrian settlements exist in the Krujë region, taking advantage of the natural fortress position'**
+  String get kruja1200bce;
+
+  /// No description provided for @kruja106bce.
+  ///
+  /// In en, this message translates to:
+  /// **'The region falls under Roman control as part of the province of Illyricum'**
+  String get kruja106bce;
+
+  /// No description provided for @kruja551ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Byzantine-era fortifications are constructed on the hilltop, establishing the castle as a strategic defensive position'**
+  String get kruja551ce;
+
+  /// No description provided for @kruja1812ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The castle ruins and old bazaar are documented by European travelers as interest in Albanian history grows'**
+  String get kruja1812ce;
+
+  /// No description provided for @kruja1958ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The Skanderbeg Museum within the castle is established, becoming Albania\'s most important national memorial'**
+  String get kruja1958ce;
+
+  /// No description provided for @kruja1989ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Krujë becomes a major tourist destination and symbol of Albanian national identity after the fall of communism'**
+  String get kruja1989ce;
+
+  /// No description provided for @krujaCollectible1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Camel and riders'**
+  String get krujaCollectible1Title;
+
+  /// No description provided for @krujaCollectible1Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'statue'**
+  String get krujaCollectible1Icon;
+
+  /// No description provided for @krujaCollectible2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Vessel'**
+  String get krujaCollectible2Title;
+
+  /// No description provided for @krujaCollectible2Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'vase'**
+  String get krujaCollectible2Icon;
+
+  /// No description provided for @krujaCollectible3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Open bowl'**
+  String get krujaCollectible3Title;
+
+  /// No description provided for @krujaCollectible3Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'vase'**
+  String get krujaCollectible3Icon;
+
+  /// No description provided for @albanianAlpsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Albanian Alps'**
+  String get albanianAlpsTitle;
+
+  /// No description provided for @albanianAlpsSubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Accursed Mountains'**
+  String get albanianAlpsSubTitle;
+
+  /// No description provided for @albanianAlpsRegionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Northern Albania'**
+  String get albanianAlpsRegionTitle;
+
+  /// No description provided for @albanianAlpsArtifactCulture.
+  ///
+  /// In en, this message translates to:
+  /// **'Albanian Highland'**
+  String get albanianAlpsArtifactCulture;
+
+  /// No description provided for @albanianAlpsArtifactGeolocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Northern Albania'**
+  String get albanianAlpsArtifactGeolocation;
+
+  /// No description provided for @albanianAlpsPullQuote1Top.
+  ///
+  /// In en, this message translates to:
+  /// **'Europe\'s Last Great'**
+  String get albanianAlpsPullQuote1Top;
+
+  /// No description provided for @albanianAlpsPullQuote1Bottom.
+  ///
+  /// In en, this message translates to:
+  /// **'Untouched Wilderness'**
+  String get albanianAlpsPullQuote1Bottom;
+
+  /// No description provided for @albanianAlpsPullQuote2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Accursed Mountains stand as a testament to the raw, untamed beauty of the natural world.'**
+  String get albanianAlpsPullQuote2;
+
+  /// No description provided for @albanianAlpsPullQuote2Author.
+  ///
+  /// In en, this message translates to:
+  /// **'Edith Durham'**
+  String get albanianAlpsPullQuote2Author;
+
+  /// No description provided for @albanianAlpsCallout1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Albanian Alps, known locally as Bjeshkët e Nemuna (Accursed Mountains), contain some of the most pristine ecosystems in Europe, harboring lynx, wolves, bears, and golden eagles.'**
+  String get albanianAlpsCallout1;
+
+  /// No description provided for @albanianAlpsCallout2.
+  ///
+  /// In en, this message translates to:
+  /// **'Jezerca, the highest peak at 8,839 feet (2,694 m), is one of the most dramatic limestone summits in the Balkans, featuring permanent snowfields and glacial cirques.'**
+  String get albanianAlpsCallout2;
+
+  /// No description provided for @albanianAlpsVideoCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'“Albanian Alps - Bjeshkët e Nemuna, Europe\'s Last Wilderness.” Youtube.'**
+  String get albanianAlpsVideoCaption;
+
+  /// No description provided for @albanianAlpsMapCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Map showing location of the Albanian Alps in northern Albania.'**
+  String get albanianAlpsMapCaption;
+
+  /// No description provided for @albanianAlpsHistoryInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Albanian Alps (Bjeshkët e Nemuna), also known as the Accursed Mountains or the Prokletije, are a mountain range stretching across northern Albania, western Kosovo, and eastern Montenegro. In Albania, the range includes some of the most remote and pristine wilderness in all of Europe.\nThe mountains have been home to Albanian highland clans for centuries, who developed a unique culture of hospitality, honor, and self-governance codified in the Kanun of Lëkë Dukagjini.'**
+  String get albanianAlpsHistoryInfo1;
+
+  /// No description provided for @albanianAlpsHistoryInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The name \"Accursed Mountains\" has various folk etymologies — some say it comes from the difficulty of crossing them, others attribute it to a legend of feuding mountains cursed by the gods. The Albanian name \"Bjeshkët e Nemuna\" translates more accurately as \"Mountains of the Highlanders.\"\nBritish traveler Edith Durham extensively documented the highlands in the early 1900s, describing a society where ancient customs of blood feuds and sworn virgins (burrnesha) persisted alongside extraordinary hospitality and natural beauty.'**
+  String get albanianAlpsHistoryInfo2;
+
+  /// No description provided for @albanianAlpsConstructionInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlike man-made structures, the Albanian Alps are a monument of nature, sculpted by millions of years of geological processes. The range is composed primarily of Mesozoic-era limestone and dolomite, shaped by glacial and karst erosion into dramatic peaks, deep valleys, and underground cave systems.\nThe Blue Eye of Theth, turquoise glacial pools, and the Valbona valley\'s dramatic cliff faces are all products of this ongoing geological story.'**
+  String get albanianAlpsConstructionInfo1;
+
+  /// No description provided for @albanianAlpsConstructionInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'Human structures in the Albanian Alps reflect the mountain environment. Traditional highland houses (kullë) are built from massive limestone blocks with timber interiors, designed to withstand heavy snowfall and provide defense. Stone-walled pastures, ancient mule trails, and small mountain churches dot the landscape.\nThe Peaks of the Balkans trail, a 120-mile (192 km) hiking route established in 2013, connects communities across three countries using many of these traditional paths.'**
+  String get albanianAlpsConstructionInfo2;
+
+  /// No description provided for @albanianAlpsLocationInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Albanian Alps extend across the districts of Shkodër and Kukës in northern Albania, forming the country\'s border with Montenegro and Kosovo. The range stretches approximately 40 miles (65 km) from the Kelmendi region in the northwest to the Valbona area in the east. Major valleys include Thethi, Valbona, and Kelmendi.'**
+  String get albanianAlpsLocationInfo1;
+
+  /// No description provided for @albanianAlpsLocationInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Valbona Valley National Park and Thethi National Park protect much of the Albanian portion of the range. Lake Koman, accessible by ferry through a dramatic canyon often compared to Scandinavian fjords, provides a stunning approach to the mountains from the south. The region receives some of the highest precipitation in Europe, feeding numerous rivers and waterfalls.'**
+  String get albanianAlpsLocationInfo2;
+
+  /// No description provided for @albanianAlps2575bce.
+  ///
+  /// In en, this message translates to:
+  /// **'Early human habitation in the Albanian Alps region dates back to the Bronze Age, with evidence of pastoral communities in the highland valleys'**
+  String get albanianAlps2575bce;
+
+  /// No description provided for @albanianAlps2465bce.
+  ///
+  /// In en, this message translates to:
+  /// **'Illyrian tribes establish seasonal settlements in the mountain pastures, developing the transhumance traditions that continue to this day'**
+  String get albanianAlps2465bce;
+
+  /// No description provided for @albanianAlps443bce.
+  ///
+  /// In en, this message translates to:
+  /// **'Greek and Roman writers document the fierce independence of the mountain-dwelling Illyrian tribes and the difficult terrain of the region'**
+  String get albanianAlps443bce;
+
+  /// No description provided for @albanianAlps1925ce.
+  ///
+  /// In en, this message translates to:
+  /// **'British traveler Edith Durham publishes detailed accounts of life in the Albanian highlands, bringing international attention to the region'**
+  String get albanianAlps1925ce;
+
+  /// No description provided for @albanianAlps1979ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Thethi National Park and Valbona Valley are designated as protected areas, preserving the alpine ecosystems'**
+  String get albanianAlps1979ce;
+
+  /// No description provided for @albanianAlps1990ce.
+  ///
+  /// In en, this message translates to:
+  /// **'After the fall of communism, the Albanian Alps open to international hikers and the Peaks of the Balkans trail is eventually established in 2013'**
+  String get albanianAlps1990ce;
+
+  /// No description provided for @albanianAlpsCollectible1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Two papyrus fragments'**
+  String get albanianAlpsCollectible1Title;
+
+  /// No description provided for @albanianAlpsCollectible1Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'scroll'**
+  String get albanianAlpsCollectible1Icon;
+
+  /// No description provided for @albanianAlpsCollectible2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Fragmentary Face of King Khafre'**
+  String get albanianAlpsCollectible2Title;
+
+  /// No description provided for @albanianAlpsCollectible2Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'statue'**
+  String get albanianAlpsCollectible2Icon;
+
+  /// No description provided for @albanianAlpsCollectible3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Jewelry Elements'**
+  String get albanianAlpsCollectible3Title;
+
+  /// No description provided for @albanianAlpsCollectible3Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'jewelry'**
+  String get albanianAlpsCollectible3Icon;
+
+  /// No description provided for @korcaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Korçë'**
+  String get korcaTitle;
+
+  /// No description provided for @korcaSubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Cradle of Albanian Culture'**
+  String get korcaSubTitle;
+
+  /// No description provided for @korcaRegionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Korçë, Albania'**
+  String get korcaRegionTitle;
+
+  /// No description provided for @korcaArtifactCulture.
+  ///
+  /// In en, this message translates to:
+  /// **'Albanian Orthodox'**
+  String get korcaArtifactCulture;
+
+  /// No description provided for @korcaArtifactGeolocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Southeastern Albania'**
+  String get korcaArtifactGeolocation;
+
+  /// No description provided for @korcaPullQuote1Top.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Just a Cathedral,'**
+  String get korcaPullQuote1Top;
+
+  /// No description provided for @korcaPullQuote1Bottom.
+  ///
+  /// In en, this message translates to:
+  /// **'but the Soul of a Nation'**
+  String get korcaPullQuote1Bottom;
+
+  /// No description provided for @korcaPullQuote1Author.
+  ///
+  /// In en, this message translates to:
+  /// **'Fan Noli'**
+  String get korcaPullQuote1Author;
+
+  /// No description provided for @korcaPullQuote2.
+  ///
+  /// In en, this message translates to:
+  /// **'Korçë is the city where Albanian national consciousness first found its voice through schools, literature, and art.'**
+  String get korcaPullQuote2;
+
+  /// No description provided for @korcaPullQuote2Author.
+  ///
+  /// In en, this message translates to:
+  /// **'Faik Konica'**
+  String get korcaPullQuote2Author;
+
+  /// No description provided for @korcaCallout1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Resurrection Cathedral (Katedralja Ngjallja e Krishtit) is the largest Orthodox cathedral in Albania, designed by renowned architect Fan Noli and completed in 2003.'**
+  String get korcaCallout1;
+
+  /// No description provided for @korcaCallout2.
+  ///
+  /// In en, this message translates to:
+  /// **'Korçë is home to the first Albanian-language school, opened on March 7, 1887, a date now celebrated as Teacher\'s Day (Dita e Mësuesit) across Albania.'**
+  String get korcaCallout2;
+
+  /// No description provided for @korcaVideoCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'“Korçë - The Cradle of Albanian Culture and the Resurrection Cathedral.” Youtube.'**
+  String get korcaVideoCaption;
+
+  /// No description provided for @korcaMapCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Map showing location of Korçë in southeastern Albania.'**
+  String get korcaMapCaption;
+
+  /// No description provided for @korcaHistoryInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Korçë is a city in southeastern Albania, situated in a high plateau at approximately 2,800 feet (850 m) above sea level. The city has been a center of Albanian culture, education, and art since the 19th century, earning it the title \"the cradle of Albanian culture.\"\nThe first Albanian-language school was opened here on March 7, 1887, by Pandeli Sotiri, marking a pivotal moment in the Albanian national awakening. Korçë also hosted the first Albanian printing press and numerous literary societies.'**
+  String get korcaHistoryInfo1;
+
+  /// No description provided for @korcaHistoryInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The original Orthodox Cathedral was destroyed during the communist period when Albania declared itself the world\'s first atheist state in 1967, demolishing nearly all religious buildings. The new Resurrection Cathedral (Katedralja Ngjallja e Krishtit) was built between 1992 and 2003 on the foundations of the old cathedral, symbolizing both religious revival and national cultural renewal.\nKorçë is also renowned for its contribution to Albanian music, art, and the famous annual Korçë Beer Festival, one of the largest in the Balkans.'**
+  String get korcaHistoryInfo2;
+
+  /// No description provided for @korcaConstructionInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'The Resurrection Cathedral was designed in a neo-Byzantine style, drawing inspiration from traditional Orthodox church architecture while incorporating modern construction techniques. The cathedral features a cruciform plan with a large central dome reaching approximately 100 feet (30 m) in height, flanked by smaller domes.\nThe exterior is clad in light-colored stone with decorative arched windows, while the interior is adorned with frescoes and iconography painted by Albanian and Greek artists.'**
+  String get korcaConstructionInfo1;
+
+  /// No description provided for @korcaConstructionInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The cathedral\'s construction spanned over a decade, from 1992 to 2003. Modern reinforced concrete and steel frame construction was used for structural integrity, while traditional stone and decorative elements maintain the Byzantine aesthetic.\nThe bell tower, rising beside the cathedral, houses a set of bells that ring across the city. The surrounding plaza and park create a cultural center for the city, connecting to the National Museum of Medieval Art, which houses one of the finest collections of Byzantine icons in the world.'**
+  String get korcaConstructionInfo2;
+
+  /// No description provided for @korcaLocationInfo1.
+  ///
+  /// In en, this message translates to:
+  /// **'Korçë is located in the Korçë Basin, a fertile plateau surrounded by mountains in southeastern Albania. The city lies approximately 112 miles (180 km) southeast of Tirana, near the borders with both Greece and North Macedonia. The Morava Mountain range rises to the east, while Lake Ohrid lies to the northeast.'**
+  String get korcaLocationInfo1;
+
+  /// No description provided for @korcaLocationInfo2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Korçë plateau has been inhabited since prehistoric times due to its fertile soil and strategic position along ancient trade routes connecting the Adriatic and Aegean seas. The nearby archaeological site of Maliq, on the shores of a former lake, has yielded evidence of continuous habitation dating back to the Neolithic period, around 6000 BCE.'**
+  String get korcaLocationInfo2;
+
+  /// No description provided for @korca1631ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Korçë develops as an Ottoman administrative and trade center with construction of mosques, bazaars, and hans (inns)'**
+  String get korca1631ce;
+
+  /// No description provided for @korca1647ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The city\'s importance grows as a crossroads of trade routes connecting Thessaloniki, Ioannina, and the Albanian coast'**
+  String get korca1647ce;
+
+  /// No description provided for @korca1658ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Cultural and religious communities flourish in Korçë, establishing it as a multi-ethnic center of learning'**
+  String get korca1658ce;
+
+  /// No description provided for @korca1901ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Korçë becomes a center of the Albanian national movement with the opening of the first Albanian-language school in 1887'**
+  String get korca1901ce;
+
+  /// No description provided for @korca1984ce.
+  ///
+  /// In en, this message translates to:
+  /// **'During the communist era, the original Orthodox Cathedral and most religious buildings are demolished as Albania is declared an atheist state'**
+  String get korca1984ce;
+
+  /// No description provided for @korca1998ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Construction of the new Resurrection Cathedral begins after the fall of communism, completed in 2003 as a symbol of cultural renewal'**
+  String get korca1998ce;
+
+  /// No description provided for @korcaCollectible1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Dagger with Scabbard'**
+  String get korcaCollectible1Title;
+
+  /// No description provided for @korcaCollectible1Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'jewelry'**
+  String get korcaCollectible1Icon;
+
+  /// No description provided for @korcaCollectible2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'The House of Bijapur'**
+  String get korcaCollectible2Title;
+
+  /// No description provided for @korcaCollectible2Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'picture'**
+  String get korcaCollectible2Icon;
+
+  /// No description provided for @korcaCollectible3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Panel of Nasta\'liq Calligraphy'**
+  String get korcaCollectible3Title;
+
+  /// No description provided for @korcaCollectible3Icon.
+  ///
+  /// In en, this message translates to:
+  /// **'scroll'**
+  String get korcaCollectible3Icon;
 
   /// No description provided for @timelineEvent2900bce.
   ///
   /// In en, this message translates to:
-  /// **'First known use of papyrus by Egyptians'**
+  /// **'Bronze Age tumuli traditions emerge across the Western Balkans'**
   String get timelineEvent2900bce;
 
   /// No description provided for @timelineEvent2700bce.
   ///
   /// In en, this message translates to:
-  /// **'The Old Kingdom begins in Egypt'**
+  /// **'The Maliq settlement near Korçë grows into one of the earliest agrarian communities of the southern Balkans'**
   String get timelineEvent2700bce;
 
   /// No description provided for @timelineEvent2600bce.
   ///
   /// In en, this message translates to:
-  /// **'Emergence of Mayan culture in the Yucatán Peninsula'**
+  /// **'Early Bronze Age communities flourish along the Adriatic coast of present-day Albania'**
   String get timelineEvent2600bce;
 
   /// No description provided for @timelineEvent2560bce.
   ///
   /// In en, this message translates to:
-  /// **'King Khufu completes the Great Pyramid of Giza'**
+  /// **'The Cetina cultural horizon links communities across the Western Balkans'**
   String get timelineEvent2560bce;
 
-  /// No description provided for @timelineEvent2500bce.
+  /// No description provided for @timelineEvent1200bce.
   ///
   /// In en, this message translates to:
-  /// **'The mammoth goes extinct'**
-  String get timelineEvent2500bce;
+  /// **'Illyrian tribes — Taulantii, Ardiaei, Dardani, Enchelei, Chaones — consolidate across the western Balkans'**
+  String get timelineEvent1200bce;
 
-  /// No description provided for @timelineEvent2200bce.
+  /// No description provided for @timelineEvent627bce.
   ///
   /// In en, this message translates to:
-  /// **'Completion of Stonehenge'**
-  String get timelineEvent2200bce;
+  /// **'Greek settlers from Corinth and Corcyra found Epidamnos, the future Dyrrhachium and modern Durrës'**
+  String get timelineEvent627bce;
 
-  /// No description provided for @timelineEvent2000bce.
+  /// No description provided for @timelineEvent358bce.
   ///
   /// In en, this message translates to:
-  /// **'Domestication of the horse'**
-  String get timelineEvent2000bce;
+  /// **'Bardylis I of the Dardanian Kingdom defeats Macedonia under Perdiccas III'**
+  String get timelineEvent358bce;
 
-  /// No description provided for @timelineEvent1800bce.
+  /// No description provided for @timelineEvent229bce.
   ///
   /// In en, this message translates to:
-  /// **'Alphabetic writing emerges'**
-  String get timelineEvent1800bce;
+  /// **'First Illyrian War: Queen Teuta of the Ardiaeans clashes with Rome over Adriatic piracy'**
+  String get timelineEvent229bce;
 
-  /// No description provided for @timelineEvent890bce.
+  /// No description provided for @timelineEvent168bce.
   ///
   /// In en, this message translates to:
-  /// **'Homer writes the Iliad and the Odyssey'**
-  String get timelineEvent890bce;
+  /// **'Third Illyrian War ends; King Gentius is defeated and Illyria becomes a Roman protectorate'**
+  String get timelineEvent168bce;
 
-  /// No description provided for @timelineEvent776bce.
+  /// No description provided for @timelineEvent146bce.
   ///
   /// In en, this message translates to:
-  /// **'First recorded Ancient Olympic Games'**
-  String get timelineEvent776bce;
+  /// **'Rome begins constructing the Via Egnatia, linking Dyrrhachium across Illyria to Byzantium'**
+  String get timelineEvent146bce;
 
-  /// No description provided for @timelineEvent753bce.
+  /// No description provided for @timelineEvent395ce.
   ///
   /// In en, this message translates to:
-  /// **'Founding of Rome'**
-  String get timelineEvent753bce;
-
-  /// No description provided for @timelineEvent447bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Building of the Parthenon at Athens started'**
-  String get timelineEvent447bce;
-
-  /// No description provided for @timelineEvent427bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Birth of Greek Philosopher Plato'**
-  String get timelineEvent427bce;
-
-  /// No description provided for @timelineEvent322bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Death of Aristotle (61), the first genuine scientist'**
-  String get timelineEvent322bce;
-
-  /// No description provided for @timelineEvent200bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Paper is invented in the Han Dynasty'**
-  String get timelineEvent200bce;
-
-  /// No description provided for @timelineEvent44bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Death of Julius Caesar; beginning of the Roman Empire'**
-  String get timelineEvent44bce;
-
-  /// No description provided for @timelineEvent4bce.
-  ///
-  /// In en, this message translates to:
-  /// **'Birth of Jesus Christ'**
-  String get timelineEvent4bce;
-
-  /// No description provided for @timelineEvent43ce.
-  ///
-  /// In en, this message translates to:
-  /// **'The Roman Empire enters Great Britain for the first time'**
-  String get timelineEvent43ce;
-
-  /// No description provided for @timelineEvent79ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Destruction of Pompeii by the volcano Vesuvius'**
-  String get timelineEvent79ce;
-
-  /// No description provided for @timelineEvent455ce.
-  ///
-  /// In en, this message translates to:
-  /// **'End of the Roman Empire'**
-  String get timelineEvent455ce;
+  /// **'The Roman Empire splits; Illyria is absorbed into the Eastern Byzantine realm'**
+  String get timelineEvent395ce;
 
   /// No description provided for @timelineEvent500ce.
   ///
   /// In en, this message translates to:
-  /// **'Tikal becomes the first great Maya city'**
+  /// **'The Albanian coast flourishes as a key Byzantine corridor between Constantinople and the western Mediterranean'**
   String get timelineEvent500ce;
 
   /// No description provided for @timelineEvent632ce.
   ///
   /// In en, this message translates to:
-  /// **'Death of Muhammad (61), founder of Islam'**
+  /// **'Death of Muhammad (61) and founding of Islam — the faith that will later reshape Albania under Ottoman rule'**
   String get timelineEvent632ce;
 
-  /// No description provided for @timelineEvent793ce.
+  /// No description provided for @timelineEvent1018ce.
   ///
   /// In en, this message translates to:
-  /// **'The Vikings first invade Britain'**
-  String get timelineEvent793ce;
+  /// **'Basil II reconquers Illyria; the Byzantine Theme of Dyrrhachium is re-established'**
+  String get timelineEvent1018ce;
 
-  /// No description provided for @timelineEvent800ce.
+  /// No description provided for @timelineEvent1043ce.
   ///
   /// In en, this message translates to:
-  /// **'Gunpowder is invented in China'**
-  String get timelineEvent800ce;
+  /// **'First written reference to the name Albanoi — Albanians take part in the revolt of George Maniakes'**
+  String get timelineEvent1043ce;
 
-  /// No description provided for @timelineEvent1001ce.
+  /// No description provided for @timelineEvent1081ce.
   ///
   /// In en, this message translates to:
-  /// **'Leif Erikson settles during the winter in present-day eastern Canada'**
-  String get timelineEvent1001ce;
+  /// **'Battle of Dyrrhachium: Norman forces under Robert Guiscard defeat the Byzantines'**
+  String get timelineEvent1081ce;
 
-  /// No description provided for @timelineEvent1077ce.
+  /// No description provided for @timelineEvent1190ce.
   ///
   /// In en, this message translates to:
-  /// **'The Construction of the Tower of London begins'**
-  String get timelineEvent1077ce;
+  /// **'Progon founds the Principality of Arbanon — the first Albanian medieval state'**
+  String get timelineEvent1190ce;
 
-  /// No description provided for @timelineEvent1117ce.
+  /// No description provided for @timelineEvent1271ce.
   ///
   /// In en, this message translates to:
-  /// **'The University of Oxford is founded'**
-  String get timelineEvent1117ce;
-
-  /// No description provided for @timelineEvent1199ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Europeans first use compasses'**
-  String get timelineEvent1199ce;
-
-  /// No description provided for @timelineEvent1227ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Death of Genghis Khan (65)'**
-  String get timelineEvent1227ce;
-
-  /// No description provided for @timelineEvent1337ce.
-  ///
-  /// In en, this message translates to:
-  /// **'The Hundred Years\' War begins as England and France struggle for dominance.'**
-  String get timelineEvent1337ce;
+  /// **'Charles of Anjou proclaims the Kingdom of Albania (Regnum Albaniae)'**
+  String get timelineEvent1271ce;
 
   /// No description provided for @timelineEvent1347ce.
   ///
   /// In en, this message translates to:
-  /// **'The first of many concurrences of the Black Death plague, believed to have wiped out as many as 50% of Europe\'s population by its end'**
+  /// **'The Black Death plague sweeps Europe and devastates Balkan populations, including Albania'**
   String get timelineEvent1347ce;
+
+  /// No description provided for @timelineEvent1355ce.
+  ///
+  /// In en, this message translates to:
+  /// **'After the death of Stefan Dušan, the Albanian principalities of Balsha, Topia, Muzaka and Kastrioti rise'**
+  String get timelineEvent1355ce;
+
+  /// No description provided for @timelineEvent1389ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Albanian nobles fight beside Serbian forces at the Battle of Kosovo'**
+  String get timelineEvent1389ce;
 
   /// No description provided for @timelineEvent1428ce.
   ///
   /// In en, this message translates to:
-  /// **'Birth of the Aztec Empire in Mexico'**
+  /// **'Gjergj Kastrioti, the future Skanderbeg, comes of age in the Ottoman court before returning to lead Albanian resistance'**
   String get timelineEvent1428ce;
 
-  /// No description provided for @timelineEvent1439ce.
+  /// No description provided for @timelineEvent1443ce.
   ///
   /// In en, this message translates to:
-  /// **'Johannes Gutenberg invents the printing press'**
-  String get timelineEvent1439ce;
+  /// **'Skanderbeg defects from the Ottoman army at the Battle of Niš and seizes Krujë'**
+  String get timelineEvent1443ce;
 
-  /// No description provided for @timelineEvent1492ce.
+  /// No description provided for @timelineEvent1444ce.
   ///
   /// In en, this message translates to:
-  /// **'Christopher Columbus reaches the New World'**
-  String get timelineEvent1492ce;
+  /// **'The League of Lezhë unites Albanian princes under Skanderbeg\'s command'**
+  String get timelineEvent1444ce;
 
-  /// No description provided for @timelineEvent1760ce.
+  /// No description provided for @timelineEvent1450ce.
   ///
   /// In en, this message translates to:
-  /// **'The industrial revolution begins'**
-  String get timelineEvent1760ce;
+  /// **'First Siege of Krujë: Skanderbeg withstands Sultan Murad II'**
+  String get timelineEvent1450ce;
 
-  /// No description provided for @timelineEvent1763ce.
+  /// No description provided for @timelineEvent1466ce.
   ///
   /// In en, this message translates to:
-  /// **'Development of the Watt steam engine'**
-  String get timelineEvent1763ce;
+  /// **'Sultan Mehmed II launches the Second Siege of Krujë and builds the fortress of Elbasan'**
+  String get timelineEvent1466ce;
 
-  /// No description provided for @timelineEvent1783ce.
+  /// No description provided for @timelineEvent1468ce.
   ///
   /// In en, this message translates to:
-  /// **'End of the American War of Independence from the British Empire'**
-  String get timelineEvent1783ce;
+  /// **'Death of Skanderbeg in Lezhë; Albanian resistance gradually crumbles'**
+  String get timelineEvent1468ce;
+
+  /// No description provided for @timelineEvent1479ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Fall of Shkodër — Ottoman conquest of Albania is complete'**
+  String get timelineEvent1479ce;
+
+  /// No description provided for @timelineEvent1571ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Battle of Lepanto — Albanian sailors fight on both sides of the Christian–Ottoman naval struggle'**
+  String get timelineEvent1571ce;
+
+  /// No description provided for @timelineEvent1788ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Ali Pasha of Tepelenë establishes the semi-autonomous Pashalik of Yanina'**
+  String get timelineEvent1788ce;
 
   /// No description provided for @timelineEvent1789ce.
   ///
   /// In en, this message translates to:
-  /// **'The French Revolution begins'**
+  /// **'The French Revolution begins; its ideals later inspire the Albanian National Awakening (Rilindja)'**
   String get timelineEvent1789ce;
+
+  /// No description provided for @timelineEvent1830ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The Massacre of the Beys at Manastir ends Albanian feudal autonomy under Ottoman reforms'**
+  String get timelineEvent1830ce;
+
+  /// No description provided for @timelineEvent1878ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The League of Prizren is founded — the first organised Albanian national movement'**
+  String get timelineEvent1878ce;
+
+  /// No description provided for @timelineEvent1908ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The Congress of Manastir standardises the Albanian Latin alphabet'**
+  String get timelineEvent1908ce;
+
+  /// No description provided for @timelineEvent1912ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Ismail Qemali proclaims Albanian independence in Vlorë on 28 November'**
+  String get timelineEvent1912ce;
 
   /// No description provided for @timelineEvent1914ce.
   ///
   /// In en, this message translates to:
-  /// **'World War I'**
+  /// **'World War I — Albania becomes a contested battleground for several European powers'**
   String get timelineEvent1914ce;
 
-  /// No description provided for @timelineEvent1929ce.
+  /// No description provided for @timelineEvent1920ce.
   ///
   /// In en, this message translates to:
-  /// **'Black Tuesday signals the beginning of the Great Depression'**
-  String get timelineEvent1929ce;
+  /// **'The Congress of Lushnjë makes Tirana the capital of Albania'**
+  String get timelineEvent1920ce;
+
+  /// No description provided for @timelineEvent1928ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Ahmet Zogu is crowned King Zog I of the Albanians'**
+  String get timelineEvent1928ce;
 
   /// No description provided for @timelineEvent1939ce.
   ///
   /// In en, this message translates to:
-  /// **'World War II'**
+  /// **'World War II begins'**
   String get timelineEvent1939ce;
 
-  /// No description provided for @timelineEvent1957ce.
+  /// No description provided for @timelineEvent1939ceAlbania.
   ///
   /// In en, this message translates to:
-  /// **'launch of Sputnik 1 by the Soviet Union'**
-  String get timelineEvent1957ce;
+  /// **'Italy invades Albania, beginning the Axis occupation'**
+  String get timelineEvent1939ceAlbania;
 
-  /// No description provided for @timelineEvent1969ce.
+  /// No description provided for @timelineEvent1944ce.
   ///
   /// In en, this message translates to:
-  /// **'Apollo 11 mission lands on the moon'**
-  String get timelineEvent1969ce;
+  /// **'Albania is liberated by partisan forces; Enver Hoxha\'s communist regime begins'**
+  String get timelineEvent1944ce;
+
+  /// No description provided for @timelineEvent1967ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Albania declares itself the world\'s first officially atheist state'**
+  String get timelineEvent1967ce;
+
+  /// No description provided for @timelineEvent1991ce.
+  ///
+  /// In en, this message translates to:
+  /// **'First multi-party elections end 46 years of communist rule'**
+  String get timelineEvent1991ce;
+
+  /// No description provided for @timelineEvent1997ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The collapse of nationwide pyramid schemes triggers civil unrest'**
+  String get timelineEvent1997ce;
+
+  /// No description provided for @timelineEvent2009ce.
+  ///
+  /// In en, this message translates to:
+  /// **'Albania joins NATO'**
+  String get timelineEvent2009ce;
+
+  /// No description provided for @timelineEvent2019ce.
+  ///
+  /// In en, this message translates to:
+  /// **'A devastating earthquake strikes the Durrës region'**
+  String get timelineEvent2019ce;
 
   /// No description provided for @privacyPolicy.
   ///
@@ -2551,6 +2509,1338 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The page you are looking for does not exist.'**
   String get pageNotFoundMessage;
+
+  /// No description provided for @authSignInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get authSignInTitle;
+
+  /// No description provided for @authSignInSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue exploring Albania.'**
+  String get authSignInSubtitle;
+
+  /// No description provided for @authEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get authEmailLabel;
+
+  /// No description provided for @authPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get authPasswordLabel;
+
+  /// No description provided for @authSignInButton.
+  ///
+  /// In en, this message translates to:
+  /// **'SIGN IN'**
+  String get authSignInButton;
+
+  /// No description provided for @authSignInError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get authSignInError;
+
+  /// No description provided for @authEmailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is required'**
+  String get authEmailRequired;
+
+  /// No description provided for @authEmailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get authEmailInvalid;
+
+  /// No description provided for @authPasswordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is required'**
+  String get authPasswordRequired;
+
+  /// No description provided for @buddyHeaderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel Buddy'**
+  String get buddyHeaderTitle;
+
+  /// No description provided for @buddyHeaderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Albania-native AI guide'**
+  String get buddyHeaderSubtitle;
+
+  /// No description provided for @buddyEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How can I help plan your trip?'**
+  String get buddyEmptyTitle;
+
+  /// No description provided for @buddyEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask me about places, food, budgets, or itineraries in Albania.'**
+  String get buddyEmptySubtitle;
+
+  /// No description provided for @buddyComposerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Message your travel buddy…'**
+  String get buddyComposerHint;
+
+  /// No description provided for @buddySuggestionTirana.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan a 3-day Tirana trip'**
+  String get buddySuggestionTirana;
+
+  /// No description provided for @buddySuggestionBerat.
+  ///
+  /// In en, this message translates to:
+  /// **'Best things to do in Berat'**
+  String get buddySuggestionBerat;
+
+  /// No description provided for @buddySuggestionBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Albania on a tight budget'**
+  String get buddySuggestionBudget;
+
+  /// No description provided for @buddyErrorHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong.'**
+  String get buddyErrorHint;
+
+  /// No description provided for @buddyErrorRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get buddyErrorRetry;
+
+  /// No description provided for @buddyNotSavedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply not saved on the server.'**
+  String get buddyNotSavedHint;
+
+  /// Soft inline footer shown on the assistant bubble when the backend rejected Claude's emit_itinerary tool payload during server-side validation. The natural-language reply is still visible above; this string explains why the structured Save card is missing without surfacing the technical reason.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t structure that itinerary — your reply is above.'**
+  String get buddyItineraryUnstructured;
+
+  /// Body button on the trip detail screen that opens a chat scoped to that saved trip. Tapping it routes to the buddy tab with the trip's 1:1 conversation hydrated.
+  ///
+  /// In en, this message translates to:
+  /// **'Refine with Buddy'**
+  String get refineWithBuddyButton;
+
+  /// Replaces buddyComposerHint when the chat is in refine-with-buddy mode for a saved trip.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask Buddy to refine this trip…'**
+  String get refineComposerHint;
+
+  /// Welcome title shown on a fresh refine chat (scopedTrip != null, no messages yet). Replaces buddyEmptyTitle in refine mode so the user isn't greeted with planning-mode copy.
+  ///
+  /// In en, this message translates to:
+  /// **'What should we change?'**
+  String get refineEmptyTitle;
+
+  /// Welcome subtitle shown on a fresh refine chat. Replaces buddyEmptySubtitle in refine mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask Buddy to tweak this trip — shorten a day, swap a stop, add something new.'**
+  String get refineEmptySubtitle;
+
+  /// Quick-pick chip on the refine welcome screen. Tapping sends this text verbatim to the chat.
+  ///
+  /// In en, this message translates to:
+  /// **'Shorten day 2'**
+  String get refineSuggestionShortenDay;
+
+  /// Quick-pick chip on the refine welcome screen. Tapping sends this text verbatim to the chat.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a beach day'**
+  String get refineSuggestionAddBeach;
+
+  /// Quick-pick chip on the refine welcome screen. Tapping sends this text verbatim to the chat.
+  ///
+  /// In en, this message translates to:
+  /// **'Swap a stop for something more local'**
+  String get refineSuggestionSwapStop;
+
+  /// Top banner on the chat screen while in refine mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Refining: {tripTitle}'**
+  String refineBannerTitle(String tripTitle);
+
+  /// Action on the refine banner that drops out of refine mode without changing the saved trip.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get refineBannerExit;
+
+  /// Inline indicator on the assistant bubble after the server applied a refinement to the saved trip.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip updated'**
+  String get refineTripUpdated;
+
+  /// Link on the assistant bubble's trip-updated indicator. Routes back to the trip detail screen.
+  ///
+  /// In en, this message translates to:
+  /// **'View trip'**
+  String get refineViewTrip;
+
+  /// Soft inline footer when Claude emitted a valid itinerary but the server-side replace transaction failed. The trip on disk is unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t apply the refinement. The chat reply describes the proposed change.'**
+  String get refineFailedFooter;
+
+  /// Inline error shown via TripErrorBanner when the trip detail screen fails to open the refine chat (network / auth).
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open chat — try again.'**
+  String get refineOpenFailed;
+
+  /// No description provided for @buddySendTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Send message'**
+  String get buddySendTooltip;
+
+  /// No description provided for @buddyPlaceCardOpenInMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in map'**
+  String get buddyPlaceCardOpenInMap;
+
+  /// No description provided for @buddyVoiceHoldToTalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold to talk'**
+  String get buddyVoiceHoldToTalk;
+
+  /// No description provided for @buddyVoiceTapToTalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to talk'**
+  String get buddyVoiceTapToTalk;
+
+  /// No description provided for @buddyVoiceListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening…'**
+  String get buddyVoiceListening;
+
+  /// No description provided for @buddyVoiceCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get buddyVoiceCancel;
+
+  /// No description provided for @buddyVoiceStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop recording'**
+  String get buddyVoiceStop;
+
+  /// No description provided for @buddyVoiceSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get buddyVoiceSend;
+
+  /// No description provided for @buddyVoicePermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone permission denied. Enable it in Settings to use voice.'**
+  String get buddyVoicePermissionDenied;
+
+  /// No description provided for @buddyVoiceUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice recognition isn\'t available on this device.'**
+  String get buddyVoiceUnavailable;
+
+  /// No description provided for @buddyTtsPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Read aloud'**
+  String get buddyTtsPlay;
+
+  /// No description provided for @buddyTtsStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop reading'**
+  String get buddyTtsStop;
+
+  /// No description provided for @buddyAttachTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photo'**
+  String get buddyAttachTooltip;
+
+  /// No description provided for @buddyAttachCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get buddyAttachCamera;
+
+  /// No description provided for @buddyAttachGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo library'**
+  String get buddyAttachGallery;
+
+  /// No description provided for @buddyAttachUploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading…'**
+  String get buddyAttachUploading;
+
+  /// No description provided for @buddyAttachFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload failed'**
+  String get buddyAttachFailed;
+
+  /// No description provided for @buddyAttachRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get buddyAttachRemove;
+
+  /// No description provided for @buddyAttachRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get buddyAttachRetry;
+
+  /// No description provided for @buddyAttachSizeError.
+  ///
+  /// In en, this message translates to:
+  /// **'Image too large — try a smaller photo'**
+  String get buddyAttachSizeError;
+
+  /// No description provided for @buddyHistoryTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Past conversations'**
+  String get buddyHistoryTooltip;
+
+  /// No description provided for @buddyNewChatTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'New chat'**
+  String get buddyNewChatTooltip;
+
+  /// No description provided for @conversationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Past conversations'**
+  String get conversationsTitle;
+
+  /// No description provided for @conversationsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations yet'**
+  String get conversationsEmpty;
+
+  /// No description provided for @conversationsLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load conversations'**
+  String get conversationsLoadFailed;
+
+  /// No description provided for @conversationsNewChatTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'New chat'**
+  String get conversationsNewChatTooltip;
+
+  /// No description provided for @conversationsDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete conversation?'**
+  String get conversationsDeleteTitle;
+
+  /// No description provided for @conversationsDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'This can\'t be undone.'**
+  String get conversationsDeleteConfirm;
+
+  /// No description provided for @conversationsDeleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get conversationsDeleteAction;
+
+  /// No description provided for @conversationsDeleteCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get conversationsDeleteCancel;
+
+  /// No description provided for @conversationsDeleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete conversation.'**
+  String get conversationsDeleteFailed;
+
+  /// No description provided for @conversationsClearAllAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all conversations'**
+  String get conversationsClearAllAction;
+
+  /// No description provided for @conversationsClearAllTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all conversations?'**
+  String get conversationsClearAllTitle;
+
+  /// No description provided for @conversationsClearAllBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Every conversation will be permanently deleted. This can\'t be undone.'**
+  String get conversationsClearAllBody;
+
+  /// No description provided for @conversationsClearAllConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get conversationsClearAllConfirm;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// No description provided for @profileEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as'**
+  String get profileEmailLabel;
+
+  /// No description provided for @profileSignOutButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get profileSignOutButton;
+
+  /// No description provided for @preferencesTileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get preferencesTileTitle;
+
+  /// No description provided for @preferencesTileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Customize your travel style'**
+  String get preferencesTileSubtitle;
+
+  /// No description provided for @preferencesScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get preferencesScreenTitle;
+
+  /// No description provided for @preferencesSaveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get preferencesSaveButton;
+
+  /// No description provided for @preferencesSaveSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences saved'**
+  String get preferencesSaveSuccess;
+
+  /// No description provided for @preferencesSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save preferences'**
+  String get preferencesSaveError;
+
+  /// No description provided for @preferencesLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load preferences'**
+  String get preferencesLoadError;
+
+  /// No description provided for @preferencesNotSetYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set yet'**
+  String get preferencesNotSetYet;
+
+  /// No description provided for @preferencesPersonaSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel persona'**
+  String get preferencesPersonaSection;
+
+  /// No description provided for @preferencesPersonaEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap Generate to create your travel persona'**
+  String get preferencesPersonaEmpty;
+
+  /// No description provided for @preferencesPersonaGenerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate persona'**
+  String get preferencesPersonaGenerate;
+
+  /// No description provided for @preferencesPersonaRegenerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Regenerate'**
+  String get preferencesPersonaRegenerate;
+
+  /// No description provided for @preferencesPersonaError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t generate persona'**
+  String get preferencesPersonaError;
+
+  /// No description provided for @preferencesPersonaUseButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this persona'**
+  String get preferencesPersonaUseButton;
+
+  /// No description provided for @preferencesPersonaInfoBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the persona that feels closest to you right now. It\'s just the starting point — the more you chat with Travel Buddy, the better it understands how you actually travel. Your budget, your pace, what you skip, what you never miss. Over time, recommendations stop feeling generic and start feeling like they were made for you.'**
+  String get preferencesPersonaInfoBody;
+
+  /// No description provided for @preferencesPersonaInfoDismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get preferencesPersonaInfoDismiss;
+
+  /// No description provided for @preferencesBudgetSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget'**
+  String get preferencesBudgetSection;
+
+  /// No description provided for @preferencesBudgetShoestring.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoestring'**
+  String get preferencesBudgetShoestring;
+
+  /// No description provided for @preferencesBudgetMidRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Mid-range'**
+  String get preferencesBudgetMidRange;
+
+  /// No description provided for @preferencesBudgetLuxury.
+  ///
+  /// In en, this message translates to:
+  /// **'Luxury'**
+  String get preferencesBudgetLuxury;
+
+  /// No description provided for @preferencesGroupSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Who\'s travelling'**
+  String get preferencesGroupSection;
+
+  /// No description provided for @preferencesGroupSolo.
+  ///
+  /// In en, this message translates to:
+  /// **'Solo'**
+  String get preferencesGroupSolo;
+
+  /// No description provided for @preferencesGroupCouple.
+  ///
+  /// In en, this message translates to:
+  /// **'Couple'**
+  String get preferencesGroupCouple;
+
+  /// No description provided for @preferencesGroupFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Family'**
+  String get preferencesGroupFamily;
+
+  /// No description provided for @preferencesGroupFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'Friends'**
+  String get preferencesGroupFriends;
+
+  /// No description provided for @preferencesStyleSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel style'**
+  String get preferencesStyleSection;
+
+  /// No description provided for @preferencesStyleAdventure.
+  ///
+  /// In en, this message translates to:
+  /// **'Adventure'**
+  String get preferencesStyleAdventure;
+
+  /// No description provided for @preferencesStyleCultural.
+  ///
+  /// In en, this message translates to:
+  /// **'Cultural'**
+  String get preferencesStyleCultural;
+
+  /// No description provided for @preferencesStyleRelaxation.
+  ///
+  /// In en, this message translates to:
+  /// **'Relaxation'**
+  String get preferencesStyleRelaxation;
+
+  /// No description provided for @preferencesStyleFoodie.
+  ///
+  /// In en, this message translates to:
+  /// **'Foodie'**
+  String get preferencesStyleFoodie;
+
+  /// No description provided for @preferencesStyleBeach.
+  ///
+  /// In en, this message translates to:
+  /// **'Beach'**
+  String get preferencesStyleBeach;
+
+  /// No description provided for @preferencesStyleNightlife.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightlife'**
+  String get preferencesStyleNightlife;
+
+  /// No description provided for @preferencesStyleHiddenGem.
+  ///
+  /// In en, this message translates to:
+  /// **'Off-the-beaten-path'**
+  String get preferencesStyleHiddenGem;
+
+  /// No description provided for @preferencesAccommodationSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Accommodation'**
+  String get preferencesAccommodationSection;
+
+  /// No description provided for @preferencesAccommodationHotel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hotel'**
+  String get preferencesAccommodationHotel;
+
+  /// No description provided for @preferencesAccommodationHostel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hostel'**
+  String get preferencesAccommodationHostel;
+
+  /// No description provided for @preferencesAccommodationAirbnb.
+  ///
+  /// In en, this message translates to:
+  /// **'Airbnb'**
+  String get preferencesAccommodationAirbnb;
+
+  /// No description provided for @preferencesAccommodationBoutique.
+  ///
+  /// In en, this message translates to:
+  /// **'Boutique'**
+  String get preferencesAccommodationBoutique;
+
+  /// No description provided for @preferencesAccommodationCamping.
+  ///
+  /// In en, this message translates to:
+  /// **'Camping'**
+  String get preferencesAccommodationCamping;
+
+  /// No description provided for @preferencesTransportSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get preferencesTransportSection;
+
+  /// No description provided for @preferencesTransportCar.
+  ///
+  /// In en, this message translates to:
+  /// **'Car rental'**
+  String get preferencesTransportCar;
+
+  /// No description provided for @preferencesTransportPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public transit'**
+  String get preferencesTransportPublic;
+
+  /// No description provided for @preferencesTransportWalking.
+  ///
+  /// In en, this message translates to:
+  /// **'Walking'**
+  String get preferencesTransportWalking;
+
+  /// No description provided for @preferencesPaceSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Pace'**
+  String get preferencesPaceSection;
+
+  /// No description provided for @preferencesPaceChill.
+  ///
+  /// In en, this message translates to:
+  /// **'Chill'**
+  String get preferencesPaceChill;
+
+  /// No description provided for @preferencesPaceModerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Moderate'**
+  String get preferencesPaceModerate;
+
+  /// No description provided for @preferencesPacePacked.
+  ///
+  /// In en, this message translates to:
+  /// **'Packed'**
+  String get preferencesPacePacked;
+
+  /// No description provided for @preferencesFoodSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Dietary'**
+  String get preferencesFoodSection;
+
+  /// No description provided for @preferencesFoodVegetarian.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetarian'**
+  String get preferencesFoodVegetarian;
+
+  /// No description provided for @preferencesFoodVegan.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegan'**
+  String get preferencesFoodVegan;
+
+  /// No description provided for @preferencesFoodHalal.
+  ///
+  /// In en, this message translates to:
+  /// **'Halal'**
+  String get preferencesFoodHalal;
+
+  /// No description provided for @preferencesFoodGluten.
+  ///
+  /// In en, this message translates to:
+  /// **'Gluten-free'**
+  String get preferencesFoodGluten;
+
+  /// No description provided for @preferencesFoodNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No restrictions'**
+  String get preferencesFoodNone;
+
+  /// No description provided for @preferencesInterestsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Interests'**
+  String get preferencesInterestsSection;
+
+  /// No description provided for @preferencesInterestsHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get preferencesInterestsHistory;
+
+  /// No description provided for @preferencesInterestsNature.
+  ///
+  /// In en, this message translates to:
+  /// **'Nature'**
+  String get preferencesInterestsNature;
+
+  /// No description provided for @preferencesInterestsHiking.
+  ///
+  /// In en, this message translates to:
+  /// **'Hiking'**
+  String get preferencesInterestsHiking;
+
+  /// No description provided for @preferencesInterestsBeaches.
+  ///
+  /// In en, this message translates to:
+  /// **'Beaches'**
+  String get preferencesInterestsBeaches;
+
+  /// No description provided for @preferencesInterestsFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get preferencesInterestsFood;
+
+  /// No description provided for @preferencesInterestsNightlife.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightlife'**
+  String get preferencesInterestsNightlife;
+
+  /// No description provided for @preferencesInterestsArchitecture.
+  ///
+  /// In en, this message translates to:
+  /// **'Architecture'**
+  String get preferencesInterestsArchitecture;
+
+  /// No description provided for @preferencesInterestsReligion.
+  ///
+  /// In en, this message translates to:
+  /// **'Religion'**
+  String get preferencesInterestsReligion;
+
+  /// No description provided for @preferencesInterestsPhotography.
+  ///
+  /// In en, this message translates to:
+  /// **'Photography'**
+  String get preferencesInterestsPhotography;
+
+  /// No description provided for @photoGalleryLabelNoPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'No photos yet'**
+  String get photoGalleryLabelNoPhotos;
+
+  /// No description provided for @artifactCarouselLabelNoArtifacts.
+  ///
+  /// In en, this message translates to:
+  /// **'No artifacts to show'**
+  String get artifactCarouselLabelNoArtifacts;
+
+  /// No description provided for @buddySaveItinerary.
+  ///
+  /// In en, this message translates to:
+  /// **'Save itinerary'**
+  String get buddySaveItinerary;
+
+  /// No description provided for @buddyItinerarySaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved ✓ — View in My Trips'**
+  String get buddyItinerarySaved;
+
+  /// No description provided for @buddyItinerarySaveRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save — tap to retry'**
+  String get buddyItinerarySaveRetry;
+
+  /// No description provided for @buddyItineraryPickStartDateHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'When does this trip start?'**
+  String get buddyItineraryPickStartDateHelp;
+
+  /// No description provided for @buddySaveLimitHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit reached — delete a trip to save a new one'**
+  String get buddySaveLimitHelper;
+
+  /// No description provided for @myTripsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Trips'**
+  String get myTripsTitle;
+
+  /// No description provided for @myTripsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved trips yet'**
+  String get myTripsEmptyTitle;
+
+  /// No description provided for @myTripsEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan one with Buddy and tap Save itinerary.'**
+  String get myTripsEmptySubtitle;
+
+  /// No description provided for @myTripsDatesNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Dates not set'**
+  String get myTripsDatesNotSet;
+
+  /// No description provided for @myTripsDaysOne.
+  ///
+  /// In en, this message translates to:
+  /// **'1 day'**
+  String get myTripsDaysOne;
+
+  /// No description provided for @myTripsDaysOther.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days'**
+  String myTripsDaysOther(int count);
+
+  /// No description provided for @myTripsDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete trip?'**
+  String get myTripsDeleteTitle;
+
+  /// No description provided for @myTripsDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This can\'t be undone.'**
+  String get myTripsDeleteBody;
+
+  /// No description provided for @myTripsDeleteCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get myTripsDeleteCancel;
+
+  /// No description provided for @myTripsDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get myTripsDeleteConfirm;
+
+  /// No description provided for @myTripsClearAllAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all trips'**
+  String get myTripsClearAllAction;
+
+  /// No description provided for @myTripsClearAllTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all trips?'**
+  String get myTripsClearAllTitle;
+
+  /// No description provided for @myTripsClearAllBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Every saved trip will be permanently deleted. This can\'t be undone.'**
+  String get myTripsClearAllBody;
+
+  /// No description provided for @myTripsClearAllConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get myTripsClearAllConfirm;
+
+  /// No description provided for @myTripsCounter.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} / {max}'**
+  String myTripsCounter(int count, int max);
+
+  /// No description provided for @tripDetailDayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {dayNumber}'**
+  String tripDetailDayLabel(int dayNumber);
+
+  /// No description provided for @tripDetailAddStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Add stop'**
+  String get tripDetailAddStop;
+
+  /// No description provided for @tripDetailAddDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Add day'**
+  String get tripDetailAddDay;
+
+  /// No description provided for @tripDetailDialogSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get tripDetailDialogSave;
+
+  /// No description provided for @tripDetailDialogClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get tripDetailDialogClear;
+
+  /// No description provided for @tripDetailStartDateNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get tripDetailStartDateNotSet;
+
+  /// No description provided for @tripDetailRailMarkVisited.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as visited'**
+  String get tripDetailRailMarkVisited;
+
+  /// No description provided for @tripDetailRailResetUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to upcoming'**
+  String get tripDetailRailResetUpcoming;
+
+  /// No description provided for @tripDetailVisitedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Visited {time}'**
+  String tripDetailVisitedAt(String time);
+
+  /// No description provided for @tripDetailDayProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} / {total} visited'**
+  String tripDetailDayProgress(int done, int total);
+
+  /// No description provided for @tripDetailAutoTrackPromptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-check stops as you visit?'**
+  String get tripDetailAutoTrackPromptTitle;
+
+  /// No description provided for @tripDetailAutoTrackPromptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel Buddy can check off stops automatically when you\'re nearby during their scheduled time. Location stays on your device.'**
+  String get tripDetailAutoTrackPromptBody;
+
+  /// No description provided for @tripDetailAutoTrackEnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable'**
+  String get tripDetailAutoTrackEnable;
+
+  /// No description provided for @tripDetailAutoTrackDecline.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get tripDetailAutoTrackDecline;
+
+  /// No description provided for @tripDetailAutoTrackEnableMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable visit auto-tracking'**
+  String get tripDetailAutoTrackEnableMenu;
+
+  /// No description provided for @tripDetailAutoTrackDisableMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable visit auto-tracking'**
+  String get tripDetailAutoTrackDisableMenu;
+
+  /// Title of the sheet shown when the user taps Enable visit auto-tracking but location permission is currently denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-tracking needs location access'**
+  String get tripDetailAutoTrackErrorPermissionTitle;
+
+  /// Body of the auto-track error sheet when the user denied location once (re-prompt may still work).
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-tracking checks off stops when you\'re near them. Allow location access while using the app to turn it on.'**
+  String get tripDetailAutoTrackErrorPermissionBody;
+
+  /// Body of the auto-track error sheet when location permission is permanently denied — only Settings can re-enable it.
+  ///
+  /// In en, this message translates to:
+  /// **'Location access is currently blocked. Open Settings to allow it for Travel Buddy.'**
+  String get tripDetailAutoTrackErrorBlockedBody;
+
+  /// Title of the auto-track error sheet when device-wide Location Services are off.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on Location Services'**
+  String get tripDetailAutoTrackErrorServiceTitle;
+
+  /// Body of the auto-track error sheet when device-wide Location Services are off.
+  ///
+  /// In en, this message translates to:
+  /// **'Location Services are off for this device. Auto-tracking can\'t run until they\'re back on.'**
+  String get tripDetailAutoTrackErrorServiceBody;
+
+  /// Primary CTA on the auto-track error sheet that opens the OS Settings (app or location).
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get tripDetailAutoTrackErrorOpenSettings;
+
+  /// Primary CTA on the auto-track error sheet that re-requests location permission when denial was non-permanent.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get tripDetailAutoTrackErrorRetry;
+
+  /// No description provided for @tripDetailAddDayDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add day'**
+  String get tripDetailAddDayDialogTitle;
+
+  /// No description provided for @tripDetailAddDayNumberField.
+  ///
+  /// In en, this message translates to:
+  /// **'Day number'**
+  String get tripDetailAddDayNumberField;
+
+  /// No description provided for @tripDetailAddDayTitleField.
+  ///
+  /// In en, this message translates to:
+  /// **'Title (optional)'**
+  String get tripDetailAddDayTitleField;
+
+  /// No description provided for @tripDetailAddDayBaseCityField.
+  ///
+  /// In en, this message translates to:
+  /// **'Base city (optional)'**
+  String get tripDetailAddDayBaseCityField;
+
+  /// Italic placeholder shown on the trip detail summary section when the trip has no summary yet; tapping opens the summary editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to add a summary'**
+  String get tripDetailSummaryPlaceholder;
+
+  /// Hint shown inside an empty day's placeholder, telling the user to use the Add stop button below.
+  ///
+  /// In en, this message translates to:
+  /// **'No stops yet — tap + to add one'**
+  String get tripDetailEmptyDayHint;
+
+  /// Trip detail kebab item that opens the summary editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit summary'**
+  String get tripDetailKebabEditSummary;
+
+  /// Trip detail kebab item that opens the start-date picker.
+  ///
+  /// In en, this message translates to:
+  /// **'Change start date'**
+  String get tripDetailKebabChangeStartDate;
+
+  /// Trip detail kebab item that clears the start date (only present when a start date is set).
+  ///
+  /// In en, this message translates to:
+  /// **'Clear start date'**
+  String get tripDetailKebabClearStartDate;
+
+  /// Day-header overflow menu: opens a text dialog to rename the day.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename day'**
+  String get tripDetailDayActionRename;
+
+  /// Day-header overflow menu: opens a text dialog to change the day's base city.
+  ///
+  /// In en, this message translates to:
+  /// **'Change base city'**
+  String get tripDetailDayActionChangeBaseCity;
+
+  /// Day-header overflow menu: opens the add-stop sheet for that day.
+  ///
+  /// In en, this message translates to:
+  /// **'Add stop here'**
+  String get tripDetailDayActionAddStop;
+
+  /// Day-header overflow menu: opens the destructive confirm sheet to delete the day.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete day'**
+  String get tripDetailDayActionDelete;
+
+  /// Title of the inline dialog that renames a day.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename day'**
+  String get tripDetailRenameDayDialogTitle;
+
+  /// Title of the inline dialog that changes a day's base city.
+  ///
+  /// In en, this message translates to:
+  /// **'Change base city'**
+  String get tripDetailChangeBaseCityDialogTitle;
+
+  /// Stop long-press action that creates a copy of the stop right after it.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get tripDetailStopActionDuplicate;
+
+  /// Inline undo banner that occupies the deleted stop's slot for ~5s after a delete. Pairs with the tripDetailUndoStopButton action.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop deleted: {stopName}'**
+  String tripDetailUndoStopBanner(String stopName);
+
+  /// Action text on the inline undo banner. Capitalized for emphasis — it's the only path to recover a misclicked delete inside the 5s window.
+  ///
+  /// In en, this message translates to:
+  /// **'UNDO'**
+  String get tripDetailUndoStopButton;
+
+  /// Long-press action sheet on a stop card in edit mode — opens the stop editor.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get tripDetailStopActionEdit;
+
+  /// Long-press action that opens a day picker to move the stop to another day.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to day…'**
+  String get tripDetailStopActionMove;
+
+  /// Long-press action that deletes the stop after confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get tripDetailStopActionDelete;
+
+  /// Label of the fallback button shown above the timeline when a saved trip has no static-map thumbnail. Tapping it opens the full-screen interactive map.
+  ///
+  /// In en, this message translates to:
+  /// **'View on map'**
+  String get tripDetailViewOnMapButton;
+
+  /// Header of the bottom sheet listing other days as move targets.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to day'**
+  String get tripDetailMoveStopSheetTitle;
+
+  /// Subtitle for the move-to-day picker showing the stop being moved.
+  ///
+  /// In en, this message translates to:
+  /// **'Where should \"{stopName}\" go?'**
+  String tripDetailMoveStopSheetSubtitle(String stopName);
+
+  /// One day row in the move-to-day picker. `label` is day.title, day.baseCity, or a fallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {dayNumber} · {label}'**
+  String tripDetailMoveStopOption(int dayNumber, String label);
+
+  /// Suffix shown when a day has 0 stops, in the move-to-day picker.
+  ///
+  /// In en, this message translates to:
+  /// **'no stops yet'**
+  String get tripDetailMoveStopOptionEmpty;
+
+  /// Stop-count suffix in the move-to-day picker, e.g. '3 stops'.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 stop} other{{count} stops}}'**
+  String tripDetailMoveStopOptionCount(int count);
+
+  /// Error banner shown when PATCH /trips/{id}/stops/{sid}/move fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t move stop — try again.'**
+  String get tripDetailMoveStopFailed;
+
+  /// No description provided for @tripsErrorSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in again to save changes.'**
+  String get tripsErrorSignIn;
+
+  /// No description provided for @tripsErrorNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This trip no longer exists.'**
+  String get tripsErrorNotFound;
+
+  /// No description provided for @tripsErrorConflict.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip changed elsewhere — refreshing.'**
+  String get tripsErrorConflict;
+
+  /// No description provided for @tripsErrorTripLimitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'You can only save up to 3 trips. Delete one to save this trip.'**
+  String get tripsErrorTripLimitReached;
+
+  /// No description provided for @tripsErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your change.'**
+  String get tripsErrorGeneric;
+
+  /// No description provided for @conversationsUntitled.
+  ///
+  /// In en, this message translates to:
+  /// **'Untitled chat'**
+  String get conversationsUntitled;
+
+  /// No description provided for @profileDeleteAccountButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get profileDeleteAccountButton;
+
+  /// No description provided for @profileDeleteAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account?'**
+  String get profileDeleteAccountTitle;
+
+  /// No description provided for @profileDeleteAccountBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This permanently removes your trips, conversations, uploaded photos, and preferences. This can\'t be undone.'**
+  String get profileDeleteAccountBody;
+
+  /// No description provided for @profileDeleteAccountInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'Type DELETE to confirm:'**
+  String get profileDeleteAccountInstruction;
+
+  /// No description provided for @profileDeleteAccountConfirmWord.
+  ///
+  /// In en, this message translates to:
+  /// **'DELETE'**
+  String get profileDeleteAccountConfirmWord;
+
+  /// No description provided for @profileDeleteAccountConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get profileDeleteAccountConfirm;
+
+  /// No description provided for @profileDeleteAccountCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get profileDeleteAccountCancel;
+
+  /// No description provided for @profileDeleteAccountFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete your account. Please try again.'**
+  String get profileDeleteAccountFailed;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -2562,7 +3852,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'sq'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -2573,8 +3863,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
-    case 'zh':
-      return AppLocalizationsZh();
+    case 'sq':
+      return AppLocalizationsSq();
   }
 
   throw FlutterError(

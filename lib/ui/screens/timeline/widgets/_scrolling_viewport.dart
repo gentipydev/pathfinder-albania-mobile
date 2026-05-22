@@ -2,19 +2,18 @@ part of '../timeline_screen.dart';
 
 class _ScrollingViewport extends StatefulWidget {
   const _ScrollingViewport({
-    super.key,
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     this.onInit,
     required this.scroller,
     required this.minSize,
     required this.maxSize,
-    required this.selectedWonder,
+    required this.selectedDestination,
     this.onYearChanged,
   });
   final double minSize;
   final double maxSize;
   final ScrollController scroller;
-  final WonderType? selectedWonder;
+  final DestinationType? selectedDestination;
   final void Function(int year)? onYearChanged;
   final void Function(_ScrollingViewportController controller)? onInit;
 
@@ -46,7 +45,7 @@ class _ScalingViewportState extends State<_ScrollingViewport> {
     AppHaptics.selectionClick();
   }
 
-  void _handleMarkerPressed(event) {
+  void _handleMarkerPressed(TimelineEvent event) {
     final pos = controller.calculateScrollPosFromYear(event.year);
     controller.scroller.animateTo(pos, duration: $styles.times.med, curve: Curves.easeOutBack);
   }
@@ -78,7 +77,7 @@ class _ScalingViewportState extends State<_ScrollingViewport> {
             IgnorePointerKeepSemantics(
               child: AnimatedBuilder(
                 animation: controller.scroller,
-                builder: (_, __) {
+                builder: (_, _) {
                   return _DashedDividerWithYear(controller.calculateYearFromScrollPos());
                 },
               ),
@@ -92,15 +91,15 @@ class _ScalingViewportState extends State<_ScrollingViewport> {
   Widget _buildScrollingArea(BuildContext context) {
     // Builds a TimelineSection, and passes it the currently selected yr based on scroll position.
     // Rebuilds when timeline is scrolled.
-    Widget buildTimelineSection(WonderData data) {
+    Widget buildTimelineSection(DestinationData data) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(99),
         child: AnimatedBuilder(
           animation: controller.scroller,
-          builder: (_, __) => TimelineSection(
+          builder: (_, _) => TimelineSection(
             data,
             controller.calculateYearFromScrollPos(),
-            selectedWonder: widget.selectedWonder,
+            selectedDestination: widget.selectedDestination,
           ),
         ),
       );
@@ -133,11 +132,11 @@ class _ScalingViewportState extends State<_ScrollingViewport> {
                       right: $styles.insets.sm,
                       child: FocusTraversalGroup(
                         //child: Placeholder(),
-                        child: WondersTimelineBuilder(
+                        child: DestinationsTimelineBuilder(
                           axis: Axis.vertical,
                           crossAxisGap: max(6, (width - (120 * 3)) / 2),
                           minSize: _minTimelineSize,
-                          timelineBuilder: (_, data, __) => buildTimelineSection(data),
+                          timelineBuilder: (_, data, _) => buildTimelineSection(data),
                         ),
                       ),
                     ),
@@ -145,7 +144,7 @@ class _ScalingViewportState extends State<_ScrollingViewport> {
                     /// Event Markers, rebuilds on scroll
                     AnimatedBuilder(
                       animation: controller.scroller,
-                      builder: (_, __) => _EventMarkers(
+                      builder: (_, _) => _EventMarkers(
                         controller.calculateYearFromScrollPos(),
                         onEventChanged: _handleEventMarkerChanged,
                         onMarkerPressed: _handleMarkerPressed,
@@ -165,7 +164,7 @@ class _ScalingViewportState extends State<_ScrollingViewport> {
             /// Event Popups, rebuilds when [_currentEventMarker] changes
             ValueListenableBuilder<TimelineEvent?>(
               valueListenable: _currentEventMarker,
-              builder: (_, data, __) {
+              builder: (_, data, _) {
                 return _EventPopups(currentEvent: data);
               },
             ),

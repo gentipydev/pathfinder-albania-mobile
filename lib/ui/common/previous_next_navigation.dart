@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/platform_info.dart';
-import 'package:wonders/ui/common/app_icons.dart';
-import 'package:wonders/ui/common/fullscreen_keyboard_listener.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/platform_info.dart';
+import 'package:travel_buddy/ui/common/app_icons.dart';
+import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
 
 class PreviousNextNavigation extends StatefulWidget {
   const PreviousNextNavigation({
@@ -43,7 +43,7 @@ class _PreviousNextNavigationState extends State<PreviousNextNavigation> {
     return false;
   }
 
-  void _handleMouseScroll(event) {
+  void _handleMouseScroll(PointerSignalEvent event) {
     if (event is PointerScrollEvent) {
       // Cooldown, ignore scroll events that are too close together
       if (DateTime.now().millisecondsSinceEpoch - _lastMouseScrollTime.millisecondsSinceEpoch < _scrollCooldownMs) {

@@ -1,10 +1,10 @@
 part of '../editorial_screen.dart';
 
 class _SlidingImageStack extends StatelessWidget {
-  const _SlidingImageStack({super.key, required this.scrollPos, required this.type});
+  const _SlidingImageStack({required this.scrollPos, required this.type});
 
   final ValueNotifier<double> scrollPos;
-  final WonderType type;
+  final DestinationType type;
 
   @override
   Widget build(BuildContext context) {

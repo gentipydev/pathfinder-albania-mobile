@@ -1,12 +1,12 @@
 import 'package:particle_field/particle_field.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/animate_utils.dart';
-import 'package:wonders/logic/data/collectible_data.dart';
-import 'package:wonders/ui/common/app_backdrop.dart';
-import 'package:wonders/ui/common/centered_box.dart';
-import 'package:wonders/ui/common/controls/app_header.dart';
-import 'package:wonders/ui/common/pop_navigator_underlay.dart';
-import 'package:wonders/ui/common/utils/duration_utils.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/animate_utils.dart';
+import 'package:travel_buddy/logic/data/collectible_data.dart';
+import 'package:travel_buddy/ui/common/app_backdrop.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
+import 'package:travel_buddy/ui/common/controls/app_header.dart';
+import 'package:travel_buddy/ui/common/pop_navigator_underlay.dart';
+import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
 
 part 'widgets/_animated_ribbon.dart';
 part 'widgets/_celebration_particles.dart';
@@ -24,7 +24,7 @@ class CollectibleFoundScreen extends StatelessWidget {
     return RepaintBoundary(
       child: _buildIntro(context).animate().swap(
         delay: 1050.animateMs,
-        builder: (_, __) => _buildDetail(context),
+        builder: (_, _) => _buildDetail(context),
       ),
     );
   }
@@ -217,7 +217,7 @@ class CollectibleFoundScreen extends StatelessWidget {
       child: Animate().custom(
         delay: delay,
         duration: t * 2,
-        builder: (_, m, __) => Text(
+        builder: (_, m, _) => Text(
           text,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,

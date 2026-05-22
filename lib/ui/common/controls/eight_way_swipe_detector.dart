@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/controls/trackpad_listener.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/common/controls/trackpad_listener.dart';
 
 class EightWaySwipeDetector extends StatefulWidget {
   const EightWaySwipeDetector({
@@ -61,7 +61,7 @@ class _EightWaySwipeDetectorState extends State<EightWaySwipeDetector> {
     _maybeTriggerSwipe();
   }
 
-  void _handleSwipeEnd(d) {
+  void _handleSwipeEnd(DragEndDetails d) {
     _maybeTriggerSwipe();
     _resetSwipe();
   }

@@ -1,11 +1,11 @@
 {
-    "name": "Wonderous: Flutter Web Example",
-    "short_name": "Wonderous",
+    "name": "Travel Buddy",
+    "short_name": "Travel Buddy",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#1e1b18",
     "theme_color": "#1e1b18",
-    "description": "Navigate the intersection of history, art, and culture. Be educated and entertained as your learn about world-famous structures.",
+    "description": "Travel Buddy is your AI-powered guide to the eight destinations of Albania.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
@@ -38,21 +38,21 @@
             "sizes": "800x600",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "Wonderous Welcome Screen"
+            "label": "Travel Buddy welcome screen"
         },
         {
             "src": "screenshots/screen2.png",
             "sizes": "800x600",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "Read about 8 amazing man-made wonders"
+            "label": "Discover the 8 destinations of Albania"
         },
         {
             "src": "screenshots/screen3.png",
             "sizes": "800x600",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "Enjoy photos and videos from all around the world"
+            "label": "Enjoy photos and videos from across Albania"
         },
         {
             "src": "screenshots/screen4.png",
@@ -66,21 +66,21 @@
             "sizes": "864x1872",
             "type": "image/png",
             "form_factor": "narrow",
-            "label": "Wonderous Welcome Screen"
+            "label": "Travel Buddy welcome screen"
         },
         {
             "src": "screenshots/mobile2.png",
             "sizes": "864x1872",
             "type": "image/png",
             "form_factor": "narrow",
-            "label": "Read about 8 amazing man-made wonders"
+            "label": "Discover the 8 destinations of Albania"
         },
         {
             "src": "screenshots/mobile3.png",
             "sizes": "864x1872",
             "type": "image/png",
             "form_factor": "narrow",
-            "label": "Enjoy photos and videos from all around the world"
+            "label": "Enjoy photos and videos from across Albania"
         },
         {
             "src": "screenshots/mobile4.png",

@@ -5,7 +5,6 @@ part of '../timeline_screen.dart';
 class _EventMarkers extends StatefulWidget {
   const _EventMarkers(
     this.selectedYr, {
-    super.key,
     required this.onEventChanged,
     required this.onMarkerPressed,
   });
@@ -20,9 +19,9 @@ class _EventMarkers extends StatefulWidget {
 
 class _EventMarkersState extends State<_EventMarkers> {
   bool get showReferenceMarkers => kDebugMode;
-  int get startYr => wondersLogic.timelineStartYear;
+  int get startYr => destinationsLogic.timelineStartYear;
 
-  int get endYr => wondersLogic.timelineEndYear;
+  int get endYr => destinationsLogic.timelineEndYear;
 
   late final int _totalYrs = endYr - startYr;
 
@@ -119,7 +118,6 @@ class _EventMarkersState extends State<_EventMarkers> {
 class _EventMarker extends StatelessWidget {
   const _EventMarker(
     this.offset, {
-    super.key,
     required this.isSelected,
     required this.event,
     required this.onPressed,

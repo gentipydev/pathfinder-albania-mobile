@@ -1,31 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/modals//fullscreen_video_viewer.dart';
-import 'package:wonders/ui/common/modals/fullscreen_maps_viewer.dart';
-import 'package:wonders/ui/screens/artifact/artifact_details/artifact_details_screen.dart';
-import 'package:wonders/ui/screens/artifact/artifact_search/artifact_search_screen.dart';
-import 'package:wonders/ui/screens/collection/collection_screen.dart';
-import 'package:wonders/ui/screens/home/wonders_home_screen.dart';
-import 'package:wonders/ui/screens/intro/intro_screen.dart';
-import 'package:wonders/ui/screens/page_not_found/page_not_found.dart';
-import 'package:wonders/ui/screens/timeline/timeline_screen.dart';
-import 'package:wonders/ui/screens/wonder_details/wonders_details_screen.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/app_shell.dart';
+import 'package:travel_buddy/ui/common/modals//fullscreen_video_viewer.dart';
+import 'package:travel_buddy/ui/common/modals/fullscreen_maps_viewer.dart';
+import 'package:travel_buddy/ui/screens/artifact/artifact_details/artifact_details_screen.dart';
+import 'package:travel_buddy/ui/screens/auth/auth_screen.dart';
+import 'package:travel_buddy/ui/screens/collection/collection_screen.dart';
+import 'package:travel_buddy/ui/screens/conversations/conversations_screen.dart';
+import 'package:travel_buddy/ui/screens/intro/intro_screen.dart';
+import 'package:travel_buddy/ui/screens/page_not_found/page_not_found.dart';
+import 'package:travel_buddy/ui/screens/preferences/preferences_screen.dart';
+import 'package:travel_buddy/ui/screens/my_trips/trip_detail_screen.dart';
+import 'package:travel_buddy/ui/screens/timeline/timeline_screen.dart';
+import 'package:travel_buddy/ui/screens/destination_details/destinations_details_screen.dart';
+import 'package:travel_buddy/utils/dlog.dart';
+import 'package:travel_buddy/utils/route_logger.dart';
 
 /// Shared paths / urls used across the app
 class ScreenPaths {
   static String splash = '/';
   static String intro = '/welcome';
+  static String auth = '/auth';
   static String home = '/home';
   static String settings = '/settings';
+  static String conversations = '$home/conversations';
+  static String preferences = '$home/preferences';
+  static String trip(String id) => '$home/trip/$id';
 
-  static String wonderDetails(WonderType type, {required int tabIndex}) => '$home/wonder/${type.name}?t=$tabIndex';
+  static String destinationDetails(DestinationType type, {required int tabIndex}) => '$home/destination/${type.name}?t=$tabIndex';
 
   /// Dynamically nested pages, always added on to the existing path
   static String video(String id) => _appendToCurrentPath('/video/$id');
-  static String search(WonderType type) => _appendToCurrentPath('/search/${type.name}');
-  static String maps(WonderType type) => _appendToCurrentPath('/maps/${type.name}');
-  static String timeline(WonderType? type) => _appendToCurrentPath('/timeline?type=${type?.name ?? ''}');
+  static String maps(DestinationType type) => _appendToCurrentPath('/maps/${type.name}');
+  static String timeline(DestinationType? type) => _appendToCurrentPath('/timeline?type=${type?.name ?? ''}');
   static String artifact(String id, {bool append = true}) =>
       append ? _appendToCurrentPath('/artifact/$id') : '/artifact/$id';
   static String collection(String id) => _appendToCurrentPath('/collection${id.isEmpty ? '' : '?id=$id'}');
@@ -51,7 +59,7 @@ AppRoute get _artifactRoute => AppRoute(
 
 AppRoute get _timelineRoute => AppRoute(
   'timeline',
-  (s) => TimelineScreen(type: _tryParseWonderType(s.uri.queryParameters['type']!)),
+  (s) => TimelineScreen(type: _tryParseDestinationType(s.uri.queryParameters['type']!)),
 );
 
 AppRoute get _collectionRoute => AppRoute(
@@ -63,11 +71,12 @@ AppRoute get _collectionRoute => AppRoute(
 /// Routing table, matches string paths to UI Screens, optionally parses params from the paths
 final appRouter = GoRouter(
   redirect: _handleRedirect,
+  observers: [if (kDebugMode) LoggingNavigatorObserver()],
   errorPageBuilder: (context, state) => MaterialPage(child: PageNotFound(state.uri.toString())),
   routes: [
     ShellRoute(
       builder: (context, router, navigator) {
-        return WondersAppScaffold(child: navigator);
+        return DestinationsAppScaffold(child: navigator);
       },
       routes: [
         AppRoute(
@@ -75,23 +84,31 @@ final appRouter = GoRouter(
           (_) => Container(color: $styles.colors.greyStrong),
         ), // This will be hidden
         AppRoute(ScreenPaths.intro, (_) => IntroScreen()),
+        AppRoute(ScreenPaths.auth, (_) => const AuthScreen()),
         AppRoute(
           ScreenPaths.home,
-          (_) => HomeScreen(),
+          (_) => const AppShell(),
           routes: [
+            AppRoute('conversations', (_) => const ConversationsScreen()),
+            AppRoute('preferences', (_) => PreferencesScreen()),
+            AppRoute(
+              'trip/:tripId',
+              (s) =>
+                  TripDetailScreen(tripId: s.pathParameters['tripId']!),
+            ),
             _timelineRoute,
             _collectionRoute,
             AppRoute(
-              'wonder/:detailsType',
+              'destination/:detailsType',
               (s) {
                 int tab = int.tryParse(s.uri.queryParameters['t'] ?? '') ?? 0;
-                return WonderDetailsScreen(
-                  type: _parseWonderType(s.pathParameters['detailsType']),
+                return DestinationDetailsScreen(
+                  type: _parseDestinationType(s.pathParameters['detailsType']),
                   tabIndex: tab,
                 );
               },
               useFade: true,
-              // Wonder sub-routes
+              // Destination sub-routes
               routes: [
                 _timelineRoute,
                 _collectionRoute,
@@ -101,24 +118,11 @@ final appRouter = GoRouter(
                   return FullscreenVideoViewer(id: s.pathParameters['videoId']!);
                 }, useFade: true),
 
-                // Search
-                AppRoute(
-                  'search/:searchType',
-                  (s) {
-                    return ArtifactSearchScreen(
-                      type: _parseWonderType(s.pathParameters['searchType']),
-                    );
-                  },
-                  routes: [
-                    _artifactRoute,
-                  ],
-                ),
-
                 // Maps
                 AppRoute(
                   'maps/:mapsType',
                   (s) => FullscreenMapsViewer(
-                    type: _parseWonderType(s.pathParameters['mapsType']),
+                    type: _parseDestinationType(s.pathParameters['mapsType']),
                   ),
                 ),
               ],
@@ -164,24 +168,41 @@ String? get initialDeeplink => _initialDeeplink;
 String? _initialDeeplink;
 
 String? _handleRedirect(BuildContext context, GoRouterState state) {
+  final path = state.uri.path;
+
   // Prevent anyone from navigating away from `/` if app is starting up.
-  if (!appLogic.isBootstrapComplete && state.uri.path != ScreenPaths.splash) {
-    debugPrint('Redirecting from ${state.uri.path} to ${ScreenPaths.splash}.');
+  if (!appLogic.isBootstrapComplete && path != ScreenPaths.splash) {
+    dlog('redirect $path → ${ScreenPaths.splash} (bootstrap incomplete)',
+        name: 'nav', level: LogLevel.info);
     _initialDeeplink ??= state.uri.toString();
     return ScreenPaths.splash;
   }
-  if (appLogic.isBootstrapComplete && state.uri.path == ScreenPaths.splash) {
-    debugPrint('Redirecting from ${state.uri.path} to ${ScreenPaths.home}');
-    return ScreenPaths.home;
+  if (!appLogic.isBootstrapComplete) return null;
+
+  final onboarded = settingsBloc.state.hasCompletedOnboarding;
+  final authed = authBloc.state.isAuthenticated;
+
+  // Onboarding gate — must come before auth so a fresh install sees intro first.
+  if (!onboarded && path != ScreenPaths.intro) return ScreenPaths.intro;
+
+  // Auth gate — only after onboarding is complete.
+  if (onboarded && !authed && path != ScreenPaths.auth) {
+    return ScreenPaths.auth;
   }
-  if (!kIsWeb) debugPrint('Navigate to: ${state.uri}');
-  return null; // do nothing
+
+  // Bounce signed-in users off splash/auth.
+  if (authed && (path == ScreenPaths.splash || path == ScreenPaths.auth)) {
+    return initialDeeplink ?? ScreenPaths.home;
+  }
+
+  if (!kIsWeb) dlog('navigate to ${state.uri}', name: 'nav');
+  return null;
 }
 
-WonderType _parseWonderType(String? value) {
-  const fallback = WonderType.chichenItza;
+DestinationType _parseDestinationType(String? value) {
+  const fallback = DestinationType.butrint;
   if (value == null) return fallback;
-  return _tryParseWonderType(value) ?? fallback;
+  return _tryParseDestinationType(value) ?? fallback;
 }
 
-WonderType? _tryParseWonderType(String value) => WonderType.values.asNameMap()[value];
+DestinationType? _tryParseDestinationType(String value) => DestinationType.values.asNameMap()[value];

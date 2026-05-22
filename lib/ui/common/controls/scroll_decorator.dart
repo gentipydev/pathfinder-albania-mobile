@@ -1,5 +1,5 @@
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/ignore_pointer.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/common/ignore_pointer.dart';
 
 /// Easily add visual decorations to a scrolling widget based on the state of its controller.
 class ScrollDecorator extends StatefulWidget {
@@ -129,7 +129,7 @@ class _ScrollDecoratorState extends State<ScrollDecorator> {
     content = widget.builder(currentController);
     return AnimatedBuilder(
       animation: currentController,
-      builder: (_, __) {
+      builder: (_, _) {
         return Stack(
           children: [
             if (widget.bgBuilder != null) ...[

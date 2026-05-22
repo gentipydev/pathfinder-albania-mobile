@@ -1,6 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/platform_info.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/platform_info.dart';
 
 /// Loads bitmap assets into memory that may be required later
 class AppBitmaps {
@@ -40,22 +40,22 @@ class SvgPaths {
   static String compassSimple = '${ImagePaths.common}/compass-simple.svg';
 }
 
-/// For wonder specific assets, add an extension to [WonderType] for easy lookup
-extension WonderAssetExtensions on WonderType {
+/// For destination specific assets, add an extension to [DestinationType] for easy lookup
+extension DestinationAssetExtensions on DestinationType {
   String get assetPath {
     return switch (this) {
-      WonderType.pyramidsGiza => '${ImagePaths.root}/pyramids',
-      WonderType.greatWall => '${ImagePaths.root}/great_wall_of_china',
-      WonderType.petra => '${ImagePaths.root}/petra',
-      WonderType.colosseum => '${ImagePaths.root}/colosseum',
-      WonderType.chichenItza => '${ImagePaths.root}/chichen_itza',
-      WonderType.machuPicchu => '${ImagePaths.root}/machu_picchu',
-      WonderType.tajMahal => '${ImagePaths.root}/taj_mahal',
-      WonderType.christRedeemer => '${ImagePaths.root}/christ_the_redeemer',
+      DestinationType.albanianAlps => '${ImagePaths.root}/albanian_alps',
+      DestinationType.apollonia => '${ImagePaths.root}/apollonia',
+      DestinationType.kruja => '${ImagePaths.root}/kruja',
+      DestinationType.gjirokaster => '${ImagePaths.root}/gjirokaster',
+      DestinationType.butrint => '${ImagePaths.root}/butrint',
+      DestinationType.theth => '${ImagePaths.root}/theth',
+      DestinationType.korca => '${ImagePaths.root}/korca',
+      DestinationType.berat => '${ImagePaths.root}/berat',
     };
   }
 
-  String get homeBtn => '$assetPath/wonder-button.png';
+  String get homeBtn => '$assetPath/destination-button.png';
   String get photo1 => '$assetPath/photo-1.jpg';
   String get photo2 => '$assetPath/photo-2.jpg';
   String get photo3 => '$assetPath/photo-3.jpg';

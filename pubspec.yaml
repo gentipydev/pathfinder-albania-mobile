@@ -1,5 +1,5 @@
-name: wonders
-description: Explore the famous wonders of the world.
+name: travel_buddy
+description: AI-powered guide to the eight destinations of Albania.
 publish_to: "none"
 version: 2.2.7+236
 
@@ -15,52 +15,77 @@ dependencies:
     sdk: flutter
 
   collection: ^1.17.0
+  cupertino_icons: ^1.0.8
   desktop_window: ^0.4.0
   drop_cap_text:
     git:
       url: https://github.com/parlough/drop_cap_text
       ref: feat/adapt-for-deprecations
   equatable: ^2.0.5
+  flutter_bloc: ^9.1.1
+  bloc_concurrency: ^0.3.0
+  cached_network_image: ^3.4.1
   extra_alignments: ^1.0.0+1
   flextras: ^1.0.0
   flutter_animate: ^4.5.0
   flutter_circular_text: ^0.3.1
   flutter_displaymode: ^0.7.0
+  flutter_dotenv: ^6.0.1
   flutter_native_splash: ^2.3.3
   flutter_staggered_grid_view: ^0.7.0
   flutter_svg: ^2.0.1
   gap: ^3.0.1
   get_it: ^7.2.0
   get_it_mixin: ^4.2.2
-  google_maps_flutter: ^2.2.8
+  geolocator: ^13.0.1
+  google_maps_flutter: ^2.6.0
   google_maps_flutter_web: ^0.6.1
+  flutter_polyline_points: 2.1.0
   go_router: ^17.0.1
-  home_widget: ^0.9.0 # use the forked version when on `main` flutter branch
-#    git:
-#      url: https://github.com/gskinnerTeam/flutter_home_widget_fork.git
-  http: ^1.1.0
+  # Pinned to ^0.7.0 — 0.9.x pulls in androidx.glance:glance-appwidget:1.3.0-alpha01
+  # + androidx.compose.remote:remote-creation-android:1.0.0-alpha11 transitively,
+  # both requiring compileSdk 37 + AGP 9.1.0+. We only use home_widget on iOS
+  # (`lib/logic/native_widget_service.dart`); the alpha Android deps are pure
+  # overhead. The iOS API (setAppGroupId / saveWidgetData / updateWidget) is
+  # stable across 0.7 → 0.9.
+  home_widget: ^0.7.0
+  flutter_markdown_plus: ^1.0.3
+  dio: ^5.7.0
+  speech_to_text: ^7.3.0
+  flutter_tts: ^4.2.5
+  siri_wave: ^2.3.1
   image: ^4.1.3
   image_fade: ^0.6.2
+  image_picker: ^1.1.0
   intl: ^0.20.2
   internet_connection_checker: ^3.0.1
+  lottie: ^3.0.0
   package_info_plus: ^9.0.0
   particle_field: ^1.0.0
   path_provider: ^2.1.1
+  permission_handler: ^11.3.1
   pointer_interceptor: ^0.10.1+1
   provider: ^6.0.5
   rnd: ^0.2.0
   shared_preferences: ^2.0.17
   sized_context: ^1.0.0+1
   smooth_page_indicator: ^2.0.1
-  unsplash_client: ^3.0.0
+  sentry_flutter: ^8.12.0
+  supabase_flutter: ^2.8.0
   url_launcher: ^6.1.14
+  uuid: ^4.5.1
   webview_flutter: ^4.0.2
   youtube_player_iframe: ^5.2.2
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
   icons_launcher: ^3.0.0
   flutter_lints: ^6.0.0
   dependency_validator: ^5.0.3
+  bloc_test: ^10.0.0
+  mocktail: ^1.0.4
+  golden_toolkit: ^0.15.0
 
 icons_launcher:
   image_path: "assets/marketing/app-icon-1024.png"
@@ -86,19 +111,21 @@ flutter:
   generate: true
 
   assets:
+    - .env
     - assets/images/_common/
     - assets/images/_common/icons/
     - assets/images/_common/texture/
-    - assets/images/chichen_itza/
-    - assets/images/christ_the_redeemer/
-    - assets/images/colosseum/
-    - assets/images/great_wall_of_china/
-    - assets/images/machu_picchu/
-    - assets/images/petra/
-    - assets/images/pyramids/
-    - assets/images/taj_mahal/
+    - assets/images/butrint/
+    - assets/images/berat/
+    - assets/images/gjirokaster/
+    - assets/images/apollonia/
+    - assets/images/theth/
+    - assets/images/kruja/
+    - assets/images/albanian_alps/
+    - assets/images/korca/
     - assets/images/collectibles/
     - assets/images/widget/
+    - assets/lottie/
 
   fonts:
     - family: Cinzel

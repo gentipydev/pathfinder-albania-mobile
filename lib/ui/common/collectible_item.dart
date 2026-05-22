@@ -1,17 +1,21 @@
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/collectibles_logic.dart';
-import 'package:wonders/logic/common/animate_utils.dart';
-import 'package:wonders/logic/data/collectible_data.dart';
-import 'package:wonders/ui/common/opening_card.dart';
-import 'package:wonders/ui/common/utils/app_haptics.dart';
-import 'package:wonders/ui/common/utils/duration_utils.dart';
-import 'package:wonders/ui/screens/collectible_found/collectible_found_screen.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
+import 'package:travel_buddy/features/collectibles/bloc/collectibles_event.dart';
+import 'package:travel_buddy/logic/common/animate_utils.dart';
+import 'package:travel_buddy/logic/data/collectible_data.dart';
+import 'package:travel_buddy/ui/common/opening_card.dart';
+import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
+import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:travel_buddy/ui/screens/collectible_found/collectible_found_screen.dart';
 
 class CollectibleItem extends StatelessWidget with GetItMixin {
   CollectibleItem(this.collectible, {this.size = 64.0, super.key, this.focus}) {
-    // pre-fetch the image, so it's ready if we show the collectible found screen.
-    _imageProvider = NetworkImage(collectible.imageUrl);
-    _imageProvider.resolve(ImageConfiguration()).addListener(ImageStreamListener((_, __) {}));
+    // Hero into the collectible-found screen uses the artifact image when
+    // available; falls back to the bundled icon if the catalog or network
+    // hasn't surfaced the URL yet.
+    _imageProvider = collectible.imageUrl.isEmpty
+        ? collectible.icon
+        : NetworkImage(collectible.imageUrl);
   }
 
   final CollectibleData collectible;
@@ -20,18 +24,22 @@ class CollectibleItem extends StatelessWidget with GetItMixin {
   final FocusNode? focus;
 
   void _handleTap(BuildContext context) async {
+    final bloc = context.read<CollectiblesBloc>();
     final screen = CollectibleFoundScreen(collectible: collectible, imageProvider: _imageProvider);
     appLogic.showFullscreenDialogRoute(context, screen, transparent: true);
     AppHaptics.mediumImpact();
 
     // wait to update the state, to ensure the hero works properly:
     await Future.delayed($styles.times.pageTransition);
-    collectiblesLogic.setState(collectible.id, CollectibleState.discovered);
+    bloc.add(CollectiblesStateChanged(
+      id: collectible.id,
+      state: CollectibleState.discovered,
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-    final states = watchX((CollectiblesLogic c) => c.statesById);
+    final states = context.watch<CollectiblesBloc>().state.statesById;
     bool isLost = states[collectible.id] == CollectibleState.lost;
     // Use an OpeningCard to let the collectible smoothly collapse its size once it has been found
     return SizedBox(

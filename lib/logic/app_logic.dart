@@ -3,14 +3,30 @@ import 'dart:ui';
 
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/platform_info.dart';
-import 'package:wonders/ui/common/modals/fullscreen_video_viewer.dart';
-import 'package:wonders/ui/common/utils/page_routes.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/features/auth/bloc/auth_event.dart';
+import 'package:travel_buddy/features/preferences/bloc/preferences_bloc.dart';
+import 'package:travel_buddy/features/preferences/bloc/preferences_event.dart';
+import 'package:travel_buddy/features/settings/bloc/settings_event.dart';
+import 'package:travel_buddy/logic/common/dio_client.dart';
+import 'package:travel_buddy/logic/common/platform_info.dart';
+import 'package:travel_buddy/ui/common/modals/fullscreen_video_viewer.dart';
+import 'package:travel_buddy/ui/common/utils/page_routes.dart';
 
 class AppLogic {
   Size _appSize = Size.zero;
+
+  /// Set by `startWarmup`. `bootstrap` awaits it before kicking off
+  /// `artifactsBloc.preloadAll()` so the eight catalog requests don't
+  /// race the Render free tier's 30–60 s cold-start.
+  Future<void>? _warmupFuture;
+
+  /// Held for the lifetime of the app to flush throttled saves on
+  /// background/hide, so a backgrounded-then-killed app doesn't lose a
+  /// just-made toggle that was still inside the 2 s throttle window.
+  AppLifecycleListener? _lifecycleListener;
 
   /// Indicates to the rest of the app that bootstrap has not completed.
   /// The router will use this to prevent redirects while bootstrapping.
@@ -42,10 +58,8 @@ class AppLogic {
 
     if (kIsWeb) {
       // SB: This is intentionally not a debugPrint, as it's a message for users who open the console on web.
-      print(
-        '''Thanks for checking out Wonderous on the web!
-        If you encounter any issues please report them at https://github.com/gskinnerTeam/flutter-wonderous-app/issues.''',
-      );
+      // TODO(rebrand): replace with the Travel Buddy github issues URL.
+      debugPrint('Thanks for checking out Travel Buddy on the web!');
       // Required on web to automatically enable accessibility features
       WidgetsFlutterBinding.ensureInitialized().ensureSemantics();
     }
@@ -59,20 +73,48 @@ class AppLogic {
     }
 
     // Settings
-    await settingsLogic.load();
+    await settingsBloc.loadFromPersistence();
 
-    // Localizations
-    await localeLogic.load();
+    // Auth (must run after Supabase.initialize in main())
+    authBloc.add(const AuthInitialized());
 
-    // Wonders Data
-    wondersLogic.init();
+    // Preferences: fire-and-forget. Handler self-guards on missing access
+    // token so a cold-start dispatch before the session is restored is a
+    // no-op; AuthBloc dispatches a follow-up load in `_ensureSyncedAndLoad`
+    // for the freshly-signed-in case.
+    GetIt.I<PreferencesBloc>().add(const PreferencesLoadRequested());
+
+    // Localizations: LocaleLogic resolves from persisted/system locale and
+    // returns the code; SettingsBloc adopts it without re-running the
+    // destinations/timeline cascade (we call those next, in order).
+    final resolvedLocaleCode = await localeLogic.load();
+    settingsBloc.add(SettingsLocaleHydrated(resolvedLocaleCode));
+
+    // Destinations Data
+    destinationsLogic.init();
 
     // Events
     timelineLogic.init();
 
-    // Collectibles
-    collectiblesLogic.init();
-    await collectiblesLogic.load();
+    // Collectibles (CollectiblesBloc constructor fires NativeWidgetService.init
+    // internally; loadFromPersistence dispatches the load event and awaits
+    // the emit so SharedPreferences hydration is complete before the user
+    // can interact with the collection screen).
+    await collectiblesBloc.loadFromPersistence();
+
+    // Persist throttled state when the app is hidden or paused. Both
+    // settingsBloc and collectiblesBloc write through a 2 s throttler;
+    // without this, a quick background-then-kill cycle drops the last toggle.
+    _lifecycleListener ??= AppLifecycleListener(
+      onHide: _flushPendingSaves,
+      onPause: _flushPendingSaves,
+    );
+
+    // Warm the artifact catalog cache for all destinations in the
+    // background. Best-effort — screens still re-fetch on mount if this
+    // fails. Sequenced after the backend warmup ping (if started) so the
+    // eight requests hit a hot backend.
+    unawaited(_warmupThenPreload());
 
     // Wait at least 1 frame to give GoRouter time to catch the initial deeplink
     await Future.delayed(1.milliseconds);
@@ -81,12 +123,47 @@ class AppLogic {
     isBootstrapComplete = true;
 
     // Load initial view (replace empty initial view which is covered by a native splash screen)
-    bool showIntro = settingsLogic.hasCompletedOnboarding.value == false;
+    final showIntro = settingsBloc.state.hasCompletedOnboarding == false;
+    final authed = authBloc.state.isAuthenticated;
     if (showIntro) {
       appRouter.go(ScreenPaths.intro);
+    } else if (!authed) {
+      appRouter.go(ScreenPaths.auth);
     } else {
       appRouter.go(initialDeeplink ?? ScreenPaths.home);
     }
+  }
+
+  /// Fires a fire-and-forget GET `/` against the backend so the Render
+  /// free-tier dyno wakes up while the rest of bootstrap runs. Stores the
+  /// future so `_warmupThenPreload` can wait on it. Safe to call multiple
+  /// times — subsequent calls are no-ops.
+  void startWarmup() {
+    if (_warmupFuture != null) return;
+    _warmupFuture = appDio
+        .get<dynamic>(
+          '/',
+          options: Options(
+            receiveTimeout: const Duration(seconds: 90),
+            validateStatus: (_) => true,
+          ),
+        )
+        .then((_) {}, onError: (_) {});
+  }
+
+  Future<void> _warmupThenPreload() async {
+    final warmup = _warmupFuture;
+    if (warmup != null) await warmup;
+    await artifactsBloc.preloadAll();
+  }
+
+  /// Fire-and-forget: kick the throttled save chain so any pending toggle
+  /// makes it to disk before the OS suspends us. Sync caller is the
+  /// `AppLifecycleListener`; the OS gives us a brief grace period in which
+  /// the SharedPreferences write (~ms) almost always lands.
+  void _flushPendingSaves() {
+    unawaited(settingsBloc.flushPendingSaveAwaitable());
+    unawaited(collectiblesBloc.flushPendingSaveAwaitable());
   }
 
   Future<T?> showFullscreenDialogRoute<T>(
@@ -136,7 +213,7 @@ class AppLogic {
       AssetImage(url),
       context,
       onError: (error, stackTrace) {
-        print('Loading $url failed - ${error.toString()}');
+        debugPrint('Loading $url failed - ${error.toString()}');
       },
     );
   }
@@ -155,59 +232,59 @@ class AppLogic {
     }
   }
 
-  void precacheWonderImages(BuildContext context) {
+  void precacheDestinationImages(BuildContext context) {
     List<String> urls = [
-      '${ImagePaths.root}/chichen_itza/chichen.png',
-      '${ImagePaths.root}/chichen_itza/foreground-left.png',
-      '${ImagePaths.root}/chichen_itza/foreground-right.png',
-      '${ImagePaths.root}/chichen_itza/top-left.png',
-      '${ImagePaths.root}/chichen_itza/top-right.png',
-      '${ImagePaths.root}/chichen_itza/sun.png',
-      '${ImagePaths.root}/christ_the_redeemer/redeemer.png',
-      '${ImagePaths.root}/christ_the_redeemer/foreground-left.png',
-      '${ImagePaths.root}/christ_the_redeemer/foreground-right.png',
-      '${ImagePaths.root}/christ_the_redeemer/sun.png',
-      '${ImagePaths.root}/colosseum/colosseum.png',
-      '${ImagePaths.root}/colosseum/foreground-left.png',
-      '${ImagePaths.root}/colosseum/foreground-right.png',
-      '${ImagePaths.root}/colosseum/sun.png',
-      '${ImagePaths.root}/great_wall_of_china/great-wall.png',
-      '${ImagePaths.root}/great_wall_of_china/foreground-left.png',
-      '${ImagePaths.root}/great_wall_of_china/foreground-right.png',
-      '${ImagePaths.root}/great_wall_of_china/sun.png',
-      '${ImagePaths.root}/machu_picchu/machu-picchu.png',
-      '${ImagePaths.root}/machu_picchu/foreground-back.png',
-      '${ImagePaths.root}/machu_picchu/foreground-front.png',
-      '${ImagePaths.root}/machu_picchu/sun.png',
-      '${ImagePaths.root}/petra/petra.png',
-      '${ImagePaths.root}/petra/foreground-left.png',
-      '${ImagePaths.root}/petra/foreground-right.png',
-      '${ImagePaths.root}/petra/moon.png',
-      '${ImagePaths.root}/pyramids/pyramids.png',
-      '${ImagePaths.root}/pyramids/foreground-back.png',
-      '${ImagePaths.root}/pyramids/foreground-front.png',
-      '${ImagePaths.root}/pyramids/moon.png',
-      '${ImagePaths.root}/taj_mahal/taj-mahal.png',
-      '${ImagePaths.root}/taj_mahal/foreground-left.png',
-      '${ImagePaths.root}/taj_mahal/foreground-right.png',
-      '${ImagePaths.root}/taj_mahal/sun.png',
-      '${ImagePaths.root}/taj_mahal/pool.png',
+      '${ImagePaths.root}/butrint/butrint.png',
+      '${ImagePaths.root}/butrint/foreground-left.png',
+      '${ImagePaths.root}/butrint/foreground-right.png',
+      '${ImagePaths.root}/butrint/top-left.png',
+      '${ImagePaths.root}/butrint/top-right.png',
+      '${ImagePaths.root}/butrint/sun.png',
+      '${ImagePaths.root}/berat/berat.png',
+      '${ImagePaths.root}/berat/foreground-left.png',
+      '${ImagePaths.root}/berat/foreground-right.png',
+      '${ImagePaths.root}/berat/sun.png',
+      '${ImagePaths.root}/gjirokaster/gjirokaster.png',
+      '${ImagePaths.root}/gjirokaster/foreground-left.png',
+      '${ImagePaths.root}/gjirokaster/foreground-right.png',
+      '${ImagePaths.root}/gjirokaster/sun.png',
+      '${ImagePaths.root}/apollonia/apollonia.png',
+      '${ImagePaths.root}/apollonia/foreground-left.png',
+      '${ImagePaths.root}/apollonia/foreground-right.png',
+      '${ImagePaths.root}/apollonia/sun.png',
+      '${ImagePaths.root}/theth/theth.png',
+      '${ImagePaths.root}/theth/foreground-back.png',
+      '${ImagePaths.root}/theth/foreground-front.png',
+      '${ImagePaths.root}/theth/sun.png',
+      '${ImagePaths.root}/kruja/kruja.png',
+      '${ImagePaths.root}/kruja/foreground-left.png',
+      '${ImagePaths.root}/kruja/foreground-right.png',
+      '${ImagePaths.root}/kruja/moon.png',
+      '${ImagePaths.root}/albanian_alps/albanian_alps.png',
+      '${ImagePaths.root}/albanian_alps/foreground-back.png',
+      '${ImagePaths.root}/albanian_alps/foreground-front.png',
+      '${ImagePaths.root}/albanian_alps/moon.png',
+      '${ImagePaths.root}/korca/korca.png',
+      '${ImagePaths.root}/korca/foreground-left.png',
+      '${ImagePaths.root}/korca/foreground-right.png',
+      '${ImagePaths.root}/korca/sun.png',
+      '${ImagePaths.root}/korca/pool.png',
     ];
     List<String> folderNames = [
-      'chichen_itza',
-      'christ_the_redeemer',
-      'colosseum',
-      'great_wall_of_china',
-      'machu_picchu',
-      'petra',
-      'pyramids',
-      'taj_mahal',
+      'butrint',
+      'berat',
+      'gjirokaster',
+      'apollonia',
+      'theth',
+      'kruja',
+      'albanian_alps',
+      'korca',
     ];
 
     // Universals.
     for (var name in folderNames) {
       urls.add('${ImagePaths.root}/$name/flattened.jpg');
-      urls.add('${ImagePaths.root}/$name/wonder-button.png');
+      urls.add('${ImagePaths.root}/$name/destination-button.png');
       urls.add('${ImagePaths.root}/$name/photo-1.jpg');
       urls.add('${ImagePaths.root}/$name/photo-2.jpg');
       urls.add('${ImagePaths.root}/$name/photo-3.jpg');

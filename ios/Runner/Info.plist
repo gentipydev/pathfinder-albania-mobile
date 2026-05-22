@@ -4,12 +4,14 @@
 	<dict>
 	    <key>FlutterDeepLinkingEnabled</key>
         <true/>
+		<key>GMSApiKey</key>
+		<string>$(MAPS_API_KEY)</string>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true/>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Wonderous</string>
+		<string>Travel Buddy</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -19,10 +21,10 @@
 		<key>CFBundleLocalizations</key>
 		<array>
 			<string>en</string>
-			<string>zh_CN</string>
+			<string>sq</string>
 		</array>
 		<key>CFBundleName</key>
-		<string>wonders</string>
+		<string>travel_buddy</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -33,12 +35,29 @@
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>https</string>
+			<string>http</string>
+			<string>comgooglemaps</string>
+		</array>
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsLocalNetworking</key>
+			<true/>
+		</dict>
+		<key>NSCameraUsageDescription</key>
+		<string>Used to send photos of places to your travel buddy.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>Used for voice messages to your travel buddy.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Used to attach photos to messages for your travel buddy.</string>
+		<key>NSSpeechRecognitionUsageDescription</key>
+		<string>Turns your voice messages into text to send to your travel buddy.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>Show a google maps view.</string>
-		<key>NSPhotoLibraryAddUsageDescription</key>
-		<string>Save wallpapers to the gallery!</string>
+		<string>Used to automatically check off stops on your itinerary when you're near them. Your location stays on this device and is never shared.</string>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
 		<key>UILaunchStoryboardName</key>

@@ -1,4 +1,4 @@
-import 'package:wonders/common_libs.dart';
+import 'package:travel_buddy/common_libs.dart';
 
 extension DurationExtensions on int {
   Duration get delayMs => $styles.disableAnimations ? 0.ms : Duration(milliseconds: this);

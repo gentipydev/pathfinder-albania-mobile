@@ -1,5 +1,5 @@
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/static_text_scale.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/common/static_text_scale.dart';
 
 class DiagonalTextPageIndicator extends StatelessWidget {
   const DiagonalTextPageIndicator({super.key, required this.current, required this.total});

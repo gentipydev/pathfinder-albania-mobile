@@ -4,8 +4,8 @@ class _ScrollingViewportController extends ChangeNotifier {
   _ScrollingViewportController(this.state);
   final _ScalingViewportState state;
 
-  int get startYr => wondersLogic.timelineStartYear;
-  int get endYr => wondersLogic.timelineEndYear;
+  int get startYr => destinationsLogic.timelineStartYear;
+  int get endYr => destinationsLogic.timelineEndYear;
 
   double _zoom = .5;
   double _zoomOnScaleStart = 0;
@@ -20,9 +20,9 @@ class _ScrollingViewportController extends ChangeNotifier {
   void init() {
     scheduleMicrotask(() {
       setZoom(.5);
-      final w = widget.selectedWonder;
+      final w = widget.selectedDestination;
       if (w != null) {
-        final data = wondersLogic.getData(w);
+        final data = destinationsLogic.getData(w);
         final pos = calculateScrollPosFromYear(data.startYr);
         scroller.jumpTo(pos - 200);
         scroller.animateTo(pos, duration: $styles.times.extraSlow, curve: Curves.easeOutCubic);
@@ -92,7 +92,7 @@ class _ScrollingViewportController extends ChangeNotifier {
   }
 
   void _handleScaleUpdateMouse(double scale) {
-    setZoom(Math.max(0, Math.min(1, _zoom + scale)));
+    setZoom(math.max(0, math.min(1, _zoom + scale)));
   }
 
   /// Maintain current yr when the app changes size

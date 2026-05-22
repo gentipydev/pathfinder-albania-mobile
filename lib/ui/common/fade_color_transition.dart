@@ -1,4 +1,4 @@
-import 'package:wonders/common_libs.dart';
+import 'package:travel_buddy/common_libs.dart';
 
 /// Colored box that can fade in and out, should yield better performance than
 /// fading with an additional Opacity layer.
@@ -10,6 +10,6 @@ class FadeColorTransition extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
     animation: animation,
-    builder: (_, __) => Container(color: color.withValues(alpha: animation.value)),
+    builder: (_, _) => Container(color: color.withValues(alpha: animation.value)),
   );
 }

@@ -1,4 +1,4 @@
-import 'package:wonders/common_libs.dart';
+import 'package:travel_buddy/common_libs.dart';
 
 class PopRouterOnOverScroll extends StatefulWidget {
   const PopRouterOnOverScroll({super.key, required this.child, required this.controller});
@@ -27,7 +27,7 @@ class _PopRouterOnOverScrollState extends State<PopRouterOnOverScroll> {
     super.didUpdateWidget(oldWidget);
   }
 
-  bool _checkPointerIsDown(d) => _isPointerDown = d.dragDetails != null;
+  bool _checkPointerIsDown(ScrollUpdateNotification d) => _isPointerDown = d.dragDetails != null;
 
   @override
   Widget build(BuildContext context) {

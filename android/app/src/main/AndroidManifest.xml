@@ -1,14 +1,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Foreground-only visit auto-detection. Background variants
+         (ACCESS_BACKGROUND_LOCATION, FOREGROUND_SERVICE_LOCATION) are
+         intentionally NOT requested — see docs/privacy.md. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
     <application
-        android:label="Wonderous"
+        android:label="Travel Buddy"
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher"
         android:name="${applicationName}"
-        android:roundIcon="@mipmap/ic_launcher_round">
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:usesCleartextTraffic="true">
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDectGpXKc04T6U5MyccC7L5DVl0xbUFY4"/>
+            android:value="${MAPS_API_KEY}"/>
 
         <activity
             android:name=".MainActivity"
@@ -47,6 +63,19 @@
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+    <!-- url_launcher: required on Android 11+ so canLaunchUrl/launchUrl can
+         resolve external HTTP/HTTPS URLs (e.g. opening Google Maps from the
+         place card). -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
         </intent>
     </queries>
 </manifest>

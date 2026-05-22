@@ -9,10 +9,10 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Wonderous';
+  String get appName => 'Travel Buddy';
 
   @override
-  String get localeSwapButton => '简体中文';
+  String get localeSwapButton => 'Shqip';
 
   @override
   String animatedArrowSemanticSwipe(Object title) {
@@ -132,9 +132,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get artifactsSemanticArtifact => 'Artifact';
 
   @override
-  String get artifactsButtonBrowse => 'Browse all artifacts';
-
-  @override
   String get artifactDetailsLabelDate => 'Date';
 
   @override
@@ -159,32 +156,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String artifactDetailsErrorNotFound(Object artifactId) {
     return 'Unable to find info for artifact $artifactId ';
   }
-
-  @override
-  String get artifactsSearchTitleBrowse => 'Browse Artifacts';
-
-  @override
-  String get artifactsSearchLabelNotFound => 'No artifacts found';
-
-  @override
-  String get artifactsSearchButtonToggle => 'Toggle Timeframe';
-
-  @override
-  String get artifactsSearchSemanticTimeframe => 'timeframe';
-
-  @override
-  String artifactsSearchLabelFound(Object numFound, Object numResults) {
-    return '$numFound artifacts found, $numResults in ';
-  }
-
-  @override
-  String get artifactsSearchLabelAdjust => 'Adjust your';
-
-  @override
-  String get artifactsSearchLabelSearch => 'search terms';
-
-  @override
-  String get artifactsSearchLabelTimeframe => 'timeframe';
 
   @override
   String get circleButtonsSemanticClose => 'close';
@@ -226,16 +197,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeMenuButtonAbout => 'About this app';
 
   @override
-  String get homeMenuAboutWonderous => 'Wonderous is a visual showcase of eight wonders of the world. ';
+  String get homeMenuAboutTagline => 'Travel Buddy is your AI-powered guide to the eight destinations of Albania. ';
 
   @override
-  String homeMenuAboutBuilt(Object flutterUrl, Object gskinnerUrl) {
-    return 'Built with $flutterUrl by the team at $gskinnerUrl.';
+  String homeMenuAboutBuilt(Object flutterUrl) {
+    return 'Built with $flutterUrl.';
   }
 
   @override
-  String homeMenuAboutLearn(Object wonderousUrl) {
-    return 'Learn more at $wonderousUrl.';
+  String homeMenuAboutLearn(Object appUrl) {
+    return 'Learn more at $appUrl.';
   }
 
   @override
@@ -244,16 +215,13 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get homeMenuAboutRepo => 'Wonderous github repo';
+  String get homeMenuAboutRepo => 'Travel Buddy github repo';
 
   @override
   String get homeMenuAboutFlutter => 'Flutter';
 
   @override
-  String get homeMenuAboutGskinner => 'gskinner';
-
-  @override
-  String get homeMenuAboutApp => 'wonderous.app';
+  String get homeMenuAboutApp => 'travelbuddy.app';
 
   @override
   String homeMenuAboutPublic(Object metUrl) {
@@ -299,7 +267,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get introSemanticEnterApp => 'Enter the app';
 
   @override
-  String get introSemanticWonderous => 'Wonderous';
+  String get introSemanticAppName => 'Travel Buddy';
 
   @override
   String get labelledToggleSemanticToggle => 'toggle';
@@ -370,1014 +338,1049 @@ class AppLocalizationsEn extends AppLocalizations {
   String get wallpaperCheckboxShowTitle => 'Show Title';
 
   @override
-  String get wonderDetailsTabLabelInformation => 'information and history';
+  String get destinationDetailsTabLabelInformation => 'information and history';
 
   @override
-  String get wonderDetailsTabLabelImages => 'photo gallery';
+  String get destinationDetailsTabLabelImages => 'photo gallery';
 
   @override
-  String get wonderDetailsTabLabelArtifacts => 'artifacts';
+  String get destinationDetailsTabLabelArtifacts => 'artifacts';
 
   @override
-  String get wonderDetailsTabLabelEvents => 'events';
+  String get destinationDetailsTabLabelEvents => 'events';
 
   @override
-  String get wonderDetailsTabSemanticBack => 'back to wonder selection';
+  String get destinationDetailsTabSemanticBack => 'back to destination selection';
 
   @override
   String get homeSemanticOpenMain => 'Open main menu';
 
   @override
-  String get homeSemanticWonder => 'wonder';
+  String get homeSemanticDestination => 'destination';
 
   @override
-  String get chichenItzaTitle => 'Chichen Itza';
+  String get butrintTitle => 'Butrint';
 
   @override
-  String get chichenItzaSubTitle => 'The Great Mayan City';
+  String get butrintSubTitle => 'The Ancient Crossroads';
 
   @override
-  String get chichenItzaRegionTitle => 'Yucatan, Mexico';
+  String get butrintRegionTitle => 'Sarandë, Albania';
 
   @override
-  String get chichenItzaArtifactCulture => 'Maya';
+  String get butrintArtifactCulture => 'Illyrian-Roman';
 
   @override
-  String get chichenItzaArtifactGeolocation => 'North and Central America';
+  String get butrintArtifactGeolocation => 'Southern Albania';
 
   @override
-  String get chichenItzaPullQuote1Top => 'The Beauty Between';
+  String get butrintPullQuote1Top => 'A Microcosm of';
 
   @override
-  String get chichenItzaPullQuote1Bottom => 'the Heavens and the Underworld';
+  String get butrintPullQuote1Bottom => 'Mediterranean History';
 
   @override
-  String get chichenItzaPullQuote2 =>
-      'The Maya and Toltec vision of the world and the universe is revealed in their stone monuments and artistic works.';
+  String get butrintPullQuote2 =>
+      'Butrint is a testament to the richness and diversity of a cultural landscape shaped by centuries of human settlement.';
 
   @override
-  String get chichenItzaPullQuote2Author => 'UNESCO';
+  String get butrintPullQuote2Author => 'UNESCO';
 
   @override
-  String get chichenItzaCallout1 =>
-      'The site exhibits a multitude of architectural styles, reminiscent of styles seen in central Mexico and of the Puuc and Chenes styles of the Northern Maya lowlands.';
+  String get butrintCallout1 =>
+      'Butrint has been inhabited since at least the 8th century BCE and served as a Greek colony, a Roman city, a Byzantine bishopric, and a Venetian outpost.';
 
   @override
-  String get chichenItzaCallout2 =>
-      'The city comprised an area of at least 1.9 sq miles (5 sq km) of densely clustered architecture.';
+  String get butrintCallout2 =>
+      'The ancient theater, built in the 3rd century BCE, could seat approximately 1,500 spectators and is one of the best-preserved in the region.';
 
   @override
-  String get chichenItzaVideoCaption =>
-      '“Ancient Maya 101 | National Geographic.” Youtube, uploaded by National Geographic.';
+  String get butrintVideoCaption => '“Butrint - Albania\'s UNESCO World Heritage Site.” Youtube.';
 
   @override
-  String get chichenItzaMapCaption => 'Map showing location of Chichen Itza in Yucatán State, Mexico.';
+  String get butrintMapCaption => 'Map showing location of Butrint National Park in southern Albania.';
 
   @override
-  String get chichenItzaHistoryInfo1 =>
-      'Chichen Itza was a powerful regional capital controlling north and central Yucatán. The earliest hieroglyphic date discovered at Chichen Itza is equivalent to 832 CE, while the last known date was recorded in the Osario temple in 998 CE.\nDominating the North Platform of Chichen Itza is the famous Temple of Kukulcán. The temple was identified by the first Spaniards to see it, as El Castillo (\"the castle\"), and it regularly is referred to as such.';
+  String get butrintHistoryInfo1 =>
+      'Butrint is an archaeological site in southern Albania, opposite the Greek island of Corfu. First settled by Greek colonists from Corfu in the 8th century BCE, it grew into an important city of the ancient world. According to legend, the city was founded by Trojan refugees led by Aeneas.\nThe Romans conquered Butrint in 167 BCE, and Julius Caesar later designated it a colony for veterans. Under Roman rule, the city flourished with the construction of an aqueduct, public baths, and a forum.';
 
   @override
-  String get chichenItzaHistoryInfo2 =>
-      'The city was thought to have the most diverse population in the Maya world, a factor that could have contributed to this architectural variety.';
+  String get butrintHistoryInfo2 =>
+      'Butrint continued to thrive as an important ecclesiastical center in the Byzantine period. A large basilica and baptistery were built in the 6th century CE. The site changed hands many times — from Byzantines to Angevins, from Venetians to Ottomans — each leaving their architectural mark on this remarkable landscape.';
 
   @override
-  String get chichenItzaConstructionInfo1 =>
-      'The structures of Chichen Itza were built from precisely chiseled limestone blocks that fit together perfectly without the mortar. Many of these stone buildings were originally painted in red, green, blue and purple colors depending on the availability of the pigments.\nThe stepped pyramid El Castillo stands about 98 feet (30 m) high and consists of a series of nine square terraces, each approximately 8.4 feet (2.57 m) high, with a 20 foot (6 m) high temple upon the summit.';
+  String get butrintConstructionInfo1 =>
+      'The ancient theater is carved into the southern slope of the acropolis hill, taking advantage of the natural terrain. Built with local limestone in the Hellenistic period, the theater features a semicircular orchestra, tiered seating (cavea), and a stage building (skene).\nThe nearby Asclepion sanctuary, dedicated to the god of healing, features finely carved stone reliefs and columns in the Corinthian style.';
 
   @override
-  String get chichenItzaConstructionInfo2 =>
-      'It was built upon broken terrain, which was artificially leveled to support structures such as the Castillo pyramid. Important buildings within the center were connected by a dense network of paved roads called sacbeob.';
+  String get butrintConstructionInfo2 =>
+      'The 6th-century baptistery is one of the largest early Christian structures in the Balkans. Its floor is adorned with intricate mosaics depicting animals and geometric patterns, showcasing the artistic sophistication of the era. The structure uses a circular plan with 16 granite columns supporting the interior.';
 
   @override
-  String get chichenItzaLocationInfo1 =>
-      'Chichen Itza is located in the eastern portion of Yucatán state in Mexico. Nearby, four large sinkholes, called cenotes, could have provided plentiful water year round at Chichen, making it attractive for settlement.';
+  String get butrintLocationInfo1 =>
+      'Butrint is located on a peninsula between the Vivari Channel and Lake Butrint in the Ksamil area of southern Albania, approximately 14 miles (23 km) south of Sarandë. The site sits within a national park encompassing wetlands, forests, and the lake itself.';
 
   @override
-  String get chichenItzaLocationInfo2 =>
-      'Of these cenotes, the \"Cenote Sagrado\" or Sacred Cenote, was used for the sacrifice of precious objects and human beings as a form of worship to the Maya rain god Chaac.';
+  String get butrintLocationInfo2 =>
+      'The strategic position of Butrint, on a narrow strait between the mainland and Corfu, made it an important stop along ancient Mediterranean trade routes. The surrounding landscape of marshes, lagoons, and the Ionian Sea coast has been crucial to the site\'s history as both a defensive position and a thriving port.';
 
   @override
-  String get chichenItza600ce => 'Chichen Itza rises to regional prominence toward the end of the Early Classic period';
+  String get butrint600ce =>
+      'Greek colonists from Corfu establish a settlement at Butrint, which grows into a significant trading post';
 
   @override
-  String get chichenItza832ce => 'The earliest hieroglyphic date discovered at Chichen Itza';
+  String get butrint832ce =>
+      'Butrint serves as a major Byzantine ecclesiastical center with construction of the Great Basilica';
 
   @override
-  String get chichenItza998ce => 'Last known date recorded in the Osario temple';
+  String get butrint998ce => 'The city comes under various regional powers as the Byzantine Empire\'s control weakens';
 
   @override
-  String get chichenItza1100ce => 'Chichen Itza declines as a regional center';
+  String get butrint1100ce =>
+      'Normans and Angevins contest control of Butrint as part of broader Mediterranean conflicts';
 
   @override
-  String get chichenItza1527ce => 'Invaded by Spanish Conquistador Francisco de Montejo';
+  String get butrint1527ce =>
+      'The Venetian Republic fortifies Butrint, constructing a castle and tower to defend against Ottoman expansion';
 
   @override
-  String get chichenItza1535ce => 'All Spanish are driven from the Yucatán Peninsula';
+  String get butrint1535ce =>
+      'Ottoman forces gain control of the wider region, and Butrint gradually declines as a settlement';
 
   @override
-  String get chichenItzaCollectible1Title => 'Pendant';
+  String get butrintCollectible1Title => 'Pendant';
 
   @override
-  String get chichenItzaCollectible1Icon => 'jewelry';
+  String get butrintCollectible1Icon => 'jewelry';
 
   @override
-  String get chichenItzaCollectible2Title => 'Bird Ornament';
+  String get butrintCollectible2Title => 'Bird Ornament';
 
   @override
-  String get chichenItzaCollectible2Icon => 'jewelry';
+  String get butrintCollectible2Icon => 'jewelry';
 
   @override
-  String get chichenItzaCollectible3Title => 'La Prison, à Chichen-Itza';
+  String get butrintCollectible3Title => 'Vue de Buthrotum';
 
   @override
-  String get chichenItzaCollectible3Icon => 'picture';
+  String get butrintCollectible3Icon => 'picture';
 
   @override
-  String get christRedeemerTitle => 'Christ the Redeemer';
+  String get beratTitle => 'Berat';
 
   @override
-  String get christRedeemerSubTitle => 'A symbol of peace';
+  String get beratSubTitle => 'City of a Thousand Windows';
 
   @override
-  String get christRedeemerRegionTitle => 'Rio de Janeiro, Brazil';
+  String get beratRegionTitle => 'Berat, Albania';
 
   @override
-  String get christRedeemerArtifactGeolocation => 'Brazil';
+  String get beratArtifactGeolocation => 'Central Albania';
 
   @override
-  String get christRedeemerPullQuote1Top => 'A Perfect Union Between';
+  String get beratPullQuote1Top => 'A Rare Example of';
 
   @override
-  String get christRedeemerPullQuote1Bottom => 'Nature and Architecture';
+  String get beratPullQuote1Bottom => 'Well-Preserved Ottoman Architecture';
 
   @override
-  String get christRedeemerPullQuote2 =>
-      'The statue looms large on the landscape, but it hides as much as it reveals about the diverse religious life of Brazilians.';
+  String get beratPullQuote2 =>
+      'Berat bears witness to the coexistence of various religious and cultural communities down the centuries.';
 
   @override
-  String get christRedeemerPullQuote2Author => 'Thomas Tweed';
+  String get beratPullQuote2Author => 'UNESCO';
 
   @override
-  String get christRedeemerCallout1 =>
-      'The statue of Christ the Redeemer with open arms, a symbol of peace, was chosen.';
+  String get beratCallout1 =>
+      'Berat is known for its distinctive white Ottoman houses climbing up the hillside, their many windows giving the city its famous epithet.';
 
   @override
-  String get christRedeemerCallout2 =>
-      'Construction took nine years, from 1922 to 1931, and cost the equivalent of US\$250,000 (equivalent to \$3,600,000 in 2020) and the monument opened on October 12, 1931.';
+  String get beratCallout2 =>
+      'The castle quarter (Kalaja) has been continuously inhabited for over 2,400 years and still houses a living community within its 13th-century walls.';
 
   @override
-  String get christRedeemerVideoCaption =>
-      '“The Majestic Statue of Christ the Redeemer - Seven Wonders of the Modern World - See U in History.” Youtube, uploaded by See U in History / Mythology.';
+  String get beratVideoCaption => '“Berat - City of a Thousand Windows, Albania.” Youtube.';
 
   @override
-  String get christRedeemerMapCaption => 'Map showing location of Christ the Redeemer in Rio de Janeiro, Brazil.';
+  String get beratMapCaption => 'Map showing location of Berat in central Albania.';
 
   @override
-  String get christRedeemerHistoryInfo1 =>
-      'The placement of a Christian monument on Mount Corcovado was first suggested in the mid-1850s to honor Princess Isabel, regent of Brazil and the daughter of Emperor Pedro II, but the project was not approved.\nIn 1889 the country became a republic, and owing to the separation of church and state the proposed statue was dismissed.';
+  String get beratHistoryInfo1 =>
+      'Berat is one of the oldest continuously inhabited cities in Albania, located along the banks of the Osum River. The castle on the hilltop has been inhabited since the 4th century BCE, when it was an important Illyrian settlement known as Antipatrea, founded by the Illyrian king Antipater.\nUnder Roman rule, the city served as a strategic military outpost along the Via Egnatia trade route.';
 
   @override
-  String get christRedeemerHistoryInfo2 =>
-      'The Catholic Circle of Rio made a second proposal for a landmark statue on the mountain in 1920. The group organized an event called Semana do Monumento (\"Monument Week\") to attract donations and collect signatures to support the building of the statue. The organization was motivated by what they perceived as \"Godlessness\" in the society.\nThe designs considered for the \"Statue of the Christ\" included a representation of the Christian cross, a statue of Jesus with a globe in his hands, and a pedestal symbolizing the world.';
+  String get beratHistoryInfo2 =>
+      'During the Byzantine period, the city was known as Pulcheriopolis and later Beligrad. The Ottomans captured Berat in 1417 and it became a major center of trade and craftsmanship.\nThe city\'s three historic quarters — Mangalem, Gorica, and Kalaja — preserve an extraordinary blend of Eastern and Western architecture, earning it UNESCO World Heritage status in 2008 as part of the \"Historic Centres of Berat and Gjirokastër.\"';
 
   @override
-  String get christRedeemerConstructionInfo1 =>
-      'Artist Carlos Oswald and local engineer Heitor da Silva Costa designed the statue. French sculptor Paul Landowski created the work. In 1922, Landowski commissioned fellow Parisian Romanian sculptor Gheorghe Leonida, who studied sculpture at the Fine Arts Conservatory in Bucharest and in Italy.';
+  String get beratConstructionInfo1 =>
+      'The Berat Castle sits at 614 feet (187 m) above sea level atop a rocky hill. The current walls date primarily to the 13th century under the Despotate of Epirus, though foundations are much older. The fortress encompasses an area of about 24 acres (10 hectares) and originally had 24 towers along its walls.\nWithin the castle walls, several Byzantine churches survive, including the Church of the Holy Trinity and the Church of St. Mary of Blachernae, featuring remarkable 16th-century frescoes by the renowned painter Onufri.';
 
   @override
-  String get christRedeemerConstructionInfo2 =>
-      'A group of engineers and technicians studied Landowski\'s submissions and felt building the structure of reinforced concrete instead of steel was more suitable for the cross-shaped statue. The concrete making up the base was supplied from Limhamn, Sweden. The outer layers are soapstone, chosen for its enduring qualities and ease of use.';
+  String get beratConstructionInfo2 =>
+      'The Mangalem quarter below the castle is famous for its Ottoman-era houses built on the steep hillside. These traditional houses feature stone foundations, timber-framed upper stories, and large windows arranged symmetrically on whitewashed facades — the architectural signature that gives Berat its name \"City of a Thousand Windows.\"';
 
   @override
-  String get christRedeemerLocationInfo1 =>
-      'Corcovado, which means \"hunchback\" in Portuguese, is a mountain in central Rio de Janeiro, Brazil. It is a 2,329 foot (710 m) granite peak located in the Tijuca Forest, a national park.';
+  String get beratLocationInfo1 =>
+      'Berat is situated in south-central Albania, approximately 75 miles (120 km) south of the capital Tirana. The city is built along both banks of the Osum River, at the foot of Mount Tomorr, one of Albania\'s most sacred mountains reaching 8,042 feet (2,416 m).';
 
   @override
-  String get christRedeemerLocationInfo2 =>
-      'Corcovado hill lies just west of the city center but is wholly within the city limits and visible from great distances.';
+  String get beratLocationInfo2 =>
+      'The Osum River canyon, stretching southeast of the city, is one of the most dramatic natural features in Albania, with vertical canyon walls reaching over 260 feet (80 m). The surrounding region has been cultivated since antiquity, producing olives, grapes, and figs in the mild Mediterranean-influenced climate.';
 
   @override
-  String get christRedeemer1850ce =>
-      'Plans for the statue were first proposed by Pedro Maria Boss upon Mount Corcovado. This was never approved, however.';
+  String get berat1850ce =>
+      'Berat experiences a cultural renaissance under the Ottoman Tanzimat reforms, with new schools and civic buildings constructed';
 
   @override
-  String get christRedeemer1921ce =>
-      'A new plan was proposed by the Roman Catholic archdiocese, and after the citizens of Rio de Janeiro petitioned the president, it was finally approved.';
+  String get berat1921ce =>
+      'Following Albanian independence, Berat becomes an important administrative center of the new Albanian state';
 
   @override
-  String get christRedeemer1922ce =>
-      'The foundation of the statue was ceremoniously laid out to commemorate Brazil’s independence from Portugal.';
+  String get berat1922ce =>
+      'The first modern schools in Albanian language are established in Berat, advancing the national education movement';
 
   @override
-  String get christRedeemer1926ce =>
-      'Construction officially began after the initial design was chosen via a competition and amended by Brazilian artists and engineers.';
+  String get berat1926ce =>
+      'Archaeological surveys begin documenting the historic architecture of Berat\'s castle and Ottoman quarters';
 
   @override
-  String get christRedeemer1931ce =>
-      'Construction of the statue was completed, standing 98’ tall with a 92’ wide arm span.';
+  String get berat1931ce =>
+      'Restoration work begins on the castle walls and Byzantine churches within the Kalaja quarter';
 
   @override
-  String get christRedeemer2006ce =>
-      'A chapel was consecrated at the statue’s base to Our Lady of Aparecida to mark the statue’s 75th anniversary.';
+  String get berat2006ce =>
+      'Berat\'s historic center receives preliminary recognition leading to its UNESCO World Heritage inscription in 2008';
 
   @override
-  String get christRedeemerCollectible1Title => 'Engraved Horn';
+  String get beratCollectible1Title => 'Engraved Horn';
 
   @override
-  String get christRedeemerCollectible1Icon => 'statue';
+  String get beratCollectible1Icon => 'statue';
 
   @override
-  String get christRedeemerCollectible2Title => 'Fixed fan';
+  String get beratCollectible2Title => 'Fixed fan';
 
   @override
-  String get christRedeemerCollectible2Icon => 'jewelry';
+  String get beratCollectible2Icon => 'jewelry';
 
   @override
-  String get christRedeemerCollectible3Title => 'Handkerchiefs (one of two)';
+  String get beratCollectible3Title => 'Handkerchiefs (one of two)';
 
   @override
-  String get christRedeemerCollectible3Icon => 'textile';
+  String get beratCollectible3Icon => 'textile';
 
   @override
-  String get colosseumTitle => 'Colosseum';
+  String get gjirokasterTitle => 'Gjirokastër';
 
   @override
-  String get colosseumSubTitle => 'The icon of Rome';
+  String get gjirokasterSubTitle => 'The Stone City';
 
   @override
-  String get colosseumRegionTitle => 'Rome, Italy';
+  String get gjirokasterRegionTitle => 'Gjirokastër, Albania';
 
   @override
-  String get colosseumArtifactCulture => 'Roman';
+  String get gjirokasterArtifactCulture => 'Ottoman-Albanian';
 
   @override
-  String get colosseumArtifactGeolocation => 'Roman Empire';
+  String get gjirokasterArtifactGeolocation => 'Southern Albania';
 
   @override
-  String get colosseumPullQuote1Top => 'Still the Largest Standing';
+  String get gjirokasterPullQuote1Top => 'A Rare Example of';
 
   @override
-  String get colosseumPullQuote1Bottom => 'Amphitheater in the World Today';
+  String get gjirokasterPullQuote1Bottom => 'a Well-Preserved Ottoman Town';
 
   @override
-  String get colosseumPullQuote2 => 'When falls the Coliseum, Rome shall fall; And when Rome falls - the World.';
+  String get gjirokasterPullQuote2 =>
+      'Gjirokastër is an outstanding example of a well-preserved Ottoman town, built by farmers of large estates.';
 
   @override
-  String get colosseumPullQuote2Author => 'Lord Byron';
+  String get gjirokasterPullQuote2Author => 'UNESCO';
 
   @override
-  String get colosseumCallout1 =>
-      'It was used for gladiatorial contests and public spectacles including animal hunts, executions, reenactments of famous battles, and dramas based on Roman mythology, and mock sea battles.';
+  String get gjirokasterCallout1 =>
+      'The Gjirokastër Fortress is one of the largest in the Balkans, dominating the city from a hilltop at over 1,100 feet (336 m) above sea level.';
 
   @override
-  String get colosseumCallout2 =>
-      'It is the largest ancient amphitheater ever built, and is still the largest standing amphitheater in the world today, despite its age.';
+  String get gjirokasterCallout2 =>
+      'The city\'s distinctive tower houses, known as \"kullë,\" feature slate-stone roofs and fortified architecture unique to the region, giving Gjirokastër its name \"The Stone City.\"';
 
   @override
-  String get colosseumVideoCaption =>
-      '“Ancient Rome 101 | National Geographic.” Youtube, uploaded by National Geographic.';
+  String get gjirokasterVideoCaption => '“Gjirokastër - Albania\'s Stone City, UNESCO World Heritage.” Youtube.';
 
   @override
-  String get colosseumMapCaption => 'Map showing location of Colosseum in Rome, Italy,';
+  String get gjirokasterMapCaption => 'Map showing location of Gjirokastër in southern Albania.';
 
   @override
-  String get colosseumHistoryInfo1 =>
-      'The Colosseum is an oval amphitheater in the center of the city of Rome, Italy. Unlike Roman theaters that were built into hillsides, the Colosseum is an entirely free-standing structure.';
+  String get gjirokasterHistoryInfo1 =>
+      'Gjirokastër is a city in southern Albania, situated in the Drino River valley. The area has been settled since at least the 1st century CE, and a fortress has stood on the hilltop since the 3rd century. The name Gjirokastër likely derives from the medieval Greek \"Argyrokastron\" meaning \"Silver Castle.\"\nThe city rose to prominence in the 13th century as a center of the Despotate of Epirus and later became an important stronghold contested between Byzantine, Serbian, and Ottoman forces.';
 
   @override
-  String get colosseumHistoryInfo2 =>
-      'The building ceased to be used for entertainment in the early medieval era. By the late 6th century a small chapel had been built into the structure of the amphitheater, and the arena was converted into a cemetery. \nThe numerous vaulted spaces in the arcades under the seating were converted into housing and workshops, and are recorded as still being rented out as late as the 12th century.';
+  String get gjirokasterHistoryInfo2 =>
+      'Under Ottoman rule from 1417 onward, Gjirokastër became the center of a large sanjak (administrative district) and thrived as a bazaar city. Wealthy landowners built the distinctive fortified tower houses that define the city\'s character.\nThe city was inscribed as a UNESCO World Heritage Site in 2005 as \"a rare example of a well-preserved Ottoman town, built by farmers of large estates.\" It is the birthplace of both former Albanian dictator Enver Hoxha and Nobel Prize-winning author Ismail Kadare.';
 
   @override
-  String get colosseumConstructionInfo1 =>
-      'Construction began under the emperor Vespasian (r. 69-79 CE) in 72 and was completed in 80 CE under his successor and heir, Titus (r. 79-81). Further modifications were made during the reign of Domitian (r. 81-96).\nThe Colosseum is built of travertine limestone, tuff (volcanic rock), and brick-faced concrete. The outer wall is estimated to have required over 3.5 million cubic feet of travertine stone which were set without mortar; they were held together by 300 tons of iron clamps.';
+  String get gjirokasterConstructionInfo1 =>
+      'The Gjirokastër Fortress covers an area of approximately 18 acres (7.3 hectares) on the hilltop. Expanded significantly by Ali Pasha of Ioannina in the early 19th century, the fortress features massive stone walls, a clock tower, an aqueduct, and a series of underground tunnels and chambers.\nDuring the communist era, the fortress was used as a prison and later converted into a Museum of Armaments. Today it hosts the Gjirokastër National Folklore Festival every five years.';
 
   @override
-  String get colosseumConstructionInfo2 =>
-      'It could hold an estimated 50,000 to 80,000 spectators at various points in its history, having an average audience of some 65,000.';
+  String get gjirokasterConstructionInfo2 =>
+      'The city\'s iconic tower houses (kullë) are typically three to four stories tall, built of solid stone with slate roofs. The ground floor served as a cistern and storage, the first floor for winter living, and the upper floors for summer quarters and guest reception. Defensive features include small windows on lower floors and fortified entrances.';
 
   @override
-  String get colosseumLocationInfo1 =>
-      'Following the Great Fire of Rome in 64 CE, Emperor Nero seized much of the destroyed area to build his grandiose Domus Aurea (\"Golden House\"). A severe embarrassment to Nero\'s successors, parts of this extravagant palace and grounds, encompassing 1 sq mile, were filled with earth and built over.';
+  String get gjirokasterLocationInfo1 =>
+      'Gjirokastër is located in the Drino River valley in southern Albania, about 18 miles (29 km) from the Greek border. The city is built on the steep slopes of the Mali i Gjerë mountain range, rising from the valley floor at approximately 980 feet (300 m) to the castle at over 1,100 feet (336 m).';
 
   @override
-  String get colosseumLocationInfo2 =>
-      'On the site of the lake, in the middle of the palace grounds, Emperor Vespasian would build the Colosseum as part of a Roman resurgence.';
+  String get gjirokasterLocationInfo2 =>
+      'The surrounding region, known as Dropull, has been a crossroads of cultures for millennia. The Drino Valley connects the Adriatic coast with the interior Balkans, and the ancient route from the coast at Butrint passed through this valley toward the Via Egnatia.';
 
   @override
-  String get colosseum70ce =>
-      'Colosseum construction was started during the Vespasian reign overtop what used to be a private lake for the previous four emperors. This was done in an attempt to revitalize Rome from their tyrannical reign.';
+  String get gjirokaster70ce =>
+      'Early Roman-era settlement exists in the Drino Valley region, with fortifications on the hilltop that would later become Gjirokastër';
 
   @override
-  String get colosseum82ce => 'The uppermost floor was built, and the structure was officially completed by Domitian.';
+  String get gjirokaster82ce =>
+      'The hilltop fortress is expanded as a strategic defensive position guarding the Drino Valley trade routes';
 
   @override
-  String get colosseum1140ce =>
-      'The arena was repurposed as a fortress for the Frangipane and Annibaldi families. It was also at one point used as a church.';
+  String get gjirokaster1140ce =>
+      'Argyrokastron emerges as a significant Byzantine settlement and is contested during the Norman invasions of the Balkans';
 
   @override
-  String get colosseum1490ce =>
-      'Pope Alexander VI permitted the site to be used as a quarry, for both storing and salvaging building materials.';
+  String get gjirokaster1490ce =>
+      'Under Ottoman rule, Gjirokastër develops into a thriving bazaar town with construction of the Old Bazaar and early tower houses';
 
   @override
-  String get colosseum1829ce =>
-      'Preservation of the colosseum officially began, after more than a millennia of dilapidation and vandalism. Pope Pius VIII was notably devoted to this project.';
+  String get gjirokaster1829ce =>
+      'Ali Pasha of Ioannina undertakes major expansion of the fortress, adding fortifications, an aqueduct, and a clock tower';
 
   @override
-  String get colosseum1990ce =>
-      'A restoration project was undertaken to ensure the colosseum remained a major tourist attraction for Rome. It currently stands as one of the greatest sources of tourism revenue in Italy.';
+  String get gjirokaster1990ce =>
+      'Following the fall of communism, restoration efforts begin and Gjirokastër receives UNESCO World Heritage status in 2005';
 
   @override
-  String get colosseumCollectible1Title => 'Glass hexagonal amphoriskos';
+  String get gjirokasterCollectible1Title => 'Glass hexagonal amphoriskos';
 
   @override
-  String get colosseumCollectible1Icon => 'vase';
+  String get gjirokasterCollectible1Icon => 'vase';
 
   @override
-  String get colosseumCollectible2Title => 'Bronze plaque of Mithras slaying the bull';
+  String get gjirokasterCollectible2Title => 'Bronze plaque of Mithras slaying the bull';
 
   @override
-  String get colosseumCollectible2Icon => 'statue';
+  String get gjirokasterCollectible2Icon => 'statue';
 
   @override
-  String get colosseumCollectible3Title => 'Interno del Colosseo';
+  String get gjirokasterCollectible3Title => 'Veduta di Argirocastro';
 
   @override
-  String get colosseumCollectible3Icon => 'picture';
+  String get gjirokasterCollectible3Icon => 'picture';
 
   @override
-  String get greatWallTitle => 'The Great Wall';
+  String get apolloniaTitle => 'Apollonia';
 
   @override
-  String get greatWallSubTitle => 'Longest structure on Earth';
+  String get apolloniaSubTitle => 'The Ancient City of Learning';
 
   @override
-  String get greatWallRegionTitle => 'China';
+  String get apolloniaRegionTitle => 'Fier, Albania';
 
   @override
-  String get greatWallArtifactCulture => 'Chinese';
+  String get apolloniaArtifactCulture => 'Illyrian-Greek';
 
   @override
-  String get greatWallArtifactGeolocation => 'China';
+  String get apolloniaArtifactGeolocation => 'Central Albania';
 
   @override
-  String get greatWallPullQuote1Top => 'The Longest Man-Made';
+  String get apolloniaPullQuote1Top => 'An Admirable City';
 
   @override
-  String get greatWallPullQuote1Bottom => 'Structure in the World';
+  String get apolloniaPullQuote1Bottom => 'With Excellent Laws';
 
   @override
-  String get greatWallPullQuote2 =>
-      'Its historic and strategic importance is matched only by its architectural significance.';
+  String get apolloniaPullQuote2 =>
+      'Apollonia is considered one of the most important cities of the ancient world, a center of learning where the young Octavian studied.';
 
   @override
-  String get greatWallPullQuote2Author => 'UNESCO';
+  String get apolloniaPullQuote2Author => 'Strabo';
 
   @override
-  String get greatWallCallout1 => 'The best-known sections of the wall were built by the Ming dynasty (1368-1644).';
+  String get apolloniaCallout1 =>
+      'The Roman statesman and orator Cicero described Apollonia as \"a great and important city\" (magna urbs et gravis) in his work Philippics.';
 
   @override
-  String get greatWallCallout2 =>
-      'During the Ming dynasty, however, bricks were heavily used in many areas of the wall, as were materials such as tiles, lime, and stone.';
+  String get apolloniaCallout2 =>
+      'The young Octavian (later Emperor Augustus) was studying in Apollonia when he received news of Julius Caesar\'s assassination in 44 BCE, a pivotal moment in Roman history.';
 
   @override
-  String get greatWallVideoCaption =>
-      '“See China’s Iconic Great Wall From Above | National Geographic.” Youtube, uploaded by National Geographic.';
+  String get apolloniaVideoCaption => '“Apollonia Archaeological Park - Ancient Albania.” Youtube.';
 
   @override
-  String get greatWallMapCaption => 'Map showing location of Great Wall of China in northern China.';
+  String get apolloniaMapCaption => 'Map showing location of Apollonia near Fier in central Albania.';
 
   @override
-  String get greatWallHistoryInfo1 =>
-      'The Great Wall of China is a series of fortifications that were built across the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups from the Eurasian Steppe. The total length of all sections ever built is over 13,000 miles.';
+  String get apolloniaHistoryInfo1 =>
+      'Apollonia was an ancient Greek colony founded in 588 BCE by settlers from Corinth and Corcyra (modern Corfu) on the banks of the Aous River (modern Vjosa) in Illyria. Named after the god Apollo, the city quickly grew into one of the most important settlements on the eastern Adriatic coast.\nAt its peak, Apollonia had a population of around 60,000 and was a major stop along the Via Egnatia, the great Roman road connecting the Adriatic to Constantinople.';
 
   @override
-  String get greatWallHistoryInfo2 =>
-      'Several walls were built from as early as the 7th century BCE, with selective stretches later joined together by Qin Shi Huang (220-206  BCE), the first emperor of China. Little of the Qin wall remains. \nLater on, many successive dynasties built and maintained multiple stretches of border walls.';
+  String get apolloniaHistoryInfo2 =>
+      'The city was renowned as a center of philosophy and learning. Numerous Roman nobles sent their sons to study there, most notably Octavian, the future Emperor Augustus. Apollonia\'s importance declined after the 3rd century CE when an earthquake altered the course of the Vjosa River, destroying the city\'s harbor and cutting off its trade routes.\nThe site was partially built over by the Byzantine-era Monastery of St. Mary, which still stands and houses an archaeological museum.';
 
   @override
-  String get greatWallConstructionInfo1 =>
-      'Transporting the large quantity of materials required for construction was difficult, so builders always tried to use local resources. Stones from the mountains were used over mountain ranges, while rammed earth was used for construction in the plains. Most of the ancient walls have eroded away over the centuries.';
+  String get apolloniaConstructionInfo1 =>
+      'The archaeological park covers approximately 237 acres (96 hectares), though only a fraction has been excavated. Major structures include a monumental bouleuterion (council house) with 19 rows of stone seating, an impressive stoa (covered walkway) measuring over 260 feet (80 m) in length, and a well-preserved odeon (small theater).\nThe remains of a nymphaeum (ornamental fountain) and several temples demonstrate the city\'s wealth and architectural sophistication.';
 
   @override
-  String get greatWallConstructionInfo2 =>
-      'Stones cut into rectangular shapes were used for the foundation, inner and outer brims, and gateways of the wall. \nUnder the rule of the Qing dynasty, China\'s borders extended beyond the walls and Mongolia was annexed into the empire, so construction was discontinued.';
+  String get apolloniaConstructionInfo2 =>
+      'The city was built using locally quarried limestone and followed classical Greek urban planning with an agora, temples, and public buildings arranged along paved streets. The defensive walls, encircling approximately 1 square mile (2.5 sq km), were built with polygonal masonry typical of Hellenistic military architecture.\nThe 13th-century Monastery of St. Mary, built atop ancient ruins within the archaeological zone, features a beautifully decorated Byzantine church with carved stone facades.';
 
   @override
-  String get greatWallLocationInfo1 =>
-      'The frontier walls built by different dynasties have multiple courses. Collectively, they stretch from Liaodong in the east to Lop Lake in the west, from the present-day Sino-Russian border in the north to Tao River in the south; along an arc that roughly delineates the edge of the Mongolian steppe.';
+  String get apolloniaLocationInfo1 =>
+      'Apollonia is situated on a hilltop near the village of Pojani, approximately 7 miles (12 km) west of the city of Fier in central Albania. The site overlooks the Myzeqe plain and the Vjosa River valley, commanding views extending to the Adriatic Sea.';
 
   @override
-  String get greatWallLocationInfo2 =>
-      'Apart from defense, other purposes of the Great Wall have included border controls, allowing the imposition of duties on goods transported along the Silk Road, regulation or encouragement of trade and the control of immigration and emigration.';
+  String get apolloniaLocationInfo2 =>
+      'In antiquity, the Vjosa River flowed much closer to the city, providing direct access to the Adriatic coast and enabling Apollonia to function as an important port city. The fertile surrounding plain supported agricultural production, while the hilltop position offered natural defensive advantages.';
 
   @override
-  String get greatWall700bce =>
-      'First landmark of the Great Wall began originally as a square wall surrounding the state of Chu. Over the years, additional walls would be built and added to it to expand and connect territory.';
+  String get apollonia700bce =>
+      'Greek colonists from Corinth and Corcyra found Apollonia in 588 BCE on Illyrian territory, establishing a settlement that would grow into a major city';
 
   @override
-  String get greatWall214bce =>
-      'The first Qin Emperor unifies China and links the wall of the surrounding states of Qin, Yan, and Zhao into the Great Wall of China, taking 10 years to build with hundreds of thousands of laborers.';
+  String get apollonia214bce =>
+      'Apollonia becomes a key Roman ally during the Illyrian Wars and serves as a staging ground for Roman military campaigns in the eastern Mediterranean';
 
   @override
-  String get greatWall121bce =>
-      'A 20-year construction project was started by the Han emperor to build east and west sections of the wall, including beacons, towers, and castles. Not just for defense, but also to control trade routes like the Silk Road.';
+  String get apollonia121bce =>
+      'The city flourishes as a center of trade along the Via Egnatia, connecting Rome to its eastern provinces';
 
   @override
-  String get greatWall556ce =>
-      'The Bei Qi kingdom also launched several construction projects, utilizing over 1.8 million workers to repair and extend sections of the wall, adding to its length and even building a second inner wall around Shanxi.';
+  String get apollonia556ce =>
+      'An earthquake alters the course of the Vjosa River, destroying Apollonia\'s harbor and beginning the city\'s irreversible decline';
 
   @override
-  String get greatWall618ce =>
-      'The Great Wall was repaired during the Sui Dynasty and used to defend against Tujue attacks. Before and after the Sui Dynasty, the wall saw very little use and fell into disrepair.';
+  String get apollonia618ce =>
+      'The remains of the city serve as a quarry for building materials; the Byzantine Monastery of St. Mary is constructed within the ancient walls';
 
   @override
-  String get greatWall1487ce =>
-      'Hongzhi Emperor split the walls into north and south lines, eventually shaping it into how it is today. Since then, it has gradually fallen into disrepair and remains mostly unused.';
+  String get apollonia1487ce =>
+      'The site lies largely forgotten and overgrown until systematic archaeological excavations begin under Austrian and later French archaeologists in the early 20th century';
 
   @override
-  String get greatWallCollectible1Title => 'Biographies of Lian Po and Lin Xiangru';
+  String get apolloniaCollectible1Title => 'Biographies of Lian Po and Lin Xiangru';
 
   @override
-  String get greatWallCollectible1Icon => 'scroll';
+  String get apolloniaCollectible1Icon => 'scroll';
 
   @override
-  String get greatWallCollectible2Title => 'Jar with Dragon';
+  String get apolloniaCollectible2Title => 'Jar with Dragon';
 
   @override
-  String get greatWallCollectible2Icon => 'vase';
+  String get apolloniaCollectible2Icon => 'vase';
 
   @override
-  String get greatWallCollectible3Title => 'Panel with Peonies and Butterfly';
+  String get apolloniaCollectible3Title => 'Panel with Peonies and Butterfly';
 
   @override
-  String get greatWallCollectible3Icon => 'textile';
+  String get apolloniaCollectible3Icon => 'textile';
 
   @override
-  String get machuPicchuTitle => 'Machu Picchu';
+  String get thethTitle => 'Thethi';
 
   @override
-  String get machuPicchuSubTitle => 'Citadel of the Inca';
+  String get thethSubTitle => 'The Alpine Sanctuary';
 
   @override
-  String get machuPicchuRegionTitle => 'Cusco Region, Peru';
+  String get thethRegionTitle => 'Shkodër, Albania';
 
   @override
-  String get machuPicchuArtifactCulture => 'Inca';
+  String get thethArtifactCulture => 'Albanian Highland';
 
   @override
-  String get machuPicchuArtifactGeolocation => 'South America';
+  String get thethArtifactGeolocation => 'Northern Albania';
 
   @override
-  String get machuPicchuPullQuote1Top => 'Few Romances Can Ever Surpass';
+  String get thethPullQuote1Top => 'A Living Fragment of';
 
   @override
-  String get machuPicchuPullQuote1Bottom => 'That of the Granite Citadel';
+  String get thethPullQuote1Bottom => 'Europe\'s Last Wilderness';
 
   @override
-  String get machuPicchuPullQuote1Author => 'Hiram Bingham';
+  String get thethPullQuote1Author => 'Edith Durham';
 
   @override
-  String get machuPicchuPullQuote2 =>
-      'In the variety of its charms and the power of its spell, I know of no other place in the world which can compare with it.';
+  String get thethPullQuote2 =>
+      'The Albanian Alps are perhaps the last great wilderness in Europe, a place where time seems to have stood still.';
 
   @override
-  String get machuPicchuPullQuote2Author => 'Hiram Bingham';
+  String get thethPullQuote2Author => 'Edith Durham';
 
   @override
-  String get machuPicchuCallout1 =>
-      'During its use as a royal estate, it is estimated that about 750 people lived there, with most serving as support staff who lived there permanently.';
+  String get thethCallout1 =>
+      'Thethi\'s iconic Lock-in Tower (Kulla e Ngujimit) was used as a refuge for men involved in blood feuds under the Kanun of Lëkë Dukagjini, the traditional Albanian code of law.';
 
   @override
-  String get machuPicchuCallout2 =>
-      'The Incas were masters of this technique, called ashlar, in which blocks of stone are cut to fit together tightly without mortar.';
+  String get thethCallout2 =>
+      'The Thethi valley sits at approximately 2,500 feet (760 m) above sea level, surrounded by peaks exceeding 8,000 feet (2,500 m), including the dramatic Radohima massif.';
 
   @override
-  String get machuPicchuVideoCaption =>
-      '“Machu Picchu 101 | National Geographic.” Youtube, uploaded by National Geographic.';
+  String get thethVideoCaption => '“Thethi National Park - Albania\'s Hidden Alpine Paradise.” Youtube.';
 
   @override
-  String get machuPicchuMapCaption =>
-      'Map showing location of Machu Picchu in the Eastern Cordillera of southern Peru.';
+  String get thethMapCaption => 'Map showing location of Thethi in the Albanian Alps, northern Albania.';
 
   @override
-  String get machuPicchuHistoryInfo1 =>
-      'Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a 2,430-meter (7,970 ft) mountain ridge. Construction appears to date from two great Inca rulers, Pachacutec Inca Yupanqui (1438–1471 CE) and Túpac Inca Yupanqui (1472–1493 CE).';
+  String get thethHistoryInfo1 =>
+      'Thethi is a remote alpine village nestled in a glacial valley in the Albanian Alps (Bjeshkët e Nemuna), in the Shkodër district of northern Albania. The valley has been inhabited for centuries by Albanian highland clans, who maintained a fiercely independent way of life governed by the Kanun, a set of customary laws attributed to Lëkë Dukagjini.\nThe isolation of the valley — accessible only by mountain passes for most of its history — preserved a traditional way of life largely unchanged until the 20th century.';
 
   @override
-  String get machuPicchuHistoryInfo2 =>
-      'There is a consensus among archeologists that Pachacutec ordered the construction of the royal estate for his use as a retreat, most likely after a successful military campaign.\nRather it was used for 80 years before being abandoned, seemingly because of the Spanish conquests in other parts of the Inca Empire.';
+  String get thethHistoryInfo2 =>
+      'During the communist period (1944-1991), the Albanian government attempted to modernize the highlands, building roads and schools but also restricting traditional customs. After the fall of communism, many highland villages were depopulated as residents moved to lowland cities.\nIn recent years, Thethi has experienced a revival as a destination for hiking and ecotourism, with the Peaks of the Balkans trail bringing international attention to the region\'s natural beauty and cultural heritage.';
 
   @override
-  String get machuPicchuConstructionInfo1 =>
-      'The central buildings use the classical Inca architectural style of polished dry-stone walls of regular shape. \nInca walls have many stabilizing features: doors and windows are trapezoidal, narrowing from bottom to top; corners usually are rounded; inside corners often incline slightly into the rooms, and outside corners were often tied together by \"L\"-shaped blocks.';
+  String get thethConstructionInfo1 =>
+      'Thethi\'s traditional stone houses (shtëpi) are built from local limestone and timber, designed to withstand harsh mountain winters. The houses typically feature thick stone walls, small windows to conserve heat, and wooden balconies. Stone-slab roofs, anchored with heavy rocks, protect against the heavy snowfall that blankets the valley for several months each year.\nThe most famous structure in Thethi is the Lock-in Tower (Kulla e Ngujimit), a stone tower used historically as a place of refuge for men targeted in blood feuds.';
 
   @override
-  String get machuPicchuConstructionInfo2 =>
-      'This precision construction method made the structures at Machu Picchu resistant to seismic activity.\nThe site itself may have been intentionally built on fault lines to afford better drainage and a ready supply of fractured stone.';
+  String get thethConstructionInfo2 =>
+      'The Church of Thethi (Kisha e Thethit), built in the 19th century, is a small but picturesque stone church set against the dramatic mountain backdrop. Traditional highland architecture throughout the valley includes watermills along the Thethi River, stone bridges, and livestock enclosures built with dry-stone walling techniques passed down through generations.';
 
   @override
-  String get machuPicchuLocationInfo1 =>
-      'Machu Picchu is situated above a bow of the Urubamba River, which surrounds the site on three sides, where cliffs drop vertically for 1,480 feet (450 m) to the river at their base. The location of the city was a military secret, and its deep precipices and steep mountains provided natural defenses.';
+  String get thethLocationInfo1 =>
+      'Thethi lies within the Thethi National Park, established in 1966, covering approximately 5,200 acres (2,100 hectares) of pristine alpine wilderness. The valley is surrounded by the peaks of the Albanian Alps, including Radohima at 8,146 feet (2,568 m) and Haj-Nehaj at 8,524 feet (2,598 m).';
 
   @override
-  String get machuPicchuLocationInfo2 =>
-      'The Inca Bridge, an Inca grass rope bridge, across the Urubamba River in the Pongo de Mainique, provided a secret entrance for the Inca army. Another Inca bridge was built to the west of Machu Picchu, the tree-trunk bridge, at a location where a gap occurs in the cliff that measures 20 feet (6 m).';
+  String get thethLocationInfo2 =>
+      'The Blue Eye of Thethi (Syri i Kaltër), a stunning natural spring pool of vivid turquoise water, is one of the valley\'s most remarkable natural features. The Grunas Waterfall, cascading 100 feet (30 m) down a limestone cliff, is another iconic landmark. The valley connects to Valbona via a popular mountain pass trek at approximately 5,900 feet (1,800 m).';
 
   @override
-  String get machuPicchu1438ce => 'Speculated to be built and occupied by Inca ruler Pachacuti Inca Yupanqui.';
+  String get theth1438ce =>
+      'Albanian highland clans are well established in the Thethi valley, governed by the Kanun of Lëkë Dukagjini';
 
   @override
-  String get machuPicchu1572ce =>
-      'The last Inca rulers used the site as a bastion to rebel against Spanish rule until they were ultimately wiped out.';
+  String get theth1572ce =>
+      'The highland communities resist Ottoman control, maintaining autonomy through the rugged terrain of the Albanian Alps';
 
   @override
-  String get machuPicchu1867ce =>
-      'Speculated to have been originally discovered by German explorer Augusto Berns, but his findings were never effectively publicized.';
+  String get theth1867ce =>
+      'British traveler and diplomat Edith Durham visits the Albanian highlands, later documenting the traditional way of life in her celebrated writings';
 
   @override
-  String get machuPicchu1911ce =>
-      'Introduced to the world by Hiram Bingham of Yale University, who was led there by locals after disclosing he was searching for Vilcabamba, the ’lost city of the Incas’.';
+  String get theth1911ce =>
+      'Albania declares independence in 1912; the highland regions play a crucial role in the national awakening and resistance movements';
 
   @override
-  String get machuPicchu1964ce =>
-      'Surrounding sites were excavated thoroughly by Gene Savoy, who found a much more suitable candidate for Vilcabamba in the ruin known as Espíritu Pampa.';
+  String get theth1964ce =>
+      'Thethi National Park is established in 1966, one of Albania\'s first protected areas, preserving the alpine ecosystem';
 
   @override
-  String get machuPicchu1997ce =>
-      'Since its rediscovery, growing numbers of tourists have visited the Machu Picchu each year, with numbers exceeding 1.4 million in 2017.';
+  String get theth1997ce =>
+      'The Peaks of the Balkans trail is inaugurated, connecting Albania, Kosovo, and Montenegro and bringing renewed international attention to Thethi';
 
   @override
-  String get machuPicchuCollectible1Title => 'Eight-Pointed Star Tunic';
+  String get thethCollectible1Title => 'Eight-Pointed Star Tunic';
 
   @override
-  String get machuPicchuCollectible1Icon => 'textile';
+  String get thethCollectible1Icon => 'textile';
 
   @override
-  String get machuPicchuCollectible2Title => 'Camelid figurine';
+  String get thethCollectible2Title => 'Camelid figurine';
 
   @override
-  String get machuPicchuCollectible2Icon => 'statue';
+  String get thethCollectible2Icon => 'statue';
 
   @override
-  String get machuPicchuCollectible3Title => 'Double Bowl';
+  String get thethCollectible3Title => 'Double Bowl';
 
   @override
-  String get machuPicchuCollectible3Icon => 'vase';
+  String get thethCollectible3Icon => 'vase';
 
   @override
-  String get petraTitle => 'Petra';
+  String get krujaTitle => 'Krujë';
 
   @override
-  String get petraSubTitle => 'The Lost City';
+  String get krujaSubTitle => 'The Fortress of Skanderbeg';
 
   @override
-  String get petraRegionTitle => 'Ma’an, Jordan';
+  String get krujaRegionTitle => 'Durrës County, Albania';
 
   @override
-  String get petraArtifactCulture => 'Nabataean';
+  String get krujaArtifactCulture => 'Medieval Albanian';
 
   @override
-  String get petraArtifactGeolocation => 'Levant';
+  String get krujaArtifactGeolocation => 'Central Albania';
 
   @override
-  String get petraPullQuote1Top => 'A Rose-Red City';
+  String get krujaPullQuote1Top => 'The Shield of Christendom';
 
   @override
-  String get petraPullQuote1Bottom => 'Half as Old as Time';
+  String get krujaPullQuote1Bottom => 'Against the Ottoman Tide';
 
   @override
-  String get petraPullQuote1Author => 'John William Burgon';
+  String get krujaPullQuote1Author => 'Pope Callixtus III';
 
   @override
-  String get petraPullQuote2 =>
-      'Petra is a brilliant display of man’s artistry in turning barren rock into a majestic wonder.';
+  String get krujaPullQuote2 =>
+      'Skanderbeg\'s defense of Krujë is one of the most remarkable episodes of resistance in European military history.';
 
   @override
-  String get petraPullQuote2Author => 'Edward Dawson';
+  String get krujaPullQuote2Author => 'Fan Noli';
 
   @override
-  String get petraCallout1 => 'They were particularly skillful in harvesting rainwater, agriculture and stone carving.';
+  String get krujaCallout1 =>
+      'Gjergj Kastrioti Skanderbeg successfully defended Krujë against three major Ottoman sieges, earning him the title \"Athleta Christi\" (Champion of Christ) from the Pope.';
 
   @override
-  String get petraCallout2 =>
-      'Perhaps a more prominent resemblance to Hellenistic style in Petra comes with its Treasury.';
+  String get krujaCallout2 =>
+      'The castle sits at an elevation of approximately 1,970 feet (600 m) atop the Skanderbeg Mountain (Mali i Sariut), providing a commanding view of the surrounding plains.';
 
   @override
-  String get petraVideoCaption =>
-      '“Stunning Stone Monuments of Petra | National Geographic.” Youtube, uploaded by National Geographic.';
+  String get krujaVideoCaption => '“Krujë Castle and the Legacy of Skanderbeg - Albania.” Youtube.';
 
   @override
-  String get petraMapCaption => 'Map showing location of Petra in Ma’an Governorate, Jordan.';
+  String get krujaMapCaption => 'Map showing location of Krujë in central Albania.';
 
   @override
-  String get petraHistoryInfo1 =>
-      'The area around Petra has been inhabited from as early as 7000  BCE, and the Nabataeans might have settled in what would become the capital city of their kingdom as early as the 4th century BCE.\nThe trading business gained the Nabataeans considerable revenue and Petra became the focus of their wealth. The Nabataeans were accustomed to living in the barren deserts, unlike their enemies, and were able to repel attacks by taking advantage of the area\'s mountainous terrain.';
+  String get krujaHistoryInfo1 =>
+      'Krujë is a city in north-central Albania, historically renowned as the seat of Gjergj Kastrioti Skanderbeg (1405-1468), Albania\'s national hero. The castle of Krujë has been fortified since at least the 5th century and became the capital of the Principality of Kastrioti in the 15th century.\nIn 1443, Skanderbeg raised the Albanian flag over the castle after abandoning his forced service in the Ottoman army, beginning a 25-year campaign of resistance against the Ottoman Empire.';
 
   @override
-  String get petraHistoryInfo2 =>
-      'Petra flourished in the 1st century CE, when its famous Al-Khazneh structure - believed to be the mausoleum of Nabataean king Aretas IV - was constructed, and its population peaked at an estimated 20,000 inhabitants.\nAccess to the city is through a 3/4 mile-long (1.2 km) gorge called the Siq, which leads directly to the Khazneh.';
+  String get krujaHistoryInfo2 =>
+      'Skanderbeg successfully defended Krujë against three major Ottoman sieges — in 1450, 1466, and 1467 — each time repelling vastly superior forces. His resistance prevented Ottoman expansion into Western Europe for decades and earned him admiration across the Christian world.\nAfter Skanderbeg\'s death in 1468, the castle fell to the Ottomans in 1478 after a prolonged fourth siege. The city remained under Ottoman control until Albanian independence in 1912.';
 
   @override
-  String get petraConstructionInfo1 =>
-      'Famous for its rock-cut architecture and water conduit system, Petra is also called the \"Red Rose City\" because of the color of the stone from which it is carved.\nAnother thing Petra is known for is its Hellenistic (“Greek”) architecture. These influences can be seen in many of the facades at Petra and are a reflection of the cultures that the Nabataens traded with.';
+  String get krujaConstructionInfo1 =>
+      'The Krujë Castle is perched on a rocky outcrop at the edge of Skanderbeg Mountain (Mali i Sariut). The fortress walls follow the natural contours of the terrain, encircling an area that once contained a small town with houses, churches, and a bazaar.\nThe Skanderbeg Museum, designed by architects Pranvera Hoxha and Pirro Vaso and opened in 1982, sits within the castle walls. Built in a modernist style inspired by medieval Albanian architecture, it houses artifacts from the period of Albanian resistance.';
 
   @override
-  String get petraConstructionInfo2 =>
-      'The facade of the Treasury features a broken pediment with a central tholos (“dome”) inside, and two obelisks appear to form into the rock of Petra at the top. Near the bottom of the Treasury we see twin Greek Gods: Pollux, Castor, and Dioscuri, who protect travelers on their journeys. \nNear the top of the Treasury, two victories are seen standing on each side of a female figure on the tholos. This female figure is believed to be the Isis-Tyche, Isis being the Egyptian Goddess and Tyche being the Greek Goddess of good fortune.';
+  String get krujaConstructionInfo2 =>
+      'Below the castle, the restored Old Bazaar (Pazari i Vjetër) stretches along a cobblestone street with traditional stone and timber shops. The bazaar has been in continuous use since the 15th century and today sells traditional Albanian crafts, antiques, and locally made goods. The Dollma Tekke, a small Bektashi shrine within the castle complex, features elegant Ottoman-era architecture with painted interiors.';
 
   @override
-  String get petraLocationInfo1 =>
-      'Petra is located in southern Jordan. It is adjacent to the mountain of Jabal Al-Madbah, in a basin surrounded by mountains forming the eastern flank of the Arabah valley running from the Dead Sea to the Gulf of Aqaba.';
+  String get krujaLocationInfo1 =>
+      'Krujë is located approximately 20 miles (32 km) north of Tirana in central Albania. The castle sits atop a mountain spur overlooking the vast western Albanian plain that stretches to the Adriatic Sea, providing strategic visibility over approaching forces — a key factor in Skanderbeg\'s successful defense.';
 
   @override
-  String get petraLocationInfo2 =>
-      'The area around Petra has been inhabited from as early as 7000 BC, and the Nabataeans might have settled in what would become the capital city of their kingdom as early as the 4th century BC.\nArchaeological work has only discovered evidence of Nabataean presence dating back to the second century BC, by which time Petra had become their capital. The Nabataeans were nomadic Arabs who invested in Petra\'s proximity to the incense trade routes by establishing it as a major regional trading hub.';
+  String get krujaLocationInfo2 =>
+      'The Skanderbeg Mountain (Mali i Sariut) rises steeply behind the castle to approximately 3,500 feet (1,070 m). The surrounding terrain of steep gorges and dense forests provided natural defensive advantages that Skanderbeg exploited in his guerrilla tactics against the much larger Ottoman forces. The nearby Sarisalltiku peak features a cave shrine venerated by both Muslims and Christians.';
 
   @override
-  String get petra1200bce => 'First Edomites occupied the area and established a foothold.';
+  String get kruja1200bce =>
+      'Early Illyrian settlements exist in the Krujë region, taking advantage of the natural fortress position';
 
   @override
-  String get petra106bce => 'Became part of the Roman province Arabia';
+  String get kruja106bce => 'The region falls under Roman control as part of the province of Illyricum';
 
   @override
-  String get petra551ce => 'After being damaged by earthquakes, habitation of the city all but ceased.';
+  String get kruja551ce =>
+      'Byzantine-era fortifications are constructed on the hilltop, establishing the castle as a strategic defensive position';
 
   @override
-  String get petra1812ce => 'Rediscovered by the Swiss traveler Johann Ludwig Burckhardt.';
+  String get kruja1812ce =>
+      'The castle ruins and old bazaar are documented by European travelers as interest in Albanian history grows';
 
   @override
-  String get petra1958ce =>
-      'Excavations led on the site by the British School of Archaeology and the American Center of Oriental Research.';
+  String get kruja1958ce =>
+      'The Skanderbeg Museum within the castle is established, becoming Albania\'s most important national memorial';
 
   @override
-  String get petra1989ce => 'Appeared in the film Indiana Jones and The Last Crusade.';
+  String get kruja1989ce =>
+      'Krujë becomes a major tourist destination and symbol of Albanian national identity after the fall of communism';
 
   @override
-  String get petraCollectible1Title => 'Camel and riders';
+  String get krujaCollectible1Title => 'Camel and riders';
 
   @override
-  String get petraCollectible1Icon => 'statue';
+  String get krujaCollectible1Icon => 'statue';
 
   @override
-  String get petraCollectible2Title => 'Vessel';
+  String get krujaCollectible2Title => 'Vessel';
 
   @override
-  String get petraCollectible2Icon => 'vase';
+  String get krujaCollectible2Icon => 'vase';
 
   @override
-  String get petraCollectible3Title => 'Open bowl';
+  String get krujaCollectible3Title => 'Open bowl';
 
   @override
-  String get petraCollectible3Icon => 'vase';
+  String get krujaCollectible3Icon => 'vase';
 
   @override
-  String get pyramidsGizaTitle => 'Pyramids of Giza';
+  String get albanianAlpsTitle => 'Albanian Alps';
 
   @override
-  String get pyramidsGizaSubTitle => 'The ancient wonder';
+  String get albanianAlpsSubTitle => 'The Accursed Mountains';
 
   @override
-  String get pyramidsGizaRegionTitle => 'Cairo, Egypt';
+  String get albanianAlpsRegionTitle => 'Northern Albania';
 
   @override
-  String get pyramidsGizaArtifactCulture => 'Egyptian';
+  String get albanianAlpsArtifactCulture => 'Albanian Highland';
 
   @override
-  String get pyramidsGizaArtifactGeolocation => 'Egypt';
+  String get albanianAlpsArtifactGeolocation => 'Northern Albania';
 
   @override
-  String get pyramidsGizaPullQuote1Top => 'The Tallest Structures on Earth';
+  String get albanianAlpsPullQuote1Top => 'Europe\'s Last Great';
 
   @override
-  String get pyramidsGizaPullQuote1Bottom => 'Until the Advent of Modern Skyscrapers';
+  String get albanianAlpsPullQuote1Bottom => 'Untouched Wilderness';
 
   @override
-  String get pyramidsGizaPullQuote2 => 'From the heights of these pyramids, forty centuries look down on us.';
+  String get albanianAlpsPullQuote2 =>
+      'The Accursed Mountains stand as a testament to the raw, untamed beauty of the natural world.';
 
   @override
-  String get pyramidsGizaPullQuote2Author => 'Napoleon Bonaparte';
+  String get albanianAlpsPullQuote2Author => 'Edith Durham';
 
   @override
-  String get pyramidsGizaCallout1 =>
-      'It is theorized the pyramid not only served as a tomb for the pharaoh, but also as a storage pit for various items he would need in the afterlife.';
+  String get albanianAlpsCallout1 =>
+      'The Albanian Alps, known locally as Bjeshkët e Nemuna (Accursed Mountains), contain some of the most pristine ecosystems in Europe, harboring lynx, wolves, bears, and golden eagles.';
 
   @override
-  String get pyramidsGizaCallout2 =>
-      'The Great Pyramid consists of an estimated 2.3 million blocks. Approximately 5.5 million tonnes of limestone, 8,000 tonnes of granite, and 500,000 tonnes of mortar were used in the construction.';
+  String get albanianAlpsCallout2 =>
+      'Jezerca, the highest peak at 8,839 feet (2,694 m), is one of the most dramatic limestone summits in the Balkans, featuring permanent snowfields and glacial cirques.';
 
   @override
-  String get pyramidsGizaVideoCaption =>
-      '“The Great Pyramids of Giza | Egypt’s Ancient Mysteries | National Geographic UK.” Youtube, uploaded by National Geographic UK.';
+  String get albanianAlpsVideoCaption => '“Albanian Alps - Bjeshkët e Nemuna, Europe\'s Last Wilderness.” Youtube.';
 
   @override
-  String get pyramidsGizaMapCaption => 'Map showing location of Giza Pyramids in Greater Cairo, Egypt.';
+  String get albanianAlpsMapCaption => 'Map showing location of the Albanian Alps in northern Albania.';
 
   @override
-  String get pyramidsGizaHistoryInfo1 =>
-      'The Giza pyramid complex, also called the Giza necropolis, is the site on the Giza Plateau in Greater Cairo, Egypt that includes the Great Pyramid of Giza, the Pyramid of Khafre, and the Pyramid of Menkaure, along with their associated pyramid complexes and the Great Sphinx of Giza. All were built during the Fourth Dynasty of the Old Kingdom of Ancient Egypt, between 2600 and 2500 BCE.';
+  String get albanianAlpsHistoryInfo1 =>
+      'The Albanian Alps (Bjeshkët e Nemuna), also known as the Accursed Mountains or the Prokletije, are a mountain range stretching across northern Albania, western Kosovo, and eastern Montenegro. In Albania, the range includes some of the most remote and pristine wilderness in all of Europe.\nThe mountains have been home to Albanian highland clans for centuries, who developed a unique culture of hospitality, honor, and self-governance codified in the Kanun of Lëkë Dukagjini.';
 
   @override
-  String get pyramidsGizaHistoryInfo2 =>
-      'The pyramids of Giza and others are thought to have been constructed to house the remains of the deceased pharaohs who ruled over Ancient Egypt. A portion of the pharaoh\'s spirit called his ka was believed to remain with his corpse. Proper care of the remains was necessary in order for the former Pharaoh to perform his new duties as king of the dead.';
+  String get albanianAlpsHistoryInfo2 =>
+      'The name \"Accursed Mountains\" has various folk etymologies — some say it comes from the difficulty of crossing them, others attribute it to a legend of feuding mountains cursed by the gods. The Albanian name \"Bjeshkët e Nemuna\" translates more accurately as \"Mountains of the Highlanders.\"\nBritish traveler Edith Durham extensively documented the highlands in the early 1900s, describing a society where ancient customs of blood feuds and sworn virgins (burrnesha) persisted alongside extraordinary hospitality and natural beauty.';
 
   @override
-  String get pyramidsGizaConstructionInfo1 =>
-      'Most construction theories are based on the idea that the pyramids were built by moving huge stones from a quarry and dragging and lifting them into place. In building the pyramids, the architects might have developed their techniques over time.\nThey would select a site on a relatively flat area of bedrock — not sand — which provided a stable foundation. After carefully surveying the site and laying down the first level of stones, they constructed the pyramids in horizontal levels, one on top of the other.';
+  String get albanianAlpsConstructionInfo1 =>
+      'Unlike man-made structures, the Albanian Alps are a monument of nature, sculpted by millions of years of geological processes. The range is composed primarily of Mesozoic-era limestone and dolomite, shaped by glacial and karst erosion into dramatic peaks, deep valleys, and underground cave systems.\nThe Blue Eye of Theth, turquoise glacial pools, and the Valbona valley\'s dramatic cliff faces are all products of this ongoing geological story.';
 
   @override
-  String get pyramidsGizaConstructionInfo2 =>
-      'For the Great Pyramid, most of the stone for the interior seems to have been quarried immediately to the south of the construction site. The smooth exterior of the pyramid was made of a fine grade of white limestone that was quarried across the Nile.\nTo ensure that the pyramid remained symmetrical, the exterior casing stones all had to be equal in height and width. Workers might have marked all the blocks to indicate the angle of the pyramid wall and trimmed the surfaces carefully so that the blocks fit together. During construction, the outer surface of the stone was smooth limestone; excess stone has eroded as time has passed.';
+  String get albanianAlpsConstructionInfo2 =>
+      'Human structures in the Albanian Alps reflect the mountain environment. Traditional highland houses (kullë) are built from massive limestone blocks with timber interiors, designed to withstand heavy snowfall and provide defense. Stone-walled pastures, ancient mule trails, and small mountain churches dot the landscape.\nThe Peaks of the Balkans trail, a 120-mile (192 km) hiking route established in 2013, connects communities across three countries using many of these traditional paths.';
 
   @override
-  String get pyramidsGizaLocationInfo1 =>
-      'The site is at the edges of the Western Desert, approximately 5.6 miles (9 km) west of the Nile River in the city of Giza, and about 8 miles (13 km) southwest of the city center of Cairo.';
+  String get albanianAlpsLocationInfo1 =>
+      'The Albanian Alps extend across the districts of Shkodër and Kukës in northern Albania, forming the country\'s border with Montenegro and Kosovo. The range stretches approximately 40 miles (65 km) from the Kelmendi region in the northwest to the Valbona area in the east. Major valleys include Thethi, Valbona, and Kelmendi.';
 
   @override
-  String get pyramidsGizaLocationInfo2 =>
-      'Currently, the pyramids are located in the northwestern side of the Western Desert, and it is considered to be one of the best recognizable and the most visited tourist attractions of the planet.';
+  String get albanianAlpsLocationInfo2 =>
+      'The Valbona Valley National Park and Thethi National Park protect much of the Albanian portion of the range. Lake Koman, accessible by ferry through a dramatic canyon often compared to Scandinavian fjords, provides a stunning approach to the mountains from the south. The region receives some of the highest precipitation in Europe, feeding numerous rivers and waterfalls.';
 
   @override
-  String get pyramidsGiza2575bce =>
-      'Construction of the 3 pyramids began for three kings of the 4th dynasty; Khufu, Khafre, and Menkaure.';
+  String get albanianAlps2575bce =>
+      'Early human habitation in the Albanian Alps region dates back to the Bronze Age, with evidence of pastoral communities in the highland valleys';
 
   @override
-  String get pyramidsGiza2465bce =>
-      'Construction began on the smaller surrounding structures called Mastabas for royalty of the 5th and 6th dynasties.';
+  String get albanianAlps2465bce =>
+      'Illyrian tribes establish seasonal settlements in the mountain pastures, developing the transhumance traditions that continue to this day';
 
   @override
-  String get pyramidsGiza443bce =>
-      'Greek Author Herodotus speculated that the pyramids were built in the span of 20 years with over 100,000 slave labourers. This assumption would last for over 1500 years';
+  String get albanianAlps443bce =>
+      'Greek and Roman writers document the fierce independence of the mountain-dwelling Illyrian tribes and the difficult terrain of the region';
 
   @override
-  String get pyramidsGiza1925ce =>
-      'Tomb of Queen Hetepheres was discovered, containing furniture and jewelry. One of the last remaining treasure-filled tombs after many years of looting and plundering.';
+  String get albanianAlps1925ce =>
+      'British traveler Edith Durham publishes detailed accounts of life in the Albanian highlands, bringing international attention to the region';
 
   @override
-  String get pyramidsGiza1979ce =>
-      'Designated a UNESCO World Heritage Site to prevent any more unauthorized plundering and vandalism.';
+  String get albanianAlps1979ce =>
+      'Thethi National Park and Valbona Valley are designated as protected areas, preserving the alpine ecosystems';
 
   @override
-  String get pyramidsGiza1990ce =>
-      'Discovery of labouror’s districts suggest that the workers building the pyramids were not slaves, and an ingenious building method proved a relatively small work-force was required to build such immense structures.';
+  String get albanianAlps1990ce =>
+      'After the fall of communism, the Albanian Alps open to international hikers and the Peaks of the Balkans trail is eventually established in 2013';
 
   @override
-  String get pyramidsGizaCollectible1Title => 'Two papyrus fragments';
+  String get albanianAlpsCollectible1Title => 'Two papyrus fragments';
 
   @override
-  String get pyramidsGizaCollectible1Icon => 'scroll';
+  String get albanianAlpsCollectible1Icon => 'scroll';
 
   @override
-  String get pyramidsGizaCollectible2Title => 'Fragmentary Face of King Khafre';
+  String get albanianAlpsCollectible2Title => 'Fragmentary Face of King Khafre';
 
   @override
-  String get pyramidsGizaCollectible2Icon => 'statue';
+  String get albanianAlpsCollectible2Icon => 'statue';
 
   @override
-  String get pyramidsGizaCollectible3Title => 'Jewelry Elements';
+  String get albanianAlpsCollectible3Title => 'Jewelry Elements';
 
   @override
-  String get pyramidsGizaCollectible3Icon => 'jewelry';
+  String get albanianAlpsCollectible3Icon => 'jewelry';
 
   @override
-  String get tajMahalTitle => 'Taj Mahal';
+  String get korcaTitle => 'Korçë';
 
   @override
-  String get tajMahalSubTitle => 'Heaven on Earth';
+  String get korcaSubTitle => 'The Cradle of Albanian Culture';
 
   @override
-  String get tajMahalRegionTitle => 'Agra, India';
+  String get korcaRegionTitle => 'Korçë, Albania';
 
   @override
-  String get tajMahalArtifactCulture => 'Mughal';
+  String get korcaArtifactCulture => 'Albanian Orthodox';
 
   @override
-  String get tajMahalArtifactGeolocation => 'India';
+  String get korcaArtifactGeolocation => 'Southeastern Albania';
 
   @override
-  String get tajMahalPullQuote1Top => 'Not just a Monument,';
+  String get korcaPullQuote1Top => 'Not Just a Cathedral,';
 
   @override
-  String get tajMahalPullQuote1Bottom => 'but a Symbol of Love.';
+  String get korcaPullQuote1Bottom => 'but the Soul of a Nation';
 
   @override
-  String get tajMahalPullQuote1Author => 'Suman Pokhrel';
+  String get korcaPullQuote1Author => 'Fan Noli';
 
   @override
-  String get tajMahalPullQuote2 =>
-      'The Taj Mahal rises above the banks of the river like a solitary tear suspended on the cheek of time.';
+  String get korcaPullQuote2 =>
+      'Korçë is the city where Albanian national consciousness first found its voice through schools, literature, and art.';
 
   @override
-  String get tajMahalPullQuote2Author => 'Rabindranath Tagore';
+  String get korcaPullQuote2Author => 'Faik Konica';
 
   @override
-  String get tajMahalCallout1 =>
-      'The Taj Mahal is distinguished as the finest example of Mughal architecture, a blend of Indian, Persian, and Islamic styles.';
+  String get korcaCallout1 =>
+      'The Resurrection Cathedral (Katedralja Ngjallja e Krishtit) is the largest Orthodox cathedral in Albania, designed by renowned architect Fan Noli and completed in 2003.';
 
   @override
-  String get tajMahalCallout2 =>
-      'It took the efforts of 22,000 laborers, painters, embroidery artists and stonecutters to shape the Taj Mahal.';
+  String get korcaCallout2 =>
+      'Korçë is home to the first Albanian-language school, opened on March 7, 1887, a date now celebrated as Teacher\'s Day (Dita e Mësuesit) across Albania.';
 
   @override
-  String get tajMahalVideoCaption =>
-      '“India’s Taj Mahal Is an Enduring Monument to Love | National Geographic.” Youtube, uploaded by National Geographic.';
+  String get korcaVideoCaption => '“Korçë - The Cradle of Albanian Culture and the Resurrection Cathedral.” Youtube.';
 
   @override
-  String get tajMahalMapCaption => 'Map showing location of Taj Mahal in Uttar Pradesh, India.';
+  String get korcaMapCaption => 'Map showing location of Korçë in southeastern Albania.';
 
   @override
-  String get tajMahalHistoryInfo1 =>
-      'The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1632 CE by the Mughal emperor Shah Jahan (r. 1628-1658) to house the tomb of his favorite wife, Mumtaz Mahal; it also houses the tomb of Shah Jahan himself.';
+  String get korcaHistoryInfo1 =>
+      'Korçë is a city in southeastern Albania, situated in a high plateau at approximately 2,800 feet (850 m) above sea level. The city has been a center of Albanian culture, education, and art since the 19th century, earning it the title \"the cradle of Albanian culture.\"\nThe first Albanian-language school was opened here on March 7, 1887, by Pandeli Sotiri, marking a pivotal moment in the Albanian national awakening. Korçë also hosted the first Albanian printing press and numerous literary societies.';
 
   @override
-  String get tajMahalHistoryInfo2 =>
-      'The tomb is the centerpiece of a 42-acre (17-hectare) complex, which include twin mosque buildings (placed symmetrically on either side of the mausoleum), a guest house, and is set in formal gardens bounded on three sides by walls.';
+  String get korcaHistoryInfo2 =>
+      'The original Orthodox Cathedral was destroyed during the communist period when Albania declared itself the world\'s first atheist state in 1967, demolishing nearly all religious buildings. The new Resurrection Cathedral (Katedralja Ngjallja e Krishtit) was built between 1992 and 2003 on the foundations of the old cathedral, symbolizing both religious revival and national cultural renewal.\nKorçë is also renowned for its contribution to Albanian music, art, and the famous annual Korçë Beer Festival, one of the largest in the Balkans.';
 
   @override
-  String get tajMahalConstructionInfo1 =>
-      'The Taj Mahal was constructed using materials from all over India and Asia. It is believed over 1,000 elephants were used to transport building materials.\nThe translucent white marble was brought from Rajasthan, the jasper from Punjab, jade and crystal from China. The turquoise was from Tibet and the lapis from Afghanistan, while the sapphire came from Sri Lanka. In all, twenty-eight types of precious and semi-precious stones were inlaid into the white marble.';
+  String get korcaConstructionInfo1 =>
+      'The Resurrection Cathedral was designed in a neo-Byzantine style, drawing inspiration from traditional Orthodox church architecture while incorporating modern construction techniques. The cathedral features a cruciform plan with a large central dome reaching approximately 100 feet (30 m) in height, flanked by smaller domes.\nThe exterior is clad in light-colored stone with decorative arched windows, while the interior is adorned with frescoes and iconography painted by Albanian and Greek artists.';
 
   @override
-  String get tajMahalConstructionInfo2 =>
-      'An area of roughly 3 acres was excavated, filled with dirt to reduce seepage, and leveled at 160 ft above riverbank. In the tomb area, wells were dug and filled with stone and rubble to form the footings of the tomb.\nThe plinth and tomb took roughly 12 years to complete. The remaining parts of the complex took an additional 10 years.';
+  String get korcaConstructionInfo2 =>
+      'The cathedral\'s construction spanned over a decade, from 1992 to 2003. Modern reinforced concrete and steel frame construction was used for structural integrity, while traditional stone and decorative elements maintain the Byzantine aesthetic.\nThe bell tower, rising beside the cathedral, houses a set of bells that ring across the city. The surrounding plaza and park create a cultural center for the city, connecting to the National Museum of Medieval Art, which houses one of the finest collections of Byzantine icons in the world.';
 
   @override
-  String get tajMahalLocationInfo1 =>
-      'India\'s most famed building, it is situated in the eastern part of the city on the southern bank of the Yamuna River, nearly 1 mile east of the Agra Fort, also on the right bank of the Yamuna.';
+  String get korcaLocationInfo1 =>
+      'Korçë is located in the Korçë Basin, a fertile plateau surrounded by mountains in southeastern Albania. The city lies approximately 112 miles (180 km) southeast of Tirana, near the borders with both Greece and North Macedonia. The Morava Mountain range rises to the east, while Lake Ohrid lies to the northeast.';
 
   @override
-  String get tajMahalLocationInfo2 =>
-      'The Taj Mahal is built on a parcel of land to the south of the walled city of Agra. Shah Jahan presented Maharaja Jai Singh with a large palace in the center of Agra in exchange for the land.';
+  String get korcaLocationInfo2 =>
+      'The Korçë plateau has been inhabited since prehistoric times due to its fertile soil and strategic position along ancient trade routes connecting the Adriatic and Aegean seas. The nearby archaeological site of Maliq, on the shores of a former lake, has yielded evidence of continuous habitation dating back to the Neolithic period, around 6000 BCE.';
 
   @override
-  String get tajMahal1631ce => 'Built by Mughal Emperor Shah Jahān to immortalize his deceased wife.';
+  String get korca1631ce =>
+      'Korçë develops as an Ottoman administrative and trade center with construction of mosques, bazaars, and hans (inns)';
 
   @override
-  String get tajMahal1647ce => 'Construction completed. The project involved over 20,000 workers and spanned 42 acres.';
+  String get korca1647ce =>
+      'The city\'s importance grows as a crossroads of trade routes connecting Thessaloniki, Ioannina, and the Albanian coast';
 
   @override
-  String get tajMahal1658ce =>
-      'There were plans for a second mausoleum for his own remains, but Shah Jahān was imprisoned by his son for the rest of his life in Agra Fort, and this never came to pass.';
+  String get korca1658ce =>
+      'Cultural and religious communities flourish in Korçë, establishing it as a multi-ethnic center of learning';
 
   @override
-  String get tajMahal1901ce =>
-      'Lord Curzon and the British Viceroy of India carried out a major restoration to the monument after over 350 years of decay and corrosion due to factory pollution and exhaust.';
+  String get korca1901ce =>
+      'Korçë becomes a center of the Albanian national movement with the opening of the first Albanian-language school in 1887';
 
   @override
-  String get tajMahal1984ce =>
-      'To protect the structure from Sikh militants and some Hindu nationalist groups, night viewing was banned to tourists. This ban would last 20 years.';
+  String get korca1984ce =>
+      'During the communist era, the original Orthodox Cathedral and most religious buildings are demolished as Albania is declared an atheist state';
 
   @override
-  String get tajMahal1998ce => 'Restoration and research program put into action to help preserve the monument.';
+  String get korca1998ce =>
+      'Construction of the new Resurrection Cathedral begins after the fall of communism, completed in 2003 as a symbol of cultural renewal';
 
   @override
-  String get tajMahalCollectible1Title => 'Dagger with Scabbard';
+  String get korcaCollectible1Title => 'Dagger with Scabbard';
 
   @override
-  String get tajMahalCollectible1Icon => 'jewelry';
+  String get korcaCollectible1Icon => 'jewelry';
 
   @override
-  String get tajMahalCollectible2Title => 'The House of Bijapur';
+  String get korcaCollectible2Title => 'The House of Bijapur';
 
   @override
-  String get tajMahalCollectible2Icon => 'picture';
+  String get korcaCollectible2Icon => 'picture';
 
   @override
-  String get tajMahalCollectible3Title => 'Panel of Nasta\'liq Calligraphy';
+  String get korcaCollectible3Title => 'Panel of Nasta\'liq Calligraphy';
 
   @override
-  String get tajMahalCollectible3Icon => 'scroll';
+  String get korcaCollectible3Icon => 'scroll';
 
   @override
-  String get timelineEvent2900bce => 'First known use of papyrus by Egyptians';
+  String get timelineEvent2900bce => 'Bronze Age tumuli traditions emerge across the Western Balkans';
 
   @override
-  String get timelineEvent2700bce => 'The Old Kingdom begins in Egypt';
+  String get timelineEvent2700bce =>
+      'The Maliq settlement near Korçë grows into one of the earliest agrarian communities of the southern Balkans';
 
   @override
-  String get timelineEvent2600bce => 'Emergence of Mayan culture in the Yucatán Peninsula';
+  String get timelineEvent2600bce =>
+      'Early Bronze Age communities flourish along the Adriatic coast of present-day Albania';
 
   @override
-  String get timelineEvent2560bce => 'King Khufu completes the Great Pyramid of Giza';
+  String get timelineEvent2560bce => 'The Cetina cultural horizon links communities across the Western Balkans';
 
   @override
-  String get timelineEvent2500bce => 'The mammoth goes extinct';
+  String get timelineEvent1200bce =>
+      'Illyrian tribes — Taulantii, Ardiaei, Dardani, Enchelei, Chaones — consolidate across the western Balkans';
 
   @override
-  String get timelineEvent2200bce => 'Completion of Stonehenge';
+  String get timelineEvent627bce =>
+      'Greek settlers from Corinth and Corcyra found Epidamnos, the future Dyrrhachium and modern Durrës';
 
   @override
-  String get timelineEvent2000bce => 'Domestication of the horse';
+  String get timelineEvent358bce => 'Bardylis I of the Dardanian Kingdom defeats Macedonia under Perdiccas III';
 
   @override
-  String get timelineEvent1800bce => 'Alphabetic writing emerges';
+  String get timelineEvent229bce =>
+      'First Illyrian War: Queen Teuta of the Ardiaeans clashes with Rome over Adriatic piracy';
 
   @override
-  String get timelineEvent890bce => 'Homer writes the Iliad and the Odyssey';
+  String get timelineEvent168bce =>
+      'Third Illyrian War ends; King Gentius is defeated and Illyria becomes a Roman protectorate';
 
   @override
-  String get timelineEvent776bce => 'First recorded Ancient Olympic Games';
+  String get timelineEvent146bce =>
+      'Rome begins constructing the Via Egnatia, linking Dyrrhachium across Illyria to Byzantium';
 
   @override
-  String get timelineEvent753bce => 'Founding of Rome';
+  String get timelineEvent395ce => 'The Roman Empire splits; Illyria is absorbed into the Eastern Byzantine realm';
 
   @override
-  String get timelineEvent447bce => 'Building of the Parthenon at Athens started';
+  String get timelineEvent500ce =>
+      'The Albanian coast flourishes as a key Byzantine corridor between Constantinople and the western Mediterranean';
 
   @override
-  String get timelineEvent427bce => 'Birth of Greek Philosopher Plato';
+  String get timelineEvent632ce =>
+      'Death of Muhammad (61) and founding of Islam — the faith that will later reshape Albania under Ottoman rule';
 
   @override
-  String get timelineEvent322bce => 'Death of Aristotle (61), the first genuine scientist';
+  String get timelineEvent1018ce => 'Basil II reconquers Illyria; the Byzantine Theme of Dyrrhachium is re-established';
 
   @override
-  String get timelineEvent200bce => 'Paper is invented in the Han Dynasty';
+  String get timelineEvent1043ce =>
+      'First written reference to the name Albanoi — Albanians take part in the revolt of George Maniakes';
 
   @override
-  String get timelineEvent44bce => 'Death of Julius Caesar; beginning of the Roman Empire';
+  String get timelineEvent1081ce => 'Battle of Dyrrhachium: Norman forces under Robert Guiscard defeat the Byzantines';
 
   @override
-  String get timelineEvent4bce => 'Birth of Jesus Christ';
+  String get timelineEvent1190ce => 'Progon founds the Principality of Arbanon — the first Albanian medieval state';
 
   @override
-  String get timelineEvent43ce => 'The Roman Empire enters Great Britain for the first time';
-
-  @override
-  String get timelineEvent79ce => 'Destruction of Pompeii by the volcano Vesuvius';
-
-  @override
-  String get timelineEvent455ce => 'End of the Roman Empire';
-
-  @override
-  String get timelineEvent500ce => 'Tikal becomes the first great Maya city';
-
-  @override
-  String get timelineEvent632ce => 'Death of Muhammad (61), founder of Islam';
-
-  @override
-  String get timelineEvent793ce => 'The Vikings first invade Britain';
-
-  @override
-  String get timelineEvent800ce => 'Gunpowder is invented in China';
-
-  @override
-  String get timelineEvent1001ce => 'Leif Erikson settles during the winter in present-day eastern Canada';
-
-  @override
-  String get timelineEvent1077ce => 'The Construction of the Tower of London begins';
-
-  @override
-  String get timelineEvent1117ce => 'The University of Oxford is founded';
-
-  @override
-  String get timelineEvent1199ce => 'Europeans first use compasses';
-
-  @override
-  String get timelineEvent1227ce => 'Death of Genghis Khan (65)';
-
-  @override
-  String get timelineEvent1337ce => 'The Hundred Years\' War begins as England and France struggle for dominance.';
+  String get timelineEvent1271ce => 'Charles of Anjou proclaims the Kingdom of Albania (Regnum Albaniae)';
 
   @override
   String get timelineEvent1347ce =>
-      'The first of many concurrences of the Black Death plague, believed to have wiped out as many as 50% of Europe\'s population by its end';
+      'The Black Death plague sweeps Europe and devastates Balkan populations, including Albania';
 
   @override
-  String get timelineEvent1428ce => 'Birth of the Aztec Empire in Mexico';
+  String get timelineEvent1355ce =>
+      'After the death of Stefan Dušan, the Albanian principalities of Balsha, Topia, Muzaka and Kastrioti rise';
 
   @override
-  String get timelineEvent1439ce => 'Johannes Gutenberg invents the printing press';
+  String get timelineEvent1389ce => 'Albanian nobles fight beside Serbian forces at the Battle of Kosovo';
 
   @override
-  String get timelineEvent1492ce => 'Christopher Columbus reaches the New World';
+  String get timelineEvent1428ce =>
+      'Gjergj Kastrioti, the future Skanderbeg, comes of age in the Ottoman court before returning to lead Albanian resistance';
 
   @override
-  String get timelineEvent1760ce => 'The industrial revolution begins';
+  String get timelineEvent1443ce => 'Skanderbeg defects from the Ottoman army at the Battle of Niš and seizes Krujë';
 
   @override
-  String get timelineEvent1763ce => 'Development of the Watt steam engine';
+  String get timelineEvent1444ce => 'The League of Lezhë unites Albanian princes under Skanderbeg\'s command';
 
   @override
-  String get timelineEvent1783ce => 'End of the American War of Independence from the British Empire';
+  String get timelineEvent1450ce => 'First Siege of Krujë: Skanderbeg withstands Sultan Murad II';
 
   @override
-  String get timelineEvent1789ce => 'The French Revolution begins';
+  String get timelineEvent1466ce =>
+      'Sultan Mehmed II launches the Second Siege of Krujë and builds the fortress of Elbasan';
 
   @override
-  String get timelineEvent1914ce => 'World War I';
+  String get timelineEvent1468ce => 'Death of Skanderbeg in Lezhë; Albanian resistance gradually crumbles';
 
   @override
-  String get timelineEvent1929ce => 'Black Tuesday signals the beginning of the Great Depression';
+  String get timelineEvent1479ce => 'Fall of Shkodër — Ottoman conquest of Albania is complete';
 
   @override
-  String get timelineEvent1939ce => 'World War II';
+  String get timelineEvent1571ce =>
+      'Battle of Lepanto — Albanian sailors fight on both sides of the Christian–Ottoman naval struggle';
 
   @override
-  String get timelineEvent1957ce => 'launch of Sputnik 1 by the Soviet Union';
+  String get timelineEvent1788ce => 'Ali Pasha of Tepelenë establishes the semi-autonomous Pashalik of Yanina';
 
   @override
-  String get timelineEvent1969ce => 'Apollo 11 mission lands on the moon';
+  String get timelineEvent1789ce =>
+      'The French Revolution begins; its ideals later inspire the Albanian National Awakening (Rilindja)';
+
+  @override
+  String get timelineEvent1830ce =>
+      'The Massacre of the Beys at Manastir ends Albanian feudal autonomy under Ottoman reforms';
+
+  @override
+  String get timelineEvent1878ce => 'The League of Prizren is founded — the first organised Albanian national movement';
+
+  @override
+  String get timelineEvent1908ce => 'The Congress of Manastir standardises the Albanian Latin alphabet';
+
+  @override
+  String get timelineEvent1912ce => 'Ismail Qemali proclaims Albanian independence in Vlorë on 28 November';
+
+  @override
+  String get timelineEvent1914ce =>
+      'World War I — Albania becomes a contested battleground for several European powers';
+
+  @override
+  String get timelineEvent1920ce => 'The Congress of Lushnjë makes Tirana the capital of Albania';
+
+  @override
+  String get timelineEvent1928ce => 'Ahmet Zogu is crowned King Zog I of the Albanians';
+
+  @override
+  String get timelineEvent1939ce => 'World War II begins';
+
+  @override
+  String get timelineEvent1939ceAlbania => 'Italy invades Albania, beginning the Axis occupation';
+
+  @override
+  String get timelineEvent1944ce => 'Albania is liberated by partisan forces; Enver Hoxha\'s communist regime begins';
+
+  @override
+  String get timelineEvent1967ce => 'Albania declares itself the world\'s first officially atheist state';
+
+  @override
+  String get timelineEvent1991ce => 'First multi-party elections end 46 years of communist rule';
+
+  @override
+  String get timelineEvent1997ce => 'The collapse of nationwide pyramid schemes triggers civil unrest';
+
+  @override
+  String get timelineEvent2009ce => 'Albania joins NATO';
+
+  @override
+  String get timelineEvent2019ce => 'A devastating earthquake strikes the Durrës region';
 
   @override
   String get privacyPolicy => 'Privacy Policy';
@@ -1392,4 +1395,702 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pageNotFoundMessage => 'The page you are looking for does not exist.';
+
+  @override
+  String get authSignInTitle => 'Welcome back';
+
+  @override
+  String get authSignInSubtitle => 'Sign in to continue exploring Albania.';
+
+  @override
+  String get authEmailLabel => 'Email';
+
+  @override
+  String get authPasswordLabel => 'Password';
+
+  @override
+  String get authSignInButton => 'SIGN IN';
+
+  @override
+  String get authSignInError => 'Something went wrong. Please try again.';
+
+  @override
+  String get authEmailRequired => 'Email is required';
+
+  @override
+  String get authEmailInvalid => 'Enter a valid email';
+
+  @override
+  String get authPasswordRequired => 'Password is required';
+
+  @override
+  String get buddyHeaderTitle => 'Travel Buddy';
+
+  @override
+  String get buddyHeaderSubtitle => 'Your Albania-native AI guide';
+
+  @override
+  String get buddyEmptyTitle => 'How can I help plan your trip?';
+
+  @override
+  String get buddyEmptySubtitle => 'Ask me about places, food, budgets, or itineraries in Albania.';
+
+  @override
+  String get buddyComposerHint => 'Message your travel buddy…';
+
+  @override
+  String get buddySuggestionTirana => 'Plan a 3-day Tirana trip';
+
+  @override
+  String get buddySuggestionBerat => 'Best things to do in Berat';
+
+  @override
+  String get buddySuggestionBudget => 'Albania on a tight budget';
+
+  @override
+  String get buddyErrorHint => 'Something went wrong.';
+
+  @override
+  String get buddyErrorRetry => 'Retry';
+
+  @override
+  String get buddyNotSavedHint => 'Reply not saved on the server.';
+
+  @override
+  String get buddyItineraryUnstructured => 'Couldn\'t structure that itinerary — your reply is above.';
+
+  @override
+  String get refineWithBuddyButton => 'Refine with Buddy';
+
+  @override
+  String get refineComposerHint => 'Ask Buddy to refine this trip…';
+
+  @override
+  String get refineEmptyTitle => 'What should we change?';
+
+  @override
+  String get refineEmptySubtitle => 'Ask Buddy to tweak this trip — shorten a day, swap a stop, add something new.';
+
+  @override
+  String get refineSuggestionShortenDay => 'Shorten day 2';
+
+  @override
+  String get refineSuggestionAddBeach => 'Add a beach day';
+
+  @override
+  String get refineSuggestionSwapStop => 'Swap a stop for something more local';
+
+  @override
+  String refineBannerTitle(String tripTitle) {
+    return 'Refining: $tripTitle';
+  }
+
+  @override
+  String get refineBannerExit => 'Exit';
+
+  @override
+  String get refineTripUpdated => 'Trip updated';
+
+  @override
+  String get refineViewTrip => 'View trip';
+
+  @override
+  String get refineFailedFooter => 'Couldn\'t apply the refinement. The chat reply describes the proposed change.';
+
+  @override
+  String get refineOpenFailed => 'Couldn\'t open chat — try again.';
+
+  @override
+  String get buddySendTooltip => 'Send message';
+
+  @override
+  String get buddyPlaceCardOpenInMap => 'Open in map';
+
+  @override
+  String get buddyVoiceHoldToTalk => 'Hold to talk';
+
+  @override
+  String get buddyVoiceTapToTalk => 'Tap to talk';
+
+  @override
+  String get buddyVoiceListening => 'Listening…';
+
+  @override
+  String get buddyVoiceCancel => 'Cancel';
+
+  @override
+  String get buddyVoiceStop => 'Stop recording';
+
+  @override
+  String get buddyVoiceSend => 'Send';
+
+  @override
+  String get buddyVoicePermissionDenied => 'Microphone permission denied. Enable it in Settings to use voice.';
+
+  @override
+  String get buddyVoiceUnavailable => 'Voice recognition isn\'t available on this device.';
+
+  @override
+  String get buddyTtsPlay => 'Read aloud';
+
+  @override
+  String get buddyTtsStop => 'Stop reading';
+
+  @override
+  String get buddyAttachTooltip => 'Add photo';
+
+  @override
+  String get buddyAttachCamera => 'Camera';
+
+  @override
+  String get buddyAttachGallery => 'Photo library';
+
+  @override
+  String get buddyAttachUploading => 'Uploading…';
+
+  @override
+  String get buddyAttachFailed => 'Upload failed';
+
+  @override
+  String get buddyAttachRemove => 'Remove';
+
+  @override
+  String get buddyAttachRetry => 'Retry';
+
+  @override
+  String get buddyAttachSizeError => 'Image too large — try a smaller photo';
+
+  @override
+  String get buddyHistoryTooltip => 'Past conversations';
+
+  @override
+  String get buddyNewChatTooltip => 'New chat';
+
+  @override
+  String get conversationsTitle => 'Past conversations';
+
+  @override
+  String get conversationsEmpty => 'No conversations yet';
+
+  @override
+  String get conversationsLoadFailed => 'Couldn\'t load conversations';
+
+  @override
+  String get conversationsNewChatTooltip => 'New chat';
+
+  @override
+  String get conversationsDeleteTitle => 'Delete conversation?';
+
+  @override
+  String get conversationsDeleteConfirm => 'This can\'t be undone.';
+
+  @override
+  String get conversationsDeleteAction => 'Delete';
+
+  @override
+  String get conversationsDeleteCancel => 'Cancel';
+
+  @override
+  String get conversationsDeleteFailed => 'Failed to delete conversation.';
+
+  @override
+  String get conversationsClearAllAction => 'Clear all conversations';
+
+  @override
+  String get conversationsClearAllTitle => 'Clear all conversations?';
+
+  @override
+  String get conversationsClearAllBody => 'Every conversation will be permanently deleted. This can\'t be undone.';
+
+  @override
+  String get conversationsClearAllConfirm => 'Clear all';
+
+  @override
+  String get profileTitle => 'Profile';
+
+  @override
+  String get profileEmailLabel => 'Signed in as';
+
+  @override
+  String get profileSignOutButton => 'Sign out';
+
+  @override
+  String get preferencesTileTitle => 'Preferences';
+
+  @override
+  String get preferencesTileSubtitle => 'Customize your travel style';
+
+  @override
+  String get preferencesScreenTitle => 'Preferences';
+
+  @override
+  String get preferencesSaveButton => 'Save';
+
+  @override
+  String get preferencesSaveSuccess => 'Preferences saved';
+
+  @override
+  String get preferencesSaveError => 'Couldn\'t save preferences';
+
+  @override
+  String get preferencesLoadError => 'Couldn\'t load preferences';
+
+  @override
+  String get preferencesNotSetYet => 'Not set yet';
+
+  @override
+  String get preferencesPersonaSection => 'Travel persona';
+
+  @override
+  String get preferencesPersonaEmpty => 'Tap Generate to create your travel persona';
+
+  @override
+  String get preferencesPersonaGenerate => 'Generate persona';
+
+  @override
+  String get preferencesPersonaRegenerate => 'Regenerate';
+
+  @override
+  String get preferencesPersonaError => 'Couldn\'t generate persona';
+
+  @override
+  String get preferencesPersonaUseButton => 'Use this persona';
+
+  @override
+  String get preferencesPersonaInfoBody =>
+      'Pick the persona that feels closest to you right now. It\'s just the starting point — the more you chat with Travel Buddy, the better it understands how you actually travel. Your budget, your pace, what you skip, what you never miss. Over time, recommendations stop feeling generic and start feeling like they were made for you.';
+
+  @override
+  String get preferencesPersonaInfoDismiss => 'Got it';
+
+  @override
+  String get preferencesBudgetSection => 'Budget';
+
+  @override
+  String get preferencesBudgetShoestring => 'Shoestring';
+
+  @override
+  String get preferencesBudgetMidRange => 'Mid-range';
+
+  @override
+  String get preferencesBudgetLuxury => 'Luxury';
+
+  @override
+  String get preferencesGroupSection => 'Who\'s travelling';
+
+  @override
+  String get preferencesGroupSolo => 'Solo';
+
+  @override
+  String get preferencesGroupCouple => 'Couple';
+
+  @override
+  String get preferencesGroupFamily => 'Family';
+
+  @override
+  String get preferencesGroupFriends => 'Friends';
+
+  @override
+  String get preferencesStyleSection => 'Travel style';
+
+  @override
+  String get preferencesStyleAdventure => 'Adventure';
+
+  @override
+  String get preferencesStyleCultural => 'Cultural';
+
+  @override
+  String get preferencesStyleRelaxation => 'Relaxation';
+
+  @override
+  String get preferencesStyleFoodie => 'Foodie';
+
+  @override
+  String get preferencesStyleBeach => 'Beach';
+
+  @override
+  String get preferencesStyleNightlife => 'Nightlife';
+
+  @override
+  String get preferencesStyleHiddenGem => 'Off-the-beaten-path';
+
+  @override
+  String get preferencesAccommodationSection => 'Accommodation';
+
+  @override
+  String get preferencesAccommodationHotel => 'Hotel';
+
+  @override
+  String get preferencesAccommodationHostel => 'Hostel';
+
+  @override
+  String get preferencesAccommodationAirbnb => 'Airbnb';
+
+  @override
+  String get preferencesAccommodationBoutique => 'Boutique';
+
+  @override
+  String get preferencesAccommodationCamping => 'Camping';
+
+  @override
+  String get preferencesTransportSection => 'Transport';
+
+  @override
+  String get preferencesTransportCar => 'Car rental';
+
+  @override
+  String get preferencesTransportPublic => 'Public transit';
+
+  @override
+  String get preferencesTransportWalking => 'Walking';
+
+  @override
+  String get preferencesPaceSection => 'Pace';
+
+  @override
+  String get preferencesPaceChill => 'Chill';
+
+  @override
+  String get preferencesPaceModerate => 'Moderate';
+
+  @override
+  String get preferencesPacePacked => 'Packed';
+
+  @override
+  String get preferencesFoodSection => 'Dietary';
+
+  @override
+  String get preferencesFoodVegetarian => 'Vegetarian';
+
+  @override
+  String get preferencesFoodVegan => 'Vegan';
+
+  @override
+  String get preferencesFoodHalal => 'Halal';
+
+  @override
+  String get preferencesFoodGluten => 'Gluten-free';
+
+  @override
+  String get preferencesFoodNone => 'No restrictions';
+
+  @override
+  String get preferencesInterestsSection => 'Interests';
+
+  @override
+  String get preferencesInterestsHistory => 'History';
+
+  @override
+  String get preferencesInterestsNature => 'Nature';
+
+  @override
+  String get preferencesInterestsHiking => 'Hiking';
+
+  @override
+  String get preferencesInterestsBeaches => 'Beaches';
+
+  @override
+  String get preferencesInterestsFood => 'Food';
+
+  @override
+  String get preferencesInterestsNightlife => 'Nightlife';
+
+  @override
+  String get preferencesInterestsArchitecture => 'Architecture';
+
+  @override
+  String get preferencesInterestsReligion => 'Religion';
+
+  @override
+  String get preferencesInterestsPhotography => 'Photography';
+
+  @override
+  String get photoGalleryLabelNoPhotos => 'No photos yet';
+
+  @override
+  String get artifactCarouselLabelNoArtifacts => 'No artifacts to show';
+
+  @override
+  String get buddySaveItinerary => 'Save itinerary';
+
+  @override
+  String get buddyItinerarySaved => 'Saved ✓ — View in My Trips';
+
+  @override
+  String get buddyItinerarySaveRetry => 'Couldn\'t save — tap to retry';
+
+  @override
+  String get buddyItineraryPickStartDateHelp => 'When does this trip start?';
+
+  @override
+  String get buddySaveLimitHelper => 'Limit reached — delete a trip to save a new one';
+
+  @override
+  String get myTripsTitle => 'My Trips';
+
+  @override
+  String get myTripsEmptyTitle => 'No saved trips yet';
+
+  @override
+  String get myTripsEmptySubtitle => 'Plan one with Buddy and tap Save itinerary.';
+
+  @override
+  String get myTripsDatesNotSet => 'Dates not set';
+
+  @override
+  String get myTripsDaysOne => '1 day';
+
+  @override
+  String myTripsDaysOther(int count) {
+    return '$count days';
+  }
+
+  @override
+  String get myTripsDeleteTitle => 'Delete trip?';
+
+  @override
+  String get myTripsDeleteBody => 'This can\'t be undone.';
+
+  @override
+  String get myTripsDeleteCancel => 'Cancel';
+
+  @override
+  String get myTripsDeleteConfirm => 'Delete';
+
+  @override
+  String get myTripsClearAllAction => 'Clear all trips';
+
+  @override
+  String get myTripsClearAllTitle => 'Clear all trips?';
+
+  @override
+  String get myTripsClearAllBody => 'Every saved trip will be permanently deleted. This can\'t be undone.';
+
+  @override
+  String get myTripsClearAllConfirm => 'Clear all';
+
+  @override
+  String myTripsCounter(int count, int max) {
+    return '$count / $max';
+  }
+
+  @override
+  String tripDetailDayLabel(int dayNumber) {
+    return 'Day $dayNumber';
+  }
+
+  @override
+  String get tripDetailAddStop => 'Add stop';
+
+  @override
+  String get tripDetailAddDay => 'Add day';
+
+  @override
+  String get tripDetailDialogSave => 'Save';
+
+  @override
+  String get tripDetailDialogClear => 'Clear';
+
+  @override
+  String get tripDetailStartDateNotSet => 'Not set';
+
+  @override
+  String get tripDetailRailMarkVisited => 'Mark as visited';
+
+  @override
+  String get tripDetailRailResetUpcoming => 'Reset to upcoming';
+
+  @override
+  String tripDetailVisitedAt(String time) {
+    return 'Visited $time';
+  }
+
+  @override
+  String tripDetailDayProgress(int done, int total) {
+    return '$done / $total visited';
+  }
+
+  @override
+  String get tripDetailAutoTrackPromptTitle => 'Auto-check stops as you visit?';
+
+  @override
+  String get tripDetailAutoTrackPromptBody =>
+      'Travel Buddy can check off stops automatically when you\'re nearby during their scheduled time. Location stays on your device.';
+
+  @override
+  String get tripDetailAutoTrackEnable => 'Enable';
+
+  @override
+  String get tripDetailAutoTrackDecline => 'Not now';
+
+  @override
+  String get tripDetailAutoTrackEnableMenu => 'Enable visit auto-tracking';
+
+  @override
+  String get tripDetailAutoTrackDisableMenu => 'Disable visit auto-tracking';
+
+  @override
+  String get tripDetailAutoTrackErrorPermissionTitle => 'Auto-tracking needs location access';
+
+  @override
+  String get tripDetailAutoTrackErrorPermissionBody =>
+      'Auto-tracking checks off stops when you\'re near them. Allow location access while using the app to turn it on.';
+
+  @override
+  String get tripDetailAutoTrackErrorBlockedBody =>
+      'Location access is currently blocked. Open Settings to allow it for Travel Buddy.';
+
+  @override
+  String get tripDetailAutoTrackErrorServiceTitle => 'Turn on Location Services';
+
+  @override
+  String get tripDetailAutoTrackErrorServiceBody =>
+      'Location Services are off for this device. Auto-tracking can\'t run until they\'re back on.';
+
+  @override
+  String get tripDetailAutoTrackErrorOpenSettings => 'Open Settings';
+
+  @override
+  String get tripDetailAutoTrackErrorRetry => 'Try again';
+
+  @override
+  String get tripDetailAddDayDialogTitle => 'Add day';
+
+  @override
+  String get tripDetailAddDayNumberField => 'Day number';
+
+  @override
+  String get tripDetailAddDayTitleField => 'Title (optional)';
+
+  @override
+  String get tripDetailAddDayBaseCityField => 'Base city (optional)';
+
+  @override
+  String get tripDetailSummaryPlaceholder => 'Tap to add a summary';
+
+  @override
+  String get tripDetailEmptyDayHint => 'No stops yet — tap + to add one';
+
+  @override
+  String get tripDetailKebabEditSummary => 'Edit summary';
+
+  @override
+  String get tripDetailKebabChangeStartDate => 'Change start date';
+
+  @override
+  String get tripDetailKebabClearStartDate => 'Clear start date';
+
+  @override
+  String get tripDetailDayActionRename => 'Rename day';
+
+  @override
+  String get tripDetailDayActionChangeBaseCity => 'Change base city';
+
+  @override
+  String get tripDetailDayActionAddStop => 'Add stop here';
+
+  @override
+  String get tripDetailDayActionDelete => 'Delete day';
+
+  @override
+  String get tripDetailRenameDayDialogTitle => 'Rename day';
+
+  @override
+  String get tripDetailChangeBaseCityDialogTitle => 'Change base city';
+
+  @override
+  String get tripDetailStopActionDuplicate => 'Duplicate';
+
+  @override
+  String tripDetailUndoStopBanner(String stopName) {
+    return 'Stop deleted: $stopName';
+  }
+
+  @override
+  String get tripDetailUndoStopButton => 'UNDO';
+
+  @override
+  String get tripDetailStopActionEdit => 'Edit';
+
+  @override
+  String get tripDetailStopActionMove => 'Move to day…';
+
+  @override
+  String get tripDetailStopActionDelete => 'Delete';
+
+  @override
+  String get tripDetailViewOnMapButton => 'View on map';
+
+  @override
+  String get tripDetailMoveStopSheetTitle => 'Move to day';
+
+  @override
+  String tripDetailMoveStopSheetSubtitle(String stopName) {
+    return 'Where should \"$stopName\" go?';
+  }
+
+  @override
+  String tripDetailMoveStopOption(int dayNumber, String label) {
+    return 'Day $dayNumber · $label';
+  }
+
+  @override
+  String get tripDetailMoveStopOptionEmpty => 'no stops yet';
+
+  @override
+  String tripDetailMoveStopOptionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stops',
+      one: '1 stop',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get tripDetailMoveStopFailed => 'Couldn\'t move stop — try again.';
+
+  @override
+  String get tripsErrorSignIn => 'Sign in again to save changes.';
+
+  @override
+  String get tripsErrorNotFound => 'This trip no longer exists.';
+
+  @override
+  String get tripsErrorConflict => 'Trip changed elsewhere — refreshing.';
+
+  @override
+  String get tripsErrorTripLimitReached => 'You can only save up to 3 trips. Delete one to save this trip.';
+
+  @override
+  String get tripsErrorGeneric => 'Couldn\'t save your change.';
+
+  @override
+  String get conversationsUntitled => 'Untitled chat';
+
+  @override
+  String get profileDeleteAccountButton => 'Delete account';
+
+  @override
+  String get profileDeleteAccountTitle => 'Delete account?';
+
+  @override
+  String get profileDeleteAccountBody =>
+      'This permanently removes your trips, conversations, uploaded photos, and preferences. This can\'t be undone.';
+
+  @override
+  String get profileDeleteAccountInstruction => 'Type DELETE to confirm:';
+
+  @override
+  String get profileDeleteAccountConfirmWord => 'DELETE';
+
+  @override
+  String get profileDeleteAccountConfirm => 'Delete my account';
+
+  @override
+  String get profileDeleteAccountCancel => 'Cancel';
+
+  @override
+  String get profileDeleteAccountFailed => 'Couldn\'t delete your account. Please try again.';
 }

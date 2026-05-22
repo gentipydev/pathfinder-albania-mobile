@@ -3,15 +3,14 @@ part of '../timeline_screen.dart';
 class _BottomScrubber extends StatelessWidget {
   const _BottomScrubber(
     this.scroller, {
-    super.key,
     required this.timelineMinSize,
     required this.size,
-    required this.selectedWonder,
+    required this.selectedDestination,
   });
   final ScrollController? scroller;
   final double timelineMinSize;
   final double size;
-  final WonderType? selectedWonder;
+  final DestinationType? selectedDestination;
 
   /// Calculate what fraction the scroller has travelled
   double _calculateScrollFraction(ScrollPosition? pos) {
@@ -55,16 +54,16 @@ class _BottomScrubber extends StatelessWidget {
                   color: $styles.colors.greyStrong,
                   borderRadius: BorderRadius.circular($styles.corners.md),
                 ),
-                child: WondersTimelineBuilder(
+                child: DestinationsTimelineBuilder(
                   crossAxisGap: 4,
-                  selectedWonders: selectedWonder != null ? [selectedWonder!] : [],
+                  selectedDestinations: selectedDestination != null ? [selectedDestination!] : [],
                 ),
               ),
 
               /// Visible area, follows the position of scroller
               AnimatedBuilder(
                 animation: scroller,
-                builder: (_, __) {
+                builder: (_, _) {
                   ScrollPosition? pos;
                   if (scroller.hasClients) pos = scroller.position;
                   // Get current scroll offset and move the viewport to match

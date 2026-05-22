@@ -1,6 +1,6 @@
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/utils/duration_utils.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
 
 class CompassDivider extends StatelessWidget {
   const CompassDivider({

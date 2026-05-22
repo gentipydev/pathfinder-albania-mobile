@@ -2,7 +2,6 @@ part of '../collection_screen.dart';
 
 class _CollectibleImage extends StatelessWidget {
   const _CollectibleImage({
-    super.key,
     required this.collectible,
     required this.state,
     required this.onPressed,
@@ -58,9 +57,13 @@ class _CollectibleImage extends StatelessWidget {
                 ),
               ],
       ),
+      // Falls back to the bundled icon asset if the artifact image hasn't
+      // been seeded yet on the backend (or if the network is unreachable).
       child: AppImage(
-        image: NetworkImage(collectible.imageUrlSmall),
-        fit: BoxFit.cover,
+        image: collectible.imageUrlSmall.isEmpty
+            ? collectible.icon
+            : NetworkImage(collectible.imageUrlSmall),
+        fit: BoxFit.contain,
         scale: 0.5,
       ),
     );

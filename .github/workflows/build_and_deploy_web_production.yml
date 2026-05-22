@@ -5,10 +5,12 @@ on:
 
 env:
   BASE_HREF: "web"
-  REMOTE_DIR: "wonderous.app"
+  # TODO(rebrand): replace with the Travel Buddy production deploy target.
+  REMOTE_DIR: "travelbuddy.app"
 jobs:
   build:
     uses: ./.github/workflows/build_web.yml
+    secrets: inherit
 
   deploy:
     needs: build

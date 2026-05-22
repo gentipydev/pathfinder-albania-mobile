@@ -3,7 +3,6 @@ part of '../collection_screen.dart';
 @immutable
 class _CollectionList extends StatefulWidget with GetItStatefulWidgetMixin {
   _CollectionList({
-    super.key,
     this.onReset,
     required this.fromId,
     this.scrollKey,
@@ -24,14 +23,13 @@ class _CollectionListState extends State<_CollectionList> with GetItStateMixin {
 
   late final ValueNotifier<bool> _vtMode = ValueNotifier(true)..addListener(_maintainScrollPos);
 
-  WonderType? get scrollTargetWonder {
-    CollectibleData? item;
+  DestinationType? _scrollTargetDestination(Map<String, int> states) {
     if (widget.fromId.isEmpty) {
-      item = collectiblesLogic.getFirstDiscoveredOrNull();
-    } else {
-      item = collectiblesLogic.fromId(widget.fromId);
+      return firstDiscoveredOrNull(states)?.destination;
     }
-    return item?.wonder;
+    return collectiblesData
+        .firstWhereOrNull((o) => o.id == widget.fromId)
+        ?.destination;
   }
 
   // Maintain scroll position when switching between vertical and horizontal orientation.
@@ -56,15 +54,15 @@ class _CollectionListState extends State<_CollectionList> with GetItStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    watchX((CollectiblesLogic o) => o.statesById);
-    List<WonderData> wonders = wondersLogic.all;
+    final states = context.watch<CollectiblesBloc>().state.statesById;
+    List<DestinationData> destinations = destinationsLogic.all;
     _vtMode.value = context.isLandscape == false;
-    final scrollWonder = scrollTargetWonder;
+    final scrollDestination = _scrollTargetDestination(states);
     // Create list of collections that is shared by both hz and vt layouts
     List<Widget> collections = [
-      ...wonders.map((d) {
+      ...destinations.map((d) {
         return _CollectionListCard(
-          key: d.type == scrollWonder ? widget.scrollKey : null,
+          key: d.type == scrollDestination ? widget.scrollKey : null,
           width: _vtMode.value ? null : _CollectionList._hzCardExtent,
           height: _vtMode.value ? _CollectionList._vtCardExtent : 400,
           fromId: widget.fromId,

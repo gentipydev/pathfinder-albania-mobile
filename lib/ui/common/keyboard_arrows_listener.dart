@@ -1,4 +1,4 @@
-import 'package:wonders/common_libs.dart';
+import 'package:travel_buddy/common_libs.dart';
 
 class ArrowDir {
   ArrowDir(this.hz, this.vt);
@@ -21,17 +21,16 @@ class _KeyboardArrowsListenerState extends State<KeyboardArrowsListener> {
 
   @override
   Widget build(BuildContext context) {
-    return RawKeyboardListener(
+    return KeyboardListener(
       autofocus: true,
       focusNode: _focusNode,
-      onKey: _handleKey,
+      onKeyEvent: _handleKey,
       child: widget.child,
     );
   }
 
-  void _handleKey(RawKeyEvent event) {
-    if (event is! RawKeyDownEvent) return;
-    if (event.repeat) return;
+  void _handleKey(KeyEvent event) {
+    if (event is! KeyDownEvent) return;
     final arrowDir = ArrowDir(0, 0);
     if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
       arrowDir.hz = -1;

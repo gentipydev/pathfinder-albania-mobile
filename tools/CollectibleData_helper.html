@@ -8,45 +8,49 @@
         </style>
     </head>
     <body>
-        This tool builds the CollectibleData list. Wonders should have a blank line between them. Icon names: camera, jewelry, scroll, vase
+        This tool builds the CollectibleData list. Destinations should have a blank line between them. Icon names: camera, jewelry, scroll, vase
         <br>
+<!-- TODO(rebrand): the artifact IDs below were chosen to match the original
+     upstream template destinations' cultures. They need to be regenerated against
+     Albania-relevant Met collection IDs. The destination labels were updated to
+     the new DestinationType enum names so the generated Dart still compiles. -->
 <textarea id="input" rows="15" cols="80">
-chichenItza
+butrint
 701645, jewelry
 310555, jewelry
 286467, picture
 
-christRedeemer
+berat
 501302, statue
 157985, jewelry
 227759, textile
 
-colosseum
+gjirokaster
 245376, vase
 256570, statue
 286136, picture
 
-greatWall
+apollonia
 39918, scroll
 39666, vase
 39735, textile
 
-machuPicchu
+theth
 308120, textile
 309960, statue
 313341, vase
 
-petra
+kruja
 322592, statue
 325918, vase
 326243, vase
 
-pyramidsGiza
+albanianAlps
 546510, scroll
 543896, statue
 545728, jewelry
 
-tajMahal
+korca
 24907, jewelry
 453183, picture
 453983, scroll
@@ -56,17 +60,17 @@ tajMahal
         <br>
         <textarea id="output" rows="15" cols="80">Output here.</textarea>
         <script>
-let wonders, wonderIndex, artifactIndex;
+let destinations, destinationIndex, artifactIndex;
 function run() {
-    let wonderStrs = input.value.split('\n\n');
-    wonders = [];
-    for (let i=0; i<wonderStrs.length; i++) {
-        let o = wonders[i] = {};
-        let lineStrs = wonderStrs[i].split('\n');
+    let destinationStrs = input.value.split('\n\n');
+    destinations = [];
+    for (let i=0; i<destinationStrs.length; i++) {
+        let o = destinations[i] = {};
+        let lineStrs = destinationStrs[i].split('\n');
         parseInfo(lineStrs[0], o);
         parseArtifacts(lineStrs.slice(1), o);
     }
-    wonderIndex = artifactIndex = 0;
+    destinationIndex = artifactIndex = 0;
     loadNext();
 }
 
@@ -86,14 +90,14 @@ function parseArtifacts(strs, o) {
 }
 
 function loadNext() {
-    if (wonderIndex >= wonders.length) { return out(); }
-    let wonder = wonders[wonderIndex], artifacts = wonder.artifacts;
+    if (destinationIndex >= destinations.length) { return out(); }
+    let destination = destinations[destinationIndex], artifacts = destination.artifacts;
     if (artifactIndex >= artifacts.length) {
-        wonderIndex++;
+        destinationIndex++;
         artifactIndex = 0;
         return loadNext();
     }
-    output.value = `Loading data for ${wonder.type} artifact #${artifactIndex}`;
+    output.value = `Loading data for ${destination.type} artifact #${artifactIndex}`;
     let id = artifacts[artifactIndex].id;
     fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
         .then(response => validateResponse(response));
@@ -104,8 +108,8 @@ function validateResponse(response) {
 }
 
 function parseArtifactData(data) {
-    let wonder = wonders[wonderIndex], o = wonder.artifacts[artifactIndex];
-    wonder.artifacts[artifactIndex].data = data;
+    let destination = destinations[destinationIndex], o = destination.artifacts[artifactIndex];
+    destination.artifacts[artifactIndex].data = data;
     console.log(data);
     artifactIndex++;
     loadNext();
@@ -115,15 +119,15 @@ let icons = ['silhouette', 'foo'];
 function out() {
     // other possibly useful props: objectDate, culture, primaryImage, primaryImageSmall
     let str = '', iconIndex = 0;
-    for (let i=0; i<wonders.length; i++) {
-        let wonder = wonders[i], artifacts = wonder.artifacts;
-        str += `// ${wonder.type}\n`;
+    for (let i=0; i<destinations.length; i++) {
+        let destination = destinations[i], artifacts = destination.artifacts;
+        str += `// ${destination.type}\n`;
         for (let j=0; j<artifacts.length; j++) {
             let o = artifacts[j];
             str += 
 `CollectibleData(
   title: '${escape(o.data.title)}',
-  wonder: WonderType.${wonder.type},
+  destination: DestinationType.${destination.type},
   artifactId: '${o.data.objectID}',
   imageUrl: '${o.data.primaryImage}',
   imageUrlSmall: '${o.data.primaryImageSmall}',

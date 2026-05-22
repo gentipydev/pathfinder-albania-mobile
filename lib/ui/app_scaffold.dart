@@ -1,8 +1,8 @@
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/app_scroll_behavior.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/common/app_scroll_behavior.dart';
 
-class WondersAppScaffold extends StatelessWidget {
-  const WondersAppScaffold({super.key, required this.child});
+class DestinationsAppScaffold extends StatelessWidget {
+  const DestinationsAppScaffold({super.key, required this.child});
   final Widget child;
   static AppStyle get style => _style;
   static AppStyle _style = AppStyle();

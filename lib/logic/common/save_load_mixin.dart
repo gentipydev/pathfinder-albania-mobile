@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:wonders/logic/common/json_prefs_file.dart';
-import 'package:wonders/logic/common/throttler.dart';
+import 'package:travel_buddy/logic/common/json_prefs_file.dart';
+import 'package:travel_buddy/logic/common/throttler.dart';
 
 mixin ThrottledSaveLoadMixin {
   late final _file = JsonPrefsFile(fileName);
@@ -25,6 +25,15 @@ mixin ThrottledSaveLoadMixin {
   }
 
   Future<void> scheduleSave() async => _throttle.call(save);
+
+  /// Force any pending throttled save to run, then write current in-memory
+  /// state once more so the call site can await durability. Called from
+  /// `AppLifecycleListener` (onHide/onPause) so a quick background-then-kill
+  /// cycle can't lose the user's last toggle.
+  Future<void> flushPendingSave() async {
+    _throttle.flush();
+    await save();
+  }
 
   /// Serialization
   String get fileName;

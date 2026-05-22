@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:wonders/l10n/app_localizations.dart';
+import 'package:travel_buddy/l10n/app_localizations.dart';
 import 'package:intl/intl_standalone.dart';
-import 'package:wonders/common_libs.dart';
+import 'package:travel_buddy/common_libs.dart';
 
 class LocaleLogic {
   final Locale _defaultLocal = Locale('en');
@@ -11,19 +11,23 @@ class LocaleLogic {
   bool get isLoaded => _strings != null;
   bool get isEnglish => strings.localeName == 'en';
 
-  Future<void> load() async {
+  /// Resolves a locale (persisted → system fallback → default), loads its
+  /// `AppLocalizations`, and returns the resolved language code. The bootstrap
+  /// caller dispatches `SettingsLocaleHydrated(code)` into `SettingsBloc`.
+  Future<String> load() async {
     Locale locale = _defaultLocal;
-    final localeCode = settingsLogic.currentLocale.value ?? await findSystemLocale();
+    final stored = settingsBloc.state.currentLocale;
+    final localeCode = stored ?? await findSystemLocale();
     locale = Locale(localeCode.split('_')[0]);
     if (kDebugMode) {
-      // locale = Locale('zh'); // uncomment to test chinese
+      // locale = Locale('sq'); // uncomment to test albanian
     }
     if (AppLocalizations.supportedLocales.contains(locale) == false) {
       locale = _defaultLocal;
     }
 
-    settingsLogic.currentLocale.value = locale.languageCode;
     _strings = await AppLocalizations.delegate.load(locale);
+    return locale.languageCode;
   }
 
   Future<void> loadIfChanged(Locale locale) async {

@@ -1,8 +1,8 @@
 part of '../editorial_screen.dart';
 
 class _TitleText extends StatelessWidget {
-  const _TitleText(this.data, {super.key, required this.scroller});
-  final WonderData data;
+  const _TitleText(this.data, {required this.scroller});
+  final DestinationData data;
   final ScrollController scroller;
 
   @override
@@ -19,42 +19,15 @@ class _TitleText extends StatelessWidget {
                   Gap($styles.insets.md),
                   Gap(30),
 
-                  /// Sub-title row
-                  SeparatedRow(
-                    padding: EdgeInsets.symmetric(horizontal: $styles.insets.sm),
-                    separatorBuilder: () => Gap($styles.insets.sm),
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          color: data.type.fgColor,
-                        ).maybeAnimate().scale(curve: Curves.easeOut, delay: 500.delayMs),
-                      ),
-                      Semantics(
-                        header: true,
-                        sortKey: OrdinalSortKey(1),
-                        child: Text(
-                          data.subTitle.toUpperCase(),
-                          style: $styles.text.title2,
-                        ).maybeAnimate().fade(delay: 100.delayMs),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: data.type.fgColor,
-                        ).maybeAnimate().scale(curve: Curves.easeOut, delay: 500.delayMs),
-                      ),
-                    ],
-                  ),
-                  Gap($styles.insets.md),
-
-                  /// Wonder title text
+                  /// Destination title text
                   Semantics(
                     sortKey: OrdinalSortKey(0),
                     child: AnimatedBuilder(
                       animation: scroller,
-                      builder: (_, __) {
+                      builder: (_, _) {
                         final yPos = ContextUtils.getGlobalPos(context)?.dy ?? 0;
                         bool enableHero = yPos > -100;
-                        return WonderTitleText(data, enableHero: enableHero);
+                        return DestinationTitleText(data, enableHero: enableHero);
                       },
                     ),
                   ),
@@ -67,22 +40,6 @@ class _TitleText extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Gap($styles.insets.md),
-
-                  /// Compass divider
-                  ExcludeSemantics(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: $styles.insets.sm),
-                      child: AnimatedBuilder(
-                        animation: scroller,
-                        builder: (_, __) => CompassDivider(
-                          isExpanded: scroller.position.pixels <= 0,
-                          linesColor: data.type.fgColor,
-                          compassColor: $styles.colors.offWhite,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Gap($styles.insets.sm),
 
                   /// Date
                   Text(

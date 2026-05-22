@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.gskinner.flutter" "\0"
-            VALUE "FileDescription", "flutter_wonders_app" "\0"
+            VALUE "CompanyName", "Travel Buddy" "\0"
+            VALUE "FileDescription", "Travel Buddy" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "flutter_wonders_app" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 com.gskinner.flutter. All rights reserved." "\0"
-            VALUE "OriginalFilename", "flutter_wonders_app.exe" "\0"
-            VALUE "ProductName", "flutter_wonders_app" "\0"
+            VALUE "InternalName", "travel_buddy" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Travel Buddy. All rights reserved." "\0"
+            VALUE "OriginalFilename", "travel_buddy.exe" "\0"
+            VALUE "ProductName", "Travel Buddy" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

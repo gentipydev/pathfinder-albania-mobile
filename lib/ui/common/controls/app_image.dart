@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:image_fade/image_fade.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/retry_image.dart';
-import 'package:wonders/ui/common/controls/app_loading_indicator.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/retry_image.dart';
+import 'package:travel_buddy/ui/common/controls/app_loading_indicator.dart';
 
 class AppImage extends StatefulWidget {
   const AppImage({
@@ -62,13 +62,13 @@ class _AppImageState extends State<AppImage> {
       alignment: widget.alignment,
       duration: widget.duration ?? $styles.times.fast,
       syncDuration: widget.syncDuration ?? 0.ms,
-      loadingBuilder: (_, value, ___) {
+      loadingBuilder: (_, value, _) {
         if (!widget.distractor && !widget.progress) return SizedBox();
         return Center(
           child: AppLoadingIndicator(value: widget.progress ? value : null, color: widget.color),
         );
       },
-      errorBuilder: (_, __) => Container(
+      errorBuilder: (_, _) => Container(
         padding: EdgeInsets.all($styles.insets.xs),
         alignment: Alignment.center,
         child: LayoutBuilder(

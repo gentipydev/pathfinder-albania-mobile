@@ -1,9 +1,5 @@
-import 'dart:convert';
-import 'dart:developer' as dev;
-
-import 'package:http/http.dart' as http;
-import 'package:wonders/logic/common/rest_utils.dart';
-import 'package:wonders/logic/common/string_utils.dart';
+import 'package:dio/dio.dart';
+import 'package:travel_buddy/logic/common/dio_client.dart';
 
 enum NetErrorType {
   none,
@@ -12,94 +8,65 @@ enum NetErrorType {
   denied,
 }
 
-enum MethodType { get, post, put, patch, delete, head }
-
-typedef HttpRequest = Future<http.Response> Function();
-
 class HttpClient {
   static Future<HttpResponse> get(String url, {Map<String, String>? headers}) async {
-    return await _request(() async {
-      return await http.get(Uri.parse(url), headers: headers);
-    });
-  }
-
-  static Future<HttpResponse> send(
-    String url, {
-    Map<String, dynamic>? urlParams,
-    MethodType method = MethodType.get,
-    Map<String, String>? headers,
-    dynamic body,
-    Encoding? encoding,
-  }) async {
-    HttpResponse? response;
-
-    if (urlParams != null) {
-      Map<String, String> urlParams = {};
-      urlParams.forEach((key, value) {
-        urlParams[key] = value.toString();
-      });
-
-      url += RestUtils.encodeParams(urlParams);
-    }
-
-    response = await HttpClient.get(url, headers: headers);
-    return response;
-  }
-
-  static Future<HttpResponse> _request(HttpRequest request) async {
-    http.Response response;
     try {
-      response = await request();
-    } on Exception catch (e) {
-      dev.log('Network call failed: ${e.toString()}');
-      response = http.Response('ERROR: Could not get a response', 404);
+      final res = await appDio.getUri<String>(
+        Uri.parse(url),
+        options: Options(
+          headers: headers,
+          responseType: ResponseType.plain,
+          validateStatus: (_) => true,
+        ),
+      );
+      return HttpResponse.fromDio(res);
+    } on DioException catch (e) {
+      final type = switch (e.type) {
+        DioExceptionType.connectionTimeout ||
+        DioExceptionType.sendTimeout ||
+        DioExceptionType.receiveTimeout =>
+          NetErrorType.timedOut,
+        _ => NetErrorType.disconnected,
+      };
+      return HttpResponse.error(type);
     }
-    return HttpResponse(response);
   }
 }
 
 class HttpResponse {
-  final http.Response? raw;
+  HttpResponse({
+    required this.statusCode,
+    this.body,
+    this.headers,
+    NetErrorType? errorType,
+  }) : errorType = errorType ?? _classify(statusCode);
 
-  NetErrorType? errorType;
+  factory HttpResponse.fromDio(Response<dynamic> r) {
+    final data = r.data;
+    final body = data is String ? data : data?.toString();
+    final headers = <String, String>{};
+    r.headers.forEach((k, v) => headers[k] = v.join(', '));
+    return HttpResponse(
+      statusCode: r.statusCode ?? -1,
+      body: body,
+      headers: headers,
+    );
+  }
+
+  factory HttpResponse.error(NetErrorType type) =>
+      HttpResponse(statusCode: -1, errorType: type);
+
+  final int statusCode;
+  final String? body;
+  final Map<String, String>? headers;
+  final NetErrorType errorType;
 
   bool get success => errorType == NetErrorType.none;
 
-  String? get body => raw?.body;
-
-  Map<String, String>? get headers => raw?.headers;
-
-  int get statusCode => raw?.statusCode ?? -1;
-
-  HttpResponse(this.raw) {
-    //No response at all, there must have been a connection error
-    if (raw == null) {
-      errorType = NetErrorType.disconnected;
-    } else if (raw!.statusCode >= 200 && raw!.statusCode <= 299) {
-      errorType = NetErrorType.none;
-    } else if (raw!.statusCode >= 500 && raw!.statusCode < 600) {
-      errorType = NetErrorType.timedOut;
-    } else if (raw!.statusCode >= 400 && raw!.statusCode < 500) {
-      errorType = NetErrorType.denied;
-    }
-  }
-}
-
-class ServiceResult<R> {
-  final HttpResponse response;
-
-  R? content;
-
-  bool get parseError => content == null;
-  bool get success => response.success && !parseError;
-
-  ServiceResult(this.response, R Function(Map<String, dynamic>) parser) {
-    if (StringUtils.isNotEmpty(response.body) && response.success) {
-      try {
-        content = parser.call(jsonDecode(utf8.decode(response.raw!.bodyBytes)));
-      } on FormatException catch (e) {
-        dev.log('ParseError: ${e.message}');
-      }
-    }
+  static NetErrorType _classify(int code) {
+    if (code >= 200 && code <= 299) return NetErrorType.none;
+    if (code >= 400 && code < 500) return NetErrorType.denied;
+    if (code >= 500 && code < 600) return NetErrorType.timedOut;
+    return NetErrorType.disconnected;
   }
 }

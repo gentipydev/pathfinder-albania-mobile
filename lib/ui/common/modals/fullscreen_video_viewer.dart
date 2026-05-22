@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/platform_info.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/platform_info.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class FullscreenVideoViewer extends StatefulWidget {
@@ -27,31 +27,35 @@ class _FullscreenVideoViewerState extends State<FullscreenVideoViewer> {
     super.initState();
     appLogic.supportedOrientationsOverride = [Axis.horizontal, Axis.vertical];
     _controller.cueVideoByUrl(mediaContentUrl: 'https://www.youtube.com/v/${widget.id}');
-    RawKeyboard.instance.addListener(_handleKeyDown);
+    HardwareKeyboard.instance.addHandler(_handleKeyDown);
   }
 
   @override
   void dispose() {
     // when view closes, remove the override
     appLogic.supportedOrientationsOverride = null;
-    RawKeyboard.instance.removeListener(_handleKeyDown);
+    HardwareKeyboard.instance.removeHandler(_handleKeyDown);
     super.dispose();
   }
 
-  Future<void> _handleKeyDown(RawKeyEvent value) async {
-    if (value.repeat) return;
-    if (value is RawKeyDownEvent) {
+  bool _handleKeyDown(KeyEvent value) {
+    if (value is KeyDownEvent) {
       final k = value.logicalKey;
       if (k == LogicalKeyboardKey.enter || k == LogicalKeyboardKey.space) {
         if (_enableVideo) {
-          final state = await _controller.playerState;
-          if (state == PlayerState.playing) {
-            _controller.pauseVideo();
-          } else {
-            _controller.playVideo();
-          }
+          _togglePlayState();
         }
       }
+    }
+    return false;
+  }
+
+  Future<void> _togglePlayState() async {
+    final state = await _controller.playerState;
+    if (state == PlayerState.playing) {
+      _controller.pauseVideo();
+    } else {
+      _controller.playVideo();
     }
   }
 

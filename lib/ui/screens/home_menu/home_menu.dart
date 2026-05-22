@@ -1,21 +1,24 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/animate_utils.dart';
-import 'package:wonders/logic/data/wonder_data.dart';
-import 'package:wonders/ui/common/app_backdrop.dart';
-import 'package:wonders/ui/common/app_icons.dart';
-import 'package:wonders/ui/common/controls/app_header.dart';
-import 'package:wonders/ui/common/controls/locale_switcher.dart';
-import 'package:wonders/ui/common/pop_navigator_underlay.dart';
-import 'package:wonders/ui/common/utils/duration_utils.dart';
-import 'package:wonders/ui/common/wonderous_logo.dart';
-import 'package:wonders/ui/screens/home_menu/about_dialog_content.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/features/settings/bloc/settings_bloc.dart';
+import 'package:travel_buddy/features/settings/bloc/settings_state.dart';
+import 'package:travel_buddy/logic/common/animate_utils.dart';
+import 'package:travel_buddy/logic/data/destination_data.dart';
+import 'package:travel_buddy/ui/common/app_backdrop.dart';
+import 'package:travel_buddy/ui/common/app_icons.dart';
+import 'package:travel_buddy/ui/common/controls/app_header.dart';
+import 'package:travel_buddy/ui/common/controls/locale_switcher.dart';
+import 'package:travel_buddy/ui/common/pop_navigator_underlay.dart';
+import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:travel_buddy/ui/common/travel_buddy_logo.dart';
+import 'package:travel_buddy/ui/screens/home_menu/about_dialog_content.dart';
 
 class HomeMenu extends StatefulWidget {
   const HomeMenu({super.key, required this.data});
-  final WonderData data;
+  final DestinationData data;
 
   @override
   State<HomeMenu> createState() => _HomeMenuState();
@@ -31,12 +34,12 @@ class _HomeMenuState extends State<HomeMenu> {
       context: context,
       applicationName: $strings.appName,
       applicationVersion: packageInfo.version,
-      applicationLegalese: '© 2022 gskinner',
+      applicationLegalese: '© 2026 Travel Buddy',
       children: [AboutDialogContent()],
       applicationIcon: Container(
         color: $styles.colors.black,
         padding: EdgeInsets.all($styles.insets.xs),
-        child: WonderousLogo(width: 52),
+        child: TravelBuddyLogo(width: 52),
       ),
     );
   }
@@ -102,12 +105,12 @@ class _HomeMenuState extends State<HomeMenu> {
       mainAxisSize: MainAxisSize.min,
       children: [
         buildRow([
-          _GridBtn(wondersLogic.all[0], widget.data),
-          _GridBtn(wondersLogic.all[1], widget.data),
-          _GridBtn(wondersLogic.all[2], widget.data),
+          _GridBtn(destinationsLogic.all[0], widget.data),
+          _GridBtn(destinationsLogic.all[1], widget.data),
+          _GridBtn(destinationsLogic.all[2], widget.data),
         ]),
         buildRow([
-          _GridBtn(wondersLogic.all[3], widget.data),
+          _GridBtn(destinationsLogic.all[3], widget.data),
           SizedBox(
             width: _btnSize(context),
             child: SvgPicture.asset(
@@ -115,21 +118,21 @@ class _HomeMenuState extends State<HomeMenu> {
               colorFilter: $styles.colors.offWhite.colorFilter,
             ),
           ),
-          _GridBtn(wondersLogic.all[4], widget.data),
+          _GridBtn(destinationsLogic.all[4], widget.data),
         ]),
         buildRow([
-          _GridBtn(wondersLogic.all[5], widget.data),
-          _GridBtn(wondersLogic.all[6], widget.data),
-          _GridBtn(wondersLogic.all[7], widget.data),
+          _GridBtn(destinationsLogic.all[5], widget.data),
+          _GridBtn(destinationsLogic.all[6], widget.data),
+          _GridBtn(destinationsLogic.all[7], widget.data),
         ]),
       ],
     );
   }
 
   Widget _buildBottomBtns(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: settingsLogic.currentLocale,
-      builder: (_, __, ___) {
+    return BlocSelector<SettingsBloc, SettingsState, String?>(
+      selector: (s) => s.currentLocale,
+      builder: (_, _) {
         return SeparatedColumn(
           separatorBuilder: () => Divider(thickness: 1.5, height: 1).maybeAnimate().scale(
             duration: $styles.times.slow,
@@ -165,8 +168,8 @@ class _HomeMenuState extends State<HomeMenu> {
 
 class _GridBtn extends StatefulWidget {
   const _GridBtn(this.btnData, this.selectedData);
-  final WonderData btnData;
-  final WonderData selectedData;
+  final DestinationData btnData;
+  final DestinationData selectedData;
   double _btnSize(BuildContext context) => (context.sizePx.shortestSide / 5).clamp(60, 100);
 
   @override
@@ -176,11 +179,11 @@ class _GridBtn extends StatefulWidget {
 class _GridBtnState extends State<_GridBtn> {
   bool _isOver = false;
 
-  void _handleWonderPressed(BuildContext context, WonderData data) => Navigator.pop(context, data.type);
+  void _handleDestinationPressed(BuildContext context, DestinationData data) => Navigator.pop(context, data.type);
 
   @override
   Widget build(BuildContext context) {
-    WonderData btnData = widget.btnData;
+    DestinationData btnData = widget.btnData;
     bool isSelected = btnData == widget.selectedData;
 
     Widget iconImage = Image.asset(btnData.type.homeBtn, fit: BoxFit.cover);
@@ -206,7 +209,7 @@ class _GridBtnState extends State<_GridBtn> {
         child: AppBtn(
           border: !isSelected ? null : BorderSide(color: $styles.colors.offWhite, width: 5),
           bgColor: btnData.type.fgColor,
-          onPressed: () => _handleWonderPressed(context, btnData),
+          onPressed: () => _handleDestinationPressed(context, btnData),
           padding: EdgeInsets.zero,
           semanticLabel: btnData.title,
           child: SizedBox.expand(

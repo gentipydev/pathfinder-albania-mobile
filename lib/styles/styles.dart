@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/utils/duration_utils.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
 
 export 'colors.dart';
 
@@ -64,10 +64,10 @@ class _Text {
 
   final Map<String, TextStyle> _quoteFonts = {
     'en': TextStyle(fontFamily: 'Cinzel'),
-    'zh': TextStyle(fontFamily: 'MaShanZheng'),
+    'sq': TextStyle(fontFamily: 'Cinzel'),
   };
 
-  final Map<String, TextStyle> _wonderTitleFonts = {
+  final Map<String, TextStyle> _destinationTitleFonts = {
     'en': TextStyle(fontFamily: 'Yeseva'),
   };
 
@@ -90,13 +90,13 @@ class _Text {
 
   TextStyle get titleFont => _getFontForLocale(_titleFonts);
   TextStyle get quoteFont => _getFontForLocale(_quoteFonts);
-  TextStyle get wonderTitleFont => _getFontForLocale(_wonderTitleFonts);
+  TextStyle get destinationTitleFont => _getFontForLocale(_destinationTitleFonts);
   TextStyle get contentFont => _getFontForLocale(_contentFonts);
   TextStyle get monoTitleFont => _getFontForLocale(_monoTitleFonts);
 
   late final TextStyle dropCase = _createFont(quoteFont, sizePx: 56, heightPx: 20);
 
-  late final TextStyle wonderTitle = _createFont(wonderTitleFont, sizePx: 64, heightPx: 56);
+  late final TextStyle destinationTitle = _createFont(destinationTitleFont, sizePx: 64, heightPx: 56);
 
   late final TextStyle h1 = _createFont(titleFont, sizePx: 64, heightPx: 62);
   late final TextStyle h2 = _createFont(titleFont, sizePx: 32, heightPx: 46);

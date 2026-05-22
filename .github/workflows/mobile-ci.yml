@@ -1,0 +1,62 @@
+name: Mobile CI
+
+on:
+  pull_request:
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - 'analysis_options.yaml'
+      - '.github/workflows/mobile-ci.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - 'analysis_options.yaml'
+      - '.github/workflows/mobile-ci.yml'
+
+# Cancel superseded runs on the same branch/PR.
+concurrency:
+  group: mobile-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          # Pinned to the same version the deploy workflows use so analyze
+          # and test run on the exact toolchain that ships.
+          flutter-version: '3.35.7'
+          channel: 'stable'
+          cache: true
+
+      - name: Materialize dummy .env
+        # Required because lib/config/env.dart reads these at startup. Tests
+        # mock outbound network so placeholder values are safe.
+        run: |
+          cat > .env <<'EOF'
+          SUPABASE_URL=https://example.supabase.co
+          SUPABASE_ANON_KEY=test-placeholder
+          API_BASE_URL=http://localhost:8000
+          EOF
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        # `--fatal-infos` treats info-level lints as failures; matches the
+        # bar set in analysis_options.yaml's custom rules.
+        run: flutter analyze --fatal-infos
+
+      - name: Test
+        run: flutter test --reporter compact

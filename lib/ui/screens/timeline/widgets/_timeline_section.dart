@@ -1,15 +1,15 @@
 part of '../timeline_screen.dart';
 
 class TimelineSection extends StatelessWidget {
-  const TimelineSection(this.data, this.selectedYr, {super.key, required this.selectedWonder});
-  final WonderData data;
+  const TimelineSection(this.data, this.selectedYr, {super.key, required this.selectedDestination});
+  final DestinationData data;
   final int selectedYr;
-  final WonderType? selectedWonder;
+  final DestinationType? selectedDestination;
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected = selectedWonder == data.type;
-    // get a fraction from 0 - 1 based on selected yr and start/end yr of the wonder
+    bool isSelected = selectedDestination == data.type;
+    // get a fraction from 0 - 1 based on selected yr and start/end yr of the destination
     // 500, 250, 750
     int startYr = data.startYr, endYr = data.endYr;
     double fraction = (selectedYr - startYr) / (endYr - startYr);
@@ -31,7 +31,7 @@ class TimelineSection extends StatelessWidget {
             child: BlendMask(
               blendModes: isSelected ? [] : const [BlendMode.luminosity],
               opacity: .6,
-              child: _buildWonderImage(),
+              child: _buildDestinationImage(),
             ),
           ),
         ),
@@ -39,7 +39,7 @@ class TimelineSection extends StatelessWidget {
     );
   }
 
-  Container _buildWonderImage() {
+  Container _buildDestinationImage() {
     return Container(
       height: 160,
       decoration: BoxDecoration(

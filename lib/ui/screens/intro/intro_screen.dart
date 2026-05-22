@@ -1,15 +1,16 @@
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/platform_info.dart';
-import 'package:wonders/ui/common/app_icons.dart';
-import 'package:wonders/ui/common/controls/app_page_indicator.dart';
-import 'package:wonders/ui/common/gradient_container.dart';
-import 'package:wonders/ui/common/ignore_pointer.dart';
-import 'package:wonders/ui/common/previous_next_navigation.dart';
-import 'package:wonders/ui/common/static_text_scale.dart';
-import 'package:wonders/ui/common/themed_text.dart';
-import 'package:wonders/ui/common/utils/app_haptics.dart';
-import 'package:wonders/ui/common/utils/duration_utils.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/features/settings/bloc/settings_event.dart';
+import 'package:travel_buddy/logic/common/platform_info.dart';
+import 'package:travel_buddy/ui/common/app_icons.dart';
+import 'package:travel_buddy/ui/common/controls/app_page_indicator.dart';
+import 'package:travel_buddy/ui/common/gradient_container.dart';
+import 'package:travel_buddy/ui/common/ignore_pointer.dart';
+import 'package:travel_buddy/ui/common/previous_next_navigation.dart';
+import 'package:travel_buddy/ui/common/static_text_scale.dart';
+import 'package:travel_buddy/ui/common/themed_text.dart';
+import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
+import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -43,8 +44,9 @@ class _IntroScreenState extends State<IntroScreen> {
 
   void _handleIntroCompletePressed() {
     if (_currentPage.value == pageData.length - 1) {
-      context.go(ScreenPaths.home);
-      settingsLogic.hasCompletedOnboarding.value = true;
+      settingsBloc.add(const SettingsOnboardingCompletedToggled(true));
+      final authed = authBloc.state.isAuthenticated;
+      context.go(authed ? ScreenPaths.home : ScreenPaths.auth);
     }
   }
 
@@ -81,7 +83,7 @@ class _IntroScreenState extends State<IntroScreen> {
     // Set the page data, as strings may have changed based on locale
     pageData = [
       _PageData($strings.introTitleJourney, $strings.introDescriptionNavigate, 'camel', '1'),
-      _PageData($strings.introTitleExplore, $strings.introDescriptionUncover, 'petra', '2'),
+      _PageData($strings.introTitleExplore, $strings.introDescriptionUncover, 'kruja', '2'),
       _PageData($strings.introTitleDiscover, $strings.introDescriptionLearn, 'statue', '3'),
     ];
 
@@ -137,7 +139,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           child: Container(
                             height: smallMode ? _logoHeightSmall : _logoHeight,
                             alignment: Alignment.center,
-                            child: _WonderousLogo(),
+                            child: _TravelBuddyLogo(),
                           ),
                         ),
 
@@ -147,7 +149,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           width: smallMode ? _imageSizeSmall : _imageSize,
                           child: ValueListenableBuilder<int>(
                             valueListenable: _currentPage,
-                            builder: (_, value, __) {
+                            builder: (_, value, _) {
                               return AnimatedSwitcher(
                                 duration: $styles.times.slow,
                                 child: KeyedSubtree(
@@ -212,7 +214,7 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget _buildFinishBtn(BuildContext context) {
     return ValueListenableBuilder<int>(
       valueListenable: _currentPage,
-      builder: (_, pageIndex, __) {
+      builder: (_, pageIndex, _) {
         return AnimatedOpacity(
           opacity: pageIndex == pageData.length - 1 ? 1 : 0,
           duration: $styles.times.fast,
@@ -252,7 +254,7 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget _buildNavText(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: _currentPage,
-      builder: (_, pageIndex, __) {
+      builder: (_, pageIndex, _) {
         return AnimatedOpacity(
           opacity: pageIndex == pageData.length - 1 ? 0 : 1,
           duration: $styles.times.fast,
@@ -307,7 +309,7 @@ class _Page extends StatelessWidget {
                   children: [
                     Text(
                       data.title,
-                      style: $styles.text.wonderTitle.copyWith(fontSize: 24 * $styles.scale),
+                      style: $styles.text.destinationTitle.copyWith(fontSize: 24 * $styles.scale),
                     ),
                     Gap($styles.insets.sm),
                     Text(data.desc, style: $styles.text.body, textAlign: TextAlign.center),
@@ -324,7 +326,7 @@ class _Page extends StatelessWidget {
   }
 }
 
-class _WonderousLogo extends StatelessWidget {
+class _TravelBuddyLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -340,8 +342,8 @@ class _WonderousLogo extends StatelessWidget {
         Gap($styles.insets.xs),
         StaticTextScale(
           child: Text(
-            $strings.introSemanticWonderous,
-            style: $styles.text.wonderTitle.copyWith(
+            $strings.introSemanticAppName,
+            style: $styles.text.destinationTitle.copyWith(
               fontSize: 32 * $styles.scale,
               color: $styles.colors.offWhite,
             ),

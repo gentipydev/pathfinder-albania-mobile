@@ -1,13 +1,14 @@
 import 'dart:ui';
 
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/animate_utils.dart';
-import 'package:wonders/logic/data/highlight_data.dart';
-import 'package:wonders/ui/common/app_icons.dart';
-import 'package:wonders/ui/common/controls/app_header.dart';
-import 'package:wonders/ui/common/controls/app_page_indicator.dart';
-import 'package:wonders/ui/common/ignore_pointer.dart';
-import 'package:wonders/ui/common/static_text_scale.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/animate_utils.dart';
+import 'package:travel_buddy/logic/common/platform_info.dart';
+import 'package:travel_buddy/logic/data/highlight_data.dart';
+import 'package:travel_buddy/ui/common/controls/app_header.dart';
+import 'package:travel_buddy/ui/common/controls/app_loading_indicator.dart';
+import 'package:travel_buddy/ui/common/controls/app_page_indicator.dart';
+import 'package:travel_buddy/ui/common/ignore_pointer.dart';
+import 'package:travel_buddy/ui/common/static_text_scale.dart';
 
 part 'widgets/_blurred_image_bg.dart';
 part 'widgets/_bottom_text_content.dart';
@@ -19,7 +20,7 @@ class ArtifactCarouselScreen extends StatefulWidget {
     required this.type,
     this.contentPadding = EdgeInsets.zero,
   });
-  final WonderType type;
+  final DestinationType type;
   final EdgeInsets contentPadding;
 
   @override
@@ -30,8 +31,34 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
   PageController? _pageController;
   final _currentPage = ValueNotifier<double>(9999);
 
-  late final List<HighlightData> _artifacts = HighlightData.forWonder(widget.type);
-  late final _currentArtifactIndex = ValueNotifier<int>(_wrappedPageIndex);
+  /// Loaded asynchronously from the backend manifest. We block the carousel
+  /// build until at least one fetch resolves so wraparound math and
+  /// `_BlurredImageBg` never see an empty list.
+  late List<HighlightData> _artifacts;
+  late final _currentArtifactIndex = ValueNotifier<int>(0);
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _artifacts = HighlightData.forDestination(widget.type);
+    if (_artifacts.isEmpty) {
+      _loadArtifacts();
+    } else {
+      _currentArtifactIndex.value = _wrappedPageIndex;
+    }
+  }
+
+  Future<void> _loadArtifacts() async {
+    setState(() => _isLoading = true);
+    await artifactsBloc.getForDestination(widget.type);
+    if (!mounted) return;
+    setState(() {
+      _artifacts = HighlightData.forDestination(widget.type);
+      _isLoading = false;
+      _currentArtifactIndex.value = _artifacts.isEmpty ? 0 : _wrappedPageIndex;
+    });
+  }
 
   int get _wrappedPageIndex => _currentPage.value.round() % _artifacts.length;
 
@@ -39,8 +66,6 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
     _currentPage.value = _pageController?.page ?? 0;
     _currentArtifactIndex.value = _wrappedPageIndex;
   }
-
-  void _handleSearchTap() => context.go(ScreenPaths.search(widget.type));
 
   void _handleArtifactTap(int index) {
     int delta = index - _currentPage.value.round();
@@ -58,6 +83,21 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_artifacts.isEmpty) {
+      return ColoredBox(
+        color: $styles.colors.greyStrong,
+        child: Stack(
+          children: [
+            Center(child: _isLoading ? AppLoadingIndicator() : _buildEmptyState()),
+            AppHeader(
+              title: $strings.artifactsTitleArtifacts,
+              showBackBtn: false,
+              isTransparent: true,
+            ),
+          ],
+        ),
+      );
+    }
     bool shortMode = context.heightPx <= 800;
     bool overlapMode = context.heightPx <= 450;
     final double bottomHeight = context.heightPx / (overlapMode ? 2 : 2.75); // Prev 340, dynamic seems to work better
@@ -85,7 +125,7 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
         Positioned.fill(
           child: ValueListenableBuilder<int>(
             valueListenable: _currentArtifactIndex,
-            builder: (_, value, __) {
+            builder: (_, value, _) {
               return _BlurredImageBg(url: _artifacts[value].imageUrl);
             },
           ),
@@ -106,7 +146,7 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
                   final child = pages[wrappedIndex];
                   return ValueListenableBuilder<double>(
                     valueListenable: _currentPage,
-                    builder: (_, value, __) {
+                    builder: (_, value, _) {
                       final int offset = (value.round() - index).abs();
                       return _CollapsingCarouselItem(
                         width: itemWidth,
@@ -124,7 +164,7 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
               BottomCenter(
                 child: ValueListenableBuilder<int>(
                   valueListenable: _currentArtifactIndex,
-                  builder: (_, value, __) => _BottomTextContent(
+                  builder: (_, value, _) => _BottomTextContent(
                     artifact: _artifacts[value],
                     height: bottomHeight,
                     shortMode: shortMode,
@@ -139,14 +179,25 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
                 title: $strings.artifactsTitleArtifacts,
                 showBackBtn: false,
                 isTransparent: true,
-                trailing: (context) => CircleBtn(
-                  semanticLabel: $strings.artifactsButtonBrowse,
-                  onPressed: _handleSearchTap,
-                  child: AppIcon(AppIcons.search),
-                ),
               ),
             ],
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEmptyState() {
+    final color = $styles.colors.offWhite;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(Icons.museum_outlined, size: $styles.insets.xl, color: color.withValues(alpha: 0.5)),
+        Gap($styles.insets.xs),
+        Text(
+          $strings.artifactCarouselLabelNoArtifacts,
+          style: $styles.text.body.copyWith(color: color.withValues(alpha: 0.7)),
         ),
       ],
     );

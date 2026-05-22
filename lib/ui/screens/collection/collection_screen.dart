@@ -2,15 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/collectibles_logic.dart';
-import 'package:wonders/logic/common/animate_utils.dart';
-import 'package:wonders/logic/data/collectible_data.dart';
-import 'package:wonders/logic/data/wonder_data.dart';
-import 'package:wonders/ui/common/centered_box.dart';
-import 'package:wonders/ui/common/controls/app_header.dart';
-import 'package:wonders/ui/common/modals/app_modals.dart';
-import 'package:wonders/ui/common/utils/duration_utils.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
+import 'package:travel_buddy/features/collectibles/bloc/collectibles_event.dart';
+import 'package:travel_buddy/features/collectibles/bloc/collectibles_helpers.dart';
+import 'package:travel_buddy/logic/common/animate_utils.dart';
+import 'package:travel_buddy/logic/data/collectible_data.dart';
+import 'package:travel_buddy/logic/data/destination_data.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
+import 'package:travel_buddy/ui/common/controls/app_header.dart';
+import 'package:travel_buddy/ui/common/modals/app_modals.dart';
+import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
 
 part 'widgets/_collectible_image.dart';
 part 'widgets/_collection_footer.dart';
@@ -33,7 +35,7 @@ class _CollectionScreenState extends State<CollectionScreen> with GetItStateMixi
   @override
   void initState() {
     super.initState();
-    final states = collectiblesLogic.statesById.value;
+    final states = context.read<CollectiblesBloc>().state.statesById;
     if (widget.fromId.isNotEmpty && states[widget.fromId] == CollectibleState.discovered) {
       scheduleMicrotask(() => _scrollToTarget(false));
     }
@@ -52,18 +54,18 @@ class _CollectionScreenState extends State<CollectionScreen> with GetItStateMixi
   void _handleReset() async {
     String msg = $strings.collectionPopupResetConfirm;
     final result = await showModal(context, child: OkCancelModal(msg: msg));
-    if (result == true) {
-      collectiblesLogic.reset();
+    if (result == true && mounted) {
+      context.read<CollectiblesBloc>().add(const CollectiblesResetRequested());
     }
   }
 
   @override
   Widget build(BuildContext context) {
     // Rebuild when collectible states change
-    watchX((CollectiblesLogic o) => o.statesById);
-    int discovered = collectiblesLogic.discoveredCount;
-    int explored = collectiblesLogic.exploredCount;
-    int total = collectiblesLogic.all.length;
+    final bloc = context.watch<CollectiblesBloc>();
+    int discovered = bloc.state.discoveredCount;
+    int explored = bloc.state.exploredCount;
+    int total = collectiblesData.length;
 
     return ColoredBox(
       color: $styles.colors.greyStrong,

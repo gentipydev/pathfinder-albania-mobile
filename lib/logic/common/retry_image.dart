@@ -79,7 +79,15 @@ class RetryImage extends ImageProvider<Object> {
     completerToWrap.addListener(listener);
 
     completer.addOnLastListenerRemovedCallback(() {
-      completerToWrap.removeListener(listener);
+      // Inner completer may already be disposed by the framework by the
+      // time the outer's last listener is removed (e.g. during widget
+      // tree teardown). removeListener asserts on a disposed stream;
+      // the cleanup is a no-op in that case.
+      try {
+        completerToWrap.removeListener(listener);
+      } on StateError {
+        // already disposed — listener is gone.
+      }
     });
 
     return completer;

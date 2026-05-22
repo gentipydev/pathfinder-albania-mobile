@@ -11,12 +11,14 @@ on:
 
 env:
   BASE_HREF: "web"
-  REMOTE_DIR: "staging.wonderous.app"
+  # TODO(rebrand): replace with the Travel Buddy staging deploy target.
+  REMOTE_DIR: "staging.travelbuddy.app"
 jobs:
   build:
     uses: ./.github/workflows/build_web.yml
     with:
       wasm: ${{ inputs.wasm }}
+    secrets: inherit
 
   deploy:
     needs: build

@@ -1,4 +1,4 @@
-import 'package:wonders/common_libs.dart';
+import 'package:travel_buddy/common_libs.dart';
 
 class FullscreenKeyboardListener extends StatefulWidget {
   const FullscreenKeyboardListener({

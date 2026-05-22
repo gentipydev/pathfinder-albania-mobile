@@ -1,5 +1,5 @@
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/measurable_widget.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/common/measurable_widget.dart';
 
 class OpeningCard extends StatefulWidget {
   const OpeningCard({

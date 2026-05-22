@@ -1,17 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/animate_utils.dart';
-import 'package:wonders/logic/data/unsplash_photo_data.dart';
-import 'package:wonders/ui/common/controls/app_loading_indicator.dart';
-import 'package:wonders/ui/common/controls/eight_way_swipe_detector.dart';
-import 'package:wonders/ui/common/fullscreen_keyboard_listener.dart';
-import 'package:wonders/ui/common/hidden_collectible.dart';
-import 'package:wonders/ui/common/ignore_pointer.dart';
-import 'package:wonders/ui/common/modals/fullscreen_url_img_viewer.dart';
-import 'package:wonders/ui/common/unsplash_photo.dart';
-import 'package:wonders/ui/common/utils/app_haptics.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
+import 'package:travel_buddy/features/collectibles/bloc/collectibles_helpers.dart';
+import 'package:travel_buddy/features/collectibles/bloc/collectibles_state.dart';
+import 'package:travel_buddy/logic/common/animate_utils.dart';
+import 'package:travel_buddy/ui/common/controls/app_loading_indicator.dart';
+import 'package:travel_buddy/ui/common/controls/eight_way_swipe_detector.dart';
+import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
+import 'package:travel_buddy/ui/common/hidden_collectible.dart';
+import 'package:travel_buddy/ui/common/modals/fullscreen_url_img_viewer.dart';
+import 'package:travel_buddy/ui/common/remote_photo.dart';
+import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
 
 part 'widgets/_animated_cutout_overlay.dart';
 
@@ -19,12 +21,16 @@ class PhotoGallery extends StatefulWidget {
   const PhotoGallery({
     super.key,
     this.imageSize,
-    required this.collectionId,
-    required this.wonderType,
+    required this.destinationType,
+    this.onHasPhotosChanged,
   });
   final Size? imageSize;
-  final String collectionId;
-  final WonderType wonderType;
+  final DestinationType destinationType;
+  /// Fires `true` when real photos are about to render fullscreen, `false`
+  /// while loading or when the manifest is empty. The parent uses this to
+  /// keep the tab-bar pill visible on the empty state, where there's no
+  /// photo backdrop for the design's edge-to-edge layout to sit on.
+  final ValueChanged<bool>? onHasPhotosChanged;
 
   @override
   State<PhotoGallery> createState() => _PhotoGalleryState();
@@ -38,7 +44,11 @@ class _PhotoGalleryState extends State<PhotoGallery> {
   final double _scale = 1;
   bool _skipNextOffsetTween = false;
   late Duration swipeDuration = $styles.times.med * .4;
-  final _photoIds = ValueNotifier<List<String>>([]);
+  /// Public Supabase URLs returned by the backend manifest, padded out to
+  /// `_imgCount` (25) by repeating the catalog if the user hasn't seeded
+  /// enough photos yet.
+  final _photoUrls = ValueNotifier<List<String>>([]);
+  bool _isLoading = true;
   int get _imgCount => pow(_gridSize, 2).round();
 
   late final List<FocusNode> _focusNodes = List.generate(_imgCount, (index) => FocusNode());
@@ -49,20 +59,25 @@ class _PhotoGalleryState extends State<PhotoGallery> {
   @override
   void initState() {
     super.initState();
-    _initPhotoIds();
+    _loadPhotos();
     _focusNodes[_index].requestFocus();
   }
 
-  Future<void> _initPhotoIds() async {
-    var ids = unsplashLogic.getCollectionPhotos(widget.collectionId);
-    if (ids != null && ids.isNotEmpty) {
-      // Ensure we have enough images to fill the grid, repeat if necessary
-      while (ids.length < _imgCount) {
-        ids.addAll(List.from(ids));
-        if (ids.length > _imgCount) ids.length = _imgCount;
+  Future<void> _loadPhotos() async {
+    final fetched = await destinationPhotosLogic.getPhotos(widget.destinationType);
+    if (!mounted) return;
+    final padded = List<String>.from(fetched);
+    if (padded.isNotEmpty) {
+      while (padded.length < _imgCount) {
+        padded.addAll(List.from(padded));
       }
+      if (padded.length > _imgCount) padded.length = _imgCount;
     }
-    setState(() => _photoIds.value = ids ?? []);
+    setState(() {
+      _photoUrls.value = padded;
+      _isLoading = false;
+    });
+    widget.onHasPhotosChanged?.call(padded.isNotEmpty);
   }
 
   void _setIndex(int value, {bool skipAnimation = false}) {
@@ -91,11 +106,11 @@ class _PhotoGalleryState extends State<PhotoGallery> {
 
   /// Used for hiding collectibles around the photo grid.
   int _getCollectibleIndex() {
-    return switch (widget.wonderType) {
-      WonderType.chichenItza || WonderType.petra => 0,
-      WonderType.colosseum || WonderType.pyramidsGiza => _gridSize - 1,
-      WonderType.christRedeemer || WonderType.machuPicchu => _imgCount - 1,
-      WonderType.greatWall || WonderType.tajMahal => _imgCount - _gridSize,
+    return switch (widget.destinationType) {
+      DestinationType.butrint || DestinationType.kruja => 0,
+      DestinationType.gjirokaster || DestinationType.albanianAlps => _gridSize - 1,
+      DestinationType.berat || DestinationType.theth => _imgCount - 1,
+      DestinationType.apollonia || DestinationType.korca => _imgCount - _gridSize,
     };
   }
 
@@ -148,11 +163,10 @@ class _PhotoGalleryState extends State<PhotoGallery> {
   }
 
   Future<void> _handleImageTapped(int index, bool isSelected) async {
-    if (_checkCollectibleIndex(index) && isSelected) return;
+    final states = collectiblesBloc.state.statesById;
+    if (_checkCollectibleIndex(index, states) && isSelected) return;
     if (_index == index) {
-      final urls = _photoIds.value.map((e) {
-        return UnsplashPhotoData.getSelfHostedUrl(e, UnsplashPhotoSize.xl);
-      }).toList();
+      final urls = List<String>.from(_photoUrls.value);
       int? newIndex = await appLogic.showFullscreenDialogRoute(
         context,
         FullscreenUrlImgViewer(urls: urls, index: _index),
@@ -172,8 +186,9 @@ class _PhotoGalleryState extends State<PhotoGallery> {
     }
   }
 
-  bool _checkCollectibleIndex(int index) {
-    return index == _getCollectibleIndex() && collectiblesLogic.isLost(widget.wonderType, 1);
+  bool _checkCollectibleIndex(int index, Map<String, int> states) {
+    return index == _getCollectibleIndex() &&
+        isCollectibleLost(states, widget.destinationType, 1);
   }
 
   @override
@@ -181,10 +196,10 @@ class _PhotoGalleryState extends State<PhotoGallery> {
     return FullscreenKeyboardListener(
       onKeyDown: _handleKeyDown,
       child: ValueListenableBuilder<List<String>>(
-        valueListenable: _photoIds,
-        builder: (_, value, __) {
+        valueListenable: _photoUrls,
+        builder: (_, value, _) {
           if (value.isEmpty) {
-            return Center(child: AppLoadingIndicator());
+            return _isLoading ? Center(child: AppLoadingIndicator()) : _buildEmptyState();
           }
           Size imgSize = context.isLandscape
               ? Size(context.widthPx * .5, context.heightPx * .66)
@@ -248,13 +263,13 @@ class _PhotoGalleryState extends State<PhotoGallery> {
     /// Bind to collectibles.statesById because we might need to rebuild if a collectible is found.
     return FocusTraversalOrder(
       order: NumericFocusOrder(index.toDouble()),
-      child: ValueListenableBuilder(
-        valueListenable: collectiblesLogic.statesById,
-        builder: (_, __, ___) {
+      child: BlocSelector<CollectiblesBloc, CollectiblesState, Map<String, int>>(
+        selector: (s) => s.statesById,
+        builder: (_, states) {
           bool isSelected = index == _index;
-          final imgUrl = _photoIds.value[index];
+          final imgUrl = _photoUrls.value[index];
           late String semanticLbl;
-          if (_checkCollectibleIndex(index)) {
+          if (_checkCollectibleIndex(index, states)) {
             semanticLbl = $strings.collectibleItemSemanticCollectible;
           } else {
             semanticLbl = !isSelected
@@ -267,24 +282,23 @@ class _PhotoGalleryState extends State<PhotoGallery> {
             curve: Curves.easeOut,
             tween: Tween(begin: 1, end: isSelected ? 1.15 : 1),
             builder: (_, value, child) => Transform.scale(scale: value, child: child),
-            child: UnsplashPhoto(
+            child: RemotePhoto(
               imgUrl,
               fit: BoxFit.cover,
-              size: UnsplashPhotoSize.large,
             ).maybeAnimate().fade(),
           );
 
           return MergeSemantics(
             child: Semantics(
               focused: isSelected,
-              image: !_checkCollectibleIndex(index),
+              image: !_checkCollectibleIndex(index, states),
               liveRegion: isSelected,
               onIncrease: () => _handleImageTapped(_index + 1, false),
               onDecrease: () => _handleImageTapped(_index - 1, false),
-              child: _checkCollectibleIndex(index)
+              child: _checkCollectibleIndex(index, states)
                   ? Center(
                       child: HiddenCollectible(
-                        widget.wonderType,
+                        widget.destinationType,
                         index: 1,
                         size: 100,
                         focus: _focusNodes[index],
@@ -321,6 +335,23 @@ class _PhotoGalleryState extends State<PhotoGallery> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildEmptyState() {
+    final color = $styles.colors.greyMedium;
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.image_outlined, size: $styles.insets.xl, color: color.withValues(alpha: 0.5)),
+          Gap($styles.insets.xs),
+          Text(
+            $strings.photoGalleryLabelNoPhotos,
+            style: $styles.text.body.copyWith(color: color),
+          ),
+        ],
       ),
     );
   }

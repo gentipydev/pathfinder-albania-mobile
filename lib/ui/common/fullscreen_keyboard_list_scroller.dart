@@ -1,6 +1,6 @@
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/throttler.dart';
-import 'package:wonders/ui/common/fullscreen_keyboard_listener.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/throttler.dart';
+import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
 
 class FullscreenKeyboardListScroller extends StatelessWidget {
   FullscreenKeyboardListScroller({super.key, required this.child, required this.scrollController});
@@ -13,7 +13,7 @@ class FullscreenKeyboardListScroller extends StatelessWidget {
   final ScrollController scrollController;
   final Throttler _throttler = Throttler(32.milliseconds);
 
-  double clampOffset(px) => px.clamp(0, scrollController.position.maxScrollExtent).toDouble();
+  double clampOffset(num px) => px.clamp(0, scrollController.position.maxScrollExtent).toDouble();
 
   void _handleKeyDown(int px) {
     scrollController.animateTo(

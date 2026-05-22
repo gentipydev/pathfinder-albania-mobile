@@ -1,6 +1,7 @@
 import 'dart:ui';
 
-import 'package:wonders/common_libs.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/platform_info.dart';
 
 class AppBackdrop extends StatelessWidget {
   const AppBackdrop({
@@ -15,7 +16,7 @@ class AppBackdrop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double normalStrength = clampDouble(strength, 0, 1);
-    if (settingsLogic.useBlurs) {
+    if (kUseBlurs) {
       return BackdropFilter(
         filter: ImageFilter.blur(sigmaX: normalStrength * 15, sigmaY: normalStrength * 15),
         child: child ?? SizedBox.expand(),

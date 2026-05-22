@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/platform_info.dart';
-import 'package:wonders/ui/common/modals/fullscreen_web_view.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/platform_info.dart';
+import 'package:travel_buddy/ui/common/modals/fullscreen_web_view.dart';
 
 class AboutDialogContent extends StatelessWidget {
   const AboutDialogContent({super.key});
@@ -60,42 +60,44 @@ class AboutDialogContent extends StatelessWidget {
             text: TextSpan(
               style: $styles.text.bodySmall.copyWith(color: Colors.black, fontSize: fontSize),
               children: [
-                ...buildSpan($strings.homeMenuAboutWonderous),
+                ...buildSpan($strings.homeMenuAboutTagline),
                 ...buildSpan(
-                  $strings.homeMenuAboutBuilt('{flutterUrl}', '{gskinnerUrl}'),
+                  $strings.homeMenuAboutBuilt('{flutterUrl}'),
                   linkSupplants: {
                     '{flutterUrl}': [$strings.homeMenuAboutFlutter, 'https://flutter.dev'],
-                    '{gskinnerUrl}': [
-                      $strings.homeMenuAboutGskinner,
-                      'https://gskinner.com/flutter',
-                    ],
                   },
                 ),
                 ...buildSpan('\n\n'),
                 ...buildSpan(
-                  '${$strings.homeMenuAboutLearn('{wonderousUrl}')} ',
+                  '${$strings.homeMenuAboutLearn('{appUrl}')} ',
                   linkSupplants: {
-                    '{wonderousUrl}': [
+                    // TODO(rebrand): point at the live Travel Buddy marketing
+                    // site once it's published.
+                    '{appUrl}': [
                       $strings.homeMenuAboutApp,
-                      'https://flutter.gskinner.com/wonderous/',
+                      'https://travelbuddy.app/',
                     ],
                   },
                 ),
                 ...buildSpan(
                   $strings.homeMenuAboutSource('{githubUrl}'),
                   linkSupplants: {
+                    // TODO(rebrand): replace with the real Travel Buddy github
+                    // repo URL once the project is pushed publicly.
                     '{githubUrl}': [
                       ($strings.homeMenuAboutRepo),
-                      'https://github.com/gskinnerTeam/flutter-wonderous-app',
+                      'https://github.com/travel-buddy/travel-buddy-mobile',
                     ],
                   },
                 ),
                 ...buildSpan(
                   ' ${$strings.privacyStatement('{privacyUrl}')}',
                   linkSupplants: {
+                    // TODO(rebrand): replace with the real Travel Buddy privacy
+                    // policy URL once it's published.
                     '{privacyUrl}': [
                       $strings.privacyPolicy,
-                      'https://flutter.gskinner.com/wonderous/privacy/',
+                      'https://travelbuddy.app/privacy/',
                     ],
                   },
                 ),
@@ -112,9 +114,11 @@ class AboutDialogContent extends StatelessWidget {
                 ...buildSpan(
                   $strings.homeMenuAboutPhotography('{unsplashUrl}'),
                   linkSupplants: {
+                    // TODO(rebrand): replace with the Travel Buddy Unsplash
+                    // collection URL once curated.
                     '{unsplashUrl}': [
                       $strings.homeMenuAboutUnsplash,
-                      'https://unsplash.com/@gskinner/collections',
+                      'https://unsplash.com/',
                     ],
                   },
                 ),

@@ -3,32 +3,32 @@ import 'dart:async';
 import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_circular_text/circular_text.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' deferred as googleMap;
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/animate_utils.dart';
-import 'package:wonders/logic/common/platform_info.dart';
-import 'package:wonders/logic/common/string_utils.dart';
-import 'package:wonders/logic/data/wonder_data.dart';
-import 'package:wonders/ui/common/app_icons.dart';
-import 'package:wonders/ui/common/blend_mask.dart';
-import 'package:wonders/ui/common/centered_box.dart';
-import 'package:wonders/ui/common/compass_divider.dart';
-import 'package:wonders/ui/common/controls/trackpad_listener.dart';
-import 'package:wonders/ui/common/curved_clippers.dart';
-import 'package:wonders/ui/common/fullscreen_keyboard_list_scroller.dart';
-import 'package:wonders/ui/common/google_maps_marker.dart';
-import 'package:wonders/ui/common/gradient_container.dart';
-import 'package:wonders/ui/common/hidden_collectible.dart';
-import 'package:wonders/ui/common/ignore_pointer.dart';
-import 'package:wonders/ui/common/pop_router_on_over_scroll.dart';
-import 'package:wonders/ui/common/scaling_list_item.dart';
-import 'package:wonders/ui/common/static_text_scale.dart';
-import 'package:wonders/ui/common/themed_text.dart';
-import 'package:wonders/ui/common/utils/context_utils.dart';
-import 'package:wonders/ui/common/utils/duration_utils.dart';
-import 'package:wonders/ui/wonder_illustrations/common/wonder_illustration.dart';
-import 'package:wonders/ui/wonder_illustrations/common/wonder_illustration_config.dart';
-import 'package:wonders/ui/wonder_illustrations/common/wonder_title_text.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' deferred as google_map;
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/animate_utils.dart';
+import 'package:travel_buddy/logic/common/platform_info.dart';
+import 'package:travel_buddy/logic/common/string_utils.dart';
+import 'package:travel_buddy/logic/data/destination_data.dart';
+import 'package:travel_buddy/ui/common/app_icons.dart';
+import 'package:travel_buddy/ui/common/blend_mask.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
+import 'package:travel_buddy/ui/common/compass_divider.dart';
+import 'package:travel_buddy/ui/common/controls/trackpad_listener.dart';
+import 'package:travel_buddy/ui/common/curved_clippers.dart';
+import 'package:travel_buddy/ui/common/fullscreen_keyboard_list_scroller.dart';
+import 'package:travel_buddy/ui/common/google_maps_marker.dart';
+import 'package:travel_buddy/ui/common/gradient_container.dart';
+import 'package:travel_buddy/ui/common/hidden_collectible.dart';
+import 'package:travel_buddy/ui/common/pop_router_on_over_scroll.dart';
+import 'package:travel_buddy/ui/common/top_only_bouncing_scroll_physics.dart';
+import 'package:travel_buddy/ui/common/scaling_list_item.dart';
+import 'package:travel_buddy/ui/common/static_text_scale.dart';
+import 'package:travel_buddy/ui/common/themed_text.dart';
+import 'package:travel_buddy/ui/common/utils/context_utils.dart';
+import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration.dart';
+import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_config.dart';
+import 'package:travel_buddy/ui/destination_illustrations/common/destination_title_text.dart';
 
 part 'widgets/_app_bar.dart';
 part 'widgets/_callout.dart';
@@ -41,17 +41,17 @@ part 'widgets/_sliding_image_stack.dart';
 part 'widgets/_title_text.dart';
 part 'widgets/_top_illustration.dart';
 
-class WonderEditorialScreen extends StatefulWidget {
-  const WonderEditorialScreen(this.data, {super.key, required this.contentPadding});
-  final WonderData data;
+class DestinationEditorialScreen extends StatefulWidget {
+  const DestinationEditorialScreen(this.data, {super.key, required this.contentPadding});
+  final DestinationData data;
   //final void Function(double scrollPos) onScroll;
   final EdgeInsets contentPadding;
 
   @override
-  State<WonderEditorialScreen> createState() => _WonderEditorialScreenState();
+  State<DestinationEditorialScreen> createState() => _DestinationEditorialScreenState();
 }
 
-class _WonderEditorialScreenState extends State<WonderEditorialScreen> {
+class _DestinationEditorialScreenState extends State<DestinationEditorialScreen> {
   late final ScrollController _scroller = ScrollController()..addListener(_handleScrollChanged);
   final _scrollPos = ValueNotifier(0.0);
   final _sectionIndex = ValueNotifier(0);
@@ -134,6 +134,9 @@ class _WonderEditorialScreenState extends State<WonderEditorialScreen> {
                             child: CustomScrollView(
                               controller: _scroller,
                               scrollBehavior: ScrollConfiguration.of(context).copyWith(),
+                              physics: const TopOnlyBouncingScrollPhysics(
+                                parent: AlwaysScrollableScrollPhysics(),
+                              ),
                               key: PageStorageKey('editorial'),
                               slivers: [
                                 /// Invisible padding at the top of the list, so the illustration shows through the btm

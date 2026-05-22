@@ -1,7 +1,7 @@
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/logic/common/color_utils.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/color_utils.dart';
 
-export 'wonders_color_extensions.dart';
+export 'destinations_color_extensions.dart';
 
 class AppColors {
   /// Common

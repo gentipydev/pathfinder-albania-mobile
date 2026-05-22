@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/app_icons.dart';
-import 'package:wonders/ui/common/controls/app_header.dart';
-import 'package:wonders/ui/common/fullscreen_keyboard_listener.dart';
-import 'package:wonders/ui/common/utils/app_haptics.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/common/app_icons.dart';
+import 'package:travel_buddy/ui/common/controls/app_header.dart';
+import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
+import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
 
 class FullscreenUrlImgViewer extends StatefulWidget {
   const FullscreenUrlImgViewer({super.key, required this.urls, this.index = 0});
@@ -61,7 +61,7 @@ class _FullscreenUrlImgViewerState extends State<FullscreenUrlImgViewer> {
   Widget build(BuildContext context) {
     Widget content = AnimatedBuilder(
       animation: _isZoomed,
-      builder: (_, __) {
+      builder: (_, _) {
         final bool enableSwipe = !_isZoomed.value && widget.urls.length > 1;
         return PageView.builder(
           physics: enableSwipe ? PageScrollPhysics() : NeverScrollableScrollPhysics(),
@@ -95,7 +95,7 @@ class _FullscreenUrlImgViewerState extends State<FullscreenUrlImgViewer> {
                   padding: EdgeInsets.only(bottom: $styles.insets.md),
                   child: ValueListenableBuilder(
                     valueListenable: _currentPage,
-                    builder: (_, int page, __) {
+                    builder: (_, int page, _) {
                       return Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -159,9 +159,7 @@ class _ViewerState extends State<_Viewer> with SingleTickerProviderStateMixin {
         child: Hero(
           tag: widget.url,
           child: AppImage(
-            image: NetworkImage(
-              widget.url,
-            ),
+            image: widget.url.isEmpty ? null : NetworkImage(widget.url),
             fit: BoxFit.contain,
             scale: FullscreenUrlImgViewer.imageScale,
             progress: true,

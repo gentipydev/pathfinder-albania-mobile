@@ -1,7 +1,7 @@
 part of '../artifact_details_screen.dart';
 
 class _ArtifactImageBtn extends StatelessWidget {
-  const _ArtifactImageBtn({super.key, required this.data});
+  const _ArtifactImageBtn({required this.data});
   final ArtifactData data;
 
   @override
@@ -28,9 +28,9 @@ class _ArtifactImageBtn extends StatelessWidget {
               bottom: false,
               minimum: EdgeInsets.symmetric(vertical: $styles.insets.sm),
               child: Hero(
-                tag: data.selfHostedImageUrl,
+                tag: data.image,
                 child: AppImage(
-                  image: NetworkImage(data.selfHostedImageUrl),
+                  image: data.image.isEmpty ? null : NetworkImage(data.image),
                   fit: BoxFit.contain,
                   distractor: true,
                   scale: FullscreenUrlImgViewer.imageScale, // so the image isn't reloaded
@@ -46,7 +46,7 @@ class _ArtifactImageBtn extends StatelessWidget {
   void _handleImagePressed(BuildContext context) {
     appLogic.showFullscreenDialogRoute(
       context,
-      FullscreenUrlImgViewer(urls: [data.selfHostedImageUrl]),
+      FullscreenUrlImgViewer(urls: [data.image]),
     );
   }
 }

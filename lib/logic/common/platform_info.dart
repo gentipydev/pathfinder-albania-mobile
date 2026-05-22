@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:wonders/common_libs.dart';
+import 'package:travel_buddy/common_libs.dart';
 
 class PlatformInfo {
   static const _desktopPlatforms = [
@@ -27,3 +27,7 @@ class PlatformInfo {
   static Future<bool> get isConnected async => await InternetConnectionChecker.instance.hasConnection;
   static Future<bool> get isDisconnected async => (await isConnected) == false;
 }
+
+// Disabled on Android: BackdropFilter / ImageFiltered hurt frame budget on
+// many devices when stacked over PlatformViews / large images.
+final bool kUseBlurs = !PlatformInfo.isAndroid;

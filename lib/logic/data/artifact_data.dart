@@ -1,8 +1,14 @@
+/// Hydrated from the backend `/artifacts/{id}` and
+/// `/destinations/{slug}/artifacts` endpoints. Image bytes live in the
+/// `artifact-photos` Supabase Storage bucket; the URL fields below are
+/// public Supabase URLs returned by the backend, never built client-side.
 class ArtifactData {
   ArtifactData({
     required this.objectId,
     required this.title,
     required this.image,
+    required this.imageSmall,
+    required this.imageMedium,
     required this.date,
     required this.period,
     required this.country,
@@ -13,29 +19,52 @@ class ArtifactData {
     required this.objectType,
     required this.objectBeginYear,
     required this.objectEndYear,
+    this.iconName = '',
   });
-  static const String baseSelfHostedImagePath = 'https://www.wonderous.info/met/';
 
-  final String objectId; // Artifact ID, used to identify through MET server calls.
-  final String title; // Artifact title / name
-  final String image; // Artifact primary image URL (can have multiple)
-  final int objectBeginYear; // Artifact creation year start.
-  final int objectEndYear; // Artifact creation year end.
-  final String objectType; // Type of thing (coin, basic, cup etc)
+  factory ArtifactData.fromJson(Map<String, dynamic> json) {
+    final url = (json['image'] as String?) ?? '';
+    return ArtifactData(
+      objectId: json['id']?.toString() ?? '',
+      title: (json['title'] as String?) ?? '',
+      image: url,
+      imageSmall: (json['image_small'] as String?) ?? url,
+      imageMedium: (json['image_medium'] as String?) ?? url,
+      date: (json['date'] as String?) ?? '',
+      period: (json['period'] as String?) ?? '',
+      country: (json['country'] as String?) ?? '',
+      medium: (json['medium'] as String?) ?? '',
+      dimension: (json['dimension'] as String?) ?? '',
+      classification: (json['classification'] as String?) ?? '',
+      culture: (json['culture'] as String?) ?? '',
+      objectType: (json['object_type'] as String?) ?? '',
+      objectBeginYear: (json['object_begin_year'] as int?) ?? 0,
+      objectEndYear: (json['object_end_year'] as int?) ?? 0,
+      iconName: (json['icon_name'] as String?) ?? '',
+    );
+  }
 
-  final String date; // Date of creation
-  final String period; // Time period of creation
-  final String country; // Country of origin
-  final String medium; // Art medium
-  final String dimension; // Width and height of physical artifact
-  final String classification; // Type of artifact
-  final String culture; // Culture of artifact
+  final String objectId;
+  final String title;
+  final String image;
+  final String imageSmall;
+  final String imageMedium;
+  final int objectBeginYear;
+  final int objectEndYear;
+  final String objectType;
 
-  String get selfHostedImageUrl => getSelfHostedImageUrl(objectId);
-  String get selfHostedImageUrlSmall => getSelfHostedImageUrlSmall(objectId);
-  String get selfHostedImageUrlMedium => getSelfHostedImageUrlMedium(objectId);
+  final String date;
+  final String period;
+  final String country;
+  final String medium;
+  final String dimension;
+  final String classification;
+  final String culture;
+  final String iconName;
 
-  static String getSelfHostedImageUrl(String id) => '$baseSelfHostedImagePath$id.jpg';
-  static String getSelfHostedImageUrlSmall(String id) => '$baseSelfHostedImagePath${id}_600.jpg';
-  static String getSelfHostedImageUrlMedium(String id) => '$baseSelfHostedImagePath${id}_2000.jpg';
+  /// Approximate creation year for the time-range search histogram.
+  int get year => objectBeginYear;
+
+  /// Whitespace-joined haystack used by the in-destination keyword filter.
+  String get keywords => '$culture $medium $classification $period $country $objectType'.toLowerCase();
 }

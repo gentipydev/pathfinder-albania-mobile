@@ -12,14 +12,14 @@
 		2978ECDD2B62D00C00E36CE8 /* FlutterAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2978ECDC2B62D00C00E36CE8 /* FlutterAssets.swift */; };
 		297F6FC72AD06E0D00FF159E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297F6FC62AD06E0D00FF159E /* WidgetKit.framework */; };
 		297F6FC92AD06E0D00FF159E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297F6FC82AD06E0D00FF159E /* SwiftUI.framework */; };
-		297F6FCC2AD06E0D00FF159E /* WonderousWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F6FCB2AD06E0D00FF159E /* WonderousWidgetBundle.swift */; };
-		297F6FCE2AD06E0D00FF159E /* WonderousWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F6FCD2AD06E0D00FF159E /* WonderousWidget.swift */; };
+		297F6FCC2AD06E0D00FF159E /* TravelBuddyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F6FCB2AD06E0D00FF159E /* TravelBuddyWidgetBundle.swift */; };
+		297F6FCE2AD06E0D00FF159E /* TravelBuddyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F6FCD2AD06E0D00FF159E /* TravelBuddyWidget.swift */; };
 		297F6FD12AD06E0F00FF159E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 297F6FD02AD06E0F00FF159E /* Assets.xcassets */; };
-		297F6FD32AD06E0F00FF159E /* WonderousWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 297F6FCF2AD06E0D00FF159E /* WonderousWidget.intentdefinition */; };
-		297F6FD42AD06E0F00FF159E /* WonderousWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 297F6FCF2AD06E0D00FF159E /* WonderousWidget.intentdefinition */; };
-		297F6FD72AD06E0F00FF159E /* WonderousWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 297F6FC52AD06E0D00FF159E /* WonderousWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		297FD5742AE18011008D8BFE /* WonderousWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297FD5732AE18011008D8BFE /* WonderousWidgetView.swift */; };
-		297FD5762AE19BD9008D8BFE /* WonderWidgetViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297FD5752AE19BD9008D8BFE /* WonderWidgetViewComponents.swift */; };
+		297F6FD32AD06E0F00FF159E /* TravelBuddyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 297F6FCF2AD06E0D00FF159E /* TravelBuddyWidget.intentdefinition */; };
+		297F6FD42AD06E0F00FF159E /* TravelBuddyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 297F6FCF2AD06E0D00FF159E /* TravelBuddyWidget.intentdefinition */; };
+		297F6FD72AD06E0F00FF159E /* TravelBuddyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 297F6FC52AD06E0D00FF159E /* TravelBuddyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		297FD5742AE18011008D8BFE /* TravelBuddyWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297FD5732AE18011008D8BFE /* TravelBuddyWidgetView.swift */; };
+		297FD5762AE19BD9008D8BFE /* TravelBuddyWidgetViewComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297FD5752AE19BD9008D8BFE /* TravelBuddyWidgetViewComponents.swift */; };
 		323DE3CFA8490EAB3C4E249C /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A44ACC5DE81A9C3E5BDA151 /* Pods_Runner.framework */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
@@ -34,7 +34,7 @@
 			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 297F6FC42AD06E0D00FF159E;
-			remoteInfo = WonderousWidgetExtension;
+			remoteInfo = TravelBuddyWidgetExtension;
 		};
 		E214FC8827C5A18E005F78FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,7 +52,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				297F6FD72AD06E0F00FF159E /* WonderousWidgetExtension.appex in Embed Foundation Extensions */,
+				297F6FD72AD06E0F00FF159E /* TravelBuddyWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,17 +75,17 @@
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		296251242AE7410D00D574FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2978ECDC2B62D00C00E36CE8 /* FlutterAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterAssets.swift; sourceTree = "<group>"; };
-		297F6FC52AD06E0D00FF159E /* WonderousWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; name = "WonderousWidgetExtension.appex"; path = WonderousWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		297F6FC52AD06E0D00FF159E /* TravelBuddyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; name = "TravelBuddyWidgetExtension.appex"; path = TravelBuddyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		297F6FC62AD06E0D00FF159E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		297F6FC82AD06E0D00FF159E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		297F6FCB2AD06E0D00FF159E /* WonderousWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WonderousWidgetBundle.swift; sourceTree = "<group>"; };
-		297F6FCD2AD06E0D00FF159E /* WonderousWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WonderousWidget.swift; sourceTree = "<group>"; };
-		297F6FCF2AD06E0D00FF159E /* WonderousWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WonderousWidget.intentdefinition; sourceTree = "<group>"; };
+		297F6FCB2AD06E0D00FF159E /* TravelBuddyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBuddyWidgetBundle.swift; sourceTree = "<group>"; };
+		297F6FCD2AD06E0D00FF159E /* TravelBuddyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBuddyWidget.swift; sourceTree = "<group>"; };
+		297F6FCF2AD06E0D00FF159E /* TravelBuddyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TravelBuddyWidget.intentdefinition; sourceTree = "<group>"; };
 		297F6FD02AD06E0F00FF159E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		297F6FD22AD06E0F00FF159E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		297FD56C2ADF0DAB008D8BFE /* WonderousWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WonderousWidgetExtension.entitlements; sourceTree = "<group>"; };
-		297FD5732AE18011008D8BFE /* WonderousWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WonderousWidgetView.swift; sourceTree = "<group>"; };
-		297FD5752AE19BD9008D8BFE /* WonderWidgetViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WonderWidgetViewComponents.swift; sourceTree = "<group>"; };
+		297FD56C2ADF0DAB008D8BFE /* TravelBuddyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TravelBuddyWidgetExtension.entitlements; sourceTree = "<group>"; };
+		297FD5732AE18011008D8BFE /* TravelBuddyWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBuddyWidgetView.swift; sourceTree = "<group>"; };
+		297FD5752AE19BD9008D8BFE /* TravelBuddyWidgetViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBuddyWidgetViewComponents.swift; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		4A44ACC5DE81A9C3E5BDA151 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D54A22D234A57151F14B56DF /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
-		E214FC8227C5A18D005F78FB /* wondersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wondersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E214FC8227C5A18D005F78FB /* destinationsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = destinationsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2415C5B27D1451D00925491 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,20 +132,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		297F6FCA2AD06E0D00FF159E /* WonderousWidget */ = {
+		297F6FCA2AD06E0D00FF159E /* TravelBuddyWidget */ = {
 			isa = PBXGroup;
 			children = (
-				297F6FCB2AD06E0D00FF159E /* WonderousWidgetBundle.swift */,
-				297F6FCD2AD06E0D00FF159E /* WonderousWidget.swift */,
-				297F6FCF2AD06E0D00FF159E /* WonderousWidget.intentdefinition */,
+				297F6FCB2AD06E0D00FF159E /* TravelBuddyWidgetBundle.swift */,
+				297F6FCD2AD06E0D00FF159E /* TravelBuddyWidget.swift */,
+				297F6FCF2AD06E0D00FF159E /* TravelBuddyWidget.intentdefinition */,
 				297F6FD02AD06E0F00FF159E /* Assets.xcassets */,
 				297F6FD22AD06E0F00FF159E /* Info.plist */,
-				297FD5732AE18011008D8BFE /* WonderousWidgetView.swift */,
-				297FD5752AE19BD9008D8BFE /* WonderWidgetViewComponents.swift */,
+				297FD5732AE18011008D8BFE /* TravelBuddyWidgetView.swift */,
+				297FD5752AE19BD9008D8BFE /* TravelBuddyWidgetViewComponents.swift */,
 				296251242AE7410D00D574FF /* Colors.swift */,
 				2978ECDC2B62D00C00E36CE8 /* FlutterAssets.swift */,
 			);
-			path = WonderousWidget;
+			path = TravelBuddyWidget;
 			sourceTree = "<group>";
 		};
 		5073AC1D92C10773F20D12A2 /* Frameworks */ = {
@@ -172,10 +172,10 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
-				297FD56C2ADF0DAB008D8BFE /* WonderousWidgetExtension.entitlements */,
+				297FD56C2ADF0DAB008D8BFE /* TravelBuddyWidgetExtension.entitlements */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
-				297F6FCA2AD06E0D00FF159E /* WonderousWidget */,
+				297F6FCA2AD06E0D00FF159E /* TravelBuddyWidget */,
 				97C146EF1CF9000F007C117D /* Products */,
 				5073AC1D92C10773F20D12A2 /* Frameworks */,
 				E090BB04291350D10AF9DE4E /* Pods */,
@@ -186,8 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				97C146EE1CF9000F007C117D /* Runner.app */,
-				E214FC8227C5A18D005F78FB /* wondersUITests.xctest */,
-				297F6FC52AD06E0D00FF159E /* WonderousWidgetExtension.appex */,
+				E214FC8227C5A18D005F78FB /* destinationsUITests.xctest */,
+				297F6FC52AD06E0D00FF159E /* TravelBuddyWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,9 +221,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		297F6FC42AD06E0D00FF159E /* WonderousWidgetExtension */ = {
+		297F6FC42AD06E0D00FF159E /* TravelBuddyWidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 297F6FDC2AD06E0F00FF159E /* Build configuration list for PBXNativeTarget "WonderousWidgetExtension" */;
+			buildConfigurationList = 297F6FDC2AD06E0F00FF159E /* Build configuration list for PBXNativeTarget "TravelBuddyWidgetExtension" */;
 			buildPhases = (
 				297F6FC12AD06E0D00FF159E /* Sources */,
 				297F6FC22AD06E0D00FF159E /* Frameworks */,
@@ -233,9 +233,9 @@
 			);
 			dependencies = (
 			);
-			name = WonderousWidgetExtension;
-			productName = WonderousWidgetExtension;
-			productReference = 297F6FC52AD06E0D00FF159E /* WonderousWidgetExtension.appex */;
+			name = TravelBuddyWidgetExtension;
+			productName = TravelBuddyWidgetExtension;
+			productReference = 297F6FC52AD06E0D00FF159E /* TravelBuddyWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		97C146ED1CF9000F007C117D /* Runner */ = {
@@ -263,9 +263,9 @@
 			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E214FC8127C5A18D005F78FB /* wondersUITests */ = {
+		E214FC8127C5A18D005F78FB /* destinationsUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E214FC8A27C5A18E005F78FB /* Build configuration list for PBXNativeTarget "wondersUITests" */;
+			buildConfigurationList = E214FC8A27C5A18E005F78FB /* Build configuration list for PBXNativeTarget "destinationsUITests" */;
 			buildPhases = (
 				E214FC7E27C5A18D005F78FB /* Sources */,
 				E214FC7F27C5A18D005F78FB /* Frameworks */,
@@ -276,9 +276,9 @@
 			dependencies = (
 				E214FC8927C5A18E005F78FB /* PBXTargetDependency */,
 			);
-			name = wondersUITests;
-			productName = wondersUITests;
-			productReference = E214FC8227C5A18D005F78FB /* wondersUITests.xctest */;
+			name = destinationsUITests;
+			productName = destinationsUITests;
+			productReference = E214FC8227C5A18D005F78FB /* destinationsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -322,8 +322,8 @@
 			projectRoot = "";
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
-				E214FC8127C5A18D005F78FB /* wondersUITests */,
-				297F6FC42AD06E0D00FF159E /* WonderousWidgetExtension */,
+				E214FC8127C5A18D005F78FB /* destinationsUITests */,
+				297F6FC42AD06E0D00FF159E /* TravelBuddyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -452,13 +452,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				297FD5762AE19BD9008D8BFE /* WonderWidgetViewComponents.swift in Sources */,
+				297FD5762AE19BD9008D8BFE /* TravelBuddyWidgetViewComponents.swift in Sources */,
 				296251252AE7410D00D574FF /* Colors.swift in Sources */,
-				297F6FD32AD06E0F00FF159E /* WonderousWidget.intentdefinition in Sources */,
+				297F6FD32AD06E0F00FF159E /* TravelBuddyWidget.intentdefinition in Sources */,
 				2978ECDD2B62D00C00E36CE8 /* FlutterAssets.swift in Sources */,
-				297FD5742AE18011008D8BFE /* WonderousWidgetView.swift in Sources */,
-				297F6FCE2AD06E0D00FF159E /* WonderousWidget.swift in Sources */,
-				297F6FCC2AD06E0D00FF159E /* WonderousWidgetBundle.swift in Sources */,
+				297FD5742AE18011008D8BFE /* TravelBuddyWidgetView.swift in Sources */,
+				297F6FCE2AD06E0D00FF159E /* TravelBuddyWidget.swift in Sources */,
+				297F6FCC2AD06E0D00FF159E /* TravelBuddyWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				297F6FD42AD06E0F00FF159E /* WonderousWidget.intentdefinition in Sources */,
+				297F6FD42AD06E0F00FF159E /* TravelBuddyWidget.intentdefinition in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
@@ -484,7 +484,7 @@
 /* Begin PBXTargetDependency section */
 		297F6FD62AD06E0F00FF159E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 297F6FC42AD06E0D00FF159E /* WonderousWidgetExtension */;
+			target = 297F6FC42AD06E0D00FF159E /* TravelBuddyWidgetExtension */;
 			targetProxy = 297F6FD52AD06E0F00FF159E /* PBXContainerItemProxy */;
 		};
 		E214FC8927C5A18E005F78FB /* PBXTargetDependency */ = {
@@ -585,7 +585,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gskinner.flutter.wonders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.travelbuddy.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -605,15 +605,15 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = WonderousWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TravelBuddyWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S3TL5AY6Y3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WonderousWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "WonderousWidget";
+				INFOPLIST_FILE = TravelBuddyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "TravelBuddyWidget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -624,7 +624,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gskinner.flutter.wonders.Wonderous-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.travelbuddy.app.TravelBuddy-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -645,15 +645,15 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = WonderousWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TravelBuddyWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S3TL5AY6Y3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WonderousWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "WonderousWidget";
+				INFOPLIST_FILE = TravelBuddyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "TravelBuddyWidget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -663,7 +663,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gskinner.flutter.wonders.Wonderous-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.travelbuddy.app.TravelBuddy-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -682,15 +682,15 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "WonderousWidgetExtension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "TravelBuddyWidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S3TL5AY6Y3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "WonderousWidget/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WonderousWidget";
+				INFOPLIST_FILE = "TravelBuddyWidget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "TravelBuddyWidget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -700,7 +700,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gskinner.flutter.wonders.Wonderous-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.travelbuddy.app.TravelBuddy-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -840,7 +840,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gskinner.flutter.wonders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.travelbuddy.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -869,7 +869,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gskinner.flutter.wonders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.travelbuddy.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -897,7 +897,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gskinner.wonders.wondersUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.travelbuddy.app.travelBuddyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -925,7 +925,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gskinner.wonders.wondersUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.travelbuddy.app.travelBuddyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -951,7 +951,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gskinner.wonders.wondersUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.travelbuddy.app.travelBuddyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -963,7 +963,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		297F6FDC2AD06E0F00FF159E /* Build configuration list for PBXNativeTarget "WonderousWidgetExtension" */ = {
+		297F6FDC2AD06E0F00FF159E /* Build configuration list for PBXNativeTarget "TravelBuddyWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				297F6FD92AD06E0F00FF159E /* Debug */,
@@ -993,7 +993,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E214FC8A27C5A18E005F78FB /* Build configuration list for PBXNativeTarget "wondersUITests" */ = {
+		E214FC8A27C5A18E005F78FB /* Build configuration list for PBXNativeTarget "destinationsUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E214FC8B27C5A18E005F78FB /* Debug */,

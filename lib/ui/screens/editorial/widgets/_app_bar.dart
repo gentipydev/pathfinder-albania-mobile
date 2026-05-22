@@ -1,8 +1,8 @@
 part of '../editorial_screen.dart';
 
 class _AppBar extends StatelessWidget {
-  _AppBar(this.wonderType, {super.key, required this.sectionIndex, required this.scrollPos});
-  final WonderType wonderType;
+  _AppBar(this.destinationType, {required this.sectionIndex, required this.scrollPos});
+  final DestinationType destinationType;
   final ValueNotifier<int> sectionIndex;
   final ValueNotifier<double> scrollPos;
   final _titleValues = [
@@ -18,15 +18,15 @@ class _AppBar extends StatelessWidget {
   ];
 
   ArchType _getArchType() {
-    return switch (wonderType) {
-      WonderType.chichenItza => ArchType.flatPyramid,
-      WonderType.christRedeemer => ArchType.wideArch,
-      WonderType.colosseum => ArchType.arch,
-      WonderType.greatWall => ArchType.arch,
-      WonderType.machuPicchu => ArchType.pyramid,
-      WonderType.petra => ArchType.wideArch,
-      WonderType.pyramidsGiza => ArchType.pyramid,
-      WonderType.tajMahal => ArchType.spade,
+    return switch (destinationType) {
+      DestinationType.butrint => ArchType.flatPyramid,
+      DestinationType.berat => ArchType.wideArch,
+      DestinationType.gjirokaster => ArchType.arch,
+      DestinationType.apollonia => ArchType.arch,
+      DestinationType.theth => ArchType.pyramid,
+      DestinationType.kruja => ArchType.wideArch,
+      DestinationType.albanianAlps => ArchType.pyramid,
+      DestinationType.korca => ArchType.spade,
     };
   }
 
@@ -62,7 +62,7 @@ class _AppBar extends StatelessWidget {
                                       return ScalingListItem(
                                         scrollPos: scrollPos,
                                         child: Image.asset(
-                                          wonderType.photo1,
+                                          destinationType.photo1,
                                           fit: BoxFit.cover,
                                           opacity: AlwaysStoppedAnimation(opacity),
                                         ),
@@ -80,7 +80,7 @@ class _AppBar extends StatelessWidget {
                   if (showOverlay) ...[
                     AnimatedContainer(
                       duration: $styles.times.med,
-                      color: wonderType.bgColor.withValues(alpha: showOverlay ? .8 : 0),
+                      color: destinationType.bgColor.withValues(alpha: showOverlay ? .8 : 0),
                     ),
                   ],
                 ],
@@ -91,7 +91,7 @@ class _AppBar extends StatelessWidget {
             BottomCenter(
               child: ValueListenableBuilder<int>(
                 valueListenable: sectionIndex,
-                builder: (_, value, __) {
+                builder: (_, value, _) {
                   return _CircularTitleBar(
                     index: value,
                     titles: _titleValues,

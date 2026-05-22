@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutter-wonders-app",
+            "name": "flutter-destinations-app",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "flutter-wonders-app (profile mode)",
+            "name": "flutter-destinations-app (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "flutter-wonders-app (release mode)",
+            "name": "flutter-destinations-app (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

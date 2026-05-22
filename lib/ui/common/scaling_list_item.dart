@@ -1,5 +1,5 @@
-import 'package:wonders/common_libs.dart';
-import 'package:wonders/ui/common/utils/context_utils.dart';
+import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/ui/common/utils/context_utils.dart';
 
 class AnimatedListItem extends StatelessWidget {
   const AnimatedListItem({super.key, required this.scrollPos, required this.builder});
@@ -10,9 +10,9 @@ class AnimatedListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // Use Animate.toggle to build the child twice, this will allow it to properly measure its size and position.
     return Animate().toggle(
-      builder: (_, value, __) => ValueListenableBuilder(
+      builder: (_, value, _) => ValueListenableBuilder(
         valueListenable: scrollPos,
-        builder: (_, value, __) {
+        builder: (_, value, _) {
           return LayoutBuilder(
             builder: (_, constraints) {
               Offset? pos = ContextUtils.getGlobalPos(context);

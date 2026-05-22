@@ -3,11 +3,10 @@ part of '../editorial_screen.dart';
 class _ScrollingContent extends StatelessWidget {
   const _ScrollingContent(
     this.data, {
-    super.key,
     required this.scrollPos,
     required this.sectionNotifier,
   });
-  final WonderData data;
+  final DestinationData data;
   final ValueNotifier<double> scrollPos;
   final ValueNotifier<int> sectionNotifier;
 
@@ -67,12 +66,12 @@ class _ScrollingContent extends StatelessWidget {
     }
 
     Widget buildHiddenCollectible({required int slot}) {
-      List<WonderType> getTypesForSlot(slot) {
+      List<DestinationType> getTypesForSlot(slot) {
         return switch (slot) {
-          0 => [WonderType.chichenItza, WonderType.colosseum],
-          1 => [WonderType.pyramidsGiza, WonderType.petra],
-          2 => [WonderType.machuPicchu, WonderType.christRedeemer],
-          _ => [WonderType.tajMahal, WonderType.greatWall],
+          0 => [DestinationType.butrint, DestinationType.gjirokaster],
+          1 => [DestinationType.albanianAlps, DestinationType.kruja],
+          2 => [DestinationType.theth, DestinationType.berat],
+          _ => [DestinationType.korca, DestinationType.apollonia],
         };
       }
 
@@ -138,7 +137,6 @@ class _ScrollingContent extends StatelessWidget {
                     _MapsThumbnail(data),
                     Gap($styles.insets.md),
                     ..._contentSection([Center(child: buildHiddenCollectible(slot: 3))]),
-                    Gap(150),
                   ],
                 ),
               ),
@@ -168,11 +166,14 @@ class _ScrollingContent extends StatelessWidget {
 }
 
 class _YouTubeThumbnail extends StatelessWidget {
-  const _YouTubeThumbnail({super.key, required this.id, required this.caption});
+  const _YouTubeThumbnail({required this.id, required this.caption});
   final String id;
   final String caption;
 
-  String get imageUrl => 'https://www.wonderous.info/youtube/$id.jpg';
+  // YouTube serves thumbnails directly off its CDN — no need to mirror
+  // them through our backend. `hqdefault` is 480x360 and exists for every
+  // public video.
+  String get imageUrl => 'https://img.youtube.com/vi/$id/hqdefault.jpg';
 
   @override
   Widget build(BuildContext context) {
@@ -222,8 +223,8 @@ class _YouTubeThumbnail extends StatelessWidget {
 }
 
 class _MapsThumbnail extends StatefulWidget {
-  const _MapsThumbnail(this.data, {super.key});
-  final WonderData data;
+  const _MapsThumbnail(this.data);
+  final DestinationData data;
 
   @override
   State<_MapsThumbnail> createState() => _MapsThumbnailState();
@@ -239,7 +240,7 @@ class _MapsThumbnailState extends State<_MapsThumbnail> {
 
   Future<void> _loadGoogleMap() async {
     try {
-      await googleMap.loadLibrary();
+      await google_map.loadLibrary();
     } catch (e) {
       debugPrint('Error loading Google Map: $e');
     }
@@ -278,14 +279,14 @@ class _MapsThumbnailState extends State<_MapsThumbnail> {
                                   ),
                                 );
                               }
-                              startPos = googleMap.CameraPosition(
-                                target: googleMap.LatLng(widget.data.lat, widget.data.lng),
+                              startPos = google_map.CameraPosition(
+                                target: google_map.LatLng(widget.data.lat, widget.data.lng),
                                 zoom: 3,
                               );
-                              return googleMap.GoogleMap(
+                              return google_map.GoogleMap(
                                 markers: {getMapsMarker(startPos.target)},
                                 zoomControlsEnabled: false,
-                                mapType: googleMap.MapType.normal,
+                                mapType: google_map.MapType.normal,
                                 mapToolbarEnabled: false,
                                 initialCameraPosition: startPos,
                                 myLocationButtonEnabled: false,

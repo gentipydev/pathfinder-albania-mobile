@@ -11,20 +11,28 @@ class _CollectionListCard extends StatelessWidget with GetItMixin {
 
   final double? width;
   final double? height;
-  final WonderData data;
+  final DestinationData data;
   final String fromId;
 
   void _showDetails(BuildContext context, CollectibleData collectible) {
+    final bloc = context.read<CollectiblesBloc>();
     context.go(ScreenPaths.artifact(collectible.artifactId));
-    Future.delayed(
-      300.delayMs,
-    ).then((_) => collectiblesLogic.setState(collectible.id, CollectibleState.explored));
+    Future.delayed(300.delayMs).then(
+      (_) => bloc.add(
+        CollectiblesStateChanged(
+          id: collectible.id,
+          state: CollectibleState.explored,
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final states = watchX((CollectiblesLogic o) => o.statesById);
-    List<CollectibleData> collectibles = collectiblesLogic.forWonder(data.type);
+    final states = context.watch<CollectiblesBloc>().state.statesById;
+    List<CollectibleData> collectibles = CollectibleData.forDestination(
+      data.type,
+    );
     return Center(
       child: SizedBox(
         width: width ?? double.infinity,
