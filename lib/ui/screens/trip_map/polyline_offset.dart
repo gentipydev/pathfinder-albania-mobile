@@ -92,8 +92,10 @@ List<LatLng> offsetPolyline(List<LatLng> points, double offsetMeters) {
 
 /// Offset for a within-day polyline in [dayNumber] (1-indexed). Day 1 = 0
 /// (baseline, sits on the actual road); each subsequent day steps by
-/// [stepMeters] perpendicular.
-double offsetForDay(int dayNumber, {double stepMeters = 2.5}) {
+/// [stepMeters] perpendicular. 6m keeps each day's lane visibly separated
+/// from its neighbors at typical city-fit zoom (~zoom 12); below that, the
+/// lanes collapse anyway and overlap is unavoidable.
+double offsetForDay(int dayNumber, {double stepMeters = 6.0}) {
   if (dayNumber < 1) return 0;
   return (dayNumber - 1) * stepMeters;
 }
@@ -103,7 +105,7 @@ double offsetForDay(int dayNumber, {double stepMeters = 2.5}) {
 double offsetForCrossDay(
   int fromDay,
   int toDay, {
-  double stepMeters = 2.5,
+  double stepMeters = 6.0,
 }) {
   return (offsetForDay(fromDay, stepMeters: stepMeters) +
           offsetForDay(toDay, stepMeters: stepMeters)) /
