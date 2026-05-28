@@ -19,6 +19,12 @@ class AppColors {
   // - web/index.html -
   final Color black = const Color(0xFF1E1B18);
 
+  /// Warm, brand-aligned red for error / destructive states.
+  final Color error = const Color(0xFFD9534F);
+
+  /// Elevated dark surface, one step above [black], for cards / chips / sheets.
+  final Color surface = const Color(0xFF242120);
+
   final bool isDark = false;
 
   Color shift(Color c, double d) => ColorUtils.shiftHsl(c, d * (isDark ? -1 : 1));
@@ -39,7 +45,7 @@ class AppColors {
       onError: Colors.white,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
-      error: Colors.red.shade400,
+      error: error,
     );
 
     /// Now that we have ColorScheme and TextTheme, we can create the ThemeData

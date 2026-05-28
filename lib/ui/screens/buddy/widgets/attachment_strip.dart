@@ -68,7 +68,7 @@ class _AttachmentChip extends StatelessWidget {
               child: ColorFiltered(
                 colorFilter: isFailed
                     ? ColorFilter.mode(
-                        Colors.redAccent.withValues(alpha: .5),
+                        $styles.colors.error.withValues(alpha: .5),
                         BlendMode.srcATop,
                       )
                     : const ColorFilter.mode(

@@ -79,9 +79,9 @@ class ItineraryMapThumbnail extends StatelessWidget {
   }
 }
 
-/// Soft pulsing placeholder while the static map PNG decodes. Mirrors the
-/// solid dark surface the place-card photo placeholder uses (Color(0xFF1A1A1A))
-/// so the chat bubble reads as a unified surface during load.
+/// Soft pulsing placeholder while the static map PNG decodes. Pulses between
+/// two dark tones around the elevated surface ($styles.colors.surface) so the
+/// chat bubble reads as a unified surface during load.
 class _ShimmerPlaceholder extends StatefulWidget {
   const _ShimmerPlaceholder();
 
@@ -132,7 +132,7 @@ class _MapUnavailable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF222222),
+      color: $styles.colors.surface,
       alignment: Alignment.center,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -163,8 +163,8 @@ class _ExpandHint extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
-        color: const Color(0x99000000),
-        borderRadius: BorderRadius.circular(999),
+        color: $styles.colors.black.withValues(alpha: .6),
+        borderRadius: BorderRadius.circular($styles.corners.pill),
       ),
       child: const Icon(
         Icons.open_in_full,

@@ -1465,6 +1465,17 @@ class AppLocalizationsSq extends AppLocalizations {
   String get buddyItineraryUnstructured => 'Nuk arritëm ta strukturojmë këtë itinerar — përgjigja është më sipër.';
 
   @override
+  String buddyRagSourcesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count burime',
+      one: '1 burim',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get refineWithBuddyButton => 'Përsosni me Buddy';
 
   @override

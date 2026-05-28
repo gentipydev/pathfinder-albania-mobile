@@ -1,15 +1,9 @@
 import 'dart:math' as math;
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/logic/buddy/place_card.dart';
-
-const Color _kOrange = Color(0xFFE07B39);
-const Color _kCardBg = Color(0xFF1A1A1A);
-const Color _kChipBg = Color(0xFF2A2A2A);
-const Color _kGreySubtitle = Color(0xFF888888);
-const Color _kGreyBody = Color(0xFFCCCCCC);
 
 class PlaceCardWidget extends StatefulWidget {
   const PlaceCardWidget({super.key, required this.place});
@@ -82,14 +76,14 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
     final photoH = cardH * 0.55;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: $styles.insets.sm, vertical: $styles.insets.xs),
       child: SizedBox(
         width: cardW,
         height: cardH,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular($styles.corners.card),
           child: ColoredBox(
-            color: _kCardBg,
+            color: $styles.colors.surface,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -99,7 +93,7 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(14),
+                    padding: EdgeInsets.all($styles.insets.sm),
                     child: _buildDetails(),
                   ),
                 ),
@@ -152,17 +146,13 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
         if (subtitle != null && subtitle.isNotEmpty)
           Text(
             subtitle,
-            style: const TextStyle(color: _kGreySubtitle, fontSize: 13),
+            style: $styles.text.bodySmall.copyWith(color: $styles.colors.caption),
           ),
         if (desc != null && desc.isNotEmpty) ...[
-          const SizedBox(height: 8),
+          SizedBox(height: $styles.insets.xs),
           Text(
             desc,
-            style: const TextStyle(
-              color: _kGreyBody,
-              fontSize: 13,
-              height: 1.35,
-            ),
+            style: $styles.text.bodySmall.copyWith(color: $styles.colors.greyMedium),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
@@ -190,24 +180,21 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
       alignment: Alignment.centerLeft,
       child: TextButton.icon(
         onPressed: _handleOpenMap,
-        icon: const Icon(
+        icon: Icon(
           Icons.location_on_outlined,
           size: 16,
-          color: _kGreySubtitle,
+          color: $styles.colors.caption,
         ),
-        label: const Text(
+        // TODO: localize via $strings — hardcoded English breaks the sq locale.
+        label: Text(
           'Open in maps',
-          style: TextStyle(
-            color: _kGreySubtitle,
-            fontSize: 13,
-            fontWeight: FontWeight.w400,
-          ),
+          style: $styles.text.bodySmall.copyWith(color: $styles.colors.caption),
         ),
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
           minimumSize: const Size(0, 32),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          iconColor: _kGreySubtitle,
+          iconColor: $styles.colors.caption,
         ),
       ),
     );
@@ -224,7 +211,7 @@ class _PhotoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.circular($styles.corners.card),
       child: CachedNetworkImage(
         imageUrl: url,
         fit: BoxFit.cover,
@@ -246,14 +233,13 @@ class _CounterPill extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: const Color(0x99000000),
-        borderRadius: BorderRadius.circular(999),
+        color: $styles.colors.black.withValues(alpha: .6),
+        borderRadius: BorderRadius.circular($styles.corners.pill),
       ),
       child: Text(
         text,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 12,
+        style: $styles.text.bodySmall.copyWith(
+          color: $styles.colors.white,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -272,12 +258,12 @@ class _PhotoPlaceholder extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      color: const Color(0xFF222222),
+      color: $styles.colors.surface,
       alignment: Alignment.center,
-      child: const Icon(
+      child: Icon(
         Icons.place_outlined,
         size: 48,
-        color: Color(0xFF666666),
+        color: $styles.colors.caption,
       ),
     );
   }
@@ -293,18 +279,13 @@ class _TagChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
       decoration: BoxDecoration(
-        color: _kChipBg,
-        border: Border.all(color: _kOrange, width: 0.5),
-        borderRadius: BorderRadius.circular(14),
+        color: $styles.colors.greyStrong,
+        border: Border.all(color: $styles.colors.accent1, width: 0.5),
+        borderRadius: BorderRadius.circular($styles.corners.card),
       ),
       child: Text(
         label,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 11,
-          fontStyle: FontStyle.italic,
-          height: 1.3,
-        ),
+        style: $styles.text.caption.copyWith(color: $styles.colors.white),
       ),
     );
   }

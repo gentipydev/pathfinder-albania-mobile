@@ -218,13 +218,13 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
                   value: 'clear_all',
                   child: Row(
                     children: [
-                      const Icon(Icons.delete_sweep_outlined,
-                          color: Colors.redAccent),
+                      Icon(Icons.delete_sweep_outlined,
+                          color: $styles.colors.error),
                       SizedBox(width: $styles.insets.sm),
                       Text(
                         $strings.conversationsClearAllAction,
                         style: $styles.text.body
-                            .copyWith(color: Colors.redAccent),
+                            .copyWith(color: $styles.colors.error),
                       ),
                     ],
                   ),

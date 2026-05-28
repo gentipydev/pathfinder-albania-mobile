@@ -1,5 +1,6 @@
 import 'package:travel_buddy/domain/entities/itinerary_draft.dart';
 import 'package:travel_buddy/domain/entities/trip.dart';
+import 'package:travel_buddy/logic/buddy/chat_message.dart';
 
 sealed class ChatStreamEvent {
   const ChatStreamEvent();
@@ -34,6 +35,16 @@ class StreamDone extends ChatStreamEvent {
 class PlaceCardEvent extends ChatStreamEvent {
   final Map<String, dynamic> data;
   const PlaceCardEvent(this.data);
+}
+
+/// RAG provenance for a grounded turn (`event: rag_sources`). Lands once, in
+/// the same early SSE position as [PlaceCardEvent] (both derive from the same
+/// retrieval). The buddy logic attaches the list to the asst message it
+/// streamed in; the chat UI shows an "N sources" chip on that bubble after
+/// streaming finishes. Never emitted on ungrounded turns.
+class RagSourcesEvent extends ChatStreamEvent {
+  final List<RagSource> sources;
+  const RagSourcesEvent(this.sources);
 }
 
 class ConversationIdEvent extends ChatStreamEvent {

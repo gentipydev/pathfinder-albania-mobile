@@ -286,7 +286,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
             SizedBox(
               height: 24,
               child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
+                duration: $styles.times.pageTransition,
                 child: Text(
                   persona.tagline,
                   key: ValueKey(persona.id),
@@ -383,11 +383,11 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
 
   Widget _buildStartButton(TravelerPersona persona) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
+      duration: $styles.times.fast,
       curve: Curves.easeOut,
       decoration: BoxDecoration(
         color: $styles.colors.accent1,
-        borderRadius: BorderRadius.circular(999),
+        borderRadius: BorderRadius.circular($styles.corners.pill),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.30),
@@ -399,7 +399,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(999),
+          borderRadius: BorderRadius.circular($styles.corners.pill),
           onTap: _loading ? null : _handleStart,
           child: SizedBox(
             height: 56,
@@ -477,7 +477,7 @@ class _PersonaCardState extends State<_PersonaCard>
   Widget build(BuildContext context) {
     return AnimatedScale(
       scale: widget.isSelected ? 1.0 : 0.94,
-      duration: const Duration(milliseconds: 300),
+      duration: $styles.times.fast,
       curve: Curves.easeOutBack,
       child: Padding(
         padding: EdgeInsets.symmetric(

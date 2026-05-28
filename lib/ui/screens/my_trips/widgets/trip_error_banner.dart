@@ -100,7 +100,7 @@ class _TripErrorBannerState extends State<TripErrorBanner>
                 decoration: BoxDecoration(
                   color: $styles.colors.greyStrong,
                   border: Border(
-                    left: const BorderSide(color: Colors.redAccent, width: 3),
+                    left: BorderSide(color: $styles.colors.error, width: 3),
                     bottom: BorderSide(
                       color: Colors.black.withValues(alpha: 0.4),
                       width: 1,
@@ -113,9 +113,9 @@ class _TripErrorBannerState extends State<TripErrorBanner>
                 ),
                 child: Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.error_outline,
-                      color: Colors.redAccent,
+                      color: $styles.colors.error,
                       size: 18,
                     ),
                     Gap($styles.insets.sm),

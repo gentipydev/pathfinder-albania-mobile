@@ -152,13 +152,13 @@ class _MyTripsScreenState extends State<MyTripsScreen> {
                             value: 'clear_all',
                             child: Row(
                               children: [
-                                const Icon(Icons.delete_sweep_outlined,
-                                    color: Colors.redAccent),
+                                Icon(Icons.delete_sweep_outlined,
+                                    color: $styles.colors.error),
                                 SizedBox(width: $styles.insets.sm),
                                 Text(
                                   $strings.myTripsClearAllAction,
                                   style: $styles.text.body
-                                      .copyWith(color: Colors.redAccent),
+                                      .copyWith(color: $styles.colors.error),
                                 ),
                               ],
                             ),
@@ -350,9 +350,9 @@ class _TripRowState extends State<_TripRow> {
                     imageUrl: url,
                     fit: BoxFit.cover,
                     placeholder: (_, _) =>
-                        Container(color: const Color(0xFF1A1A1A)),
+                        Container(color: $styles.colors.surface),
                     errorWidget: (_, _, _) =>
-                        Container(color: const Color(0xFF222222)),
+                        Container(color: $styles.colors.surface),
                   ),
                   // Bottom mask so the chip + future text overlays stay
                   // legible on busy/colorful maps.
@@ -531,7 +531,7 @@ class _DayCountChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         color: const Color(0xCC000000),
-        borderRadius: BorderRadius.circular(999),
+        borderRadius: BorderRadius.circular($styles.corners.pill),
         border: Border.all(color: accent, width: 1),
       ),
       child: Text(

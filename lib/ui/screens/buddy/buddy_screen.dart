@@ -392,7 +392,7 @@ class _MessageListState extends State<_MessageList> {
     if (!widget.scroll.hasClients) return;
     widget.scroll.animateTo(
       0,
-      duration: const Duration(milliseconds: 200),
+      duration: $styles.times.pageTransition,
       curve: Curves.easeOut,
     );
   }
@@ -473,7 +473,7 @@ class _UserBubble extends StatelessWidget {
           children: [
             if (hasImage)
               ClipRRect(
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular($styles.corners.card),
                 child: CachedNetworkImage(
                   imageUrl: message.attachmentUrls.first,
                   width: 220,
@@ -486,7 +486,7 @@ class _UserBubble extends StatelessWidget {
                 padding: EdgeInsets.all($styles.insets.xs + 2),
                 decoration: BoxDecoration(
                   color: colors.greyStrong,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular($styles.corners.card),
                 ),
                 child: Text(
                   message.content,
@@ -550,6 +550,10 @@ class _AssistantMessage extends StatelessWidget {
                 !message.hasError &&
                 message.content.isNotEmpty)
               _AssistantActions(message: message),
+            if (!message.isStreaming &&
+                !message.hasError &&
+                (message.ragSources?.isNotEmpty ?? false))
+              _RagSourcesChip(sources: message.ragSources!),
             if (!message.isStreaming &&
                 !message.hasError &&
                 message.itinerary != null)
@@ -1020,7 +1024,7 @@ class _Composer extends StatelessWidget {
         padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
           color: colors.greyStrong.withValues(alpha: .55),
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular($styles.corners.card),
           border: Border.all(
             color: colors.greyMedium.withValues(alpha: .3),
             width: 1,
@@ -1310,6 +1314,115 @@ class _AssistantActions extends StatelessWidget {
   }
 }
 
+/// RAG transparency chip: a subtle "N sources" pill below a grounded assistant
+/// reply. Tapping it expands the retrieved sources (title + snippet) the answer
+/// was grounded on — surfacing retrieval provenance to the user. Live-turn
+/// ephemeral (sources aren't persisted server-side, so it never appears on
+/// rehydrated history).
+class _RagSourcesChip extends StatefulWidget {
+  const _RagSourcesChip({required this.sources});
+
+  final List<RagSource> sources;
+
+  @override
+  State<_RagSourcesChip> createState() => _RagSourcesChipState();
+}
+
+class _RagSourcesChipState extends State<_RagSourcesChip> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = $styles.colors;
+    final radius = BorderRadius.circular($styles.corners.md);
+    return Padding(
+      padding: EdgeInsets.only(top: $styles.insets.xxs),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Material(
+            color: Colors.transparent,
+            borderRadius: radius,
+            child: InkWell(
+              borderRadius: radius,
+              onTap: () => setState(() => _expanded = !_expanded),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: $styles.insets.xs,
+                  vertical: $styles.insets.xxs,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.menu_book_outlined,
+                      size: 14,
+                      color: colors.greyMedium,
+                    ),
+                    Gap($styles.insets.xxs),
+                    Text(
+                      $strings.buddyRagSourcesCount(widget.sources.length),
+                      style: $styles.text.bodySmall.copyWith(
+                        color: colors.greyMedium,
+                      ),
+                    ),
+                    Gap($styles.insets.xxs),
+                    Icon(
+                      _expanded
+                          ? Icons.keyboard_arrow_up
+                          : Icons.keyboard_arrow_down,
+                      size: 16,
+                      color: colors.greyMedium,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          if (_expanded)
+            Padding(
+              padding: EdgeInsets.only(
+                top: $styles.insets.xxs,
+                left: $styles.insets.xs,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (final s in widget.sources)
+                    Padding(
+                      padding: EdgeInsets.only(bottom: $styles.insets.xxs),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (s.title.isNotEmpty)
+                            Text(
+                              s.title,
+                              style: $styles.text.bodySmallBold.copyWith(
+                                color: colors.accent1,
+                              ),
+                            ),
+                          if (s.snippet.isNotEmpty)
+                            Text(
+                              s.snippet,
+                              style: $styles.text.bodySmall.copyWith(
+                                color: colors.greyMedium,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
 class _TtsButton extends StatelessWidget {
   const _TtsButton({required this.message});
 
@@ -1437,11 +1550,11 @@ class _ErrorFooter extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.error_outline, size: 16, color: Colors.redAccent),
+          Icon(Icons.error_outline, size: 16, color: colors.error),
           Gap($styles.insets.xxs),
           Text(
             $strings.buddyErrorHint,
-            style: $styles.text.bodySmall.copyWith(color: Colors.redAccent),
+            style: $styles.text.bodySmall.copyWith(color: colors.error),
           ),
           TextButton(
             onPressed: onRetry,
@@ -1532,7 +1645,7 @@ class _ItineraryDayHeader extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
           decoration: BoxDecoration(
             color: colors.accent1.withValues(alpha: 0.18),
-            borderRadius: BorderRadius.circular(999),
+            borderRadius: BorderRadius.circular($styles.corners.pill),
           ),
           child: Text(
             $strings.tripDetailDayLabel(day.dayNumber),
@@ -1808,7 +1921,7 @@ class _SaveItineraryButtonState extends State<_SaveItineraryButton> {
     final colors = $styles.colors;
     final padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 6);
     final shape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular($styles.corners.card),
     );
 
     // Selector on the saved-trips count so the button auto-disables when the
@@ -1893,15 +2006,15 @@ class _SaveItineraryButtonState extends State<_SaveItineraryButton> {
           case _SaveState.error:
             button = TextButton.icon(
               onPressed: _handleTap,
-              icon: const Icon(
+              icon: Icon(
                 Icons.refresh_rounded,
                 size: 16,
-                color: Colors.redAccent,
+                color: colors.error,
               ),
               label: Text(
                 $strings.buddyItinerarySaveRetry,
                 style: $styles.text.bodySmallBold
-                    .copyWith(color: Colors.redAccent),
+                    .copyWith(color: colors.error),
               ),
               style: TextButton.styleFrom(
                 padding: padding,

@@ -56,10 +56,10 @@ Future<bool> showDestructiveConfirmSheet(
               ),
             ),
             ListTile(
-              leading: Icon(confirmIcon, color: Colors.redAccent),
+              leading: Icon(confirmIcon, color: $styles.colors.error),
               title: Text(
                 confirmLabel,
-                style: $styles.text.bodyBold.copyWith(color: Colors.redAccent),
+                style: $styles.text.bodyBold.copyWith(color: $styles.colors.error),
               ),
               onTap: () => Navigator.of(sheetCtx).pop(true),
             ),

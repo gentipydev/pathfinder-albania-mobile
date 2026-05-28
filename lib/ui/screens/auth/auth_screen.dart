@@ -123,7 +123,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       Text(
                         _error!,
                         style: $styles.text.bodySmall.copyWith(
-                          color: Colors.redAccent,
+                          color: $styles.colors.error,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -181,7 +181,7 @@ class _AuthScreenState extends State<AuthScreen> {
           borderRadius: BorderRadius.circular($styles.corners.md),
           borderSide: BorderSide(color: $styles.colors.accent1, width: 1.5),
         ),
-        errorStyle: TextStyle(color: Colors.redAccent),
+        errorStyle: TextStyle(color: $styles.colors.error),
       ),
     );
   }

@@ -453,6 +453,7 @@
 	"buddyErrorRetry": "Riprovo",
 	"buddyNotSavedHint": "Përgjigja nuk u ruajt në server.",
 	"buddyItineraryUnstructured": "Nuk arritëm ta strukturojmë këtë itinerar — përgjigja është më sipër.",
+	"buddyRagSourcesCount": "{count, plural, =1{1 burim} other{{count} burime}}",
 	"refineWithBuddyButton": "Përsosni me Buddy",
 	"refineComposerHint": "Kërkoji Buddy-t të përmirësojë këtë udhëtim…",
 	"refineEmptyTitle": "Çfarë duhet të ndryshojmë?",

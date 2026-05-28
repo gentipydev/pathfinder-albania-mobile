@@ -307,7 +307,7 @@ class _EditStopSheetState extends State<EditStopSheet> {
                     Text(
                       'End must be after arrival',
                       style: $styles.text.body.copyWith(
-                        color: Colors.redAccent,
+                        color: $styles.colors.error,
                       ),
                     ),
                   ],
@@ -557,7 +557,7 @@ class _Chip extends StatelessWidget {
     final bg = selected ? colors.accent1 : colors.black.withValues(alpha: 0.4);
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular($styles.corners.card),
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: $styles.insets.sm,
@@ -565,7 +565,7 @@ class _Chip extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: bg,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular($styles.corners.card),
           border: Border.all(
             color: selected ? colors.accent1 : colors.greyMedium,
           ),

@@ -1460,6 +1460,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get buddyItineraryUnstructured => 'Couldn\'t structure that itinerary — your reply is above.';
 
   @override
+  String buddyRagSourcesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sources',
+      one: '1 source',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get refineWithBuddyButton => 'Refine with Buddy';
 
   @override

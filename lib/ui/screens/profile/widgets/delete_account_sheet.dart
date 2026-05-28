@@ -132,12 +132,12 @@ class _DeleteAccountFormState extends State<_DeleteAccountForm> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(Icons.error_outline, color: Colors.redAccent, size: 18),
+                Icon(Icons.error_outline, color: $styles.colors.error, size: 18),
                 Gap($styles.insets.xs),
                 Expanded(
                   child: Text(
                     widget.errorMessage!,
-                    style: $styles.text.bodySmall.copyWith(color: Colors.redAccent),
+                    style: $styles.text.bodySmall.copyWith(color: $styles.colors.error),
                   ),
                 ),
               ],
@@ -189,12 +189,12 @@ class _DeleteAccountFormState extends State<_DeleteAccountForm> {
           enabled: _matches,
           leading: Icon(
             Icons.delete_forever,
-            color: _matches ? Colors.redAccent : colors.greyMedium,
+            color: _matches ? colors.error : colors.greyMedium,
           ),
           title: Text(
             widget.confirmLabel,
             style: $styles.text.bodyBold.copyWith(
-              color: _matches ? Colors.redAccent : colors.greyMedium,
+              color: _matches ? colors.error : colors.greyMedium,
             ),
           ),
           onTap: _matches ? () => Navigator.of(context).pop(true) : null,

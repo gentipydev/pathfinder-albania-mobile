@@ -197,7 +197,7 @@ class _YouTubeThumbnail extends StatelessWidget {
                         padding: EdgeInsets.all($styles.insets.xs),
                         decoration: BoxDecoration(
                           color: $styles.colors.black.withValues(alpha: 0.66),
-                          borderRadius: BorderRadius.circular(999),
+                          borderRadius: BorderRadius.circular($styles.corners.pill),
                         ),
                         child: Icon(
                           Icons.play_arrow,

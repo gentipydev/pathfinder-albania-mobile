@@ -207,7 +207,13 @@ class _Times {
 class _Corners {
   late final double sm = 4;
   late final double md = 8;
+
+  /// Card / bubble / photo radius — fills the gap between [md] and [lg].
+  late final double card = 16;
   late final double lg = 32;
+
+  /// Fully-rounded pill radius.
+  late final double pill = 999;
 }
 
 // TODO: add, @immutable when design is solidified

@@ -69,7 +69,7 @@ class _VoiceButtonState extends State<VoiceButton>
       builder: (ctx, status) {
         final isListening = status == VoiceState.listening;
         _syncPulse(isListening);
-        final bg = isListening ? Colors.redAccent : colors.accent1;
+        final bg = isListening ? colors.error : colors.accent1;
         final icon =
             isListening ? Icons.stop_rounded : Icons.mic_none_rounded;
         return Tooltip(

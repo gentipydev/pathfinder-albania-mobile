@@ -114,24 +114,24 @@ class _ProfileScreenState extends State<ProfileScreen> with GetItStateMixin {
       child: TextButton.icon(
         onPressed: (_isDeleting || _isSigningOut) ? null : _handleDeleteAccount,
         style: TextButton.styleFrom(
-          foregroundColor: Colors.redAccent,
+          foregroundColor: $styles.colors.error,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular($styles.corners.md),
           ),
         ),
         icon: _isDeleting
-            ? const SizedBox(
+            ? SizedBox(
                 height: 16,
                 width: 16,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation(Colors.redAccent),
+                  valueColor: AlwaysStoppedAnimation($styles.colors.error),
                 ),
               )
-            : const Icon(Icons.delete_forever, size: 18, color: Colors.redAccent),
+            : Icon(Icons.delete_forever, size: 18, color: $styles.colors.error),
         label: Text(
           $strings.profileDeleteAccountButton,
-          style: $styles.text.body.copyWith(color: Colors.redAccent),
+          style: $styles.text.body.copyWith(color: $styles.colors.error),
         ),
       ),
     );

@@ -456,6 +456,13 @@
 	"@buddyItineraryUnstructured": {
 		"description": "Soft inline footer shown on the assistant bubble when the backend rejected Claude's emit_itinerary tool payload during server-side validation. The natural-language reply is still visible above; this string explains why the structured Save card is missing without surfacing the technical reason."
 	},
+	"buddyRagSourcesCount": "{count, plural, =1{1 source} other{{count} sources}}",
+	"@buddyRagSourcesCount": {
+		"description": "Label on the RAG transparency chip below a grounded assistant reply. Tapping the chip expands the list of retrieved sources (title + snippet) the answer was grounded on.",
+		"placeholders": {
+			"count": { "type": "int" }
+		}
+	},
 	"refineWithBuddyButton": "Refine with Buddy",
 	"@refineWithBuddyButton": {
 		"description": "Body button on the trip detail screen that opens a chat scoped to that saved trip. Tapping it routes to the buddy tab with the trip's 1:1 conversation hydrated."

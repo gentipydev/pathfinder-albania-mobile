@@ -20,8 +20,8 @@ import 'package:travel_buddy/services/trip_service.dart';
 import 'package:travel_buddy/ui/common/modals/destructive_confirm_sheet.dart';
 import 'package:travel_buddy/ui/common/themed_date_picker.dart';
 import 'package:travel_buddy/ui/screens/my_trips/widgets/edit_stop_sheet.dart';
-import 'package:travel_buddy/ui/screens/my_trips/widgets/trip_detail_map_header.dart';
 import 'package:travel_buddy/ui/screens/my_trips/widgets/trip_error_banner.dart';
+import 'package:travel_buddy/ui/screens/trip_map/trip_map_screen.dart';
 import 'package:travel_buddy/utils/dlog.dart';
 
 // Most edit-mode strings in this file are now localized via `$strings`. The
@@ -261,9 +261,9 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
                   onClearStartDate: trip == null || trip.startDate == null
                       ? null
                       : () => _confirmClearStartDate(trip),
+                  onViewMap: trip == null ? null : () => _openMap(trip),
                 ),
                 const TripErrorBanner(),
-                if (trip != null) TripDetailMapHeader(trip: trip),
                 if (trip != null)
                   _RefineCta(
                     busy: _openingRefine,
@@ -279,6 +279,18 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
     );
   }
 
+  void _openMap(Trip trip) {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: $styles.times.med,
+        reverseTransitionDuration: $styles.times.med,
+        pageBuilder: (_, _, _) => TripMapScreen(trip: trip),
+        transitionsBuilder: (_, anim, _, child) =>
+            FadeTransition(opacity: anim, child: child),
+      ),
+    );
+  }
+
   Widget _buildBody(Trip? trip) {
     if (trip == null) {
       if (_coldStartLoading) {
@@ -290,7 +302,7 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
         return Center(
           child: Text(
             $strings.buddyErrorHint,
-            style: $styles.text.body.copyWith(color: Colors.redAccent),
+            style: $styles.text.body.copyWith(color: $styles.colors.error),
           ),
         );
       }
@@ -533,10 +545,10 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
                 onTap: () => Navigator.of(sheetCtx).pop(_StopAction.duplicate),
               ),
               ListTile(
-                leading: const Icon(Icons.delete_outline, color: Colors.redAccent),
+                leading: Icon(Icons.delete_outline, color: $styles.colors.error),
                 title: Text(
                   $strings.tripDetailStopActionDelete,
-                  style: $styles.text.bodyBold.copyWith(color: Colors.redAccent),
+                  style: $styles.text.bodyBold.copyWith(color: $styles.colors.error),
                 ),
                 onTap: () => Navigator.of(sheetCtx).pop(_StopAction.delete),
               ),
@@ -660,10 +672,10 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
               // "Add stop here" row removed with the Edit-stop sheet
               // (user request) — it depends on the add-stop sheet.
               ListTile(
-                leading: const Icon(Icons.delete_outline, color: Colors.redAccent),
+                leading: Icon(Icons.delete_outline, color: $styles.colors.error),
                 title: Text(
                   $strings.tripDetailDayActionDelete,
-                  style: $styles.text.bodyBold.copyWith(color: Colors.redAccent),
+                  style: $styles.text.bodyBold.copyWith(color: $styles.colors.error),
                 ),
                 onTap: () => Navigator.of(sheetCtx).pop(_DayAction.delete),
               ),
@@ -906,7 +918,7 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
                     onPressed: () => Navigator.of(ctx).pop(''),
                     child: Text(
                       $strings.tripDetailDialogClear,
-                      style: const TextStyle(color: Colors.redAccent),
+                      style: TextStyle(color: $styles.colors.error),
                     ),
                   ),
                 TextButton(
@@ -1038,6 +1050,7 @@ class _AppBar extends StatefulWidget {
     required this.onEditSummary,
     required this.onChangeStartDate,
     required this.onClearStartDate,
+    this.onViewMap,
   });
   // Pass the whole trip (instead of just title) so the inline rename's
   // controller can re-sync when the bloc emits a fresh title in response
@@ -1060,6 +1073,7 @@ class _AppBar extends StatefulWidget {
   final VoidCallback? onEditSummary;
   final VoidCallback? onChangeStartDate;
   final VoidCallback? onClearStartDate;
+  final VoidCallback? onViewMap;
 
   @override
   State<_AppBar> createState() => _AppBarState();
@@ -1162,6 +1176,12 @@ class _AppBarState extends State<_AppBar> {
                 ? titleWidget
                 : InkWell(onTap: _startRename, child: titleWidget),
           ),
+          if (widget.onViewMap != null)
+            IconButton(
+              icon: Icon(Icons.route, color: colors.offWhite),
+              onPressed: widget.onViewMap,
+              tooltip: 'View route',
+            ),
           if (widget.onDelete != null)
             PopupMenuButton<String>(
               icon: Icon(Icons.more_vert_rounded, color: colors.offWhite),
@@ -1226,7 +1246,7 @@ class _AppBarState extends State<_AppBar> {
                   value: 'delete',
                   child: Text(
                     $strings.myTripsDeleteConfirm,
-                    style: const TextStyle(color: Colors.redAccent),
+                    style: TextStyle(color: $styles.colors.error),
                   ),
                 ),
               ],
@@ -1594,7 +1614,7 @@ class _DayHeader extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: colors.accent1.withValues(alpha: 0.18),
-              borderRadius: BorderRadius.circular(999),
+              borderRadius: BorderRadius.circular($styles.corners.pill),
             ),
             child: Text(
               $strings.tripDetailDayLabel(day.dayNumber),
@@ -1621,7 +1641,7 @@ class _DayHeader extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 color: colors.accent1.withValues(alpha: 0.18),
-                borderRadius: BorderRadius.circular(999),
+                borderRadius: BorderRadius.circular($styles.corners.pill),
               ),
               child: Text(
                 $strings.tripDetailDayProgress(visitedCount, day.stops.length),
@@ -2400,7 +2420,7 @@ class _StopThumbnail extends StatelessWidget {
     Widget fallback() => Container(
           width: 80,
           height: 80,
-          color: const Color(0xFF222222),
+          color: $styles.colors.surface,
           alignment: Alignment.center,
           child: Icon(
             fallbackIcon,

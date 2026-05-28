@@ -2636,6 +2636,12 @@ abstract class AppLocalizations {
   /// **'Couldn\'t structure that itinerary — your reply is above.'**
   String get buddyItineraryUnstructured;
 
+  /// Label on the RAG transparency chip below a grounded assistant reply. Tapping the chip expands the list of retrieved sources (title + snippet) the answer was grounded on.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 source} other{{count} sources}}'**
+  String buddyRagSourcesCount(int count);
+
   /// Body button on the trip detail screen that opens a chat scoped to that saved trip. Tapping it routes to the buddy tab with the trip's 1:1 conversation hydrated.
   ///
   /// In en, this message translates to:

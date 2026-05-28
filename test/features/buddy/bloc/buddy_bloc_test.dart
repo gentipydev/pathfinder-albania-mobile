@@ -193,6 +193,24 @@ void main() {
       await bloc.close();
     });
 
+    test('RagSourcesEvent attaches sources to the asst', () async {
+      final bloc = build();
+      bloc.add(const BuddySendMessageRequested(text: 'tell me about Berat'));
+      await tick();
+      streamQueue[0].add(const RagSourcesEvent([
+        RagSource(title: 'Berat', snippet: 'Berat is a UNESCO site'),
+        RagSource(title: 'Onufri Museum', snippet: 'Inside the castle walls'),
+      ]));
+      await tick();
+      final asst = bloc.state.messages.last;
+      expect(asst.role, ChatRole.assistant);
+      expect(asst.ragSources, isNotNull);
+      expect(asst.ragSources!.length, 2);
+      expect(asst.ragSources!.first.title, 'Berat');
+      await streamQueue[0].close();
+      await bloc.close();
+    });
+
     test('ItineraryStreamEvent attaches draft to the asst', () async {
       final bloc = build();
       bloc.add(const BuddySendMessageRequested(text: 'plan'));
