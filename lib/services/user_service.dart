@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:travel_buddy/logic/common/dio_client.dart';
+import 'package:travel_buddy/logic/common/service_exception.dart';
 
 /// Calls into `/users/*` on the backend. Today's only call is the idempotent
 /// sync that creates a row in the local `users` table for a Supabase user, so
@@ -65,8 +66,9 @@ class UserService {
   }
 }
 
-class UserServiceException implements Exception {
+class UserServiceException implements ServiceException {
   UserServiceException(this.statusCode, this.body);
+  @override
   final int statusCode;
   final String body;
 

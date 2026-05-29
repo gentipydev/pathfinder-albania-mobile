@@ -1596,6 +1596,9 @@ class AppLocalizationsSq extends AppLocalizations {
   String get buddyAttachSizeError => 'Fotoja është shumë e madhe — provo një më të vogël';
 
   @override
+  String get buddyAttachFormatError => 'Foto e papërkrahur — përdor JPG, PNG, GIF ose WebP';
+
+  @override
   String get buddyHistoryTooltip => 'Bisedat e mëparshme';
 
   @override
@@ -2019,9 +2022,6 @@ class AppLocalizationsSq extends AppLocalizations {
   String get tripDetailDayActionRename => 'Riemërto ditën';
 
   @override
-  String get tripDetailDayActionChangeBaseCity => 'Ndrysho qytetin bazë';
-
-  @override
   String get tripDetailDayActionAddStop => 'Shto ndalesë këtu';
 
   @override
@@ -2029,9 +2029,6 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get tripDetailRenameDayDialogTitle => 'Riemërto ditën';
-
-  @override
-  String get tripDetailChangeBaseCityDialogTitle => 'Ndrysho qytetin bazë';
 
   @override
   String get tripDetailStopActionDuplicate => 'Dubliko';
@@ -2128,4 +2125,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get profileDeleteAccountFailed => 'Nuk u arrit fshirja e llogarisë. Provo sërish.';
+
+  @override
+  String get placeCardOpenInMaps => 'Hap në harta';
 }

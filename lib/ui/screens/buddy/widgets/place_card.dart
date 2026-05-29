@@ -185,9 +185,8 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
           size: 16,
           color: $styles.colors.caption,
         ),
-        // TODO: localize via $strings — hardcoded English breaks the sq locale.
         label: Text(
-          'Open in maps',
+          $strings.placeCardOpenInMaps,
           style: $styles.text.bodySmall.copyWith(color: $styles.colors.caption),
         ),
         style: TextButton.styleFrom(

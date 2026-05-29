@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:travel_buddy/logic/buddy/chat_message.dart';
 import 'package:travel_buddy/logic/common/dio_client.dart';
+import 'package:travel_buddy/logic/common/service_exception.dart';
 
 /// Lightweight summary returned by GET /conversations.
 class ConversationSummary {
@@ -212,9 +213,10 @@ class ConversationsService {
   }
 }
 
-class HttpException implements Exception {
+class HttpException implements ServiceException {
   HttpException(this.message, this.statusCode);
   final String message;
+  @override
   final int statusCode;
   @override
   String toString() => message;

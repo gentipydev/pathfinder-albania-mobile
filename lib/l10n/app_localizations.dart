@@ -2882,6 +2882,12 @@ abstract class AppLocalizations {
   /// **'Image too large — try a smaller photo'**
   String get buddyAttachSizeError;
 
+  /// No description provided for @buddyAttachFormatError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsupported image — use JPG, PNG, GIF, or WebP'**
+  String get buddyAttachFormatError;
+
   /// No description provided for @buddyHistoryTooltip.
   ///
   /// In en, this message translates to:
@@ -3698,12 +3704,6 @@ abstract class AppLocalizations {
   /// **'Rename day'**
   String get tripDetailDayActionRename;
 
-  /// Day-header overflow menu: opens a text dialog to change the day's base city.
-  ///
-  /// In en, this message translates to:
-  /// **'Change base city'**
-  String get tripDetailDayActionChangeBaseCity;
-
   /// Day-header overflow menu: opens the add-stop sheet for that day.
   ///
   /// In en, this message translates to:
@@ -3721,12 +3721,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Rename day'**
   String get tripDetailRenameDayDialogTitle;
-
-  /// Title of the inline dialog that changes a day's base city.
-  ///
-  /// In en, this message translates to:
-  /// **'Change base city'**
-  String get tripDetailChangeBaseCityDialogTitle;
 
   /// Stop long-press action that creates a copy of the stop right after it.
   ///
@@ -3889,6 +3883,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t delete your account. Please try again.'**
   String get profileDeleteAccountFailed;
+
+  /// Button on a buddy place card that opens the place in the maps app.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in maps'**
+  String get placeCardOpenInMaps;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -506,6 +506,7 @@
 	"buddyAttachRemove": "Hiqe",
 	"buddyAttachRetry": "Riprovo",
 	"buddyAttachSizeError": "Fotoja është shumë e madhe — provo një më të vogël",
+	"buddyAttachFormatError": "Foto e papërkrahur — përdor JPG, PNG, GIF ose WebP",
 	"buddyHistoryTooltip": "Bisedat e mëparshme",
 	"buddyNewChatTooltip": "Bisedë e re",
 	"conversationsTitle": "Bisedat e mëparshme",
@@ -639,11 +640,9 @@
 	"tripDetailKebabChangeStartDate": "Ndrysho datën e nisjes",
 	"tripDetailKebabClearStartDate": "Hiq datën e nisjes",
 	"tripDetailDayActionRename": "Riemërto ditën",
-	"tripDetailDayActionChangeBaseCity": "Ndrysho qytetin bazë",
 	"tripDetailDayActionAddStop": "Shto ndalesë këtu",
 	"tripDetailDayActionDelete": "Fshi ditën",
 	"tripDetailRenameDayDialogTitle": "Riemërto ditën",
-	"tripDetailChangeBaseCityDialogTitle": "Ndrysho qytetin bazë",
 	"tripDetailStopActionDuplicate": "Dubliko",
 	"tripDetailUndoStopBanner": "Ndalesa u fshi: {stopName}",
 	"tripDetailUndoStopButton": "ZHBËJ",
@@ -670,5 +669,6 @@
 	"profileDeleteAccountConfirmWord": "DELETE",
 	"profileDeleteAccountConfirm": "Fshi llogarinë time",
 	"profileDeleteAccountCancel": "Anulo",
-	"profileDeleteAccountFailed": "Nuk u arrit fshirja e llogarisë. Provo sërish."
+	"profileDeleteAccountFailed": "Nuk u arrit fshirja e llogarisë. Provo sërish.",
+	"placeCardOpenInMaps": "Hap në harta"
 }

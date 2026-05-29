@@ -657,18 +657,6 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
                 ),
                 onTap: () => Navigator.of(sheetCtx).pop(_DayAction.rename),
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.location_city_outlined,
-                  color: $styles.colors.offWhite,
-                ),
-                title: Text(
-                  $strings.tripDetailDayActionChangeBaseCity,
-                  style: $styles.text.bodyBold
-                      .copyWith(color: $styles.colors.offWhite),
-                ),
-                onTap: () => Navigator.of(sheetCtx).pop(_DayAction.baseCity),
-              ),
               // "Add stop here" row removed with the Edit-stop sheet
               // (user request) — it depends on the add-stop sheet.
               ListTile(
@@ -703,28 +691,6 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
         }
         context.read<TripsBloc>().add(
               DayMetaUpdateRequested(trip.id, day.id, {'title': normalized}),
-            );
-      case _DayAction.baseCity:
-        final next = await _showTextEditDialog(
-          title: $strings.tripDetailChangeBaseCityDialogTitle,
-          initial: day.baseCity ?? '',
-          maxLength: 200,
-          maxLines: 1,
-          allowClear: true,
-        );
-        if (next == null || !mounted) return;
-        final normalized = next.trim().isEmpty ? null : next.trim();
-        if (normalized == (day.baseCity?.trim().isEmpty == true
-                ? null
-                : day.baseCity)) {
-          return;
-        }
-        context.read<TripsBloc>().add(
-              DayMetaUpdateRequested(
-                trip.id,
-                day.id,
-                {'base_city': normalized},
-              ),
             );
       case _DayAction.delete:
         await _confirmDeleteDay(trip, day);
@@ -2548,7 +2514,7 @@ enum _StopAction { move, duplicate, delete }
 /// `_showDayActions` to the matching handler. `addStop` is intentionally
 /// absent for now — the Edit-stop sheet (which `_addStop` opens) was
 /// removed at the user's request.
-enum _DayAction { rename, baseCity, delete }
+enum _DayAction { rename, delete }
 
 class _AutoTrackConsentSheet extends StatelessWidget {
   @override

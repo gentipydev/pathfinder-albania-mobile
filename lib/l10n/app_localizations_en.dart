@@ -1589,6 +1589,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get buddyAttachSizeError => 'Image too large — try a smaller photo';
 
   @override
+  String get buddyAttachFormatError => 'Unsupported image — use JPG, PNG, GIF, or WebP';
+
+  @override
   String get buddyHistoryTooltip => 'Past conversations';
 
   @override
@@ -2012,9 +2015,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripDetailDayActionRename => 'Rename day';
 
   @override
-  String get tripDetailDayActionChangeBaseCity => 'Change base city';
-
-  @override
   String get tripDetailDayActionAddStop => 'Add stop here';
 
   @override
@@ -2022,9 +2022,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripDetailRenameDayDialogTitle => 'Rename day';
-
-  @override
-  String get tripDetailChangeBaseCityDialogTitle => 'Change base city';
 
   @override
   String get tripDetailStopActionDuplicate => 'Duplicate';
@@ -2121,4 +2118,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileDeleteAccountFailed => 'Couldn\'t delete your account. Please try again.';
+
+  @override
+  String get placeCardOpenInMaps => 'Open in maps';
 }

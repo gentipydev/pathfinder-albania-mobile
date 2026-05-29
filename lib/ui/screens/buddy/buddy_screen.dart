@@ -134,7 +134,13 @@ class _BuddyScreenState extends State<BuddyScreen> with GetItStateMixin {
       if (!mounted) return;
       setState(() {
         att.status = AttachmentStatus.failed;
-        att.errorMessage = '$err';
+        att.errorMessage = switch (err) {
+          AttachmentException(reason: AttachmentRejectReason.tooLarge) =>
+            $strings.buddyAttachSizeError,
+          AttachmentException(reason: AttachmentRejectReason.unsupportedFormat) =>
+            $strings.buddyAttachFormatError,
+          _ => $strings.buddyAttachFailed,
+        };
       });
     }
   }

@@ -4,6 +4,7 @@ import 'package:travel_buddy/config/env.dart';
 import 'package:travel_buddy/features/auth/bloc/auth_bloc.dart';
 import 'package:travel_buddy/logic/common/auth_refresh_interceptor.dart';
 import 'package:travel_buddy/logic/common/dio_logger_interceptor.dart';
+import 'package:travel_buddy/logic/common/retry_interceptor.dart';
 
 final Dio appDio = _buildAppDio();
 
@@ -27,5 +28,8 @@ Dio _buildAppDio() {
       refreshAccessToken: () => GetIt.I<AuthBloc>().refreshAccessToken(),
     ),
   );
+  // Last: transient-failure retry for idempotent GETs. After auth so a 401 is
+  // resolved by the refresh path (and 401 isn't retryable here regardless).
+  dio.interceptors.add(RetryInterceptor(dio: dio));
   return dio;
 }

@@ -551,6 +551,7 @@
 	"buddyAttachRemove": "Remove",
 	"buddyAttachRetry": "Retry",
 	"buddyAttachSizeError": "Image too large — try a smaller photo",
+	"buddyAttachFormatError": "Unsupported image — use JPG, PNG, GIF, or WebP",
 	"buddyHistoryTooltip": "Past conversations",
 	"buddyNewChatTooltip": "New chat",
 	"conversationsTitle": "Past conversations",
@@ -705,16 +706,12 @@
 	"@tripDetailKebabClearStartDate": {"description": "Trip detail kebab item that clears the start date (only present when a start date is set)."},
 	"tripDetailDayActionRename": "Rename day",
 	"@tripDetailDayActionRename": {"description": "Day-header overflow menu: opens a text dialog to rename the day."},
-	"tripDetailDayActionChangeBaseCity": "Change base city",
-	"@tripDetailDayActionChangeBaseCity": {"description": "Day-header overflow menu: opens a text dialog to change the day's base city."},
 	"tripDetailDayActionAddStop": "Add stop here",
 	"@tripDetailDayActionAddStop": {"description": "Day-header overflow menu: opens the add-stop sheet for that day."},
 	"tripDetailDayActionDelete": "Delete day",
 	"@tripDetailDayActionDelete": {"description": "Day-header overflow menu: opens the destructive confirm sheet to delete the day."},
 	"tripDetailRenameDayDialogTitle": "Rename day",
 	"@tripDetailRenameDayDialogTitle": {"description": "Title of the inline dialog that renames a day."},
-	"tripDetailChangeBaseCityDialogTitle": "Change base city",
-	"@tripDetailChangeBaseCityDialogTitle": {"description": "Title of the inline dialog that changes a day's base city."},
 	"tripDetailStopActionDuplicate": "Duplicate",
 	"@tripDetailStopActionDuplicate": {"description": "Stop long-press action that creates a copy of the stop right after it."},
 	"tripDetailUndoStopBanner": "Stop deleted: {stopName}",
@@ -754,5 +751,7 @@
 	"profileDeleteAccountConfirmWord": "DELETE",
 	"profileDeleteAccountConfirm": "Delete my account",
 	"profileDeleteAccountCancel": "Cancel",
-	"profileDeleteAccountFailed": "Couldn't delete your account. Please try again."
+	"profileDeleteAccountFailed": "Couldn't delete your account. Please try again.",
+	"placeCardOpenInMaps": "Open in maps",
+	"@placeCardOpenInMaps": {"description": "Button on a buddy place card that opens the place in the maps app."}
 }

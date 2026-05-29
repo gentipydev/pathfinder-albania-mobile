@@ -8,6 +8,7 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/domain/entities/trip.dart';
 import 'package:travel_buddy/domain/entities/trip_route.dart';
 import 'package:travel_buddy/domain/entities/trip_stop.dart';
+import 'package:travel_buddy/logic/common/concurrency.dart';
 import 'package:travel_buddy/ui/common/controls/app_header.dart';
 import 'package:travel_buddy/styles/google_map_style.dart';
 import 'package:travel_buddy/ui/common/google_maps_marker.dart';
@@ -146,20 +147,19 @@ class _TripMapScreenState extends State<TripMapScreen>
       return;
     }
 
-    // Decode every unique stop photo once. Concurrent — slow stops don't
-    // block fast ones. Photo-less stops fall back to the icon variant.
+    // Decode every unique stop photo once, with bounded concurrency so a long
+    // itinerary can't fire dozens of decodes at once and spike memory/network.
+    // Photo-less stops fall back to the icon variant.
     final uniquePhotoUrls = mapped
         .map((s) => s.photoUrl)
         .whereType<String>()
         .toSet();
-    final photoFutures = <String, Future<ui.Image?>>{
-      for (final url in uniquePhotoUrls) url: resolveStopPhoto(url),
-    };
-    final photoByUrl = <String, ui.Image?>{};
-    for (final entry in photoFutures.entries) {
-      photoByUrl[entry.key] = await entry.value;
-      if (!mounted) return;
-    }
+    final photoByUrl = await mapBounded<String, ui.Image?>(
+      uniquePhotoUrls,
+      resolveStopPhoto,
+      concurrency: 5,
+    );
+    if (!mounted) return;
 
     // Build the static (scale-1.0) bitmap and the scaled variants for each
     // (color, continuousIndex, photoUrl) combo. The static one feeds

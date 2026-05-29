@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:travel_buddy/domain/entities/trip.dart';
 import 'package:travel_buddy/logic/common/dio_client.dart';
+import 'package:travel_buddy/logic/common/service_exception.dart';
 
 /// One page of GET /trips. `nextCursor` is null when no more pages remain.
 /// The cursor is opaque (`"{updated_at_iso}|{uuid}"`) — clients must not parse it.
@@ -291,8 +292,9 @@ class TripService {
   }
 }
 
-class TripServiceException implements Exception {
+class TripServiceException implements ServiceException {
   TripServiceException(this.statusCode, this.body);
+  @override
   final int statusCode;
   final String body;
 
