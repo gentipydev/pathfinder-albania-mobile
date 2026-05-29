@@ -62,7 +62,6 @@ class _BuddyScreenState extends State<BuddyScreen> with GetItStateMixin {
   @override
   void initState() {
     super.initState();
-    _composer.addListener(_onComposerChanged);
     _lastVoiceState = GetIt.I<VoiceBloc>().state.status;
   }
 
@@ -73,13 +72,10 @@ class _BuddyScreenState extends State<BuddyScreen> with GetItStateMixin {
       voice.add(const VoiceCancelRequested());
     }
     GetIt.I<TtsBloc>().add(const TtsStopRequested());
-    _composer.removeListener(_onComposerChanged);
     _composer.dispose();
     _scroll.dispose();
     super.dispose();
   }
-
-  void _onComposerChanged() => setState(() {});
 
   /// Driven by `BlocListener<VoiceBloc>` in `build`. Combines the old
   /// `_onVoiceStateChanged` (capture composer prefix on idle→listening) and
@@ -205,60 +201,67 @@ class _BuddyScreenState extends State<BuddyScreen> with GetItStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // Each region subscribes to only the slice of BuddyState it needs, so a
+    // per-token `messages` change rebuilds the message list alone — never the
+    // header or composer. The composer reacts to its own controller for the
+    // send-button state, so typing doesn't rebuild the list either.
     return BlocListener<VoiceBloc, VoiceBlocState>(
       listenWhen: (a, b) =>
           a.status != b.status || a.transcript != b.transcript,
       listener: _onVoiceChange,
-      child: BlocBuilder<BuddyBloc, BuddyState>(
-        buildWhen: (a, b) =>
-            a.messages != b.messages ||
-            a.isStreaming != b.isStreaming ||
-            a.scopedTrip != b.scopedTrip,
-        builder: (ctx, s) {
-          final messages = s.messages;
-          final isStreaming = s.isStreaming;
-          final scopedTrip = s.scopedTrip;
-          return Scaffold(
-            backgroundColor: $styles.colors.black,
-            resizeToAvoidBottomInset: true,
-            body: SafeArea(
-              child: Column(
-                children: [
-                  _Header(),
-                  if (scopedTrip != null) _RefineBanner(trip: scopedTrip),
-                  Expanded(
-                    child: messages.isEmpty
-                        ? _BuddyWelcome(
-                            onPick: _sendQuick,
-                            scopedTrip: scopedTrip,
-                          )
-                        : _MessageList(
-                            messages: messages,
-                            scroll: _scroll,
-                          ),
-                  ),
-                  const VoiceDictationStrip(),
-                  _Composer(
-                    controller: _composer,
-                    attachments: _attachments,
-                    isStreaming: isStreaming,
-                    hasText: _composer.text.trim().isNotEmpty,
-                    hintText: scopedTrip != null
-                        ? $strings.refineComposerHint
-                        : $strings.buddyComposerHint,
-                    onSend: _sendCurrent,
-                    onCancel: () => context
-                        .read<BuddyBloc>()
-                        .add(const BuddyStreamCancelRequested()),
-                    onPicked: _handlePicked,
-                    onRemoveAttachment: _handleRemove,
-                    onRetryAttachment: _handleRetry,
-                  ),
-                ],
+      child: Scaffold(
+        backgroundColor: $styles.colors.black,
+        resizeToAvoidBottomInset: true,
+        body: SafeArea(
+          child: Column(
+            children: [
+              _Header(),
+              BlocSelector<BuddyBloc, BuddyState, Trip?>(
+                selector: (s) => s.scopedTrip,
+                builder: (ctx, scopedTrip) => scopedTrip == null
+                    ? const SizedBox.shrink()
+                    : _RefineBanner(trip: scopedTrip),
               ),
-            ),
-          );
-        },
+              Expanded(
+                child: BlocSelector<BuddyBloc, BuddyState,
+                    ({List<ChatMessage> messages, Trip? scopedTrip})>(
+                  selector: (s) =>
+                      (messages: s.messages, scopedTrip: s.scopedTrip),
+                  builder: (ctx, data) => data.messages.isEmpty
+                      ? _BuddyWelcome(
+                          onPick: _sendQuick,
+                          scopedTrip: data.scopedTrip,
+                        )
+                      : _MessageList(
+                          messages: data.messages,
+                          scroll: _scroll,
+                        ),
+                ),
+              ),
+              const VoiceDictationStrip(),
+              BlocSelector<BuddyBloc, BuddyState,
+                  ({bool isStreaming, Trip? scopedTrip})>(
+                selector: (s) =>
+                    (isStreaming: s.isStreaming, scopedTrip: s.scopedTrip),
+                builder: (ctx, data) => _Composer(
+                  controller: _composer,
+                  attachments: _attachments,
+                  isStreaming: data.isStreaming,
+                  hintText: data.scopedTrip != null
+                      ? $strings.refineComposerHint
+                      : $strings.buddyComposerHint,
+                  onSend: _sendCurrent,
+                  onCancel: () => context
+                      .read<BuddyBloc>()
+                      .add(const BuddyStreamCancelRequested()),
+                  onPicked: _handlePicked,
+                  onRemoveAttachment: _handleRemove,
+                  onRetryAttachment: _handleRetry,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -342,6 +345,7 @@ class _MessageList extends StatefulWidget {
 
 class _MessageListState extends State<_MessageList> {
   bool _showPill = false;
+  bool _scrollScheduled = false;
 
   @override
   void initState() {
@@ -367,19 +371,29 @@ class _MessageListState extends State<_MessageList> {
   @override
   void didUpdateWidget(covariant _MessageList old) {
     super.didUpdateWidget(old);
-    if (widget.messages.length != old.messages.length ||
-        (widget.messages.isNotEmpty &&
-            old.messages.isNotEmpty &&
-            widget.messages.last.content.length !=
-                old.messages.last.content.length)) {
-      _scrollToBottom();
+    final lengthChanged = widget.messages.length != old.messages.length;
+    final contentGrew = widget.messages.isNotEmpty &&
+        old.messages.isNotEmpty &&
+        widget.messages.last.content.length != old.messages.last.content.length;
+    // A new turn always scrolls into view; mid-stream growth only follows if
+    // the user hasn't scrolled up to read history.
+    if (lengthChanged) {
+      _scrollToBottom(force: true);
+    } else if (contentGrew) {
+      _scrollToBottom(force: false);
     }
   }
 
-  void _scrollToBottom() {
+  void _scrollToBottom({required bool force}) {
+    // Coalesce per-token scroll requests: at most one animation is scheduled
+    // at a time, so a fast token stream doesn't pile up post-frame callbacks.
+    if (_scrollScheduled) return;
+    _scrollScheduled = true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollScheduled = false;
       if (!widget.scroll.hasClients) return;
       // In a reverse ListView, 0 is the bottom (latest message).
+      if (!force && widget.scroll.position.pixels > 120) return;
       widget.scroll.animateTo(
         0,
         duration: const Duration(milliseconds: 150),
@@ -520,6 +534,14 @@ class _AssistantMessage extends StatelessWidget {
           children: [
             if (showTyping)
               _TypingDots()
+            // While tokens stream in, render plain Text. Parsing markdown on
+            // every delta re-tokenizes the whole (growing) string per token —
+            // the dominant streaming jank source. We parse once, on completion.
+            else if (message.isStreaming)
+              Text(
+                message.content,
+                style: $styles.text.body.copyWith(color: colors.offWhite),
+              )
             else
               MarkdownBody(
                 key: ValueKey('md_${message.id}'),
@@ -550,10 +572,6 @@ class _AssistantMessage extends StatelessWidget {
                 !message.hasError &&
                 message.content.isNotEmpty)
               _AssistantActions(message: message),
-            if (!message.isStreaming &&
-                !message.hasError &&
-                (message.ragSources?.isNotEmpty ?? false))
-              _RagSourcesChip(sources: message.ragSources!),
             if (!message.isStreaming &&
                 !message.hasError &&
                 message.itinerary != null)
@@ -986,7 +1004,6 @@ class _Composer extends StatelessWidget {
     required this.controller,
     required this.attachments,
     required this.isStreaming,
-    required this.hasText,
     required this.hintText,
     required this.onSend,
     required this.onCancel,
@@ -998,7 +1015,6 @@ class _Composer extends StatelessWidget {
   final TextEditingController controller;
   final List<PendingAttachment> attachments;
   final bool isStreaming;
-  final bool hasText;
   final String hintText;
   final VoidCallback onSend;
   final VoidCallback onCancel;
@@ -1011,7 +1027,6 @@ class _Composer extends StatelessWidget {
     final colors = $styles.colors;
     final hasReady =
         attachments.any((a) => a.status == AttachmentStatus.ready);
-    final canSend = hasText || hasReady;
 
     return Padding(
       padding: EdgeInsets.fromLTRB(
@@ -1064,7 +1079,12 @@ class _Composer extends StatelessWidget {
                     ),
                   ),
                 ),
-                _buildAction(canSend),
+                ValueListenableBuilder<TextEditingValue>(
+                  valueListenable: controller,
+                  builder: (ctx, value, _) => _buildAction(
+                    value.text.trim().isNotEmpty || hasReady,
+                  ),
+                ),
               ],
             ),
           ],
@@ -1308,115 +1328,6 @@ class _AssistantActions extends StatelessWidget {
         children: [
           _CopyButton(content: message.content),
           _TtsButton(message: message),
-        ],
-      ),
-    );
-  }
-}
-
-/// RAG transparency chip: a subtle "N sources" pill below a grounded assistant
-/// reply. Tapping it expands the retrieved sources (title + snippet) the answer
-/// was grounded on — surfacing retrieval provenance to the user. Live-turn
-/// ephemeral (sources aren't persisted server-side, so it never appears on
-/// rehydrated history).
-class _RagSourcesChip extends StatefulWidget {
-  const _RagSourcesChip({required this.sources});
-
-  final List<RagSource> sources;
-
-  @override
-  State<_RagSourcesChip> createState() => _RagSourcesChipState();
-}
-
-class _RagSourcesChipState extends State<_RagSourcesChip> {
-  bool _expanded = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = $styles.colors;
-    final radius = BorderRadius.circular($styles.corners.md);
-    return Padding(
-      padding: EdgeInsets.only(top: $styles.insets.xxs),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Material(
-            color: Colors.transparent,
-            borderRadius: radius,
-            child: InkWell(
-              borderRadius: radius,
-              onTap: () => setState(() => _expanded = !_expanded),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: $styles.insets.xs,
-                  vertical: $styles.insets.xxs,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.menu_book_outlined,
-                      size: 14,
-                      color: colors.greyMedium,
-                    ),
-                    Gap($styles.insets.xxs),
-                    Text(
-                      $strings.buddyRagSourcesCount(widget.sources.length),
-                      style: $styles.text.bodySmall.copyWith(
-                        color: colors.greyMedium,
-                      ),
-                    ),
-                    Gap($styles.insets.xxs),
-                    Icon(
-                      _expanded
-                          ? Icons.keyboard_arrow_up
-                          : Icons.keyboard_arrow_down,
-                      size: 16,
-                      color: colors.greyMedium,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          if (_expanded)
-            Padding(
-              padding: EdgeInsets.only(
-                top: $styles.insets.xxs,
-                left: $styles.insets.xs,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  for (final s in widget.sources)
-                    Padding(
-                      padding: EdgeInsets.only(bottom: $styles.insets.xxs),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (s.title.isNotEmpty)
-                            Text(
-                              s.title,
-                              style: $styles.text.bodySmallBold.copyWith(
-                                color: colors.accent1,
-                              ),
-                            ),
-                          if (s.snippet.isNotEmpty)
-                            Text(
-                              s.snippet,
-                              style: $styles.text.bodySmall.copyWith(
-                                color: colors.greyMedium,
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                ],
-              ),
-            ),
         ],
       ),
     );

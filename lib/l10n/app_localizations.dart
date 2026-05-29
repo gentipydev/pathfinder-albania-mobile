@@ -422,6 +422,54 @@ abstract class AppLocalizations {
   /// **'About this app'**
   String get homeMenuButtonAbout;
 
+  /// No description provided for @homeMenuViewingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewing'**
+  String get homeMenuViewingLabel;
+
+  /// No description provided for @homeMenuJumpToDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'Jump to a destination'**
+  String get homeMenuJumpToDestination;
+
+  /// No description provided for @homeMenuConversations.
+  ///
+  /// In en, this message translates to:
+  /// **'My conversations'**
+  String get homeMenuConversations;
+
+  /// No description provided for @homeMenuPreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel preferences'**
+  String get homeMenuPreferences;
+
+  /// No description provided for @homeMenuPlanTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan a trip'**
+  String get homeMenuPlanTrip;
+
+  /// No description provided for @homeMenuAskBuddy.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask Buddy'**
+  String get homeMenuAskBuddy;
+
+  /// Chat message sent verbatim to Buddy when the user taps Plan a trip.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan a trip to {destination}, Albania.'**
+  String homeMenuPlanTripPrompt(String destination);
+
+  /// Chat message sent verbatim to Buddy when the user taps Ask Buddy.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell me about {destination}, Albania — what\'s special and what should I see?'**
+  String homeMenuAskBuddyPrompt(String destination);
+
   /// No description provided for @homeMenuAboutTagline.
   ///
   /// In en, this message translates to:
@@ -2635,12 +2683,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t structure that itinerary — your reply is above.'**
   String get buddyItineraryUnstructured;
-
-  /// Label on the RAG transparency chip below a grounded assistant reply. Tapping the chip expands the list of retrieved sources (title + snippet) the answer was grounded on.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{1 source} other{{count} sources}}'**
-  String buddyRagSourcesCount(int count);
 
   /// Body button on the trip detail screen that opens a chat scoped to that saved trip. Tapping it routes to the buddy tab with the trip's 1:1 conversation hydrated.
   ///

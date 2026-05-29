@@ -2,22 +2,6 @@ import 'package:travel_buddy/domain/entities/itinerary_draft.dart';
 
 enum ChatRole { user, assistant }
 
-/// One retrieved RAG chunk surfaced to the user as provenance. The backend
-/// sends a list of these on `event: rag_sources` for a grounded turn; the
-/// assistant bubble renders them behind an "N sources" chip. `title` is a
-/// short source label (place name / contextual header); `snippet` is the
-/// first line of the chunk content.
-class RagSource {
-  final String title;
-  final String snippet;
-  const RagSource({required this.title, required this.snippet});
-
-  factory RagSource.fromJson(Map<String, dynamic> json) => RagSource(
-        title: (json['title'] as String?)?.trim() ?? '',
-        snippet: (json['snippet'] as String?)?.trim() ?? '',
-      );
-}
-
 class ChatMessage {
   final String id;
   final ChatRole role;
@@ -62,12 +46,6 @@ class ChatMessage {
   /// before save (and on rehydrated history — not persisted server-side).
   final String? savedTripId;
 
-  /// RAG provenance for a grounded assistant turn, from `event: rag_sources`.
-  /// Drives the "N sources" chip rendered below the bubble after streaming
-  /// finishes. Null on ungrounded turns and on rehydrated history (the server
-  /// stores message text only, so the chip is live-turn ephemeral).
-  final List<RagSource>? ragSources;
-
   ChatMessage({
     required this.id,
     required this.role,
@@ -84,7 +62,6 @@ class ChatMessage {
     this.attachmentUrls = const [],
     this.itinerary,
     this.savedTripId,
-    this.ragSources,
   }) : createdAt = createdAt ?? DateTime.now();
 
   bool get isRich => richKind != null && richData != null;
@@ -105,7 +82,6 @@ class ChatMessage {
     bool? refineFailed,
     Object? itinerary = _sentinel,
     Object? savedTripId = _sentinel,
-    Object? ragSources = _sentinel,
   }) {
     return ChatMessage(
       id: id,
@@ -127,9 +103,6 @@ class ChatMessage {
       savedTripId: identical(savedTripId, _sentinel)
           ? this.savedTripId
           : savedTripId as String?,
-      ragSources: identical(ragSources, _sentinel)
-          ? this.ragSources
-          : ragSources as List<RagSource>?,
     );
   }
 }

@@ -198,6 +198,34 @@ class AppLocalizationsSq extends AppLocalizations {
   String get homeMenuButtonAbout => 'Rreth këtij aplikacioni';
 
   @override
+  String get homeMenuViewingLabel => 'Po shihni';
+
+  @override
+  String get homeMenuJumpToDestination => 'Kalo te një destinacion';
+
+  @override
+  String get homeMenuConversations => 'Bisedat e mia';
+
+  @override
+  String get homeMenuPreferences => 'Preferencat e udhëtimit';
+
+  @override
+  String get homeMenuPlanTrip => 'Planifiko udhëtim';
+
+  @override
+  String get homeMenuAskBuddy => 'Pyet Buddy-n';
+
+  @override
+  String homeMenuPlanTripPrompt(String destination) {
+    return 'Planifiko një udhëtim në $destination, Shqipëri.';
+  }
+
+  @override
+  String homeMenuAskBuddyPrompt(String destination) {
+    return 'Më trego për $destination, Shqipëri — çfarë e bën të veçantë dhe çfarë duhet të shoh?';
+  }
+
+  @override
   String get homeMenuAboutTagline =>
       'Travel Buddy është udhërrëfyesi juaj me inteligjencë artificiale për tetë mrekullitë e Shqipërisë. ';
 
@@ -1463,17 +1491,6 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get buddyItineraryUnstructured => 'Nuk arritëm ta strukturojmë këtë itinerar — përgjigja është më sipër.';
-
-  @override
-  String buddyRagSourcesCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count burime',
-      one: '1 burim',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get refineWithBuddyButton => 'Përsosni me Buddy';

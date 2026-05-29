@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:travel_buddy/domain/entities/itinerary_draft.dart';
 import 'package:travel_buddy/domain/entities/trip.dart';
-import 'package:travel_buddy/logic/buddy/chat_message.dart';
 import 'package:travel_buddy/logic/buddy/chat_stream_event.dart';
 import 'package:travel_buddy/logic/common/dio_client.dart';
 import 'package:travel_buddy/utils/dlog.dart';
@@ -165,26 +164,6 @@ class ChatService {
               final parsed = jsonDecode(data);
               if (parsed is Map<String, dynamic>) {
                 yield PlaceCardEvent(parsed);
-              }
-            } catch (_) {
-              // malformed payload — skip silently, don't break the stream
-            }
-            continue;
-          }
-          if (type == 'rag_sources') {
-            // Provenance for a grounded turn: {count, sources:[{title,snippet}]}.
-            // Drives the "N sources" chip on the assistant bubble.
-            try {
-              final parsed = jsonDecode(data);
-              if (parsed is Map<String, dynamic>) {
-                final raw = parsed['sources'];
-                if (raw is List) {
-                  final sources = raw
-                      .whereType<Map<String, dynamic>>()
-                      .map(RagSource.fromJson)
-                      .toList(growable: false);
-                  if (sources.isNotEmpty) yield RagSourcesEvent(sources);
-                }
               }
             } catch (_) {
               // malformed payload — skip silently, don't break the stream

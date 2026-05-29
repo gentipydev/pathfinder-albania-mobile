@@ -65,6 +65,26 @@
 	"homeMenuButtonExplore": "Explore the timeline",
 	"homeMenuButtonView": "View your collection",
 	"homeMenuButtonAbout": "About this app",
+	"homeMenuViewingLabel": "Viewing",
+	"homeMenuJumpToDestination": "Jump to a destination",
+	"homeMenuConversations": "My conversations",
+	"homeMenuPreferences": "Travel preferences",
+	"homeMenuPlanTrip": "Plan a trip",
+	"homeMenuAskBuddy": "Ask Buddy",
+	"homeMenuPlanTripPrompt": "Plan a trip to {destination}, Albania.",
+	"@homeMenuPlanTripPrompt": {
+		"description": "Chat message sent verbatim to Buddy when the user taps Plan a trip.",
+		"placeholders": {
+			"destination": { "type": "String", "example": "Butrint" }
+		}
+	},
+	"homeMenuAskBuddyPrompt": "Tell me about {destination}, Albania — what's special and what should I see?",
+	"@homeMenuAskBuddyPrompt": {
+		"description": "Chat message sent verbatim to Buddy when the user taps Ask Buddy.",
+		"placeholders": {
+			"destination": { "type": "String", "example": "Butrint" }
+		}
+	},
 	"homeMenuAboutTagline": "Travel Buddy is your AI-powered guide to the eight destinations of Albania. ",
 	"homeMenuAboutBuilt": "Built with {flutterUrl}.",
 	"@homeMenuAboutBuilt": {"placeholders": {"flutterUrl": {}}},
@@ -455,13 +475,6 @@
 	"buddyItineraryUnstructured": "Couldn't structure that itinerary — your reply is above.",
 	"@buddyItineraryUnstructured": {
 		"description": "Soft inline footer shown on the assistant bubble when the backend rejected Claude's emit_itinerary tool payload during server-side validation. The natural-language reply is still visible above; this string explains why the structured Save card is missing without surfacing the technical reason."
-	},
-	"buddyRagSourcesCount": "{count, plural, =1{1 source} other{{count} sources}}",
-	"@buddyRagSourcesCount": {
-		"description": "Label on the RAG transparency chip below a grounded assistant reply. Tapping the chip expands the list of retrieved sources (title + snippet) the answer was grounded on.",
-		"placeholders": {
-			"count": { "type": "int" }
-		}
 	},
 	"refineWithBuddyButton": "Refine with Buddy",
 	"@refineWithBuddyButton": {

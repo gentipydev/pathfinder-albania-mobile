@@ -65,6 +65,26 @@
 	"homeMenuButtonExplore": "Eksploroni vijën kohore",
 	"homeMenuButtonView": "Shikoni koleksionin tuaj",
 	"homeMenuButtonAbout": "Rreth këtij aplikacioni",
+	"homeMenuViewingLabel": "Po shihni",
+	"homeMenuJumpToDestination": "Kalo te një destinacion",
+	"homeMenuConversations": "Bisedat e mia",
+	"homeMenuPreferences": "Preferencat e udhëtimit",
+	"homeMenuPlanTrip": "Planifiko udhëtim",
+	"homeMenuAskBuddy": "Pyet Buddy-n",
+	"homeMenuPlanTripPrompt": "Planifiko një udhëtim në {destination}, Shqipëri.",
+	"@homeMenuPlanTripPrompt": {
+		"description": "Chat message sent verbatim to Buddy when the user taps Plan a trip.",
+		"placeholders": {
+			"destination": { "type": "String", "example": "Butrint" }
+		}
+	},
+	"homeMenuAskBuddyPrompt": "Më trego për {destination}, Shqipëri — çfarë e bën të veçantë dhe çfarë duhet të shoh?",
+	"@homeMenuAskBuddyPrompt": {
+		"description": "Chat message sent verbatim to Buddy when the user taps Ask Buddy.",
+		"placeholders": {
+			"destination": { "type": "String", "example": "Butrint" }
+		}
+	},
 	"homeMenuAboutTagline": "Travel Buddy është udhërrëfyesi juaj me inteligjencë artificiale për tetë mrekullitë e Shqipërisë. ",
 	"homeMenuAboutBuilt": "Ndërtuar me {flutterUrl}.",
 	"@homeMenuAboutBuilt": {"placeholders": {"flutterUrl": {}}},
@@ -453,7 +473,6 @@
 	"buddyErrorRetry": "Riprovo",
 	"buddyNotSavedHint": "Përgjigja nuk u ruajt në server.",
 	"buddyItineraryUnstructured": "Nuk arritëm ta strukturojmë këtë itinerar — përgjigja është më sipër.",
-	"buddyRagSourcesCount": "{count, plural, =1{1 burim} other{{count} burime}}",
 	"refineWithBuddyButton": "Përsosni me Buddy",
 	"refineComposerHint": "Kërkoji Buddy-t të përmirësojë këtë udhëtim…",
 	"refineEmptyTitle": "Çfarë duhet të ndryshojmë?",

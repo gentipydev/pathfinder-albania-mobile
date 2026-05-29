@@ -197,6 +197,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeMenuButtonAbout => 'About this app';
 
   @override
+  String get homeMenuViewingLabel => 'Viewing';
+
+  @override
+  String get homeMenuJumpToDestination => 'Jump to a destination';
+
+  @override
+  String get homeMenuConversations => 'My conversations';
+
+  @override
+  String get homeMenuPreferences => 'Travel preferences';
+
+  @override
+  String get homeMenuPlanTrip => 'Plan a trip';
+
+  @override
+  String get homeMenuAskBuddy => 'Ask Buddy';
+
+  @override
+  String homeMenuPlanTripPrompt(String destination) {
+    return 'Plan a trip to $destination, Albania.';
+  }
+
+  @override
+  String homeMenuAskBuddyPrompt(String destination) {
+    return 'Tell me about $destination, Albania — what\'s special and what should I see?';
+  }
+
+  @override
   String get homeMenuAboutTagline => 'Travel Buddy is your AI-powered guide to the eight destinations of Albania. ';
 
   @override
@@ -1458,17 +1486,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get buddyItineraryUnstructured => 'Couldn\'t structure that itinerary — your reply is above.';
-
-  @override
-  String buddyRagSourcesCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count sources',
-      one: '1 source',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get refineWithBuddyButton => 'Refine with Buddy';

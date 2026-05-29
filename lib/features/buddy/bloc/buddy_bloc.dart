@@ -392,16 +392,6 @@ class BuddyBloc extends Bloc<BuddyEvent, BuddyState> {
           list.insert(idx, card);
         }
         emit(state.copyWith(messages: list));
-      case RagSourcesEvent(:final sources):
-        // Attach provenance to the asst message itself — the "N sources" chip
-        // renders on this bubble after [StreamDone] flips isStreaming.
-        emit(state.copyWith(
-          messages: _patchById(
-            state.messages,
-            asstId,
-            (m) => m.copyWith(ragSources: sources),
-          ),
-        ));
       case ItineraryStreamEvent(:final draft):
         // Attach the draft to the asst message itself — the Save CTA renders
         // on this bubble after [StreamDone] flips isStreaming.

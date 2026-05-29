@@ -411,7 +411,7 @@ class _EditStopSheetState extends State<EditStopSheet> {
         filled: true,
         fillColor: colors.black.withValues(alpha: 0.4),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular($styles.corners.md),
           borderSide: BorderSide.none,
         ),
       ),

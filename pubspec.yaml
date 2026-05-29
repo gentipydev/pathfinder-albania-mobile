@@ -86,6 +86,8 @@ dev_dependencies:
   bloc_test: ^10.0.0
   mocktail: ^1.0.4
   golden_toolkit: ^0.15.0
+  integration_test:
+    sdk: flutter
 
 icons_launcher:
   image_path: "assets/marketing/app-icon-1024.png"

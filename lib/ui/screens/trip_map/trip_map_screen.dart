@@ -11,7 +11,6 @@ import 'package:travel_buddy/domain/entities/trip_stop.dart';
 import 'package:travel_buddy/ui/common/controls/app_header.dart';
 import 'package:travel_buddy/styles/google_map_style.dart';
 import 'package:travel_buddy/ui/common/google_maps_marker.dart';
-import 'package:travel_buddy/ui/screens/trip_map/polyline_offset.dart';
 import 'package:travel_buddy/ui/screens/trip_map/trip_map_colors.dart';
 import 'package:travel_buddy/utils/polyline_decoder.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -59,25 +58,24 @@ class _TripMapScreenState extends State<TripMapScreen>
 
   // Final, fully-populated state — installed wholesale on skip / dispose.
   final Set<Marker> _finalMarkers = {};
-  final Set<Polyline> _finalPolylines = {};
+  // The single, fully-drawn trip route. One dashed-grey polyline chaining every
+  // stop in global order — never per-day, never offset. Null for 0/1-stop trips.
+  Polyline? _finalRouteLine;
 
-  final Map<String, Color> _dayColorByDayId = {};
   final Map<String, BitmapDescriptor> _iconCache = {};
   final Map<String, TripStop> _mappableStopById = {};
   final Map<String, int> _stopDayNumberById = {};
   // Stop's 1-based index across the whole trip — drives the numbered badge.
   // Continuous (no per-day reset) so two markers never share a number.
   final Map<String, int> _continuousIndexByStopId = {};
-  // Decoded polyline points keyed by route.id (or 'bridge_<dayA>_<dayB>'),
-  // populated once during _buildMapData so the per-frame draw can sublist
-  // without re-decoding.
-  final Map<String, List<LatLng>> _polylinePointsCache = {};
-  // (fromStopId, toStopId) → polylineId. Unified lookup the entrance
-  // sequencer uses to find the incoming polyline for the next stop in the
-  // cascade — covers real Directions routes, cross-day bridges, and
-  // within-day straight-line fallbacks under the same key shape, so the
-  // sequencer never has to branch on day membership.
-  final Map<String, String> _polylineIdByStopPair = {};
+  // The entire trip route as one concatenated point list, in global stop order
+  // across all days. The per-frame leg draw sublists this without re-decoding.
+  List<LatLng> _routePoints = const [];
+  // Parallel to _mappableStops: _segmentLegEnd[i] is the number of _routePoints
+  // visible once the leg ending at stop i is fully drawn. _segmentLegEnd[0] = 1
+  // (just the origin point). Lets each cascade step extend the one polyline from
+  // stop i-1 toward stop i without branching on day membership.
+  List<int> _segmentLegEnd = const [];
   // (colorARGB, continuousIndex, photoUrl, scaleGridIdx) → BitmapDescriptor.
   // Pre-rendered at mount time so the drop/pulse animations swap in cached
   // bitmaps each frame.
@@ -126,10 +124,6 @@ class _TripMapScreenState extends State<TripMapScreen>
   }
 
   Future<void> _buildMapData() async {
-    for (final d in widget.trip.days) {
-      _dayColorByDayId[d.id] = colorForDayNumber(d.dayNumber);
-    }
-
     // Walk every stop once to populate identity/index lookups. The
     // continuous index spans the whole trip — no per-day reset — so the
     // numbered badge in each marker is unique across the map.
@@ -220,129 +214,50 @@ class _TripMapScreenState extends State<TripMapScreen>
       }
     }
 
-    // Decode, parallel-offset, and cache route polylines.
-    //
-    // Each route is shifted perpendicular to its direction of travel by a
-    // per-day amount so days that share a road render as parallel colored
-    // stripes instead of stacking on top of each other. See
-    // [polyline_offset.dart] for the offset math.
-    //
-    // Two flavors:
-    //   * Within-day route — colored fill (day color), no outline. Offset by
-    //     `offsetForDay(dayNumber)`.
-    //   * Cross-day route — dashed grey, sits in its own lane between the
-    //     two days it connects via `offsetForCrossDay(fromDay, toDay)`.
-    for (final r in widget.trip.routes) {
-      final decoded = decodeEncodedPolyline(r.encodedPolyline);
-      if (decoded.isEmpty) continue;
-      if (_isCrossDayRoute(r)) {
-        final fromDay = _stopDayNumberById[r.fromStopId] ?? 1;
-        final toDay = _stopDayNumberById[r.toStopId] ?? fromDay + 1;
-        final points =
-            offsetPolyline(decoded, offsetForCrossDay(fromDay, toDay));
-        _polylinePointsCache[r.id] = points;
-        _polylineIdByStopPair['${r.fromStopId}->${r.toStopId}'] = r.id;
-        _finalPolylines.add(
-          Polyline(
-            polylineId: PolylineId(r.id),
-            color: Colors.grey.shade600.withValues(alpha: 0.85),
-            width: 4,
-            patterns: [PatternItem.dash(24), PatternItem.gap(12)],
-            points: points,
-            zIndex: 1,
-          ),
-        );
-      } else {
-        final color = _dayColorByDayId[r.tripDayId] ?? Colors.grey;
-        final dayNumber = _stopDayNumberById[r.fromStopId] ?? 1;
-        final points = offsetPolyline(decoded, offsetForDay(dayNumber));
-        _polylinePointsCache[r.id] = points;
-        _polylineIdByStopPair['${r.fromStopId}->${r.toStopId}'] = r.id;
-        _finalPolylines.add(
-          Polyline(
-            polylineId: PolylineId(r.id),
-            color: color,
-            width: 5,
-            points: points,
-            zIndex: 1,
-          ),
-        );
+    // Build the single continuous trip route: one dashed-grey polyline that
+    // chains every mappable stop in global order, ignoring day boundaries.
+    // Real Directions geometry is used per leg when available; legs without a
+    // route (cross-day gaps, Directions failures) fall back to a straight line.
+    // Exactly one polyline, one style, no per-day color, no offset.
+    final routeByPair = <String, TripRoute>{
+      for (final r in widget.trip.routes) '${r.fromStopId}->${r.toStopId}': r,
+    };
+    final pts = <LatLng>[LatLng(mapped.first.lat!, mapped.first.lng!)];
+    final legEnd = <int>[pts.length]; // legEnd[0] = 1 (origin only)
+    for (var i = 1; i < mapped.length; i++) {
+      final prev = mapped[i - 1];
+      final next = mapped[i];
+      final route = routeByPair['${prev.id}->${next.id}'];
+      var leg = route != null
+          ? decodeEncodedPolyline(route.encodedPolyline)
+          : const <LatLng>[];
+      if (leg.isEmpty) {
+        leg = [
+          LatLng(prev.lat!, prev.lng!),
+          LatLng(next.lat!, next.lng!),
+        ];
       }
-    }
-
-    // Bridge polylines between consecutive days where no explicit route exists.
-    for (var i = 0; i < widget.trip.days.length - 1; i++) {
-      final dayA = widget.trip.days[i];
-      final dayB = widget.trip.days[i + 1];
-      final lastA = dayA.stops.lastWhereOrNull(
-        (s) => s.lat != null && s.lng != null,
-      );
-      final firstB = dayB.stops.firstWhereOrNull(
-        (s) => s.lat != null && s.lng != null,
-      );
-      if (lastA == null || firstB == null) continue;
-      final alreadyRouted = widget.trip.routes.any(
-        (r) => r.fromStopId == lastA.id && r.toStopId == firstB.id,
-      );
-      if (alreadyRouted) continue;
-      final bridgeId = 'bridge_${dayA.id}_${dayB.id}';
-      final bridgePoints = offsetPolyline(
-        <LatLng>[
-          LatLng(lastA.lat!, lastA.lng!),
-          LatLng(firstB.lat!, firstB.lng!),
-        ],
-        offsetForCrossDay(dayA.dayNumber, dayB.dayNumber),
-      );
-      _polylinePointsCache[bridgeId] = bridgePoints;
-      _polylineIdByStopPair['${lastA.id}->${firstB.id}'] = bridgeId;
-      _finalPolylines.add(
-        Polyline(
-          polylineId: PolylineId(bridgeId),
-          color: Colors.grey.shade600.withValues(alpha: 0.85),
-          width: 4,
-          patterns: [PatternItem.dash(24), PatternItem.gap(12)],
-          points: bridgePoints,
-          zIndex: 1,
-        ),
-      );
-    }
-
-    // Within-day fallback: when a same-day consecutive pair has no
-    // TripRoute (Directions failed / quota / ZERO_RESULTS), draw a
-    // dashed grey straight line so the 1..X chain stays unbroken.
-    for (final day in widget.trip.days) {
-      final geoStops = day.stops
-          .where((s) => s.lat != null && s.lng != null)
-          .toList();
-      for (var i = 0; i < geoStops.length - 1; i++) {
-        final prev = geoStops[i];
-        final next = geoStops[i + 1];
-        final alreadyRouted = widget.trip.routes.any(
-          (r) => r.fromStopId == prev.id && r.toStopId == next.id,
-        );
-        if (alreadyRouted) continue;
-        final bridgeId = 'bridge_within_${prev.id}_${next.id}';
-        final bridgePoints = offsetPolyline(
-          <LatLng>[
-            LatLng(prev.lat!, prev.lng!),
-            LatLng(next.lat!, next.lng!),
-          ],
-          offsetForDay(day.dayNumber),
-        );
-        _polylinePointsCache[bridgeId] = bridgePoints;
-        _polylineIdByStopPair['${prev.id}->${next.id}'] = bridgeId;
-        _finalPolylines.add(
-          Polyline(
-            polylineId: PolylineId(bridgeId),
-            color: Colors.grey.shade600.withValues(alpha: 0.85),
-            width: 4,
-            patterns: [PatternItem.dash(24), PatternItem.gap(12)],
-            points: bridgePoints,
-            zIndex: 1,
-          ),
-        );
+      for (final p in leg) {
+        final last = pts.last;
+        // Skip a leading point that duplicates the current tail so legs join
+        // seamlessly into one continuous line.
+        if (p.latitude != last.latitude || p.longitude != last.longitude) {
+          pts.add(p);
+        }
       }
+      legEnd.add(pts.length);
     }
+    _routePoints = pts;
+    _segmentLegEnd = legEnd;
+    _finalRouteLine = pts.length < 2
+        ? null
+        : Polyline(
+            polylineId: const PolylineId('trip_route'),
+            color: Colors.grey.shade600.withValues(alpha: 0.85),
+            width: 2,
+            points: pts,
+            zIndex: 1,
+          );
 
     if (mapped.length >= 2) _initialBounds = _computeBounds(mapped);
 
@@ -534,20 +449,21 @@ class _TripMapScreenState extends State<TripMapScreen>
   // ---- Entrance animation choreography --------------------------------------
   //
   // One continuous cascade across all geo-located stops, in order, regardless
-  // of day. Day grouping shows up in the polyline color and marker rim — not
-  // in the animation timing.
+  // of day. There is exactly ONE trip polyline — dashed grey, never per-day
+  // colored, never offset. Day grouping shows up only in the marker rim color
+  // and badge — not in the polyline style or the animation timing.
   //
-  // Per step (i ≥ 1):
-  //   * Polyline (i-1 → i) draws over D ms (easeOut over its decoded points).
-  //   * Marker i drops in over the same D ms — invisible for the first 60%,
-  //     then easeOut overshoot + easeIn settle in the last 40% so the pin
-  //     "lands" at the moment the line arrives.
-  //   * Both fire simultaneously via Future.wait; the next step doesn't begin
-  //     until both finish. No intra-trip stagger and no day-boundary pause.
+  // Per step (i ≥ 1) a single timer drives both halves (see [_animateLeg]):
+  //   * t in [0, 0.6): the one polyline extends from stop i-1 toward stop i
+  //     (easeOut over that leg's points in [_routePoints]).
+  //   * t in [0.6, 1]: the moment the segment finishes, marker i drops in —
+  //     easeOut overshoot to 1.20 then easeIn settle to 1.00.
+  //   The next step doesn't begin until the timer completes. No intra-trip
+  //   stagger and no day-boundary pause.
   //
   // The origin marker (i = 0) has no incoming polyline; it uses the legacy
-  // growth-throughout tween so the screen isn't empty for 270ms before the
-  // first pin appears. See [_animateMarkerDropIn] (`isOrigin` parameter).
+  // growth-throughout tween so the screen isn't empty before the first pin
+  // appears. See [_animateMarkerDropIn] (`isOrigin` parameter).
   //
   // [_stepDurationFor] caps D against stop count so long trips stay under ~8s.
   //
@@ -588,25 +504,14 @@ class _TripMapScreenState extends State<TripMapScreen>
     );
     if (!_alive) return;
 
-    // Cascade: each step animates the next polyline AND the next marker drop
-    // on shared duration timers, started together so they end together. No
-    // stagger between steps, no day-boundary pause. The lookup map handles
-    // within-day routes, cross-day routes, and synthesized bridges uniformly,
+    // Cascade: each step extends the single trip polyline from stop i-1 toward
+    // stop i, then drops marker i — both driven by one shared timer per step.
+    // No stagger between steps, no day-boundary pause. _segmentLegEnd handles
+    // real routes, cross-day gaps, and straight-line fallbacks uniformly,
     // including gaps where an intermediate day has zero geo-located stops.
     for (var i = 1; i < _mappableStops.length; i++) {
       if (!_alive) return;
-      final prev = _mappableStops[i - 1];
-      final next = _mappableStops[i];
-      final polylineId = _polylineIdByStopPair['${prev.id}->${next.id}'];
-      final pending = <Future<void>>[
-        _animateMarkerDropIn(next, duration: stepDur),
-      ];
-      if (polylineId != null) {
-        pending.add(
-          _animatePolylineDraw(polylineId: polylineId, duration: stepDur),
-        );
-      }
-      await Future.wait(pending);
+      await _animateLeg(i, stepDur);
       if (!_alive) return;
     }
 
@@ -621,20 +526,12 @@ class _TripMapScreenState extends State<TripMapScreen>
     setState(() => _phase = _AnimPhase.complete);
   }
 
-  /// Animates a single marker dropping in. Adds the marker to [_markers] and
+  /// Animates the origin pin dropping in. Adds the marker to [_markers] and
   /// rebuilds it on every frame with a scaled bitmap descriptor and a fading
-  /// alpha.
-  ///
-  /// Two shape modes, selected by [isOrigin]:
-  ///   * **isOrigin = true** — the trip's first pin. Fades in over the first
-  ///     30% and scales 0.30 → 1.20 → 1.00 across the full timer (78% easeOut
-  ///     overshoot, 22% easeIn settle). The user has no other visual to look
-  ///     at, so the pin shows up early.
-  ///   * **isOrigin = false** — a cascade pin. Held invisible at scale 0.30
-  ///     for the first 60% of [duration] (the polyline's still drawing toward
-  ///     it), then drops in over the last 40%: 28% easeOut overshoot to 1.20,
-  ///     12% easeIn settle to 1.00. Alpha fades 0→1 over t=[0.60, 0.70] so
-  ///     the pin "arrives" with its incoming line.
+  /// alpha. The origin has no incoming polyline, so it fades in over the first
+  /// 30% and scales 0.30 → 1.20 → 1.00 across the full timer (78% easeOut
+  /// overshoot, 22% easeIn settle) — the screen isn't empty while the user
+  /// waits for the first visual. Every subsequent pin drops via [_animateLeg].
   Future<void> _animateMarkerDropIn(
     TripStop stop, {
     Duration duration = const Duration(milliseconds: 450),
@@ -648,46 +545,24 @@ class _TripMapScreenState extends State<TripMapScreen>
       vsync: this,
       duration: duration,
     );
-    final scaleAnim = isOrigin
-        ? TweenSequence<double>([
-            TweenSequenceItem(
-              tween: Tween<double>(begin: 0.30, end: 1.20)
-                  .chain(CurveTween(curve: Curves.easeOut)),
-              weight: 78,
-            ),
-            TweenSequenceItem(
-              tween: Tween<double>(begin: 1.20, end: 1.00)
-                  .chain(CurveTween(curve: Curves.easeIn)),
-              weight: 22,
-            ),
-          ]).animate(controller)
-        : TweenSequence<double>([
-            TweenSequenceItem(
-              tween: ConstantTween<double>(0.30),
-              weight: 60,
-            ),
-            TweenSequenceItem(
-              tween: Tween<double>(begin: 0.30, end: 1.20)
-                  .chain(CurveTween(curve: Curves.easeOut)),
-              weight: 28,
-            ),
-            TweenSequenceItem(
-              tween: Tween<double>(begin: 1.20, end: 1.00)
-                  .chain(CurveTween(curve: Curves.easeIn)),
-              weight: 12,
-            ),
-          ]).animate(controller);
+    final scaleAnim = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 0.30, end: 1.20)
+            .chain(CurveTween(curve: Curves.easeOut)),
+        weight: 78,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 1.20, end: 1.00)
+            .chain(CurveTween(curve: Curves.easeIn)),
+        weight: 22,
+      ),
+    ]).animate(controller);
 
     void listener() {
       if (!mounted) return;
       final t = controller.value;
       final scale = scaleAnim.value;
-      final double alpha;
-      if (isOrigin) {
-        alpha = (t / 0.30).clamp(0.0, 1.0);
-      } else {
-        alpha = t < 0.60 ? 0.0 : ((t - 0.60) / 0.10).clamp(0.0, 1.0);
-      }
+      final alpha = (t / 0.30).clamp(0.0, 1.0);
       final icon = _scaledIconFor(stop.id, scale);
       final newMarker = buildStopMarker(
         stopId: stop.id,
@@ -712,85 +587,77 @@ class _TripMapScreenState extends State<TripMapScreen>
     return completer.future;
   }
 
-  /// Animates a polyline drawing in by progressively revealing more of its
-  /// decoded points each frame. The final frame's polyline is exactly
-  /// [_finalPolylines]'s entry — guaranteeing skip-state and waited-state
-  /// both land on the same visual.
+  /// Animates one cascade step on a single shared timer: extends the one trip
+  /// polyline from stop [stepIndex]-1 toward stop [stepIndex], then drops that
+  /// stop's marker the instant the segment finishes.
   ///
-  /// [duration] controls the total draw length so the entrance can speed up
-  /// on later days. easeOut shape is preserved at any duration.
-  Future<void> _animatePolylineDraw({
-    required String polylineId,
-    Duration duration = const Duration(milliseconds: 600),
-  }) async {
+  /// `t in [0, _drawFraction)` grows the polyline over this leg's points
+  /// (easeOut); `t in [_drawFraction, 1]` drops marker [stepIndex] (easeOut
+  /// overshoot to 1.20, easeIn settle to 1.00, alpha fading in as it lands).
+  /// The already-drawn prefix stays because every frame sublists from index 0.
+  ///
+  /// The final frame installs exactly the [_routePoints] prefix for this leg
+  /// and the static [_finalMarkers] entry, so the waited state and a skip both
+  /// land on the same visual.
+  Future<void> _animateLeg(int stepIndex, Duration duration) async {
     if (!_alive) return;
-    final points = _polylinePointsCache[polylineId];
-    if (points == null || points.isEmpty) return;
-    final finalPolyline = _finalPolylines.firstWhereOrNull(
-      (p) => p.polylineId.value == polylineId,
-    );
-    if (finalPolyline == null) return;
-    // Optional outline polyline drawn under the colored one. Day routes have
-    // it; bridge polylines don't (their dashed grey is the only stroke).
-    final outlineId = '${polylineId}_outline';
-    final finalOutline = _finalPolylines.firstWhereOrNull(
-      (p) => p.polylineId.value == outlineId,
-    );
+    final stop = _mappableStops[stepIndex];
+    final position = LatLng(stop.lat!, stop.lng!);
+    final routeLine = _finalRouteLine;
+    final base = _segmentLegEnd[stepIndex - 1];
+    final end = _segmentLegEnd[stepIndex];
 
-    // Degenerate single-point polyline: install final and skip animation.
-    if (points.length < 2) {
-      if (!mounted) return;
-      setState(() {
-        _polylines.removeWhere(
-          (p) => p.polylineId == finalPolyline.polylineId,
-        );
-        _polylines.add(finalPolyline);
-        if (finalOutline != null) {
-          _polylines.removeWhere(
-            (p) => p.polylineId == finalOutline.polylineId,
-          );
-          _polylines.add(finalOutline);
-        }
-      });
-      return;
-    }
-
+    const drawFraction = 0.6;
     final completer = Completer<void>();
-    final controller = AnimationController(
-      vsync: this,
-      duration: duration,
-    );
+    final controller = AnimationController(vsync: this, duration: duration);
+    final dropScale = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 0.30, end: 1.20)
+            .chain(CurveTween(curve: Curves.easeOut)),
+        weight: 70,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 1.20, end: 1.00)
+            .chain(CurveTween(curve: Curves.easeIn)),
+        weight: 30,
+      ),
+    ]).animate(controller);
 
     void listener() {
       if (!mounted) return;
       final t = controller.value;
-      int visibleCount;
-      if (t >= 1.0) {
-        visibleCount = points.length;
-      } else {
-        final progress = Curves.easeOut.transform(t);
-        visibleCount = (points.length * progress).ceil();
-        if (visibleCount < 2) visibleCount = 2;
-        if (visibleCount > points.length) visibleCount = points.length;
-      }
-      final visiblePoints = points.sublist(0, visibleCount);
-      final newPolyline = finalPolyline.copyWith(
-        pointsParam: visiblePoints,
-      );
-      setState(() {
-        _polylines.removeWhere(
-          (p) => p.polylineId == newPolyline.polylineId,
+
+      // --- Polyline: extend from stop i-1 toward stop i over [0, drawFraction).
+      if (routeLine != null && end > base) {
+        final drawT =
+            Curves.easeOut.transform((t / drawFraction).clamp(0.0, 1.0));
+        var visible = base + ((end - base) * drawT).ceil();
+        if (visible < 2) visible = 2;
+        if (visible > end) visible = end;
+        final line = routeLine.copyWith(
+          pointsParam: _routePoints.sublist(0, visible),
         );
-        _polylines.add(newPolyline);
-        if (finalOutline != null) {
-          final newOutline = finalOutline.copyWith(
-            pointsParam: visiblePoints,
-          );
-          _polylines.removeWhere(
-            (p) => p.polylineId == newOutline.polylineId,
-          );
-          _polylines.add(newOutline);
-        }
+        _polylines.removeWhere((p) => p.polylineId == line.polylineId);
+        _polylines.add(line);
+      }
+
+      // --- Marker i: drops the moment the segment finishes, over [drawFraction, 1].
+      final dropT =
+          ((t - drawFraction) / (1 - drawFraction)).clamp(0.0, 1.0);
+      final scale = dropT <= 0.0 ? 0.30 : dropScale.value;
+      final alpha = (dropT / 0.20).clamp(0.0, 1.0);
+      final icon = _scaledIconFor(stop.id, scale);
+      final newMarker = buildStopMarker(
+        stopId: stop.id,
+        position: position,
+        icon: icon,
+        alpha: alpha,
+        onTap: () => _onMarkerTapped(stop.id),
+      );
+
+      setState(() {
+        _markers.removeWhere((m) => m.markerId == newMarker.markerId);
+        _markers.add(newMarker);
       });
     }
 
@@ -798,6 +665,26 @@ class _TripMapScreenState extends State<TripMapScreen>
 
     controller.forward().whenComplete(() {
       _disposeActive(controller);
+      if (mounted) {
+        // Snap to the exact final visuals so per-frame rounding can't leave a
+        // short polyline or an off-scale bitmap behind.
+        final finalMarker = _finalMarkers.firstWhereOrNull(
+          (m) => m.markerId.value == stop.id,
+        );
+        setState(() {
+          if (routeLine != null) {
+            final line = routeLine.copyWith(
+              pointsParam: _routePoints.sublist(0, end),
+            );
+            _polylines.removeWhere((p) => p.polylineId == line.polylineId);
+            _polylines.add(line);
+          }
+          if (finalMarker != null) {
+            _markers.removeWhere((m) => m.markerId.value == stop.id);
+            _markers.add(finalMarker);
+          }
+        });
+      }
       if (!completer.isCompleted) completer.complete();
     });
 
@@ -894,9 +781,8 @@ class _TripMapScreenState extends State<TripMapScreen>
       _markers
         ..clear()
         ..addAll(_finalMarkers);
-      _polylines
-        ..clear()
-        ..addAll(_finalPolylines);
+      _polylines.clear();
+      if (_finalRouteLine != null) _polylines.add(_finalRouteLine!);
     });
   }
 
@@ -945,16 +831,6 @@ class _TripMapScreenState extends State<TripMapScreen>
   }
 
   // ---- end of animation choreography ---------------------------------------
-
-  /// True when this route's from/to stops belong to different days. Used to
-  /// style cross-day transitions as dashed grey (vs day-colored within-day
-  /// routes) and to play them during the inter-day bridge step instead of
-  /// a day's own drawing phase.
-  bool _isCrossDayRoute(TripRoute r) {
-    final fromDay = _stopDayNumberById[r.fromStopId];
-    final toDay = _stopDayNumberById[r.toStopId];
-    return fromDay != null && toDay != null && fromDay != toDay;
-  }
 
   TripStop? get _selectedStop =>
       _selectedStopId == null ? null : _mappableStopById[_selectedStopId];

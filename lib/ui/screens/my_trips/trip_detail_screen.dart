@@ -1689,7 +1689,7 @@ class _EmptyDayPlaceholder extends StatelessWidget {
             color: colors.greyMedium.withValues(alpha: 0.4),
             style: BorderStyle.solid,
           ),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular($styles.corners.md),
         ),
         child: Text(
           $strings.tripDetailEmptyDayHint,
