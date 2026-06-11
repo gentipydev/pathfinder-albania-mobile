@@ -3,6 +3,7 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/features/auth/bloc/auth_bloc.dart';
 import 'package:travel_buddy/features/auth/bloc/auth_event.dart';
 import 'package:travel_buddy/services/user_service.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
 import 'package:travel_buddy/ui/screens/profile/widgets/delete_account_sheet.dart';
 
 class ProfileScreen extends StatefulWidget with GetItStatefulWidgetMixin {
@@ -74,34 +75,38 @@ class _ProfileScreenState extends State<ProfileScreen> with GetItStateMixin {
     return Scaffold(
       backgroundColor: $styles.colors.black,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all($styles.insets.md),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Gap($styles.insets.md),
-              Text(
-                $strings.profileTitle,
-                style: $styles.text.h2.copyWith(color: $styles.colors.offWhite),
-              ),
-              Gap($styles.insets.lg),
-              _buildInfoTile(
-                label: $strings.profileEmailLabel,
-                value: email,
-                icon: Icons.alternate_email,
-              ),
-              Gap($styles.insets.sm),
-              InkWell(
-                onTap: () => context.go(ScreenPaths.preferences),
-                borderRadius: BorderRadius.circular($styles.corners.md),
-                child: _buildPrefsTile(),
-              ),
-              const Spacer(),
-              _buildSignOutButton(),
-              Gap($styles.insets.sm),
-              _buildDeleteAccountButton(),
-              Gap($styles.insets.md),
-            ],
+        // Form-like content reads best narrow; capped on wide windows.
+        child: CenteredBox(
+          width: $styles.sizes.maxContentWidth3,
+          child: Padding(
+            padding: EdgeInsets.all($styles.insets.md),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Gap($styles.insets.md),
+                Text(
+                  $strings.profileTitle,
+                  style: $styles.text.h2.copyWith(color: $styles.colors.offWhite),
+                ),
+                Gap($styles.insets.lg),
+                _buildInfoTile(
+                  label: $strings.profileEmailLabel,
+                  value: email,
+                  icon: Icons.alternate_email,
+                ),
+                Gap($styles.insets.sm),
+                InkWell(
+                  onTap: () => context.go(ScreenPaths.preferences),
+                  borderRadius: BorderRadius.circular($styles.corners.md),
+                  child: _buildPrefsTile(),
+                ),
+                const Spacer(),
+                _buildSignOutButton(),
+                Gap($styles.insets.sm),
+                _buildDeleteAccountButton(),
+                Gap($styles.insets.md),
+              ],
+            ),
           ),
         ),
       ),

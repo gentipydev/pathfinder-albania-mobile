@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:siri_wave/siri_wave.dart';
 import 'package:travel_buddy/common_libs.dart';
@@ -15,6 +16,9 @@ class VoiceDictationStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Voice dictation is hidden on web — speech_to_text browser support is
+    // unreliable, so the composer never enters a listening state there.
+    if (kIsWeb) return const SizedBox.shrink();
     return BlocSelector<VoiceBloc, VoiceBlocState, VoiceState>(
       selector: (s) => s.status,
       builder: (ctx, status) {

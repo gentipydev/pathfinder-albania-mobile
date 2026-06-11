@@ -1,7 +1,9 @@
 
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,6 +32,7 @@ import 'package:travel_buddy/logic/buddy/place_card.dart';
 import 'package:travel_buddy/logic/locale_logic.dart';
 import 'package:travel_buddy/services/trip_service.dart';
 import 'package:travel_buddy/services/user_service.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
 import 'package:travel_buddy/ui/common/themed_date_picker.dart';
 import 'package:travel_buddy/ui/screens/buddy/widgets/attach_button.dart';
 import 'package:travel_buddy/ui/screens/buddy/widgets/attachment_strip.dart';
@@ -420,37 +423,42 @@ class _MessageListState extends State<_MessageList> {
   @override
   Widget build(BuildContext context) {
     final reversed = widget.messages.reversed.toList(growable: false);
-    return Stack(
-      children: [
-        ListView.builder(
-          controller: widget.scroll,
-          reverse: true,
-          padding: EdgeInsets.symmetric(
-            horizontal: $styles.insets.sm,
-            vertical: $styles.insets.sm,
+    // Cap the conversation column on wide (web/tablet) windows; bubbles,
+    // markdown and rich cards all inherit the constraint.
+    return CenteredBox(
+      width: $styles.sizes.maxContentWidth2,
+      child: Stack(
+        children: [
+          ListView.builder(
+            controller: widget.scroll,
+            reverse: true,
+            padding: EdgeInsets.symmetric(
+              horizontal: $styles.insets.sm,
+              vertical: $styles.insets.sm,
+            ),
+            itemCount: reversed.length,
+            itemBuilder: (ctx, i) => Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: _MessageItem(message: reversed[i]),
+            ),
           ),
-          itemCount: reversed.length,
-          itemBuilder: (ctx, i) => Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: _MessageItem(message: reversed[i]),
-          ),
-        ),
-        Positioned(
-          bottom: 12,
-          left: 0,
-          right: 0,
-          child: Center(
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 150),
-              opacity: _showPill ? 1 : 0,
-              child: IgnorePointer(
-                ignoring: !_showPill,
-                child: _ScrollToLatestPill(onTap: _jumpToBottom),
+          Positioned(
+            bottom: 12,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 150),
+                opacity: _showPill ? 1 : 0,
+                child: IgnorePointer(
+                  ignoring: !_showPill,
+                  child: _ScrollToLatestPill(onTap: _jumpToBottom),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -480,7 +488,9 @@ class _UserBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = $styles.colors;
-    final maxWidth = MediaQuery.of(context).size.width * .8;
+    // 80% of the (already capped) chat column, with an absolute ceiling so
+    // bubbles stay chat-like on wide web/desktop windows.
+    final maxWidth = math.min(MediaQuery.of(context).size.width * .8, 480.0);
     final hasImage = message.attachmentUrls.isNotEmpty;
     final hasText = message.content.isNotEmpty;
     return Align(
@@ -1034,72 +1044,83 @@ class _Composer extends StatelessWidget {
     final hasReady =
         attachments.any((a) => a.status == AttachmentStatus.ready);
 
-    return Padding(
-      padding: EdgeInsets.fromLTRB(
-        $styles.insets.sm,
-        $styles.insets.xs,
-        $styles.insets.sm,
-        $styles.insets.sm,
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(6),
-        decoration: BoxDecoration(
-          color: colors.greyStrong.withValues(alpha: .55),
-          borderRadius: BorderRadius.circular($styles.corners.card),
-          border: Border.all(
-            color: colors.greyMedium.withValues(alpha: .3),
-            width: 1,
-          ),
+    // Same cap as the message list so the composer aligns with the column.
+    return CenteredBox(
+      width: $styles.sizes.maxContentWidth2,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(
+          $styles.insets.sm,
+          $styles.insets.xs,
+          $styles.insets.sm,
+          $styles.insets.sm,
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (attachments.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 6),
-                child: AttachmentStrip(
-                  attachments: attachments,
-                  onRemove: onRemoveAttachment,
-                  onRetry: onRetryAttachment,
+        child: Container(
+          padding: const EdgeInsets.all(6),
+          decoration: BoxDecoration(
+            color: colors.greyStrong.withValues(alpha: .55),
+            borderRadius: BorderRadius.circular($styles.corners.card),
+            border: Border.all(
+              color: colors.greyMedium.withValues(alpha: .3),
+              width: 1,
+            ),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (attachments.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: AttachmentStrip(
+                    attachments: attachments,
+                    onRemove: onRemoveAttachment,
+                    onRetry: onRetryAttachment,
+                  ),
                 ),
-              ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                AttachButton(onPicked: onPicked),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 4, vertical: 9),
-                    child: TextField(
-                      controller: controller,
-                      maxLines: 6,
-                      minLines: 1,
-                      textCapitalization: TextCapitalization.sentences,
-                      style: $styles.text.body.copyWith(color: colors.offWhite),
-                      cursorColor: colors.accent1,
-                      decoration: InputDecoration.collapsed(
-                        hintText: hintText,
-                        hintStyle: TextStyle(color: colors.greyMedium),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  AttachButton(onPicked: onPicked),
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 4, vertical: 9),
+                      child: TextField(
+                        controller: controller,
+                        maxLines: 6,
+                        minLines: 1,
+                        textCapitalization: TextCapitalization.sentences,
+                        style: $styles.text.body.copyWith(color: colors.offWhite),
+                        cursorColor: colors.accent1,
+                        decoration: InputDecoration.collapsed(
+                          hintText: hintText,
+                          hintStyle: TextStyle(color: colors.greyMedium),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                ValueListenableBuilder<TextEditingValue>(
-                  valueListenable: controller,
-                  builder: (ctx, value, _) => _buildAction(
-                    value.text.trim().isNotEmpty || hasReady,
+                  ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: controller,
+                    builder: (ctx, value, _) => _buildAction(
+                      value.text.trim().isNotEmpty || hasReady,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildAction(bool canSend) {
+    // No dictation on web (speech_to_text browser support is unreliable), so
+    // the action slot is always send/stop there. Send is safe when the field
+    // is empty — _sendCurrent no-ops on blank input.
+    if (kIsWeb) {
+      if (isStreaming) return _RoundButton.stop(onTap: onCancel);
+      return _RoundButton.send(onTap: onSend);
+    }
     return BlocSelector<VoiceBloc, VoiceBlocState, VoiceState>(
       selector: (s) => s.status,
       builder: (ctx, vState) {
@@ -1333,7 +1354,8 @@ class _AssistantActions extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _CopyButton(content: message.content),
-          _TtsButton(message: message),
+          // TTS playback is mobile-only; browser TTS support is unreliable.
+          if (!kIsWeb) _TtsButton(message: message),
         ],
       ),
     );

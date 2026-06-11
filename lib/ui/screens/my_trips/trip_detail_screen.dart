@@ -17,6 +17,7 @@ import 'package:travel_buddy/logic/auto_track_prefs.dart';
 import 'package:travel_buddy/logic/locale_logic.dart';
 import 'package:travel_buddy/services/location_service.dart';
 import 'package:travel_buddy/services/trip_service.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
 import 'package:travel_buddy/ui/common/modals/destructive_confirm_sheet.dart';
 import 'package:travel_buddy/ui/common/themed_date_picker.dart';
 import 'package:travel_buddy/ui/screens/my_trips/widgets/edit_stop_sheet.dart';
@@ -269,7 +270,14 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
                     busy: _openingRefine,
                     onTap: () => _openRefine(trip),
                   ),
-                Expanded(child: _buildBody(trip)),
+                // Timeline column is capped on wide (web/tablet) windows;
+                // app chrome above (header, banner, CTA) stays full width.
+                Expanded(
+                  child: CenteredBox(
+                    width: $styles.sizes.maxContentWidth2,
+                    child: _buildBody(trip),
+                  ),
+                ),
               ],
             );
           },
@@ -863,16 +871,21 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
                   color: $styles.colors.offWhite,
                 ),
               ),
-              content: TextField(
-                controller: controller,
-                autofocus: true,
-                maxLength: maxLength,
-                maxLines: maxLines,
-                style: $styles.text.body.copyWith(
-                  color: $styles.colors.offWhite,
+              // SizedBox stops the TextField from stretching the dialog to
+              // near-screen width on web/desktop (AlertDialog has no M3 cap).
+              content: SizedBox(
+                width: 400,
+                child: TextField(
+                  controller: controller,
+                  autofocus: true,
+                  maxLength: maxLength,
+                  maxLines: maxLines,
+                  style: $styles.text.body.copyWith(
+                    color: $styles.colors.offWhite,
+                  ),
+                  decoration: const InputDecoration(border: OutlineInputBorder()),
+                  onChanged: (_) => setLocal(() {}),
                 ),
-                decoration: const InputDecoration(border: OutlineInputBorder()),
-                onChanged: (_) => setLocal(() {}),
               ),
               actions: [
                 TextButton(
@@ -920,51 +933,56 @@ class _TripDetailScreenState extends State<TripDetailScreen> {
               color: $styles.colors.offWhite,
             ),
           ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                $strings.tripDetailAddDayNumberField,
-                style: $styles.text.bodySmall.copyWith(
-                  color: $styles.colors.greyMedium,
+          // Same width cap as _showTextInputDialog — keeps the stacked
+          // TextFields from stretching the dialog on web/desktop.
+          content: SizedBox(
+            width: 400,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  $strings.tripDetailAddDayNumberField,
+                  style: $styles.text.bodySmall.copyWith(
+                    color: $styles.colors.greyMedium,
+                  ),
                 ),
-              ),
-              TextField(
-                controller: dayCtrl,
-                autofocus: true,
-                keyboardType: TextInputType.number,
-                style: $styles.text.body.copyWith(
-                  color: $styles.colors.offWhite,
+                TextField(
+                  controller: dayCtrl,
+                  autofocus: true,
+                  keyboardType: TextInputType.number,
+                  style: $styles.text.body.copyWith(
+                    color: $styles.colors.offWhite,
+                  ),
                 ),
-              ),
-              Gap($styles.insets.sm),
-              Text(
-                $strings.tripDetailAddDayTitleField,
-                style: $styles.text.bodySmall.copyWith(
-                  color: $styles.colors.greyMedium,
+                Gap($styles.insets.sm),
+                Text(
+                  $strings.tripDetailAddDayTitleField,
+                  style: $styles.text.bodySmall.copyWith(
+                    color: $styles.colors.greyMedium,
+                  ),
                 ),
-              ),
-              TextField(
-                controller: titleCtrl,
-                style: $styles.text.body.copyWith(
-                  color: $styles.colors.offWhite,
+                TextField(
+                  controller: titleCtrl,
+                  style: $styles.text.body.copyWith(
+                    color: $styles.colors.offWhite,
+                  ),
                 ),
-              ),
-              Gap($styles.insets.sm),
-              Text(
-                $strings.tripDetailAddDayBaseCityField,
-                style: $styles.text.bodySmall.copyWith(
-                  color: $styles.colors.greyMedium,
+                Gap($styles.insets.sm),
+                Text(
+                  $strings.tripDetailAddDayBaseCityField,
+                  style: $styles.text.bodySmall.copyWith(
+                    color: $styles.colors.greyMedium,
+                  ),
                 ),
-              ),
-              TextField(
-                controller: cityCtrl,
-                style: $styles.text.body.copyWith(
-                  color: $styles.colors.offWhite,
+                TextField(
+                  controller: cityCtrl,
+                  style: $styles.text.body.copyWith(
+                    color: $styles.colors.offWhite,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           actions: [
             TextButton(

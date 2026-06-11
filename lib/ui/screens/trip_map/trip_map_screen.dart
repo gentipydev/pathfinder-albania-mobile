@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/domain/entities/trip.dart';
 import 'package:travel_buddy/domain/entities/trip_route.dart';
@@ -253,8 +254,8 @@ class _TripMapScreenState extends State<TripMapScreen>
         ? null
         : Polyline(
             polylineId: const PolylineId('trip_route'),
-            color: Colors.grey.shade600.withValues(alpha: 0.85),
-            width: 2,
+            color: $styles.colors.accent1,
+            width: 4,
             points: pts,
             zIndex: 1,
           );
@@ -337,6 +338,15 @@ class _TripMapScreenState extends State<TripMapScreen>
     _programmaticCameraInFlight = false;
   }
 
+  /// The details sheet's max fractional size: half the screen on phones,
+  /// capped at 480 logical px on tall web/desktop windows so the sheet
+  /// doesn't swallow the map. Shared by the sheet itself, the programmatic
+  /// open animation, and the map's bottom padding — keep all three in sync.
+  double get _sheetMaxSize {
+    final h = MediaQuery.of(context).size.height;
+    return math.min(0.5, 480 / h);
+  }
+
   void _onMarkerTapped(String stopId) {
     final s = _mappableStopById[stopId];
     if (s == null) return;
@@ -351,7 +361,7 @@ class _TripMapScreenState extends State<TripMapScreen>
     _programmaticSheetAnimation = true;
     _sheetController
         .animateTo(
-          0.5,
+          _sheetMaxSize,
           duration: const Duration(milliseconds: 250),
           curve: Curves.easeOut,
         )
@@ -892,7 +902,7 @@ class _TripMapScreenState extends State<TripMapScreen>
     final mq = MediaQuery.of(context);
     final mapTopInset = mq.padding.top + 56;
     final mapBottomInset = _selectedStopId != null
-        ? mq.size.height * 0.5 + mq.padding.bottom
+        ? mq.size.height * _sheetMaxSize + mq.padding.bottom
         : mq.padding.bottom + 8;
 
     return ColoredBox(
@@ -941,38 +951,57 @@ class _TripMapScreenState extends State<TripMapScreen>
             },
             ),
           ),
-          const Align(
+          // PointerInterceptor (here and below) stops taps on widgets that
+          // overlay the GoogleMap from falling through to the map's platform
+          // view on web. It's a no-op on mobile.
+          Align(
             alignment: Alignment.topCenter,
-            child: AppHeader(isTransparent: true),
+            child: PointerInterceptor(
+              child: const AppHeader(isTransparent: true),
+            ),
           ),
           Positioned(
             top: mapTopInset + 8,
             right: 12,
-            child: _MapTypeToggle(
-              mapType: _mapType,
-              onToggle: () => setState(() {
-                _mapType = _mapType == MapType.normal
-                    ? MapType.satellite
-                    : MapType.normal;
-              }),
+            child: PointerInterceptor(
+              child: _MapTypeToggle(
+                mapType: _mapType,
+                onToggle: () => setState(() {
+                  _mapType = _mapType == MapType.normal
+                      ? MapType.satellite
+                      : MapType.normal;
+                }),
+              ),
             ),
           ),
-          DraggableScrollableSheet(
-            controller: _sheetController,
-            initialChildSize: 0.0,
-            minChildSize: 0.0,
-            maxChildSize: 0.5,
-            snap: true,
-            snapSizes: const [0.0, 0.5],
-            builder: (ctx, scrollCtrl) => _StopDetailsSheet(
-              // Nullable on purpose. The Scrollable must stay at the same
-              // tree location across null↔stop transitions; swapping widget
-              // types here would detach the ScrollPosition and (via the
-              // controller's onPositionDetached hook) kill any in-flight
-              // _sheetController.animateTo, leaving the sheet stuck at 0.
-              stop: _selectedStop,
-              dayColor: _selectedStopDayColor ?? Colors.grey,
-              scrollCtrl: scrollCtrl,
+          // The Align/SizedBox wrapper is unconditional (never toggled by
+          // _selectedStopId) so the sheet's inner Scrollable keeps the same
+          // tree location across state changes — see the comment on `stop:`.
+          // It caps the sheet's width on wide web/desktop windows.
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              width: math.min(mq.size.width, $styles.sizes.maxContentWidth2),
+              child: DraggableScrollableSheet(
+                controller: _sheetController,
+                initialChildSize: 0.0,
+                minChildSize: 0.0,
+                maxChildSize: _sheetMaxSize,
+                snap: true,
+                snapSizes: [0.0, _sheetMaxSize],
+                builder: (ctx, scrollCtrl) => PointerInterceptor(
+                  child: _StopDetailsSheet(
+                    // Nullable on purpose. The Scrollable must stay at the same
+                    // tree location across null↔stop transitions; swapping widget
+                    // types here would detach the ScrollPosition and (via the
+                    // controller's onPositionDetached hook) kill any in-flight
+                    // _sheetController.animateTo, leaving the sheet stuck at 0.
+                    stop: _selectedStop,
+                    dayColor: _selectedStopDayColor ?? Colors.grey,
+                    scrollCtrl: scrollCtrl,
+                  ),
+                ),
+              ),
             ),
           ),
         ],

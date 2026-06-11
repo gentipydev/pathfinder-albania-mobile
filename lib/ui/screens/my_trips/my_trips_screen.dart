@@ -8,6 +8,7 @@ import 'package:travel_buddy/features/trips/bloc/trips_error_mapper.dart';
 import 'package:travel_buddy/features/trips/bloc/trips_event.dart';
 import 'package:travel_buddy/features/trips/bloc/trips_state.dart';
 import 'package:travel_buddy/logic/locale_logic.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
 import 'package:travel_buddy/ui/common/empty_state.dart';
 import 'package:travel_buddy/ui/common/error_state.dart';
 import 'package:travel_buddy/ui/common/modals/destructive_confirm_sheet.dart';
@@ -102,140 +103,145 @@ class _MyTripsScreenState extends State<MyTripsScreen> {
       color: colors.black,
       child: SafeArea(
         bottom: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const TripErrorBanner(),
-            Padding(
-              padding: EdgeInsets.fromLTRB(
-                $styles.insets.md,
-                $styles.insets.md,
-                $styles.insets.sm,
-                $styles.insets.md,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Text(
-                      $strings.myTripsTitle,
-                      style: $styles.text.h2.copyWith(color: colors.offWhite),
-                    ),
-                  ),
-                  // Cap counter. Always visible (even at 0) so users learn
-                  // the limit before they hit it. `maxSavedTrips` is sourced
-                  // from TripsBloc so the magic number lives in one place.
-                  BlocSelector<TripsBloc, TripsState, int>(
-                    selector: (s) => s.trips.length,
-                    builder: (context, count) => Padding(
-                      padding: EdgeInsets.only(right: $styles.insets.xs),
+        // Cap the header + trip list on wide (web/tablet) windows; the 16/7
+        // map thumbnails then render at the width they were designed for.
+        child: CenteredBox(
+          width: $styles.sizes.maxContentWidth2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const TripErrorBanner(),
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                  $styles.insets.md,
+                  $styles.insets.md,
+                  $styles.insets.sm,
+                  $styles.insets.md,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
                       child: Text(
-                        $strings.myTripsCounter(count, maxSavedTrips),
-                        style: $styles.text.bodySmall
-                            .copyWith(color: colors.greyMedium),
+                        $strings.myTripsTitle,
+                        style: $styles.text.h2.copyWith(color: colors.offWhite),
                       ),
                     ),
-                  ),
-                  BlocSelector<TripsBloc, TripsState, bool>(
-                    selector: (s) => s.trips.isNotEmpty,
-                    builder: (context, hasTrips) {
-                      if (!hasTrips) return const SizedBox.shrink();
-                      return PopupMenuButton<String>(
-                        tooltip: $strings.myTripsClearAllAction,
-                        icon: Icon(Icons.more_vert, color: colors.offWhite),
-                        color: colors.greyStrong,
-                        onSelected: (v) {
-                          if (v == 'clear_all') _confirmClearAllTrips(context);
-                        },
-                        itemBuilder: (_) => [
-                          PopupMenuItem<String>(
-                            value: 'clear_all',
-                            child: Row(
-                              children: [
-                                Icon(Icons.delete_sweep_outlined,
-                                    color: $styles.colors.error),
-                                SizedBox(width: $styles.insets.sm),
-                                Text(
-                                  $strings.myTripsClearAllAction,
-                                  style: $styles.text.body
-                                      .copyWith(color: $styles.colors.error),
-                                ),
-                              ],
+                    // Cap counter. Always visible (even at 0) so users learn
+                    // the limit before they hit it. `maxSavedTrips` is sourced
+                    // from TripsBloc so the magic number lives in one place.
+                    BlocSelector<TripsBloc, TripsState, int>(
+                      selector: (s) => s.trips.length,
+                      builder: (context, count) => Padding(
+                        padding: EdgeInsets.only(right: $styles.insets.xs),
+                        child: Text(
+                          $strings.myTripsCounter(count, maxSavedTrips),
+                          style: $styles.text.bodySmall
+                              .copyWith(color: colors.greyMedium),
+                        ),
+                      ),
+                    ),
+                    BlocSelector<TripsBloc, TripsState, bool>(
+                      selector: (s) => s.trips.isNotEmpty,
+                      builder: (context, hasTrips) {
+                        if (!hasTrips) return const SizedBox.shrink();
+                        return PopupMenuButton<String>(
+                          tooltip: $strings.myTripsClearAllAction,
+                          icon: Icon(Icons.more_vert, color: colors.offWhite),
+                          color: colors.greyStrong,
+                          onSelected: (v) {
+                            if (v == 'clear_all') _confirmClearAllTrips(context);
+                          },
+                          itemBuilder: (_) => [
+                            PopupMenuItem<String>(
+                              value: 'clear_all',
+                              child: Row(
+                                children: [
+                                  Icon(Icons.delete_sweep_outlined,
+                                      color: $styles.colors.error),
+                                  SizedBox(width: $styles.insets.sm),
+                                  Text(
+                                    $strings.myTripsClearAllAction,
+                                    style: $styles.text.body
+                                        .copyWith(color: $styles.colors.error),
+                                  ),
+                                ],
+                              ),
                             ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: $styles.insets.md),
+                  child: BlocBuilder<TripsBloc, TripsState>(
+                    // Limit rebuilds to the state slices the body branches on
+                    // (the optimistic stop/day pending markers are read by
+                    // _TripRow internally, so include them here too).
+                    buildWhen: (a, b) =>
+                        a.trips != b.trips ||
+                        a.isLoading != b.isLoading ||
+                        a.isLoadingMore != b.isLoadingMore ||
+                        a.hasMore != b.hasMore ||
+                        a.lastError != b.lastError,
+                    builder: (context, s) {
+                      if (s.trips.isEmpty && s.isLoading) {
+                        return Center(
+                          child: CircularProgressIndicator(color: colors.accent1),
+                        );
+                      }
+                      if (s.trips.isEmpty && s.lastError != null) {
+                        return ErrorState(
+                          message: resolveTripsErrorMessage(s.lastError),
+                          onRetry: () => context
+                              .read<TripsBloc>()
+                              .add(const LoadAllRequested()),
+                        );
+                      }
+                      if (s.trips.isEmpty) {
+                        return EmptyState(
+                          icon: Icons.luggage_outlined,
+                          title: $strings.myTripsEmptyTitle,
+                          subtitle: $strings.myTripsEmptySubtitle,
+                        );
+                      }
+                      final showFooter = s.hasMore;
+                      final itemCount = s.trips.length + (showFooter ? 1 : 0);
+                      return RefreshIndicator(
+                        color: colors.accent1,
+                        backgroundColor: colors.greyStrong,
+                        onRefresh: () async {
+                          context.read<TripsBloc>().add(const LoadAllRequested());
+                        },
+                        child: ListView.separated(
+                          controller: _scrollController,
+                          physics: const BouncingScrollPhysics(
+                            parent: ClampingScrollPhysics(),
                           ),
-                        ],
+                          itemCount: itemCount,
+                          separatorBuilder: (_, _) =>
+                              SizedBox(height: $styles.insets.sm),
+                          itemBuilder: (context, i) {
+                            if (showFooter && i == s.trips.length) {
+                              return _PaginationFooter(
+                                loading: s.isLoadingMore,
+                                color: colors.accent1,
+                              );
+                            }
+                            return _TripRow(trip: s.trips[i]);
+                          },
+                        ),
                       );
                     },
                   ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: $styles.insets.md),
-                child: BlocBuilder<TripsBloc, TripsState>(
-                  // Limit rebuilds to the state slices the body branches on
-                  // (the optimistic stop/day pending markers are read by
-                  // _TripRow internally, so include them here too).
-                  buildWhen: (a, b) =>
-                      a.trips != b.trips ||
-                      a.isLoading != b.isLoading ||
-                      a.isLoadingMore != b.isLoadingMore ||
-                      a.hasMore != b.hasMore ||
-                      a.lastError != b.lastError,
-                  builder: (context, s) {
-                    if (s.trips.isEmpty && s.isLoading) {
-                      return Center(
-                        child: CircularProgressIndicator(color: colors.accent1),
-                      );
-                    }
-                    if (s.trips.isEmpty && s.lastError != null) {
-                      return ErrorState(
-                        message: resolveTripsErrorMessage(s.lastError),
-                        onRetry: () => context
-                            .read<TripsBloc>()
-                            .add(const LoadAllRequested()),
-                      );
-                    }
-                    if (s.trips.isEmpty) {
-                      return EmptyState(
-                        icon: Icons.luggage_outlined,
-                        title: $strings.myTripsEmptyTitle,
-                        subtitle: $strings.myTripsEmptySubtitle,
-                      );
-                    }
-                    final showFooter = s.hasMore;
-                    final itemCount = s.trips.length + (showFooter ? 1 : 0);
-                    return RefreshIndicator(
-                      color: colors.accent1,
-                      backgroundColor: colors.greyStrong,
-                      onRefresh: () async {
-                        context.read<TripsBloc>().add(const LoadAllRequested());
-                      },
-                      child: ListView.separated(
-                        controller: _scrollController,
-                        physics: const BouncingScrollPhysics(
-                          parent: ClampingScrollPhysics(),
-                        ),
-                        itemCount: itemCount,
-                        separatorBuilder: (_, _) =>
-                            SizedBox(height: $styles.insets.sm),
-                        itemBuilder: (context, i) {
-                          if (showFooter && i == s.trips.length) {
-                            return _PaginationFooter(
-                              loading: s.isLoadingMore,
-                              color: colors.accent1,
-                            );
-                          }
-                          return _TripRow(trip: s.trips[i]);
-                        },
-                      ),
-                    );
-                  },
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

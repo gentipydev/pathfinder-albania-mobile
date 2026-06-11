@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:travel_buddy/features/buddy/bloc/buddy_bloc.dart';
 import 'package:travel_buddy/features/buddy/bloc/buddy_event.dart';
 import 'package:travel_buddy/logic/buddy/conversations_service.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
 import 'package:travel_buddy/ui/common/empty_state.dart';
 import 'package:travel_buddy/ui/common/error_state.dart';
 import 'package:travel_buddy/ui/common/modals/destructive_confirm_sheet.dart';
@@ -238,7 +239,11 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
           ),
         ],
       ),
-      body: _buildBody(),
+      // Cap the conversation list on wide (web/tablet) windows.
+      body: CenteredBox(
+        width: $styles.sizes.maxContentWidth2,
+        child: _buildBody(),
+      ),
     );
   }
 

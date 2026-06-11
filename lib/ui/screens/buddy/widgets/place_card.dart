@@ -71,7 +71,9 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
-    final cardW = mq.size.width - 32;
+    // The chat column is capped at maxContentWidth2 on wide web/desktop
+    // windows, so derive the carousel math from that cap, not the screen.
+    final cardW = math.min(mq.size.width, $styles.sizes.maxContentWidth2) - 32;
     final cardH = math.min(mq.size.height * 0.62, 480.0);
     final photoH = cardH * 0.55;
 

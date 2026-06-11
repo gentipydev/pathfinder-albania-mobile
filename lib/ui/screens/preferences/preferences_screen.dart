@@ -3,6 +3,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:travel_buddy/common_libs.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:travel_buddy/logic/preferences/preferences_service.dart';
+import 'package:travel_buddy/ui/common/centered_box.dart';
 
 class TravelerPersona {
   const TravelerPersona({
@@ -210,98 +211,104 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
     return Scaffold(
       backgroundColor: $styles.colors.black,
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildHeader(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: $styles.insets.md),
-              child: Row(
-                children: [
-                  Text(
-                    $strings.preferencesPersonaSection,
-                    style: $styles.text.h4.copyWith(
+        // Cap the persona carousel + controls on wide (web/tablet) windows so
+        // the PageView's viewportFraction yields card-sized pages, not
+        // screen-wide ones.
+        child: CenteredBox(
+          width: $styles.sizes.maxContentWidth3,
+          child: Column(
+            children: [
+              _buildHeader(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: $styles.insets.md),
+                child: Row(
+                  children: [
+                    Text(
+                      $strings.preferencesPersonaSection,
+                      style: $styles.text.h4.copyWith(
+                        color: $styles.colors.offWhite,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: _showPersonaInfo,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: $styles.insets.xs,
+                      ),
+                      constraints: const BoxConstraints(),
+                      visualDensity: VisualDensity.compact,
+                      icon: Icon(
+                        Icons.info_outline,
+                        size: 18,
+                        color: $styles.colors.offWhite.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: AnimatedBuilder(
+                  animation: _pageController,
+                  builder: (context, _) {
+                    final page = _pageController.hasClients &&
+                            _pageController.position.haveDimensions
+                        ? (_pageController.page ?? 0.0)
+                        : _selectedIndex.toDouble();
+                    return PageView.builder(
+                      controller: _pageController,
+                      itemCount: _personas.length,
+                      onPageChanged: (i) => setState(() => _selectedIndex = i),
+                      itemBuilder: (context, i) {
+                        final delta = (page - i).clamp(-1.0, 1.0);
+                        final scale = 1.0 - (delta.abs() * 0.08);
+                        return Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.identity()
+                            ..setEntry(3, 2, 0.001)
+                            ..rotateY(delta * 0.22)
+                            ..scaleByDouble(scale, scale, 1.0, 1.0),
+                          child: _PersonaCard(
+                            persona: _personas[i],
+                            isSelected: i == _selectedIndex,
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
+              SmoothPageIndicator(
+                controller: _pageController,
+                count: _personas.length,
+                effect: ExpandingDotsEffect(
+                  activeDotColor: $styles.colors.accent1,
+                  dotColor: $styles.colors.greyStrong,
+                  dotHeight: 8,
+                  dotWidth: 8,
+                  expansionFactor: 3,
+                  spacing: 6,
+                ),
+              ),
+              Gap($styles.insets.sm),
+              SizedBox(
+                height: 24,
+                child: AnimatedSwitcher(
+                  duration: $styles.times.pageTransition,
+                  child: Text(
+                    persona.tagline,
+                    key: ValueKey(persona.id),
+                    style: $styles.text.body.copyWith(
                       color: $styles.colors.offWhite,
+                      fontStyle: FontStyle.italic,
                     ),
-                  ),
-                  IconButton(
-                    onPressed: _showPersonaInfo,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: $styles.insets.xs,
-                    ),
-                    constraints: const BoxConstraints(),
-                    visualDensity: VisualDensity.compact,
-                    icon: Icon(
-                      Icons.info_outline,
-                      size: 18,
-                      color: $styles.colors.offWhite.withValues(alpha: 0.6),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: AnimatedBuilder(
-                animation: _pageController,
-                builder: (context, _) {
-                  final page = _pageController.hasClients &&
-                          _pageController.position.haveDimensions
-                      ? (_pageController.page ?? 0.0)
-                      : _selectedIndex.toDouble();
-                  return PageView.builder(
-                    controller: _pageController,
-                    itemCount: _personas.length,
-                    onPageChanged: (i) => setState(() => _selectedIndex = i),
-                    itemBuilder: (context, i) {
-                      final delta = (page - i).clamp(-1.0, 1.0);
-                      final scale = 1.0 - (delta.abs() * 0.08);
-                      return Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.identity()
-                          ..setEntry(3, 2, 0.001)
-                          ..rotateY(delta * 0.22)
-                          ..scaleByDouble(scale, scale, 1.0, 1.0),
-                        child: _PersonaCard(
-                          persona: _personas[i],
-                          isSelected: i == _selectedIndex,
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-            SmoothPageIndicator(
-              controller: _pageController,
-              count: _personas.length,
-              effect: ExpandingDotsEffect(
-                activeDotColor: $styles.colors.accent1,
-                dotColor: $styles.colors.greyStrong,
-                dotHeight: 8,
-                dotWidth: 8,
-                expansionFactor: 3,
-                spacing: 6,
-              ),
-            ),
-            Gap($styles.insets.sm),
-            SizedBox(
-              height: 24,
-              child: AnimatedSwitcher(
-                duration: $styles.times.pageTransition,
-                child: Text(
-                  persona.tagline,
-                  key: ValueKey(persona.id),
-                  style: $styles.text.body.copyWith(
-                    color: $styles.colors.offWhite,
-                    fontStyle: FontStyle.italic,
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all($styles.insets.md),
-              child: _buildStartButton(persona),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.all($styles.insets.md),
+                child: _buildStartButton(persona),
+              ),
+            ],
+          ),
         ),
       ),
     );

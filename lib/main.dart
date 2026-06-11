@@ -34,8 +34,13 @@ import 'package:travel_buddy/services/user_service.dart';
 import 'package:travel_buddy/ui/common/app_shortcuts.dart';
 import 'package:travel_buddy/utils/dev_bloc_observer.dart';
 import 'package:travel_buddy/utils/sentry_scrubber.dart';
+import 'package:travel_buddy/utils/url_strategy_native.dart'
+    if (dart.library.js_interop) 'package:travel_buddy/utils/url_strategy_web.dart';
 
 void main() async {
+  // Path URLs (no `/#/`) on web; no-op elsewhere. Must run before the router
+  // reads the initial location.
+  configureUrlStrategy();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // Keep native splash screen up until app is finished bootstrapping
   if (!kIsWeb) {

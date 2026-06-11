@@ -1,4 +1,5 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
 import 'package:travel_buddy/ui/common/controls/app_header.dart';
@@ -24,7 +25,9 @@ class FullscreenMapsViewer extends StatelessWidget {
             myLocationButtonEnabled: false,
           ),
         ),
-        AppHeader(isTransparent: true),
+        // Keeps the back button tappable on web — without it the tap falls
+        // through to the GoogleMap platform view. No-op on mobile.
+        PointerInterceptor(child: AppHeader(isTransparent: true)),
       ],
     );
   }
