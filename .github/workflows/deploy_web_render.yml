@@ -1,0 +1,36 @@
+name: Deploy Web to Render
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build_web.yml
+    with:
+      # google_maps_flutter_web is unvalidated on skwasm; production uses the JS renderer.
+      wasm: false
+    secrets: inherit
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: build/web
+
+      # Render serves the site from the domain root; <base href="/"> stays untouched.
+      - name: Publish to web-dist branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          publish_branch: web-dist
+          force_orphan: true

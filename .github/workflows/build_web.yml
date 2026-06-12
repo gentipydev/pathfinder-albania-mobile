@@ -6,14 +6,14 @@ on:
       wasm:
         description: Build using WebAssembly
         required: false
-        default: true
+        default: false
         type: boolean
   workflow_call:
     inputs:
       wasm:
         description: Build using WebAssembly
         required: false
-        default: true
+        default: false
         type: boolean
 
 jobs:
