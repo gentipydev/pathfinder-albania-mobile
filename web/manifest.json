@@ -1,7 +1,12 @@
 {
     "name": "Travel Buddy",
     "short_name": "Travel Buddy",
-    "start_url": ".",
+    "id": "/",
+    "start_url": "/",
+    "scope": "/",
+    "lang": "en",
+    "dir": "ltr",
+    "categories": ["travel", "navigation"],
     "display": "standalone",
     "background_color": "#1e1b18",
     "theme_color": "#1e1b18",
@@ -30,64 +35,6 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
-        }
-    ],
-    "screenshots": [
-        {
-            "src": "screenshots/screen1.png",
-            "sizes": "800x600",
-            "type": "image/png",
-            "form_factor": "wide",
-            "label": "Travel Buddy welcome screen"
-        },
-        {
-            "src": "screenshots/screen2.png",
-            "sizes": "800x600",
-            "type": "image/png",
-            "form_factor": "wide",
-            "label": "Discover the 8 destinations of Albania"
-        },
-        {
-            "src": "screenshots/screen3.png",
-            "sizes": "800x600",
-            "type": "image/png",
-            "form_factor": "wide",
-            "label": "Enjoy photos and videos from across Albania"
-        },
-        {
-            "src": "screenshots/screen4.png",
-            "sizes": "800x600",
-            "type": "image/png",
-            "form_factor": "wide",
-            "label": "Explore artifacts and relics from the past"
-        },
-        {
-            "src": "screenshots/mobile1.png",
-            "sizes": "864x1872",
-            "type": "image/png",
-            "form_factor": "narrow",
-            "label": "Travel Buddy welcome screen"
-        },
-        {
-            "src": "screenshots/mobile2.png",
-            "sizes": "864x1872",
-            "type": "image/png",
-            "form_factor": "narrow",
-            "label": "Discover the 8 destinations of Albania"
-        },
-        {
-            "src": "screenshots/mobile3.png",
-            "sizes": "864x1872",
-            "type": "image/png",
-            "form_factor": "narrow",
-            "label": "Enjoy photos and videos from across Albania"
-        },
-        {
-            "src": "screenshots/mobile4.png",
-            "sizes": "864x1872",
-            "type": "image/png",
-            "form_factor": "narrow",
-            "label": "Explore artifacts and relics from the past"
         }
     ]
 }
