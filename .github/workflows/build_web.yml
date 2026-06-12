@@ -64,4 +64,6 @@ jobs:
       with:
         name: web-build
         path: build/web
+        # assets/.env is a dotfile; upload-artifact >=4.4 drops hidden files by default
+        include-hidden-files: true
         retention-days: 1  # Adjust as needed
