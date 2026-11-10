@@ -8,7 +8,7 @@ class _BlurredImageBg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final img = AppImage(
-      image: (url == null || url!.isEmpty) ? null : NetworkImage(url!),
+      image: (url == null || url!.isEmpty) ? null : photoImageProvider(url!),
       syncDuration: $styles.times.fast,
       fit: BoxFit.cover,
       scale: 0.5,

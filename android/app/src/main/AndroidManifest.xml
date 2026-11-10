@@ -23,9 +23,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:usesCleartextTraffic="true">
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}"/>
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -66,8 +63,9 @@
         </intent>
     </queries>
     <!-- url_launcher: required on Android 11+ so canLaunchUrl/launchUrl can
-         resolve external HTTP/HTTPS URLs (e.g. opening Google Maps from the
-         place card). -->
+         resolve these schemes. `geo:` is what utils/open_in_maps.dart uses to
+         hand a stop to whichever maps app the user has installed; without it
+         the launch silently fails and falls through to the web map. -->
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -76,6 +74,10 @@
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
         </intent>
     </queries>
 </manifest>

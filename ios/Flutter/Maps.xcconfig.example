@@ -1,3 +1,0 @@
-// Copy this file to Maps.xcconfig and paste your iOS Maps SDK key.
-// Maps.xcconfig is gitignored; this template is committed.
-MAPS_API_KEY=

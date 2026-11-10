@@ -5,21 +5,6 @@ class _DestinationImageWithTimeline extends StatelessWidget {
   final DestinationData data;
   final double height;
 
-  Color _fixLuminance(Color color, [double luminance = 0.2]) {
-    double d = luminance - color.computeLuminance();
-    if (d <= 0) return color;
-
-    int r = (color.r * 255).toInt();
-    int g = (color.g * 255).toInt();
-    int b = (color.b * 255).toInt();
-    return Color.fromARGB(
-      255,
-      (r + (255 - r) * d).toInt(),
-      (g + (255 - g) * d).toInt(),
-      (b + (255 - b) * d).toInt(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -46,27 +31,6 @@ class _DestinationImageWithTimeline extends StatelessWidget {
                   ],
                 ),
               ),
-
-              // /// Bottom timeline
-              // ExcludeSemantics(
-              //   child: SizedBox(
-              //     height: 50,
-              //     child: DestinationsTimelineBuilder(
-              //       selectedDestinations: [data.type],
-              //       timelineBuilder: (_, data, isSelected) {
-              //         return Container(
-              //           decoration: BoxDecoration(
-              //             color: isSelected ? _fixLuminance(data.type.fgColor) : Colors.transparent,
-              //             border: isSelected
-              //                 ? Border.all(color: Colors.transparent)
-              //                 : Border.all(color: $styles.colors.greyMedium),
-              //             borderRadius: BorderRadius.circular($styles.corners.md),
-              //           ),
-              //         );
-              //       },
-              //     ),
-              //   ),
-              // ),
               _buildEraTextRow(context),
             ],
           ),
@@ -112,7 +76,7 @@ class _DestinationImageWithTimeline extends StatelessWidget {
         Text(
           $strings.titleLabelDate(
             StringUtils.formatYr(data.startYr),
-            StringUtils.formatYr(data.endYr),
+            StringUtils.formatEndYr(data.endYr),
           ),
           style: textStyle,
         ),

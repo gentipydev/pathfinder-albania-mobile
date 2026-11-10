@@ -5,17 +5,12 @@ class DestinationData extends Equatable {
   const DestinationData({
     required this.type,
     required this.title,
-    required this.subTitle,
     required this.regionTitle,
     this.startYr = 0,
-    this.endYr = 0,
-    this.artifactStartYr = 0,
-    this.artifactEndYr = 0,
+    this.endYr,
     this.artifactCulture = '',
-    this.artifactGeolocation = '',
     this.lat = 0,
     this.lng = 0,
-    this.imageIds = const [],
     required this.pullQuote1Top,
     required this.pullQuote1Bottom,
     required this.pullQuote1Author,
@@ -23,7 +18,6 @@ class DestinationData extends Equatable {
     this.pullQuote2Author = '',
     this.callout1 = '',
     this.callout2 = '',
-    this.facts = const [],
     required this.historyInfo1,
     required this.historyInfo2,
     required this.constructionInfo1,
@@ -34,12 +28,10 @@ class DestinationData extends Equatable {
     this.videoCaption = '',
     this.mapCaption = '',
     required this.events,
-    this.searchSuggestions = const [],
   });
 
   final DestinationType type;
   final String title;
-  final String subTitle;
   final String regionTitle;
   final String historyInfo1;
   final String historyInfo2;
@@ -57,21 +49,19 @@ class DestinationData extends Equatable {
   final String videoId;
   final String videoCaption;
   final String mapCaption;
-  final List<String> imageIds;
-  final List<String> facts;
+  /// First dated settlement or record of the place.
   final int startYr;
-  final int endYr;
-  final int artifactStartYr;
-  final int artifactEndYr;
+
+  /// When the place's historic period ended, or null while it is still lived in.
+  final int? endYr;
   final String artifactCulture;
-  final String artifactGeolocation;
   final double lat;
   final double lng;
   final Map<int, String> events;
-  final List<String> searchSuggestions;
 
-  String get titleWithBreaks => title.replaceFirst(' ', '\n');
+  /// [endYr], or the current year for a place that is still lived in.
+  int get endYrOrNow => endYr ?? DateTime.now().year;
 
   @override
-  List<Object?> get props => [type, title, historyInfo1, imageIds, facts];
+  List<Object?> get props => [type, title, historyInfo1];
 }

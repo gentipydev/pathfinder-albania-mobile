@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:travel_buddy/agent/agent_module.dart';
 import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/app_shell.dart';
+import 'package:travel_buddy/config/env.dart';
 import 'package:travel_buddy/ui/common/modals//fullscreen_video_viewer.dart';
 import 'package:travel_buddy/ui/common/modals/fullscreen_maps_viewer.dart';
 import 'package:travel_buddy/ui/screens/artifact/artifact_details/artifact_details_screen.dart';
-import 'package:travel_buddy/ui/screens/auth/auth_screen.dart';
 import 'package:travel_buddy/ui/screens/collection/collection_screen.dart';
-import 'package:travel_buddy/ui/screens/conversations/conversations_screen.dart';
+import 'package:travel_buddy/ui/screens/home/destinations_home_screen.dart';
 import 'package:travel_buddy/ui/screens/intro/intro_screen.dart';
 import 'package:travel_buddy/ui/screens/page_not_found/page_not_found.dart';
-import 'package:travel_buddy/ui/screens/preferences/preferences_screen.dart';
-import 'package:travel_buddy/ui/screens/my_trips/trip_detail_screen.dart';
 import 'package:travel_buddy/ui/screens/timeline/timeline_screen.dart';
 import 'package:travel_buddy/ui/screens/destination_details/destinations_details_screen.dart';
 import 'package:travel_buddy/utils/dlog.dart';
@@ -23,7 +21,6 @@ class ScreenPaths {
   static String intro = '/welcome';
   static String auth = '/auth';
   static String home = '/home';
-  static String settings = '/settings';
   static String conversations = '$home/conversations';
   static String preferences = '$home/preferences';
   static String trip(String id) => '$home/trip/$id';
@@ -34,8 +31,7 @@ class ScreenPaths {
   static String video(String id) => _appendToCurrentPath('/video/$id');
   static String maps(DestinationType type) => _appendToCurrentPath('/maps/${type.name}');
   static String timeline(DestinationType? type) => _appendToCurrentPath('/timeline?type=${type?.name ?? ''}');
-  static String artifact(String id, {bool append = true}) =>
-      append ? _appendToCurrentPath('/artifact/$id') : '/artifact/$id';
+  static String artifact(String id) => _appendToCurrentPath('/artifact/$id');
   static String collection(String id) => _appendToCurrentPath('/collection${id.isEmpty ? '' : '?id=$id'}');
 
   static String _appendToCurrentPath(String newPath) {
@@ -59,7 +55,7 @@ AppRoute get _artifactRoute => AppRoute(
 
 AppRoute get _timelineRoute => AppRoute(
   'timeline',
-  (s) => TimelineScreen(type: _tryParseDestinationType(s.uri.queryParameters['type']!)),
+  (s) => TimelineScreen(type: _tryParseDestinationType(s.uri.queryParameters['type'] ?? '')),
 );
 
 AppRoute get _collectionRoute => AppRoute(
@@ -73,7 +69,14 @@ final appRouter = GoRouter(
   redirect: _handleRedirect,
   observers: [if (kDebugMode) LoggingNavigatorObserver()],
   errorPageBuilder: (context, state) => MaterialPage(child: PageNotFound(state.uri.toString())),
-  routes: [
+  routes: buildAppRoutes(agentEnabled: Env.agentEnabled),
+);
+
+/// The route tree for the current [AppMode]. In showcase mode `/home` is the
+/// destinations carousel itself; in full mode it is the agent's bottom-nav
+/// shell (whose first tab is that same carousel) and the sign-in, chat
+/// history, preferences and trip pages are added.
+List<RouteBase> buildAppRoutes({required bool agentEnabled}) => [
     ShellRoute(
       builder: (context, router, navigator) {
         return DestinationsAppScaffold(child: navigator);
@@ -84,18 +87,12 @@ final appRouter = GoRouter(
           (_) => Container(color: $styles.colors.greyStrong),
         ), // This will be hidden
         AppRoute(ScreenPaths.intro, (_) => IntroScreen()),
-        AppRoute(ScreenPaths.auth, (_) => const AuthScreen()),
+        if (agentEnabled) AgentModule.authRoute,
         AppRoute(
           ScreenPaths.home,
-          (_) => const AppShell(),
+          (_) => agentEnabled ? AgentModule.shell() : HomeScreen(),
           routes: [
-            AppRoute('conversations', (_) => const ConversationsScreen()),
-            AppRoute('preferences', (_) => PreferencesScreen()),
-            AppRoute(
-              'trip/:tripId',
-              (s) =>
-                  TripDetailScreen(tripId: s.pathParameters['tripId']!),
-            ),
+            if (agentEnabled) ...AgentModule.homeRoutes,
             _timelineRoute,
             _collectionRoute,
             AppRoute(
@@ -131,8 +128,7 @@ final appRouter = GoRouter(
         ),
       ],
     ),
-  ],
-);
+  ];
 
 /// Custom GoRoute sub-class to make the router declaration easier to read
 class AppRoute extends GoRoute {
@@ -167,6 +163,12 @@ class AppRoute extends GoRoute {
 String? get initialDeeplink => _initialDeeplink;
 String? _initialDeeplink;
 
+/// True when the user must sign in before reaching `/home`. Never in
+/// showcase mode; in full mode, unless already signed in or the temporary
+/// BYPASS_LOGIN dev flag is on. Shared by the router redirect, the bootstrap
+/// start screen and the end of the intro.
+bool get needsLogin => Env.agentEnabled && !AgentModule.isAuthenticated && !Env.bypassLogin;
+
 String? _handleRedirect(BuildContext context, GoRouterState state) {
   final path = state.uri.path;
 
@@ -180,17 +182,17 @@ String? _handleRedirect(BuildContext context, GoRouterState state) {
   if (!appLogic.isBootstrapComplete) return null;
 
   final onboarded = settingsBloc.state.hasCompletedOnboarding;
-  final authed = authBloc.state.isAuthenticated;
 
   // Onboarding gate — must come before auth so a fresh install sees intro first.
   if (!onboarded && path != ScreenPaths.intro) return ScreenPaths.intro;
 
-  // Auth gate — only after onboarding is complete.
-  if (onboarded && !authed && path != ScreenPaths.auth) {
+  // Auth gate — only after onboarding is complete, and only in full mode.
+  if (onboarded && needsLogin && path != ScreenPaths.auth) {
     return ScreenPaths.auth;
   }
 
   // Bounce signed-in users off splash/auth.
+  final authed = Env.agentEnabled && AgentModule.isAuthenticated;
   if (authed && (path == ScreenPaths.splash || path == ScreenPaths.auth)) {
     return initialDeeplink ?? ScreenPaths.home;
   }

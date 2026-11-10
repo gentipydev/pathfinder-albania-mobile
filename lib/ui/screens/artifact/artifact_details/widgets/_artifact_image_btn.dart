@@ -29,10 +29,12 @@ class _ArtifactImageBtn extends StatelessWidget {
               minimum: EdgeInsets.symmetric(vertical: $styles.insets.sm),
               child: Hero(
                 tag: data.image,
-                child: AppImage(
-                  image: data.image.isEmpty ? null : NetworkImage(data.image),
+                // The small copy (already cached by the carousel) shows at
+                // once; the full image fades in over it.
+                child: RemotePhoto(
+                  data.image,
+                  placeholderUrl: data.imageSmall,
                   fit: BoxFit.contain,
-                  distractor: true,
                   scale: FullscreenUrlImgViewer.imageScale, // so the image isn't reloaded
                 ),
               ),
@@ -46,7 +48,7 @@ class _ArtifactImageBtn extends StatelessWidget {
   void _handleImagePressed(BuildContext context) {
     appLogic.showFullscreenDialogRoute(
       context,
-      FullscreenUrlImgViewer(urls: [data.image]),
+      FullscreenUrlImgViewer(urls: [data.image], thumbUrls: [data.imageSmall]),
     );
   }
 }

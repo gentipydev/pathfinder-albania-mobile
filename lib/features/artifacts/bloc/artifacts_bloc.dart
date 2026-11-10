@@ -15,9 +15,9 @@ import 'package:travel_buddy/logic/data/highlight_data.dart';
 typedef ArtifactsHttpFetcher =
     Future<HttpResponse> Function(String url, {Map<String, String>? headers});
 
-/// Reactive cache for the backend's curated artifact catalog. Replaces the
-/// legacy `ArtifactsLogic`. Public surface is methods-only — bloc state is
-/// driven by internal events fired from the methods after a successful fetch.
+/// Reactive cache for the backend's curated artifact catalog. Public surface
+/// is methods-only — bloc state is driven by internal events fired from the
+/// methods after a successful fetch.
 ///
 /// Side effect on first fetch per destination: rebuilds the legacy
 /// `HighlightData` / `CollectibleData` global lists so existing UI consumers
@@ -26,11 +26,12 @@ typedef ArtifactsHttpFetcher =
 /// `getForDestination`.
 ///
 /// Only successful 2xx responses populate the cache and the legacy lists.
-/// Transient failures (typically Render cold-starts) return empty results
+/// Transient failures (typically a backend cold-start) return empty results
 /// to the caller without poisoning the cache, so subsequent mounts retry.
 class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
-  ArtifactsBloc({ArtifactsHttpFetcher? httpGet})
+  ArtifactsBloc({ArtifactsHttpFetcher? httpGet, String Function()? baseUrl})
     : _httpGet = httpGet ?? HttpClient.get,
+      _baseUrl = baseUrl ?? (() => Env.apiBaseUrl),
       super(const ArtifactsState()) {
     on<ArtifactsDestinationFetchedInternal>(_onDestinationFetched);
     on<ArtifactsByIdFetchedInternal>(_onByIdFetched);
@@ -38,12 +39,15 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
 
   final ArtifactsHttpFetcher _httpGet;
 
+  /// Empty when no backend is configured; requests are skipped then.
+  final String Function() _baseUrl;
+
   static const _empty = DestinationArtifacts(
     highlights: [],
     collectibles: [],
   );
 
-  // Dedupe in-flight fetches. Lifted from `artifacts_logic.dart:37,39`.
+  // Dedupe in-flight fetches.
   final Map<DestinationType, Future<(bool, DestinationArtifacts)>>
   _inflightDestination = {};
   final Map<String, Future<ArtifactData?>> _inflightById = {};
@@ -63,7 +67,16 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
       return result;
     }
 
-    final future = _fetchDestination(type);
+    // Fill the legacy lists inside the shared future, so they are ready the
+    // moment any caller's await returns. The bloc's own event runs later.
+    final future = _fetchDestination(type).then((fetched) {
+      final (ok, result) = fetched;
+      if (ok) {
+        HighlightData.replaceForDestination(type, result.highlights);
+        CollectibleData.replaceForDestination(type, result.collectibles);
+      }
+      return fetched;
+    });
     _inflightDestination[type] = future;
     try {
       final (ok, result) = await future;
@@ -75,10 +88,6 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
       _inflightDestination.remove(type);
     }
   }
-
-  /// Synchronous read — null if not yet fetched.
-  DestinationArtifacts? cachedFor(DestinationType type) =>
-      state.byDestination[type];
 
   /// Single-artifact fetch with cache + dedupe. Used by deep-link details
   /// when the destination batch hasn't been loaded.
@@ -99,19 +108,6 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
     } finally {
       _inflightById.remove(id);
     }
-  }
-
-  /// Client-side keyword filter over cached destination artifacts. Backend
-  /// has a search endpoint for when the catalog outgrows this approach.
-  List<ArtifactData> searchInDestination(DestinationType type, String query) {
-    final all = state.byDestination[type]?.all ?? const <ArtifactData>[];
-    final q = query.trim().toLowerCase();
-    if (q.isEmpty) return all;
-    return all
-        .where(
-          (a) => a.title.toLowerCase().contains(q) || a.keywords.contains(q),
-        )
-        .toList(growable: false);
   }
 
   /// Best-effort warm-up across every destination in parallel. Failures are
@@ -139,8 +135,6 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
       ...state.byId,
       for (final a in e.result.all) a.objectId: a,
     };
-    HighlightData.replaceForDestination(e.type, e.result.highlights);
-    CollectibleData.replaceForDestination(e.type, e.result.collectibles);
     emit(
       state.copyWith(
         byDestination: newByDestination,
@@ -163,7 +157,9 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
   Future<(bool, DestinationArtifacts)> _fetchDestination(
     DestinationType type,
   ) async {
-    final url = '${Env.apiBaseUrl}/destinations/${type.slug}/artifacts';
+    final base = _baseUrl();
+    if (base.isEmpty) return (false, _empty);
+    final url = '$base/destinations/${type.slug}/artifacts';
     final response = await _httpGet(url);
     if (!response.success || response.body == null) {
       dev.log('artifactsBloc: ${type.slug} -> ${response.statusCode}');
@@ -190,7 +186,9 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
   }
 
   Future<ArtifactData?> _fetchById(String id) async {
-    final url = '${Env.apiBaseUrl}/artifacts/$id';
+    final base = _baseUrl();
+    if (base.isEmpty) return null;
+    final url = '$base/artifacts/$id';
     final response = await _httpGet(url);
     if (!response.success || response.body == null) {
       dev.log('artifactsBloc byId $id -> ${response.statusCode}');

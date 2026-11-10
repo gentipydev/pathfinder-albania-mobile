@@ -45,7 +45,7 @@ class _TitleText extends StatelessWidget {
                   Text(
                     $strings.titleLabelDate(
                       StringUtils.formatYr(data.startYr),
-                      StringUtils.formatYr(data.endYr),
+                      StringUtils.formatEndYr(data.endYr),
                     ),
                     style: $styles.text.h4,
                     textAlign: TextAlign.center,

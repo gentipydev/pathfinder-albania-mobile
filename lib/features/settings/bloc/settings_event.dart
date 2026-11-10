@@ -28,19 +28,6 @@ class SettingsOnboardingCompletedToggled extends SettingsEvent {
   List<Object?> get props => [value];
 }
 
-class SettingsSearchMessageDismissed extends SettingsEvent {
-  const SettingsSearchMessageDismissed();
-}
-
-class SettingsSearchPanelToggled extends SettingsEvent {
-  const SettingsSearchPanelToggled(this.value);
-
-  final bool value;
-
-  @override
-  List<Object?> get props => [value];
-}
-
 /// User-triggered locale change. Cascades, in order:
 ///   1. localeLogic.loadIfChanged(locale)         — re-loads `$strings`
 ///   2. destinationsLogic.init()                  — rebuilds destination data
@@ -48,8 +35,7 @@ class SettingsSearchPanelToggled extends SettingsEvent {
 ///   4. emit(state.copyWith(currentLocale: code)) — drives MaterialApp.router
 ///      rebuild via the BlocSelector at the root.
 ///
-/// Cascade-then-emit (reversed from legacy `SettingsLogic.changeLocale`)
-/// avoids the brief frame where MaterialApp would rebuild with a new locale
+/// Cascade-then-emit avoids the brief frame where MaterialApp would rebuild with a new locale
 /// code while `$strings` is still old.
 class SettingsLocaleChangeRequested extends SettingsEvent {
   const SettingsLocaleChangeRequested(this.locale);

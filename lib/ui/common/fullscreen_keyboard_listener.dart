@@ -5,12 +5,10 @@ class FullscreenKeyboardListener extends StatefulWidget {
     super.key,
     required this.child,
     this.onKeyDown,
-    this.onKeyUp,
     this.onKeyRepeat,
   });
   final Widget child;
   final bool Function(KeyDownEvent event)? onKeyDown;
-  final bool Function(KeyUpEvent event)? onKeyUp;
   final bool Function(KeyRepeatEvent event)? onKeyRepeat;
 
   @override
@@ -38,9 +36,6 @@ class _FullscreenKeyboardListenerState extends State<FullscreenKeyboardListener>
 
     if (event is KeyDownEvent && widget.onKeyDown != null) {
       result = widget.onKeyDown!.call(event);
-    }
-    if (event is KeyUpEvent && widget.onKeyUp != null) {
-      result = widget.onKeyUp!.call(event);
     }
     if (event is KeyRepeatEvent && widget.onKeyRepeat != null) {
       result = widget.onKeyRepeat!.call(event);

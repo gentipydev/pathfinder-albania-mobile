@@ -68,7 +68,7 @@ class _DestinationEventsState extends State<DestinationEvents> {
                     trailing: (_) => CircleIconBtn(
                       icon: AppIcons.timeline,
                       onPressed: handleTimelineBtnPressed,
-                      semanticLabel: $strings.eventsListButtonOpenGlobal,
+                      semanticLabel: $strings.eventsListButtonOpenTimeline,
                     ),
                   ),
                 ),

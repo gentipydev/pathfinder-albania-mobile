@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/logic/common/photo_cache.dart';
 import 'package:travel_buddy/ui/common/lazy_indexed_stack.dart';
 import 'package:travel_buddy/ui/common/measurable_widget.dart';
 import 'package:travel_buddy/ui/screens/artifact/artifact_carousel/artifact_carousel_screen.dart';
@@ -7,8 +10,8 @@ import 'package:travel_buddy/ui/screens/photo_gallery/photo_gallery.dart';
 import 'package:travel_buddy/ui/screens/destination_details/destination_details_tab_menu.dart';
 import 'package:travel_buddy/ui/screens/destination_events/destination_events.dart';
 
-class DestinationDetailsScreen extends StatefulWidget with GetItStatefulWidgetMixin {
-  DestinationDetailsScreen({super.key, required this.type, this.tabIndex = 0});
+class DestinationDetailsScreen extends StatefulWidget {
+  const DestinationDetailsScreen({super.key, required this.type, this.tabIndex = 0});
   final DestinationType type;
   final int tabIndex;
 
@@ -17,7 +20,7 @@ class DestinationDetailsScreen extends StatefulWidget with GetItStatefulWidgetMi
 }
 
 class _DestinationDetailsScreenState extends State<DestinationDetailsScreen>
-    with GetItStateMixin, SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late final _tabController = TabController(
     length: 4,
     vsync: this,
@@ -34,11 +37,29 @@ class _DestinationDetailsScreenState extends State<DestinationDetailsScreen>
   bool _photoTabHasContent = false;
 
   @override
+  void initState() {
+    super.initState();
+    _prefetchMedia();
+  }
+
+  @override
   void didUpdateWidget(covariant DestinationDetailsScreen oldWidget) {
     if (oldWidget.tabIndex != widget.tabIndex) {
       _tabController.index = _clampIndex(widget.tabIndex);
     }
+    if (oldWidget.type != widget.type) _prefetchMedia();
     super.didUpdateWidget(oldWidget);
+  }
+
+  /// The Photos and Artifacts tabs are only built when first opened. Start
+  /// loading their lists and small images now, in the background, so those
+  /// tabs open without a wait. Both lists are cached, so the tabs reuse them.
+  void _prefetchMedia() {
+    final type = widget.type;
+    unawaited(destinationPhotosLogic.prefetch(type));
+    unawaited(
+      artifactsBloc.getForDestination(type).then((a) => prefetchPhotoUrls(a.highlights.map((h) => h.imageSmall))),
+    );
   }
 
   @override

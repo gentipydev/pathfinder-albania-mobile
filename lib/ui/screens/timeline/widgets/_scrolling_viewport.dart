@@ -134,6 +134,8 @@ class _ScalingViewportState extends State<_ScrollingViewport> {
                         //child: Placeholder(),
                         child: DestinationsTimelineBuilder(
                           axis: Axis.vertical,
+                          // Same paint order as the bottom scrubber: the selected destination stays on top.
+                          selectedDestinations: [?widget.selectedDestination],
                           crossAxisGap: max(6, (width - (120 * 3)) / 2),
                           minSize: _minTimelineSize,
                           timelineBuilder: (_, data, _) => buildTimelineSection(data),

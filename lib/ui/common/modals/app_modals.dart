@@ -10,57 +10,13 @@ Future<bool?> showModal(BuildContext context, {required Widget child}) async {
       false;
 }
 
-class LoadingModal extends StatelessWidget {
-  const LoadingModal({super.key, this.title, this.msg, this.child});
-  final String? title;
-  final String? msg;
-  final Widget? child;
-
-  @override
-  Widget build(BuildContext context) {
-    return _BaseContentModal(
-      title: title,
-      msg: msg,
-      buttons: const [],
-      child: child,
-    );
-  }
-}
-
-class OkModal extends StatelessWidget {
-  const OkModal({super.key, this.title, this.msg, this.child});
-  final String? title;
-  final String? msg;
-  final Widget? child;
-
-  @override
-  Widget build(BuildContext context) {
-    return _BaseContentModal(
-      title: title,
-      msg: msg,
-      buttons: [
-        AppBtn.from(
-          text: $strings.appModalsButtonOk,
-          expand: true,
-          isSecondary: true,
-          onPressed: () => Navigator.of(context).pop(true),
-        ),
-      ],
-      child: child,
-    );
-  }
-}
-
 class OkCancelModal extends StatelessWidget {
-  const OkCancelModal({super.key, this.title, this.msg, this.child});
-  final String? title;
+  const OkCancelModal({super.key, this.msg});
   final String? msg;
-  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return _BaseContentModal(
-      title: title,
       msg: msg,
       buttons: [
         AppBtn.from(
@@ -76,19 +32,16 @@ class OkCancelModal extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(false),
         ),
       ],
-      child: child,
     );
   }
 }
 
-/// Allows for a title, msg and body widget
+/// A message above a column of buttons.
 class _BaseContentModal extends StatelessWidget {
-  final String? title;
   final String? msg;
-  final Widget? child;
   final List<Widget> buttons;
 
-  const _BaseContentModal({this.title, this.msg, required this.buttons, this.child});
+  const _BaseContentModal({this.msg, required this.buttons});
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +56,6 @@ class _BaseContentModal extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 separatorBuilder: () => Gap($styles.insets.md),
                 children: [
-                  if (title != null) Text(title!, style: $styles.text.h2),
-                  if (child != null) child!,
                   if (msg != null) Text(msg!, style: $styles.text.body),
                   Gap($styles.insets.md),
                   Column(children: buttons.map((e) => e).toList()),

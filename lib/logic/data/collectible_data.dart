@@ -55,16 +55,6 @@ class CollectibleData {
   static List<CollectibleData> forDestination(DestinationType destination) =>
       _byDestination[destination] ?? const [];
 
-  static CollectibleData? fromId(String? id) {
-    if (id == null) return null;
-    for (final list in _byDestination.values) {
-      for (final c in list) {
-        if (c.id == id) return c;
-      }
-    }
-    return null;
-  }
-
   static void replaceForDestination(DestinationType destination, List<ArtifactData> artifacts) {
     _byDestination[destination] = [
       for (final a in artifacts) CollectibleData.fromArtifact(a, destination),

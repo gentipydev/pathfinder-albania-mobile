@@ -9,7 +9,8 @@ jobs:
   build:
     uses: ./.github/workflows/build_web.yml
     with:
-      # google_maps_flutter_web is unvalidated on skwasm; production uses the JS renderer.
+      # Production uses the JS renderer. The web build carries no map SDK —
+      # Mapbox is mobile-only — so map screens render a fallback here.
       wasm: false
     secrets: inherit
 

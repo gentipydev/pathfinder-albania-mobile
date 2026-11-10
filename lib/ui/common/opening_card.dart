@@ -7,15 +7,11 @@ class OpeningCard extends StatefulWidget {
     required this.closedBuilder,
     required this.openBuilder,
     required this.isOpen,
-    this.background,
-    this.padding,
   });
 
   final Widget Function(BuildContext) closedBuilder;
   final Widget Function(BuildContext) openBuilder;
-  final Widget? background;
   final bool isOpen;
-  final EdgeInsets? padding;
 
   @override
   State<OpeningCard> createState() => _OpeningCardState();
@@ -30,14 +26,10 @@ class _OpeningCardState extends State<OpeningCard> {
       curve: Curves.easeOut,
       builder: (_, value, child) => Stack(
         children: [
-          if (widget.background != null) Positioned.fill(child: widget.background!),
-          Padding(
-            padding: widget.padding ?? EdgeInsets.zero,
-            child: SizedBox(
-              width: value.width,
-              height: value.height,
-              child: child,
-            ),
+          SizedBox(
+            width: value.width,
+            height: value.height,
+            child: child,
           ),
         ],
       ),

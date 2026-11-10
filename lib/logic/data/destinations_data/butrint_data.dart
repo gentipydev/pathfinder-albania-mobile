@@ -2,22 +2,15 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
 
 class ButrintData extends DestinationData {
-  // TODO(rebrand): lat/lng, videoId, year ranges, and event year keys below
-  // are inherited from the original upstream template data and need to be
-  // replaced with real Butrint values.
   ButrintData()
     : super(
         type: DestinationType.butrint,
         title: $strings.butrintTitle,
-        subTitle: $strings.butrintSubTitle,
         regionTitle: $strings.butrintRegionTitle,
-        videoId: 'Q6eBJjdca14',
-        startYr: 550,
-        endYr: 1550,
-        artifactStartYr: 500,
-        artifactEndYr: 1600,
+        videoId: 'EMj-etBT7CU',
+        startYr: -800,
+        endYr: 1572,
         artifactCulture: $strings.butrintArtifactCulture,
-        artifactGeolocation: $strings.butrintArtifactGeolocation,
         lat: 39.7440,
         lng: 20.0195,
         pullQuote1Top: $strings.butrintPullQuote1Top,
@@ -36,12 +29,12 @@ class ButrintData extends DestinationData {
         locationInfo1: $strings.butrintLocationInfo1,
         locationInfo2: $strings.butrintLocationInfo2,
         events: {
-          600: $strings.butrint600ce,
-          832: $strings.butrint832ce,
-          998: $strings.butrint998ce,
-          1100: $strings.butrint1100ce,
-          1527: $strings.butrint1527ce,
-          1535: $strings.butrint1535ce,
+          -228: $strings.butrint228bce,
+          -44: $strings.butrint44bce,
+          1386: $strings.butrint1386ce,
+          1798: $strings.butrint1798ce,
+          1928: $strings.butrint1928ce,
+          1992: $strings.butrint1992ce,
         },
       );
 }

@@ -92,12 +92,6 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('en'), Locale('sq')];
 
-  /// No description provided for @appName.
-  ///
-  /// In en, this message translates to:
-  /// **'Travel Buddy'**
-  String get appName;
-
   /// No description provided for @localeSwapButton.
   ///
   /// In en, this message translates to:
@@ -128,23 +122,11 @@ abstract class AppLocalizations {
   /// **'Location Info'**
   String get appBarTitleLocation;
 
-  /// No description provided for @bottomScrubberSemanticScrubber.
-  ///
-  /// In en, this message translates to:
-  /// **'scrubber'**
-  String get bottomScrubberSemanticScrubber;
-
   /// No description provided for @bottomScrubberSemanticTimeline.
   ///
   /// In en, this message translates to:
   /// **'Timeline Scrubber, drag horizontally to navigate the timeline.'**
   String get bottomScrubberSemanticTimeline;
-
-  /// No description provided for @rangeSelector.
-  ///
-  /// In en, this message translates to:
-  /// **'Range selector, drag horizontally to adjust the range.'**
-  String get rangeSelector;
 
   /// No description provided for @collectionLabelDiscovered.
   ///
@@ -164,11 +146,11 @@ abstract class AppLocalizations {
   /// **'Reset Collection'**
   String get collectionButtonReset;
 
-  /// No description provided for @eventsListButtonOpenGlobal.
+  /// No description provided for @eventsListButtonOpenTimeline.
   ///
   /// In en, this message translates to:
-  /// **'Open global timeline'**
-  String get eventsListButtonOpenGlobal;
+  /// **'Open the story timeline'**
+  String get eventsListButtonOpenTimeline;
 
   /// No description provided for @newlyDiscoveredSemanticNew.
   ///
@@ -182,18 +164,6 @@ abstract class AppLocalizations {
   /// **'{count} new item{suffix} to explore'**
   String newlyDiscoveredLabelNew(Object count, Object suffix);
 
-  /// No description provided for @resultsPopupEnglishContent.
-  ///
-  /// In en, this message translates to:
-  /// **'This content is provided by the Metropolitan Museum of Art Collection API, and is only available in English.'**
-  String get resultsPopupEnglishContent;
-
-  /// No description provided for @resultsSemanticDismiss.
-  ///
-  /// In en, this message translates to:
-  /// **'dismiss message'**
-  String get resultsSemanticDismiss;
-
   /// No description provided for @scrollingContentSemanticYoutube.
   ///
   /// In en, this message translates to:
@@ -205,24 +175,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open fullscreen maps view'**
   String get scrollingContentSemanticOpen;
-
-  /// No description provided for @searchInputTitleSuggestions.
-  ///
-  /// In en, this message translates to:
-  /// **'Suggestions'**
-  String get searchInputTitleSuggestions;
-
-  /// No description provided for @searchInputHintSearch.
-  ///
-  /// In en, this message translates to:
-  /// **'Search (ex. type or material)'**
-  String get searchInputHintSearch;
-
-  /// No description provided for @searchInputSemanticClear.
-  ///
-  /// In en, this message translates to:
-  /// **'clear search'**
-  String get searchInputSemanticClear;
 
   /// No description provided for @timelineSemanticDate.
   ///
@@ -278,18 +230,6 @@ abstract class AppLocalizations {
   /// **'Next {title}'**
   String semanticsNext(Object title);
 
-  /// No description provided for @artifactsSemanticsPrevious.
-  ///
-  /// In en, this message translates to:
-  /// **'Previous artifact'**
-  String get artifactsSemanticsPrevious;
-
-  /// No description provided for @artifactsSemanticsNext.
-  ///
-  /// In en, this message translates to:
-  /// **'Next artifact'**
-  String get artifactsSemanticsNext;
-
   /// No description provided for @artifactsSemanticArtifact.
   ///
   /// In en, this message translates to:
@@ -344,12 +284,6 @@ abstract class AppLocalizations {
   /// **'Unable to find info for artifact {artifactId} '**
   String artifactDetailsErrorNotFound(Object artifactId);
 
-  /// No description provided for @circleButtonsSemanticClose.
-  ///
-  /// In en, this message translates to:
-  /// **'close'**
-  String get circleButtonsSemanticClose;
-
   /// No description provided for @circleButtonsSemanticBack.
   ///
   /// In en, this message translates to:
@@ -386,190 +320,46 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to reset your collection?'**
   String get collectionPopupResetConfirm;
 
-  /// No description provided for @eightWaySemanticSwipeDetector.
-  ///
-  /// In en, this message translates to:
-  /// **'eight-way swipe detector'**
-  String get eightWaySemanticSwipeDetector;
-
-  /// No description provided for @expandingTimeSelectorSemanticSelector.
-  ///
-  /// In en, this message translates to:
-  /// **'time range selector'**
-  String get expandingTimeSelectorSemanticSelector;
-
   /// No description provided for @fullscreenImageViewerSemanticFull.
   ///
   /// In en, this message translates to:
   /// **'full screen image, no description available'**
   String get fullscreenImageViewerSemanticFull;
 
-  /// No description provided for @homeMenuButtonExplore.
-  ///
-  /// In en, this message translates to:
-  /// **'Explore the timeline'**
-  String get homeMenuButtonExplore;
-
-  /// No description provided for @homeMenuButtonView.
-  ///
-  /// In en, this message translates to:
-  /// **'View your collection'**
-  String get homeMenuButtonView;
-
-  /// No description provided for @homeMenuButtonAbout.
-  ///
-  /// In en, this message translates to:
-  /// **'About this app'**
-  String get homeMenuButtonAbout;
-
-  /// No description provided for @homeMenuViewingLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Viewing'**
-  String get homeMenuViewingLabel;
-
-  /// No description provided for @homeMenuJumpToDestination.
-  ///
-  /// In en, this message translates to:
-  /// **'Jump to a destination'**
-  String get homeMenuJumpToDestination;
-
-  /// No description provided for @homeMenuConversations.
-  ///
-  /// In en, this message translates to:
-  /// **'My conversations'**
-  String get homeMenuConversations;
-
-  /// No description provided for @homeMenuPreferences.
-  ///
-  /// In en, this message translates to:
-  /// **'Travel preferences'**
-  String get homeMenuPreferences;
-
-  /// No description provided for @homeMenuPlanTrip.
-  ///
-  /// In en, this message translates to:
-  /// **'Plan a trip'**
-  String get homeMenuPlanTrip;
-
-  /// No description provided for @homeMenuAskBuddy.
-  ///
-  /// In en, this message translates to:
-  /// **'Ask Buddy'**
-  String get homeMenuAskBuddy;
-
-  /// Chat message sent verbatim to Buddy when the user taps Plan a trip.
-  ///
-  /// In en, this message translates to:
-  /// **'Plan a trip to {destination}, Albania.'**
-  String homeMenuPlanTripPrompt(String destination);
-
-  /// Chat message sent verbatim to Buddy when the user taps Ask Buddy.
-  ///
-  /// In en, this message translates to:
-  /// **'Tell me about {destination}, Albania — what\'s special and what should I see?'**
-  String homeMenuAskBuddyPrompt(String destination);
-
-  /// No description provided for @homeMenuAboutTagline.
-  ///
-  /// In en, this message translates to:
-  /// **'Travel Buddy is your AI-powered guide to the eight destinations of Albania. '**
-  String get homeMenuAboutTagline;
-
-  /// No description provided for @homeMenuAboutBuilt.
-  ///
-  /// In en, this message translates to:
-  /// **'Built with {flutterUrl}.'**
-  String homeMenuAboutBuilt(Object flutterUrl);
-
-  /// No description provided for @homeMenuAboutLearn.
-  ///
-  /// In en, this message translates to:
-  /// **'Learn more at {appUrl}.'**
-  String homeMenuAboutLearn(Object appUrl);
-
-  /// No description provided for @homeMenuAboutSource.
-  ///
-  /// In en, this message translates to:
-  /// **'To see the source code for this app, please visit the {githubUrl}.'**
-  String homeMenuAboutSource(Object githubUrl);
-
-  /// No description provided for @homeMenuAboutRepo.
-  ///
-  /// In en, this message translates to:
-  /// **'Travel Buddy github repo'**
-  String get homeMenuAboutRepo;
-
-  /// No description provided for @homeMenuAboutFlutter.
-  ///
-  /// In en, this message translates to:
-  /// **'Flutter'**
-  String get homeMenuAboutFlutter;
-
-  /// No description provided for @homeMenuAboutApp.
-  ///
-  /// In en, this message translates to:
-  /// **'travelbuddy.app'**
-  String get homeMenuAboutApp;
-
-  /// No description provided for @homeMenuAboutPublic.
-  ///
-  /// In en, this message translates to:
-  /// **'Public-domain artworks from {metUrl}.'**
-  String homeMenuAboutPublic(Object metUrl);
-
-  /// No description provided for @homeMenuAboutMet.
-  ///
-  /// In en, this message translates to:
-  /// **'The Metropolitan Museum of Art, New York'**
-  String get homeMenuAboutMet;
-
-  /// No description provided for @homeMenuAboutPhotography.
-  ///
-  /// In en, this message translates to:
-  /// **'Photography from {unsplashUrl}.'**
-  String homeMenuAboutPhotography(Object unsplashUrl);
-
-  /// No description provided for @homeMenuAboutUnsplash.
-  ///
-  /// In en, this message translates to:
-  /// **'Unsplash'**
-  String get homeMenuAboutUnsplash;
-
   /// No description provided for @introTitleJourney.
   ///
   /// In en, this message translates to:
-  /// **'Journey to the past'**
+  /// **'Step into the past'**
   String get introTitleJourney;
 
   /// No description provided for @introDescriptionNavigate.
   ///
   /// In en, this message translates to:
-  /// **'Navigate the intersection of time, art, and culture.'**
+  /// **'Three thousand years of Albanian history, from Illyrian hill forts to Ottoman bazaars.'**
   String get introDescriptionNavigate;
 
   /// No description provided for @introTitleExplore.
   ///
   /// In en, this message translates to:
-  /// **'Explore places'**
+  /// **'Explore Albania'**
   String get introTitleExplore;
 
   /// No description provided for @introDescriptionUncover.
   ///
   /// In en, this message translates to:
-  /// **'Uncover remarkable human-made structures from around the world.'**
+  /// **'Ancient cities, castle towns and mountain valleys in eight destinations.'**
   String get introDescriptionUncover;
 
   /// No description provided for @introTitleDiscover.
   ///
   /// In en, this message translates to:
-  /// **'Discover artifacts'**
+  /// **'Find hidden artifacts'**
   String get introTitleDiscover;
 
   /// No description provided for @introDescriptionLearn.
   ///
   /// In en, this message translates to:
-  /// **'Learn about cultures throughout time by examining things they left behind.'**
+  /// **'Discover objects from every era and build your own collection.'**
   String get introDescriptionLearn;
 
   /// No description provided for @introSemanticNavigate.
@@ -596,18 +386,6 @@ abstract class AppLocalizations {
   /// **'Travel Buddy'**
   String get introSemanticAppName;
 
-  /// No description provided for @labelledToggleSemanticToggle.
-  ///
-  /// In en, this message translates to:
-  /// **'toggle'**
-  String get labelledToggleSemanticToggle;
-
-  /// No description provided for @photoGallerySemanticCollectible.
-  ///
-  /// In en, this message translates to:
-  /// **'collectible!'**
-  String get photoGallerySemanticCollectible;
-
   /// No description provided for @photoGallerySemanticFocus.
   ///
   /// In en, this message translates to:
@@ -626,17 +404,23 @@ abstract class AppLocalizations {
   /// **'Prehistory'**
   String get eraPrehistory;
 
-  /// No description provided for @eraClassical.
+  /// No description provided for @eraAntiquity.
   ///
   /// In en, this message translates to:
-  /// **'Classical Era'**
-  String get eraClassical;
+  /// **'Antiquity'**
+  String get eraAntiquity;
 
-  /// No description provided for @eraEarlyModern.
+  /// No description provided for @eraMiddleAges.
   ///
   /// In en, this message translates to:
-  /// **'Early Modern Era'**
-  String get eraEarlyModern;
+  /// **'Middle Ages'**
+  String get eraMiddleAges;
+
+  /// No description provided for @eraOttoman.
+  ///
+  /// In en, this message translates to:
+  /// **'Ottoman Era'**
+  String get eraOttoman;
 
   /// No description provided for @eraModern.
   ///
@@ -656,6 +440,12 @@ abstract class AppLocalizations {
   /// **'CE'**
   String get yearCE;
 
+  /// No description provided for @yearToday.
+  ///
+  /// In en, this message translates to:
+  /// **'today'**
+  String get yearToday;
+
   /// No description provided for @yearFormat.
   ///
   /// In en, this message translates to:
@@ -668,53 +458,17 @@ abstract class AppLocalizations {
   /// **'Year'**
   String get year;
 
-  /// No description provided for @timelineLabelConstruction.
+  /// No description provided for @timelineLabelOrigin.
   ///
   /// In en, this message translates to:
-  /// **'Construction of {title} begins.'**
-  String timelineLabelConstruction(Object title);
+  /// **'{title}: the story begins.'**
+  String timelineLabelOrigin(Object title);
 
-  /// No description provided for @timelineTitleGlobalTimeline.
+  /// No description provided for @timelineTitle.
   ///
   /// In en, this message translates to:
-  /// **'Global Timeline'**
-  String get timelineTitleGlobalTimeline;
-
-  /// No description provided for @wallpaperModalSave.
-  ///
-  /// In en, this message translates to:
-  /// **'Save this poster to your photo gallery?'**
-  String get wallpaperModalSave;
-
-  /// No description provided for @wallpaperModalSaving.
-  ///
-  /// In en, this message translates to:
-  /// **'Saving Image. Please wait...'**
-  String get wallpaperModalSaving;
-
-  /// No description provided for @wallpaperModalSaveComplete.
-  ///
-  /// In en, this message translates to:
-  /// **'Save complete!'**
-  String get wallpaperModalSaveComplete;
-
-  /// No description provided for @wallpaperSemanticSharePhoto.
-  ///
-  /// In en, this message translates to:
-  /// **'share photo'**
-  String get wallpaperSemanticSharePhoto;
-
-  /// No description provided for @wallpaperSemanticTakePhoto.
-  ///
-  /// In en, this message translates to:
-  /// **'take photo'**
-  String get wallpaperSemanticTakePhoto;
-
-  /// No description provided for @wallpaperCheckboxShowTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Show Title'**
-  String get wallpaperCheckboxShowTitle;
+  /// **'Albanian Story Timeline'**
+  String get timelineTitle;
 
   /// No description provided for @destinationDetailsTabLabelInformation.
   ///
@@ -746,12 +500,6 @@ abstract class AppLocalizations {
   /// **'back to destination selection'**
   String get destinationDetailsTabSemanticBack;
 
-  /// No description provided for @homeSemanticOpenMain.
-  ///
-  /// In en, this message translates to:
-  /// **'Open main menu'**
-  String get homeSemanticOpenMain;
-
   /// No description provided for @homeSemanticDestination.
   ///
   /// In en, this message translates to:
@@ -764,12 +512,6 @@ abstract class AppLocalizations {
   /// **'Butrint'**
   String get butrintTitle;
 
-  /// No description provided for @butrintSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The Ancient Crossroads'**
-  String get butrintSubTitle;
-
   /// No description provided for @butrintRegionTitle.
   ///
   /// In en, this message translates to:
@@ -781,12 +523,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Illyrian-Roman'**
   String get butrintArtifactCulture;
-
-  /// No description provided for @butrintArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Southern Albania'**
-  String get butrintArtifactGeolocation;
 
   /// No description provided for @butrintPullQuote1Top.
   ///
@@ -827,7 +563,7 @@ abstract class AppLocalizations {
   /// No description provided for @butrintVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“Butrint - Albania\'s UNESCO World Heritage Site.” Youtube.'**
+  /// **'“Butrint Albania | The ruins of Butrinti Albania.” Visit Albania, YouTube.'**
   String get butrintVideoCaption;
 
   /// No description provided for @butrintMapCaption.
@@ -839,7 +575,7 @@ abstract class AppLocalizations {
   /// No description provided for @butrintHistoryInfo1.
   ///
   /// In en, this message translates to:
-  /// **'Butrint is an archaeological site in southern Albania, opposite the Greek island of Corfu. First settled by Greek colonists from Corfu in the 8th century BCE, it grew into an important city of the ancient world. According to legend, the city was founded by Trojan refugees led by Aeneas.\nThe Romans conquered Butrint in 167 BCE, and Julius Caesar later designated it a colony for veterans. Under Roman rule, the city flourished with the construction of an aqueduct, public baths, and a forum.'**
+  /// **'Butrint is an archaeological site in southern Albania, opposite the Greek island of Corfu. First settled by Greek colonists from Corfu in the 8th century BCE, it grew into an important city of the ancient world. According to legend, the city was founded by Trojan refugees led by Aeneas.\nButrint became a Roman protectorate in 228 BCE, and Julius Caesar later designated it a colony for veterans. Under Roman rule, the city flourished with the construction of an aqueduct, public baths, and a forum.'**
   String get butrintHistoryInfo1;
 
   /// No description provided for @butrintHistoryInfo2.
@@ -872,77 +608,41 @@ abstract class AppLocalizations {
   /// **'The strategic position of Butrint, on a narrow strait between the mainland and Corfu, made it an important stop along ancient Mediterranean trade routes. The surrounding landscape of marshes, lagoons, and the Ionian Sea coast has been crucial to the site\'s history as both a defensive position and a thriving port.'**
   String get butrintLocationInfo2;
 
-  /// No description provided for @butrint600ce.
+  /// No description provided for @butrint228bce.
   ///
   /// In en, this message translates to:
-  /// **'Greek colonists from Corfu establish a settlement at Butrint, which grows into a significant trading post'**
-  String get butrint600ce;
+  /// **'Butrint becomes a Roman protectorate, together with Corfu.'**
+  String get butrint228bce;
 
-  /// No description provided for @butrint832ce.
+  /// No description provided for @butrint44bce.
   ///
   /// In en, this message translates to:
-  /// **'Butrint serves as a major Byzantine ecclesiastical center with construction of the Great Basilica'**
-  String get butrint832ce;
+  /// **'Julius Caesar makes Butrint a colony for his veterans; under Augustus the town doubles in size.'**
+  String get butrint44bce;
 
-  /// No description provided for @butrint998ce.
+  /// No description provided for @butrint1386ce.
   ///
   /// In en, this message translates to:
-  /// **'The city comes under various regional powers as the Byzantine Empire\'s control weakens'**
-  String get butrint998ce;
+  /// **'Venice buys Corfu and Butrint from the Angevins and keeps Butrint as an outpost.'**
+  String get butrint1386ce;
 
-  /// No description provided for @butrint1100ce.
+  /// No description provided for @butrint1798ce.
   ///
   /// In en, this message translates to:
-  /// **'Normans and Angevins contest control of Butrint as part of broader Mediterranean conflicts'**
-  String get butrint1100ce;
+  /// **'Ali Pasha of Tepelena takes Butrint from the French.'**
+  String get butrint1798ce;
 
-  /// No description provided for @butrint1527ce.
+  /// No description provided for @butrint1928ce.
   ///
   /// In en, this message translates to:
-  /// **'The Venetian Republic fortifies Butrint, constructing a castle and tower to defend against Ottoman expansion'**
-  String get butrint1527ce;
+  /// **'Italian archaeologist Luigi Maria Ugolini begins the first modern excavations.'**
+  String get butrint1928ce;
 
-  /// No description provided for @butrint1535ce.
+  /// No description provided for @butrint1992ce.
   ///
   /// In en, this message translates to:
-  /// **'Ottoman forces gain control of the wider region, and Butrint gradually declines as a settlement'**
-  String get butrint1535ce;
-
-  /// No description provided for @butrintCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Pendant'**
-  String get butrintCollectible1Title;
-
-  /// No description provided for @butrintCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'jewelry'**
-  String get butrintCollectible1Icon;
-
-  /// No description provided for @butrintCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Bird Ornament'**
-  String get butrintCollectible2Title;
-
-  /// No description provided for @butrintCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'jewelry'**
-  String get butrintCollectible2Icon;
-
-  /// No description provided for @butrintCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Vue de Buthrotum'**
-  String get butrintCollectible3Title;
-
-  /// No description provided for @butrintCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'picture'**
-  String get butrintCollectible3Icon;
+  /// **'Butrint is inscribed on the UNESCO World Heritage List.'**
+  String get butrint1992ce;
 
   /// No description provided for @beratTitle.
   ///
@@ -950,23 +650,17 @@ abstract class AppLocalizations {
   /// **'Berat'**
   String get beratTitle;
 
-  /// No description provided for @beratSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'City of a Thousand Windows'**
-  String get beratSubTitle;
-
   /// No description provided for @beratRegionTitle.
   ///
   /// In en, this message translates to:
   /// **'Berat, Albania'**
   String get beratRegionTitle;
 
-  /// No description provided for @beratArtifactGeolocation.
+  /// No description provided for @beratArtifactCulture.
   ///
   /// In en, this message translates to:
-  /// **'Central Albania'**
-  String get beratArtifactGeolocation;
+  /// **'Byzantine-Albanian'**
+  String get beratArtifactCulture;
 
   /// No description provided for @beratPullQuote1Top.
   ///
@@ -1007,7 +701,7 @@ abstract class AppLocalizations {
   /// No description provided for @beratVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“Berat - City of a Thousand Windows, Albania.” Youtube.'**
+  /// **'“Berat, Albania - The pride of Albanian architecture.” Visit Albania, YouTube.'**
   String get beratVideoCaption;
 
   /// No description provided for @beratMapCaption.
@@ -1019,7 +713,7 @@ abstract class AppLocalizations {
   /// No description provided for @beratHistoryInfo1.
   ///
   /// In en, this message translates to:
-  /// **'Berat is one of the oldest continuously inhabited cities in Albania, located along the banks of the Osum River. The castle on the hilltop has been inhabited since the 4th century BCE, when it was an important Illyrian settlement known as Antipatrea, founded by the Illyrian king Antipater.\nUnder Roman rule, the city served as a strategic military outpost along the Via Egnatia trade route.'**
+  /// **'Berat is one of the oldest continuously inhabited cities in Albania, located along the banks of the Osum River. The castle hill has been inhabited since at least the 7th century BCE; in antiquity the fortified town here was known as Antipatrea, a name probably honouring the Macedonian regent Antipater.\nUnder Roman rule, the city served as a strategic military outpost along the Via Egnatia trade route.'**
   String get beratHistoryInfo1;
 
   /// No description provided for @beratHistoryInfo2.
@@ -1052,89 +746,47 @@ abstract class AppLocalizations {
   /// **'The Osum River canyon, stretching southeast of the city, is one of the most dramatic natural features in Albania, with vertical canyon walls reaching over 260 feet (80 m). The surrounding region has been cultivated since antiquity, producing olives, grapes, and figs in the mild Mediterranean-influenced climate.'**
   String get beratLocationInfo2;
 
-  /// No description provided for @berat1850ce.
+  /// No description provided for @berat200bce.
   ///
   /// In en, this message translates to:
-  /// **'Berat experiences a cultural renaissance under the Ottoman Tanzimat reforms, with new schools and civic buildings constructed'**
-  String get berat1850ce;
+  /// **'The Romans storm and burn Antipatrea, the fortified town on Berat\'s hill.'**
+  String get berat200bce;
 
-  /// No description provided for @berat1921ce.
+  /// No description provided for @berat1417ce.
   ///
   /// In en, this message translates to:
-  /// **'Following Albanian independence, Berat becomes an important administrative center of the new Albanian state'**
-  String get berat1921ce;
+  /// **'Berat becomes part of the Ottoman Empire.'**
+  String get berat1417ce;
+
+  /// No description provided for @berat1547ce.
+  ///
+  /// In en, this message translates to:
+  /// **'The icon painter Onufri signs a church fresco dated 23 July 1547; Berat\'s castle museum now bears his name.'**
+  String get berat1547ce;
 
   /// No description provided for @berat1922ce.
   ///
   /// In en, this message translates to:
-  /// **'The first modern schools in Albanian language are established in Berat, advancing the national education movement'**
+  /// **'The Congress of Berat proclaims the autocephaly of the Albanian Orthodox Church.'**
   String get berat1922ce;
 
-  /// No description provided for @berat1926ce.
+  /// No description provided for @berat1961ce.
   ///
   /// In en, this message translates to:
-  /// **'Archaeological surveys begin documenting the historic architecture of Berat\'s castle and Ottoman quarters'**
-  String get berat1926ce;
+  /// **'Berat is declared a \"Museum City\", protecting its historic quarters.'**
+  String get berat1961ce;
 
-  /// No description provided for @berat1931ce.
+  /// No description provided for @berat2008ce.
   ///
   /// In en, this message translates to:
-  /// **'Restoration work begins on the castle walls and Byzantine churches within the Kalaja quarter'**
-  String get berat1931ce;
-
-  /// No description provided for @berat2006ce.
-  ///
-  /// In en, this message translates to:
-  /// **'Berat\'s historic center receives preliminary recognition leading to its UNESCO World Heritage inscription in 2008'**
-  String get berat2006ce;
-
-  /// No description provided for @beratCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Engraved Horn'**
-  String get beratCollectible1Title;
-
-  /// No description provided for @beratCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'statue'**
-  String get beratCollectible1Icon;
-
-  /// No description provided for @beratCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Fixed fan'**
-  String get beratCollectible2Title;
-
-  /// No description provided for @beratCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'jewelry'**
-  String get beratCollectible2Icon;
-
-  /// No description provided for @beratCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Handkerchiefs (one of two)'**
-  String get beratCollectible3Title;
-
-  /// No description provided for @beratCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'textile'**
-  String get beratCollectible3Icon;
+  /// **'Berat joins Gjirokastër on the UNESCO World Heritage List.'**
+  String get berat2008ce;
 
   /// No description provided for @gjirokasterTitle.
   ///
   /// In en, this message translates to:
   /// **'Gjirokastër'**
   String get gjirokasterTitle;
-
-  /// No description provided for @gjirokasterSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The Stone City'**
-  String get gjirokasterSubTitle;
 
   /// No description provided for @gjirokasterRegionTitle.
   ///
@@ -1147,12 +799,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ottoman-Albanian'**
   String get gjirokasterArtifactCulture;
-
-  /// No description provided for @gjirokasterArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Southern Albania'**
-  String get gjirokasterArtifactGeolocation;
 
   /// No description provided for @gjirokasterPullQuote1Top.
   ///
@@ -1193,7 +839,7 @@ abstract class AppLocalizations {
   /// No description provided for @gjirokasterVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“Gjirokastër - Albania\'s Stone City, UNESCO World Heritage.” Youtube.'**
+  /// **'“Gjirokaster Albania | Gjirokastra Albania.” Visit Albania, YouTube.'**
   String get gjirokasterVideoCaption;
 
   /// No description provided for @gjirokasterMapCaption.
@@ -1205,13 +851,13 @@ abstract class AppLocalizations {
   /// No description provided for @gjirokasterHistoryInfo1.
   ///
   /// In en, this message translates to:
-  /// **'Gjirokastër is a city in southern Albania, situated in the Drino River valley. The area has been settled since at least the 1st century CE, and a fortress has stood on the hilltop since the 3rd century. The name Gjirokastër likely derives from the medieval Greek \"Argyrokastron\" meaning \"Silver Castle.\"\nThe city rose to prominence in the 13th century as a center of the Despotate of Epirus and later became an important stronghold contested between Byzantine, Serbian, and Ottoman forces.'**
+  /// **'Gjirokastër is a city in southern Albania, situated in the Drino River valley. The first fortress on the hilltop dates to the 5th–6th centuries CE. The name Gjirokastër likely derives from the medieval Greek \"Argyrokastron\" meaning \"Silver Castle.\"\nThe city rose to prominence in the 13th century as a center of the Despotate of Epirus and later became an important stronghold contested between Byzantine, Serbian, and Ottoman forces.'**
   String get gjirokasterHistoryInfo1;
 
   /// No description provided for @gjirokasterHistoryInfo2.
   ///
   /// In en, this message translates to:
-  /// **'Under Ottoman rule from 1417 onward, Gjirokastër became the center of a large sanjak (administrative district) and thrived as a bazaar city. Wealthy landowners built the distinctive fortified tower houses that define the city\'s character.\nThe city was inscribed as a UNESCO World Heritage Site in 2005 as \"a rare example of a well-preserved Ottoman town, built by farmers of large estates.\" It is the birthplace of both former Albanian dictator Enver Hoxha and Nobel Prize-winning author Ismail Kadare.'**
+  /// **'Under Ottoman rule from 1418 onward, Gjirokastër became the center of a large sanjak (administrative district) and thrived as a bazaar city. Wealthy landowners built the distinctive fortified tower houses that define the city\'s character.\nThe city was inscribed as a UNESCO World Heritage Site in 2005 as \"a rare example of a well-preserved Ottoman town, built by farmers of large estates.\" It is the birthplace of both former Albanian dictator Enver Hoxha and Nobel Prize-winning author Ismail Kadare.'**
   String get gjirokasterHistoryInfo2;
 
   /// No description provided for @gjirokasterConstructionInfo1.
@@ -1238,89 +884,47 @@ abstract class AppLocalizations {
   /// **'The surrounding region, known as Dropull, has been a crossroads of cultures for millennia. The Drino Valley connects the Adriatic coast with the interior Balkans, and the ancient route from the coast at Butrint passed through this valley toward the Via Egnatia.'**
   String get gjirokasterLocationInfo2;
 
-  /// No description provided for @gjirokaster70ce.
+  /// No description provided for @gjirokaster1336ce.
   ///
   /// In en, this message translates to:
-  /// **'Early Roman-era settlement exists in the Drino Valley region, with fortifications on the hilltop that would later become Gjirokastër'**
-  String get gjirokaster70ce;
+  /// **'Byzantine emperor John VI Kantakouzenos records the town as Argyrokastro, the first mention of its name.'**
+  String get gjirokaster1336ce;
 
-  /// No description provided for @gjirokaster82ce.
+  /// No description provided for @gjirokaster1418ce.
   ///
   /// In en, this message translates to:
-  /// **'The hilltop fortress is expanded as a strategic defensive position guarding the Drino Valley trade routes'**
-  String get gjirokaster82ce;
+  /// **'After a siege, the Ottomans take the city from the Zenebishi family.'**
+  String get gjirokaster1418ce;
 
-  /// No description provided for @gjirokaster1140ce.
+  /// No description provided for @gjirokaster1811ce.
   ///
   /// In en, this message translates to:
-  /// **'Argyrokastron emerges as a significant Byzantine settlement and is contested during the Norman invasions of the Balkans'**
-  String get gjirokaster1140ce;
+  /// **'Gjirokastër becomes part of Ali Pasha\'s Pashalik of Yanina; he later enlarges the castle.'**
+  String get gjirokaster1811ce;
 
-  /// No description provided for @gjirokaster1490ce.
+  /// No description provided for @gjirokaster1932ce.
   ///
   /// In en, this message translates to:
-  /// **'Under Ottoman rule, Gjirokastër develops into a thriving bazaar town with construction of the Old Bazaar and early tower houses'**
-  String get gjirokaster1490ce;
+  /// **'King Zog\'s government expands the prison inside the castle.'**
+  String get gjirokaster1932ce;
 
-  /// No description provided for @gjirokaster1829ce.
+  /// No description provided for @gjirokaster1936ce.
   ///
   /// In en, this message translates to:
-  /// **'Ali Pasha of Ioannina undertakes major expansion of the fortress, adding fortifications, an aqueduct, and a clock tower'**
-  String get gjirokaster1829ce;
+  /// **'Writer Ismail Kadare is born in the city.'**
+  String get gjirokaster1936ce;
 
-  /// No description provided for @gjirokaster1990ce.
+  /// No description provided for @gjirokaster2005ce.
   ///
   /// In en, this message translates to:
-  /// **'Following the fall of communism, restoration efforts begin and Gjirokastër receives UNESCO World Heritage status in 2005'**
-  String get gjirokaster1990ce;
-
-  /// No description provided for @gjirokasterCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Glass hexagonal amphoriskos'**
-  String get gjirokasterCollectible1Title;
-
-  /// No description provided for @gjirokasterCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get gjirokasterCollectible1Icon;
-
-  /// No description provided for @gjirokasterCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Bronze plaque of Mithras slaying the bull'**
-  String get gjirokasterCollectible2Title;
-
-  /// No description provided for @gjirokasterCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'statue'**
-  String get gjirokasterCollectible2Icon;
-
-  /// No description provided for @gjirokasterCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Veduta di Argirocastro'**
-  String get gjirokasterCollectible3Title;
-
-  /// No description provided for @gjirokasterCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'picture'**
-  String get gjirokasterCollectible3Icon;
+  /// **'The historic centre is inscribed on the UNESCO World Heritage List.'**
+  String get gjirokaster2005ce;
 
   /// No description provided for @apolloniaTitle.
   ///
   /// In en, this message translates to:
   /// **'Apollonia'**
   String get apolloniaTitle;
-
-  /// No description provided for @apolloniaSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The Ancient City of Learning'**
-  String get apolloniaSubTitle;
 
   /// No description provided for @apolloniaRegionTitle.
   ///
@@ -1333,12 +937,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Illyrian-Greek'**
   String get apolloniaArtifactCulture;
-
-  /// No description provided for @apolloniaArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Central Albania'**
-  String get apolloniaArtifactGeolocation;
 
   /// No description provided for @apolloniaPullQuote1Top.
   ///
@@ -1379,7 +977,7 @@ abstract class AppLocalizations {
   /// No description provided for @apolloniaVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“Apollonia Archaeological Park - Ancient Albania.” Youtube.'**
+  /// **'“Apollonia, Albania by Drone.” Visit Albania, YouTube.'**
   String get apolloniaVideoCaption;
 
   /// No description provided for @apolloniaMapCaption.
@@ -1424,89 +1022,47 @@ abstract class AppLocalizations {
   /// **'In antiquity, the Vjosa River flowed much closer to the city, providing direct access to the Adriatic coast and enabling Apollonia to function as an important port city. The fertile surrounding plain supported agricultural production, while the hilltop position offered natural defensive advantages.'**
   String get apolloniaLocationInfo2;
 
-  /// No description provided for @apollonia700bce.
+  /// No description provided for @apollonia588bce.
   ///
   /// In en, this message translates to:
-  /// **'Greek colonists from Corinth and Corcyra found Apollonia in 588 BCE on Illyrian territory, establishing a settlement that would grow into a major city'**
-  String get apollonia700bce;
+  /// **'Greek colonists from Corinth and Corcyra found Apollonia on Illyrian land.'**
+  String get apollonia588bce;
 
-  /// No description provided for @apollonia214bce.
+  /// No description provided for @apollonia229bce.
   ///
   /// In en, this message translates to:
-  /// **'Apollonia becomes a key Roman ally during the Illyrian Wars and serves as a staging ground for Roman military campaigns in the eastern Mediterranean'**
-  String get apollonia214bce;
+  /// **'Apollonia comes under the control of the Roman Republic.'**
+  String get apollonia229bce;
 
-  /// No description provided for @apollonia121bce.
+  /// No description provided for @apollonia148bce.
   ///
   /// In en, this message translates to:
-  /// **'The city flourishes as a center of trade along the Via Egnatia, connecting Rome to its eastern provinces'**
-  String get apollonia121bce;
+  /// **'Apollonia becomes part of the new Roman province of Macedonia.'**
+  String get apollonia148bce;
 
-  /// No description provided for @apollonia556ce.
+  /// No description provided for @apollonia44bce.
   ///
   /// In en, this message translates to:
-  /// **'An earthquake alters the course of the Vjosa River, destroying Apollonia\'s harbor and beginning the city\'s irreversible decline'**
-  String get apollonia556ce;
+  /// **'Young Octavian, the future Emperor Augustus, is studying in Apollonia.'**
+  String get apollonia44bce;
 
-  /// No description provided for @apollonia618ce.
+  /// No description provided for @apollonia1272ce.
   ///
   /// In en, this message translates to:
-  /// **'The remains of the city serve as a quarry for building materials; the Byzantine Monastery of St. Mary is constructed within the ancient walls'**
-  String get apollonia618ce;
+  /// **'The Byzantine Monastery of St. Mary is built within the ruins of the ancient city.'**
+  String get apollonia1272ce;
 
-  /// No description provided for @apollonia1487ce.
+  /// No description provided for @apollonia1924ce.
   ///
   /// In en, this message translates to:
-  /// **'The site lies largely forgotten and overgrown until systematic archaeological excavations begin under Austrian and later French archaeologists in the early 20th century'**
-  String get apollonia1487ce;
-
-  /// No description provided for @apolloniaCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Biographies of Lian Po and Lin Xiangru'**
-  String get apolloniaCollectible1Title;
-
-  /// No description provided for @apolloniaCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'scroll'**
-  String get apolloniaCollectible1Icon;
-
-  /// No description provided for @apolloniaCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Jar with Dragon'**
-  String get apolloniaCollectible2Title;
-
-  /// No description provided for @apolloniaCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get apolloniaCollectible2Icon;
-
-  /// No description provided for @apolloniaCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Panel with Peonies and Butterfly'**
-  String get apolloniaCollectible3Title;
-
-  /// No description provided for @apolloniaCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'textile'**
-  String get apolloniaCollectible3Icon;
+  /// **'A French archaeological mission begins systematic excavations, which last until 1938.'**
+  String get apollonia1924ce;
 
   /// No description provided for @thethTitle.
   ///
   /// In en, this message translates to:
   /// **'Thethi'**
   String get thethTitle;
-
-  /// No description provided for @thethSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The Alpine Sanctuary'**
-  String get thethSubTitle;
 
   /// No description provided for @thethRegionTitle.
   ///
@@ -1519,12 +1075,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Albanian Highland'**
   String get thethArtifactCulture;
-
-  /// No description provided for @thethArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Northern Albania'**
-  String get thethArtifactGeolocation;
 
   /// No description provided for @thethPullQuote1Top.
   ///
@@ -1571,7 +1121,7 @@ abstract class AppLocalizations {
   /// No description provided for @thethVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“Thethi National Park - Albania\'s Hidden Alpine Paradise.” Youtube.'**
+  /// **'“Theth Albania - Albanian Alps.” Visit Albania, YouTube.'**
   String get thethVideoCaption;
 
   /// No description provided for @thethMapCaption.
@@ -1616,89 +1166,47 @@ abstract class AppLocalizations {
   /// **'The Blue Eye of Thethi (Syri i Kaltër), a stunning natural spring pool of vivid turquoise water, is one of the valley\'s most remarkable natural features. The Grunas Waterfall, cascading 100 feet (30 m) down a limestone cliff, is another iconic landmark. The valley connects to Valbona via a popular mountain pass trek at approximately 5,900 feet (1,800 m).'**
   String get thethLocationInfo2;
 
-  /// No description provided for @theth1438ce.
+  /// No description provided for @theth1892ce.
   ///
   /// In en, this message translates to:
-  /// **'Albanian highland clans are well established in the Thethi valley, governed by the Kanun of Lëkë Dukagjini'**
-  String get theth1438ce;
+  /// **'The village church of Theth is built.'**
+  String get theth1892ce;
 
-  /// No description provided for @theth1572ce.
+  /// No description provided for @theth1908ce.
   ///
   /// In en, this message translates to:
-  /// **'The highland communities resist Ottoman control, maintaining autonomy through the rugged terrain of the Albanian Alps'**
-  String get theth1572ce;
+  /// **'Edith Durham travels through the highlands and describes Theth in High Albania (1909).'**
+  String get theth1908ce;
 
-  /// No description provided for @theth1867ce.
+  /// No description provided for @theth1966ce.
   ///
   /// In en, this message translates to:
-  /// **'British traveler and diplomat Edith Durham visits the Albanian highlands, later documenting the traditional way of life in her celebrated writings'**
-  String get theth1867ce;
+  /// **'Theth National Park is created.'**
+  String get theth1966ce;
 
-  /// No description provided for @theth1911ce.
+  /// No description provided for @theth2011ce.
   ///
   /// In en, this message translates to:
-  /// **'Albania declares independence in 1912; the highland regions play a crucial role in the national awakening and resistance movements'**
-  String get theth1911ce;
+  /// **'The Peaks of the Balkans trail opens, linking Theth with Kosovo and Montenegro.'**
+  String get theth2011ce;
 
-  /// No description provided for @theth1964ce.
+  /// No description provided for @theth2017ce.
   ///
   /// In en, this message translates to:
-  /// **'Thethi National Park is established in 1966, one of Albania\'s first protected areas, preserving the alpine ecosystem'**
-  String get theth1964ce;
+  /// **'Albanologist Robert Elsie is laid to rest in Theth.'**
+  String get theth2017ce;
 
-  /// No description provided for @theth1997ce.
+  /// No description provided for @theth2022ce.
   ///
   /// In en, this message translates to:
-  /// **'The Peaks of the Balkans trail is inaugurated, connecting Albania, Kosovo, and Montenegro and bringing renewed international attention to Thethi'**
-  String get theth1997ce;
-
-  /// No description provided for @thethCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Eight-Pointed Star Tunic'**
-  String get thethCollectible1Title;
-
-  /// No description provided for @thethCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'textile'**
-  String get thethCollectible1Icon;
-
-  /// No description provided for @thethCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Camelid figurine'**
-  String get thethCollectible2Title;
-
-  /// No description provided for @thethCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'statue'**
-  String get thethCollectible2Icon;
-
-  /// No description provided for @thethCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Double Bowl'**
-  String get thethCollectible3Title;
-
-  /// No description provided for @thethCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get thethCollectible3Icon;
+  /// **'Theth becomes part of the new Alps of Albania National Park.'**
+  String get theth2022ce;
 
   /// No description provided for @krujaTitle.
   ///
   /// In en, this message translates to:
   /// **'Krujë'**
   String get krujaTitle;
-
-  /// No description provided for @krujaSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The Fortress of Skanderbeg'**
-  String get krujaSubTitle;
 
   /// No description provided for @krujaRegionTitle.
   ///
@@ -1711,12 +1219,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Medieval Albanian'**
   String get krujaArtifactCulture;
-
-  /// No description provided for @krujaArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Central Albania'**
-  String get krujaArtifactGeolocation;
 
   /// No description provided for @krujaPullQuote1Top.
   ///
@@ -1763,7 +1265,7 @@ abstract class AppLocalizations {
   /// No description provided for @krujaVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“Krujë Castle and the Legacy of Skanderbeg - Albania.” Youtube.'**
+  /// **'“KRUJA CITY & CASTLE 2021 | 4K DRONE CINEMATIC VIDEO.” GOGLA, YouTube.'**
   String get krujaVideoCaption;
 
   /// No description provided for @krujaMapCaption.
@@ -1808,89 +1310,47 @@ abstract class AppLocalizations {
   /// **'The Skanderbeg Mountain (Mali i Sariut) rises steeply behind the castle to approximately 3,500 feet (1,070 m). The surrounding terrain of steep gorges and dense forests provided natural defensive advantages that Skanderbeg exploited in his guerrilla tactics against the much larger Ottoman forces. The nearby Sarisalltiku peak features a cave shrine venerated by both Muslims and Christians.'**
   String get krujaLocationInfo2;
 
-  /// No description provided for @kruja1200bce.
+  /// No description provided for @kruja1190ce.
   ///
   /// In en, this message translates to:
-  /// **'Early Illyrian settlements exist in the Krujë region, taking advantage of the natural fortress position'**
-  String get kruja1200bce;
+  /// **'Krujë becomes the capital of the Principality of Arbër, the first Albanian state of the Middle Ages.'**
+  String get kruja1190ce;
 
-  /// No description provided for @kruja106bce.
+  /// No description provided for @kruja1443ce.
   ///
   /// In en, this message translates to:
-  /// **'The region falls under Roman control as part of the province of Illyricum'**
-  String get kruja106bce;
+  /// **'On 28 November, Skanderbeg takes Krujë and raises the Albanian flag over the castle.'**
+  String get kruja1443ce;
 
-  /// No description provided for @kruja551ce.
+  /// No description provided for @kruja1450ce.
   ///
   /// In en, this message translates to:
-  /// **'Byzantine-era fortifications are constructed on the hilltop, establishing the castle as a strategic defensive position'**
-  String get kruja551ce;
+  /// **'Skanderbeg\'s forces withstand the first Ottoman siege, led by Sultan Murad II.'**
+  String get kruja1450ce;
 
-  /// No description provided for @kruja1812ce.
+  /// No description provided for @kruja1478ce.
   ///
   /// In en, this message translates to:
-  /// **'The castle ruins and old bazaar are documented by European travelers as interest in Albanian history grows'**
-  String get kruja1812ce;
+  /// **'After a siege of more than a year, Krujë falls to the Ottomans.'**
+  String get kruja1478ce;
 
-  /// No description provided for @kruja1958ce.
+  /// No description provided for @kruja1982ce.
   ///
   /// In en, this message translates to:
-  /// **'The Skanderbeg Museum within the castle is established, becoming Albania\'s most important national memorial'**
-  String get kruja1958ce;
+  /// **'The Skanderbeg Museum opens beside the castle.'**
+  String get kruja1982ce;
 
   /// No description provided for @kruja1989ce.
   ///
   /// In en, this message translates to:
-  /// **'Krujë becomes a major tourist destination and symbol of Albanian national identity after the fall of communism'**
+  /// **'The National Ethnographic Museum opens in a Toptani family house built in 1764.'**
   String get kruja1989ce;
-
-  /// No description provided for @krujaCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Camel and riders'**
-  String get krujaCollectible1Title;
-
-  /// No description provided for @krujaCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'statue'**
-  String get krujaCollectible1Icon;
-
-  /// No description provided for @krujaCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Vessel'**
-  String get krujaCollectible2Title;
-
-  /// No description provided for @krujaCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get krujaCollectible2Icon;
-
-  /// No description provided for @krujaCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Open bowl'**
-  String get krujaCollectible3Title;
-
-  /// No description provided for @krujaCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'vase'**
-  String get krujaCollectible3Icon;
 
   /// No description provided for @albanianAlpsTitle.
   ///
   /// In en, this message translates to:
   /// **'Albanian Alps'**
   String get albanianAlpsTitle;
-
-  /// No description provided for @albanianAlpsSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The Accursed Mountains'**
-  String get albanianAlpsSubTitle;
 
   /// No description provided for @albanianAlpsRegionTitle.
   ///
@@ -1903,12 +1363,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Albanian Highland'**
   String get albanianAlpsArtifactCulture;
-
-  /// No description provided for @albanianAlpsArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Northern Albania'**
-  String get albanianAlpsArtifactGeolocation;
 
   /// No description provided for @albanianAlpsPullQuote1Top.
   ///
@@ -1949,7 +1403,7 @@ abstract class AppLocalizations {
   /// No description provided for @albanianAlpsVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“Albanian Alps - Bjeshkët e Nemuna, Europe\'s Last Wilderness.” Youtube.'**
+  /// **'“Valbona, Albania.” Visit Albania, YouTube.'**
   String get albanianAlpsVideoCaption;
 
   /// No description provided for @albanianAlpsMapCaption.
@@ -1979,7 +1433,7 @@ abstract class AppLocalizations {
   /// No description provided for @albanianAlpsConstructionInfo2.
   ///
   /// In en, this message translates to:
-  /// **'Human structures in the Albanian Alps reflect the mountain environment. Traditional highland houses (kullë) are built from massive limestone blocks with timber interiors, designed to withstand heavy snowfall and provide defense. Stone-walled pastures, ancient mule trails, and small mountain churches dot the landscape.\nThe Peaks of the Balkans trail, a 120-mile (192 km) hiking route established in 2013, connects communities across three countries using many of these traditional paths.'**
+  /// **'Human structures in the Albanian Alps reflect the mountain environment. Traditional highland houses (kullë) are built from massive limestone blocks with timber interiors, designed to withstand heavy snowfall and provide defense. Stone-walled pastures, ancient mule trails, and small mountain churches dot the landscape.\nThe Peaks of the Balkans trail, a 120-mile (192 km) hiking route opened in 2011, connects communities across three countries using many of these traditional paths.'**
   String get albanianAlpsConstructionInfo2;
 
   /// No description provided for @albanianAlpsLocationInfo1.
@@ -1994,89 +1448,47 @@ abstract class AppLocalizations {
   /// **'The Valbona Valley National Park and Thethi National Park protect much of the Albanian portion of the range. Lake Koman, accessible by ferry through a dramatic canyon often compared to Scandinavian fjords, provides a stunning approach to the mountains from the south. The region receives some of the highest precipitation in Europe, feeding numerous rivers and waterfalls.'**
   String get albanianAlpsLocationInfo2;
 
-  /// No description provided for @albanianAlps2575bce.
+  /// No description provided for @albanianAlps1909ce.
   ///
   /// In en, this message translates to:
-  /// **'Early human habitation in the Albanian Alps region dates back to the Bronze Age, with evidence of pastoral communities in the highland valleys'**
-  String get albanianAlps2575bce;
+  /// **'Edith Durham publishes High Albania, the classic account of life among the highland clans.'**
+  String get albanianAlps1909ce;
 
-  /// No description provided for @albanianAlps2465bce.
+  /// No description provided for @albanianAlps1929ce.
   ///
   /// In en, this message translates to:
-  /// **'Illyrian tribes establish seasonal settlements in the mountain pastures, developing the transhumance traditions that continue to this day'**
-  String get albanianAlps2465bce;
+  /// **'British climbers make the first recorded ascent of Maja Jezercë (2,694 m), the range\'s highest peak.'**
+  String get albanianAlps1929ce;
 
-  /// No description provided for @albanianAlps443bce.
+  /// No description provided for @albanianAlps1996ce.
   ///
   /// In en, this message translates to:
-  /// **'Greek and Roman writers document the fierce independence of the mountain-dwelling Illyrian tribes and the difficult terrain of the region'**
-  String get albanianAlps443bce;
+  /// **'Valbona Valley National Park is created.'**
+  String get albanianAlps1996ce;
 
-  /// No description provided for @albanianAlps1925ce.
+  /// No description provided for @albanianAlps2009ce.
   ///
   /// In en, this message translates to:
-  /// **'British traveler Edith Durham publishes detailed accounts of life in the Albanian highlands, bringing international attention to the region'**
-  String get albanianAlps1925ce;
+  /// **'A glacier is discovered in the Albanian part of the range.'**
+  String get albanianAlps2009ce;
 
-  /// No description provided for @albanianAlps1979ce.
+  /// No description provided for @albanianAlps2011ce.
   ///
   /// In en, this message translates to:
-  /// **'Thethi National Park and Valbona Valley are designated as protected areas, preserving the alpine ecosystems'**
-  String get albanianAlps1979ce;
+  /// **'The Peaks of the Balkans trail opens across Albania, Kosovo and Montenegro.'**
+  String get albanianAlps2011ce;
 
-  /// No description provided for @albanianAlps1990ce.
+  /// No description provided for @albanianAlps2022ce.
   ///
   /// In en, this message translates to:
-  /// **'After the fall of communism, the Albanian Alps open to international hikers and the Peaks of the Balkans trail is eventually established in 2013'**
-  String get albanianAlps1990ce;
-
-  /// No description provided for @albanianAlpsCollectible1Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Two papyrus fragments'**
-  String get albanianAlpsCollectible1Title;
-
-  /// No description provided for @albanianAlpsCollectible1Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'scroll'**
-  String get albanianAlpsCollectible1Icon;
-
-  /// No description provided for @albanianAlpsCollectible2Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Fragmentary Face of King Khafre'**
-  String get albanianAlpsCollectible2Title;
-
-  /// No description provided for @albanianAlpsCollectible2Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'statue'**
-  String get albanianAlpsCollectible2Icon;
-
-  /// No description provided for @albanianAlpsCollectible3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Jewelry Elements'**
-  String get albanianAlpsCollectible3Title;
-
-  /// No description provided for @albanianAlpsCollectible3Icon.
-  ///
-  /// In en, this message translates to:
-  /// **'jewelry'**
-  String get albanianAlpsCollectible3Icon;
+  /// **'Theth, Valbona and nearby reserves merge into the Alps of Albania National Park.'**
+  String get albanianAlps2022ce;
 
   /// No description provided for @korcaTitle.
   ///
   /// In en, this message translates to:
   /// **'Korçë'**
   String get korcaTitle;
-
-  /// No description provided for @korcaSubTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'The Cradle of Albanian Culture'**
-  String get korcaSubTitle;
 
   /// No description provided for @korcaRegionTitle.
   ///
@@ -2089,12 +1501,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Albanian Orthodox'**
   String get korcaArtifactCulture;
-
-  /// No description provided for @korcaArtifactGeolocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Southeastern Albania'**
-  String get korcaArtifactGeolocation;
 
   /// No description provided for @korcaPullQuote1Top.
   ///
@@ -2141,7 +1547,7 @@ abstract class AppLocalizations {
   /// No description provided for @korcaVideoCaption.
   ///
   /// In en, this message translates to:
-  /// **'“Korçë - The Cradle of Albanian Culture and the Resurrection Cathedral.” Youtube.'**
+  /// **'“Korçë, Dardhë | Dardhe Korce Albania.” Visit Albania, YouTube.'**
   String get korcaVideoCaption;
 
   /// No description provided for @korcaMapCaption.
@@ -2159,7 +1565,7 @@ abstract class AppLocalizations {
   /// No description provided for @korcaHistoryInfo2.
   ///
   /// In en, this message translates to:
-  /// **'The original Orthodox Cathedral was destroyed during the communist period when Albania declared itself the world\'s first atheist state in 1967, demolishing nearly all religious buildings. The new Resurrection Cathedral (Katedralja Ngjallja e Krishtit) was built between 1992 and 2003 on the foundations of the old cathedral, symbolizing both religious revival and national cultural renewal.\nKorçë is also renowned for its contribution to Albanian music, art, and the famous annual Korçë Beer Festival, one of the largest in the Balkans.'**
+  /// **'The original Orthodox Cathedral was destroyed during the communist period when Albania declared itself the world\'s first atheist state in 1967, demolishing nearly all religious buildings. The new Resurrection Cathedral (Katedralja Ngjallja e Krishtit) was built between 1994 and 2002 on the foundations of the old cathedral, symbolizing both religious revival and national cultural renewal.\nKorçë is also renowned for its contribution to Albanian music, art, and the famous annual Korçë Beer Festival, one of the largest in the Balkans.'**
   String get korcaHistoryInfo2;
 
   /// No description provided for @korcaConstructionInfo1.
@@ -2171,7 +1577,7 @@ abstract class AppLocalizations {
   /// No description provided for @korcaConstructionInfo2.
   ///
   /// In en, this message translates to:
-  /// **'The cathedral\'s construction spanned over a decade, from 1992 to 2003. Modern reinforced concrete and steel frame construction was used for structural integrity, while traditional stone and decorative elements maintain the Byzantine aesthetic.\nThe bell tower, rising beside the cathedral, houses a set of bells that ring across the city. The surrounding plaza and park create a cultural center for the city, connecting to the National Museum of Medieval Art, which houses one of the finest collections of Byzantine icons in the world.'**
+  /// **'The cathedral was built between 1994 and 2002. Modern reinforced concrete and steel frame construction was used for structural integrity, while traditional stone and decorative elements maintain the Byzantine aesthetic.\nThe bell tower, rising beside the cathedral, houses a set of bells that ring across the city. The surrounding plaza and park create a cultural center for the city, connecting to the National Museum of Medieval Art, which houses one of the finest collections of Byzantine icons in the world.'**
   String get korcaConstructionInfo2;
 
   /// No description provided for @korcaLocationInfo1.
@@ -2186,365 +1592,641 @@ abstract class AppLocalizations {
   /// **'The Korçë plateau has been inhabited since prehistoric times due to its fertile soil and strategic position along ancient trade routes connecting the Adriatic and Aegean seas. The nearby archaeological site of Maliq, on the shores of a former lake, has yielded evidence of continuous habitation dating back to the Neolithic period, around 6000 BCE.'**
   String get korcaLocationInfo2;
 
-  /// No description provided for @korca1631ce.
+  /// No description provided for @korca1769ce.
   ///
   /// In en, this message translates to:
-  /// **'Korçë develops as an Ottoman administrative and trade center with construction of mosques, bazaars, and hans (inns)'**
-  String get korca1631ce;
+  /// **'After nearby Voskopojë is sacked, part of its trade moves to Korçë.'**
+  String get korca1769ce;
 
-  /// No description provided for @korca1647ce.
+  /// No description provided for @korca1887ce.
   ///
   /// In en, this message translates to:
-  /// **'The city\'s importance grows as a crossroads of trade routes connecting Thessaloniki, Ioannina, and the Albanian coast'**
-  String get korca1647ce;
+  /// **'The first Albanian-language school, the Mësonjëtorja, opens on 7 March.'**
+  String get korca1887ce;
 
-  /// No description provided for @korca1658ce.
+  /// No description provided for @korca1891ce.
   ///
   /// In en, this message translates to:
-  /// **'Cultural and religious communities flourish in Korçë, establishing it as a multi-ethnic center of learning'**
-  String get korca1658ce;
+  /// **'Sevasti Qiriazi founds the first Albanian school for girls.'**
+  String get korca1891ce;
 
-  /// No description provided for @korca1901ce.
+  /// No description provided for @korca1916ce.
   ///
   /// In en, this message translates to:
-  /// **'Korçë becomes a center of the Albanian national movement with the opening of the first Albanian-language school in 1887'**
-  String get korca1901ce;
+  /// **'Under French protection, the Autonomous Albanian Republic of Korçë is proclaimed.'**
+  String get korca1916ce;
 
-  /// No description provided for @korca1984ce.
+  /// No description provided for @korca1968ce.
   ///
   /// In en, this message translates to:
-  /// **'During the communist era, the original Orthodox Cathedral and most religious buildings are demolished as Albania is declared an atheist state'**
-  String get korca1984ce;
+  /// **'The communist regime demolishes the city\'s Orthodox cathedral of St. George.'**
+  String get korca1968ce;
 
-  /// No description provided for @korca1998ce.
+  /// No description provided for @korca1994ce.
   ///
   /// In en, this message translates to:
-  /// **'Construction of the new Resurrection Cathedral begins after the fall of communism, completed in 2003 as a symbol of cultural renewal'**
-  String get korca1998ce;
+  /// **'Construction of the Resurrection Cathedral begins; it is consecrated in 2002.'**
+  String get korca1994ce;
 
-  /// No description provided for @korcaCollectible1Title.
+  /// No description provided for @timelineEventIllyrianTribes.
   ///
   /// In en, this message translates to:
-  /// **'Dagger with Scabbard'**
-  String get korcaCollectible1Title;
+  /// **'Illyrian peoples such as the Taulantii, Ardiaei, Dardani and Enchelei take shape across the western Balkans.'**
+  String get timelineEventIllyrianTribes;
 
-  /// No description provided for @korcaCollectible1Icon.
+  /// No description provided for @timelineEventEpidamnos.
   ///
   /// In en, this message translates to:
-  /// **'jewelry'**
-  String get korcaCollectible1Icon;
+  /// **'Settlers from Corcyra and Corinth found Epidamnos on Taulantian land. As Dyrrachium, today\'s Durrës, it becomes the great port of the Adriatic coast.'**
+  String get timelineEventEpidamnos;
 
-  /// No description provided for @korcaCollectible2Title.
+  /// No description provided for @timelineEventBardylisDefeatsMacedon.
   ///
   /// In en, this message translates to:
-  /// **'The House of Bijapur'**
-  String get korcaCollectible2Title;
+  /// **'The Illyrian king Bardylis defeats and kills King Perdiccas III of Macedon. A year later Perdiccas\'s brother, Philip II, strikes back and defeats him.'**
+  String get timelineEventBardylisDefeatsMacedon;
 
-  /// No description provided for @korcaCollectible2Icon.
+  /// No description provided for @timelineEventAlexanderAtPelion.
   ///
   /// In en, this message translates to:
-  /// **'picture'**
-  String get korcaCollectible2Icon;
+  /// **'At Pelion, in the south-east of today\'s Albania, the young Alexander the Great breaks an alliance of the Illyrian kings Cleitus and Glaukias.'**
+  String get timelineEventAlexanderAtPelion;
 
-  /// No description provided for @korcaCollectible3Title.
+  /// No description provided for @timelineEventGlaukiasShieldsPyrrhus.
   ///
   /// In en, this message translates to:
-  /// **'Panel of Nasta\'liq Calligraphy'**
-  String get korcaCollectible3Title;
+  /// **'King Glaukias of the Taulantii shelters the infant Pyrrhus of Epirus and refuses to hand him to his enemies. Years later he helps restore him to the Epirote throne.'**
+  String get timelineEventGlaukiasShieldsPyrrhus;
 
-  /// No description provided for @korcaCollectible3Icon.
+  /// No description provided for @timelineEventTeutaTakesTheHelm.
   ///
   /// In en, this message translates to:
-  /// **'scroll'**
-  String get korcaCollectible3Icon;
+  /// **'After King Agron\'s sudden death, his widow Teuta rules the Ardiaean kingdom for his young son. Her fleets raid the Adriatic and Ionian coasts and sack Phoenice (today\'s Finiq), the richest city of Epirus.'**
+  String get timelineEventTeutaTakesTheHelm;
 
-  /// No description provided for @timelineEvent2900bce.
+  /// No description provided for @timelineEventTeutaDefiesRome.
   ///
   /// In en, this message translates to:
-  /// **'Bronze Age tumuli traditions emerge across the Western Balkans'**
-  String get timelineEvent2900bce;
+  /// **'Rome sends 200 ships against Queen Teuta. The First Illyrian War ends in 228 BCE with Corcyra, Epidamnos and Apollonia under Roman protection.'**
+  String get timelineEventTeutaDefiesRome;
 
-  /// No description provided for @timelineEvent2700bce.
+  /// No description provided for @timelineEventGentiusFalls.
   ///
   /// In en, this message translates to:
-  /// **'The Maliq settlement near Korçë grows into one of the earliest agrarian communities of the southern Balkans'**
-  String get timelineEvent2700bce;
+  /// **'In the Third Illyrian War, Rome defeats King Gentius within weeks and captures him at Scodra (Shkodër). His kingdom is broken up into districts under Roman control.'**
+  String get timelineEventGentiusFalls;
 
-  /// No description provided for @timelineEvent2600bce.
+  /// No description provided for @timelineEventEpirusSacked.
   ///
   /// In en, this message translates to:
-  /// **'Early Bronze Age communities flourish along the Adriatic coast of present-day Albania'**
-  String get timelineEvent2600bce;
+  /// **'To punish Epirus for siding with Macedon, Rome sacks 70 of its towns and sells 150,000 people into slavery. The south of today\'s Albania is among the lands hit.'**
+  String get timelineEventEpirusSacked;
 
-  /// No description provided for @timelineEvent2560bce.
+  /// No description provided for @timelineEventViaEgnatia.
   ///
   /// In en, this message translates to:
-  /// **'The Cetina cultural horizon links communities across the Western Balkans'**
-  String get timelineEvent2560bce;
+  /// **'Rome builds the Via Egnatia, a road from Dyrrachium and Apollonia over the mountains to Thessalonica, later extended to Byzantium.'**
+  String get timelineEventViaEgnatia;
 
-  /// No description provided for @timelineEvent1200bce.
+  /// No description provided for @timelineEventCaesarAndPompey.
   ///
   /// In en, this message translates to:
-  /// **'Illyrian tribes — Taulantii, Ardiaei, Dardani, Enchelei, Chaones — consolidate across the western Balkans'**
-  String get timelineEvent1200bce;
+  /// **'In Rome\'s civil war, Julius Caesar besieges Pompey at Dyrrachium (Durrës) but is driven off. Weeks later he wins the war at Pharsalus in Greece.'**
+  String get timelineEventCaesarAndPompey;
 
-  /// No description provided for @timelineEvent627bce.
+  /// No description provided for @timelineEventPaulInIllyricum.
   ///
   /// In en, this message translates to:
-  /// **'Greek settlers from Corinth and Corcyra found Epidamnos, the future Dyrrhachium and modern Durrës'**
-  String get timelineEvent627bce;
+  /// **'In his letter to the Romans, the apostle Paul writes that he has preached the gospel \'as far as Illyricum\'.'**
+  String get timelineEventPaulInIllyricum;
 
-  /// No description provided for @timelineEvent358bce.
+  /// No description provided for @timelineEventEmpireSplits.
   ///
   /// In en, this message translates to:
-  /// **'Bardylis I of the Dardanian Kingdom defeats Macedonia under Perdiccas III'**
-  String get timelineEvent358bce;
+  /// **'When Emperor Theodosius I dies, the Roman Empire is split for good. The Albanian lands fall to the eastern half, ruled from Constantinople.'**
+  String get timelineEventEmpireSplits;
 
-  /// No description provided for @timelineEvent229bce.
+  /// No description provided for @timelineEventAnastasiusEmperor.
   ///
   /// In en, this message translates to:
-  /// **'First Illyrian War: Queen Teuta of the Ardiaeans clashes with Rome over Adriatic piracy'**
-  String get timelineEvent229bce;
+  /// **'Anastasius I, born in Dyrrachium (Durrës), becomes Byzantine emperor and later strengthens the walls of his home city.'**
+  String get timelineEventAnastasiusEmperor;
 
-  /// No description provided for @timelineEvent168bce.
+  /// No description provided for @timelineEventButrintBaptistery.
   ///
   /// In en, this message translates to:
-  /// **'Third Illyrian War ends; King Gentius is defeated and Illyria becomes a Roman protectorate'**
-  String get timelineEvent168bce;
+  /// **'Butrint builds a great baptistery whose mosaic floor of birds, animals and vines is among the finest early Christian mosaics in the Balkans.'**
+  String get timelineEventButrintBaptistery;
 
-  /// No description provided for @timelineEvent146bce.
+  /// No description provided for @timelineEventCodexBeratinus.
   ///
   /// In en, this message translates to:
-  /// **'Rome begins constructing the Via Egnatia, linking Dyrrhachium across Illyria to Byzantium'**
-  String get timelineEvent146bce;
+  /// **'Scribes copy the Gospels of Matthew and Mark in silver ink on purple parchment. Kept in Berat since at least 1356, the Codex Beratinus is one of the oldest Gospel books in the world.'**
+  String get timelineEventCodexBeratinus;
 
-  /// No description provided for @timelineEvent395ce.
+  /// No description provided for @timelineEventBasilReconquers.
   ///
   /// In en, this message translates to:
-  /// **'The Roman Empire splits; Illyria is absorbed into the Eastern Byzantine realm'**
-  String get timelineEvent395ce;
+  /// **'Emperor Basil II destroys the Bulgarian state, which had ruled much of the region, and restores Byzantine rule through the Theme of Dyrrachium.'**
+  String get timelineEventBasilReconquers;
 
-  /// No description provided for @timelineEvent500ce.
+  /// No description provided for @timelineEventAlbanoiNamed.
   ///
   /// In en, this message translates to:
-  /// **'The Albanian coast flourishes as a key Byzantine corridor between Constantinople and the western Mediterranean'**
-  String get timelineEvent500ce;
+  /// **'A Byzantine chronicle names \'Albanoi\' among the troops of the rebel general George Maniakes, one of the first written records of the Albanians.'**
+  String get timelineEventAlbanoiNamed;
 
-  /// No description provided for @timelineEvent632ce.
+  /// No description provided for @timelineEventGreatSchism.
   ///
   /// In en, this message translates to:
-  /// **'Death of Muhammad (61) and founding of Islam — the faith that will later reshape Albania under Ottoman rule'**
-  String get timelineEvent632ce;
+  /// **'The churches of Rome and Constantinople split. Over time Albanian Christians divide along the same line: Catholic in the north, Orthodox in the south.'**
+  String get timelineEventGreatSchism;
 
-  /// No description provided for @timelineEvent1018ce.
+  /// No description provided for @timelineEventNormansAtDyrrachium.
   ///
   /// In en, this message translates to:
-  /// **'Basil II reconquers Illyria; the Byzantine Theme of Dyrrhachium is re-established'**
-  String get timelineEvent1018ce;
+  /// **'Robert Guiscard\'s Normans defeat Emperor Alexios I at Dyrrachium, opening a long struggle between Normans, Venetians and Byzantines for the coast.'**
+  String get timelineEventNormansAtDyrrachium;
 
-  /// No description provided for @timelineEvent1043ce.
+  /// No description provided for @timelineEventArbanon.
   ///
   /// In en, this message translates to:
-  /// **'First written reference to the name Albanoi — Albanians take part in the revolt of George Maniakes'**
-  String get timelineEvent1043ce;
+  /// **'Progon, lord of Krujë, founds Arbanon, the first Albanian state of the Middle Ages. His sons Gjin and Dhimitër rule after him.'**
+  String get timelineEventArbanon;
 
-  /// No description provided for @timelineEvent1081ce.
+  /// No description provided for @timelineEventRegnumAlbaniae.
   ///
   /// In en, this message translates to:
-  /// **'Battle of Dyrrhachium: Norman forces under Robert Guiscard defeat the Byzantines'**
-  String get timelineEvent1081ce;
+  /// **'Charles of Anjou, king of Sicily, is proclaimed King of Albania (Regnum Albaniae), a Crusader-era state on the coast around Durrës.'**
+  String get timelineEventRegnumAlbaniae;
 
-  /// No description provided for @timelineEvent1190ce.
+  /// No description provided for @timelineEventSiegeOfBerat.
   ///
   /// In en, this message translates to:
-  /// **'Progon founds the Principality of Arbanon — the first Albanian medieval state'**
-  String get timelineEvent1190ce;
+  /// **'An Angevin army besieges Berat, but a Byzantine relief force captures its commander, Hugh of Sully, and the besiegers flee towards Vlorë.'**
+  String get timelineEventSiegeOfBerat;
 
-  /// No description provided for @timelineEvent1271ce.
+  /// No description provided for @timelineEventVoiceInTheMountains.
   ///
   /// In en, this message translates to:
-  /// **'Charles of Anjou proclaims the Kingdom of Albania (Regnum Albaniae)'**
-  String get timelineEvent1271ce;
+  /// **'A court record in Ragusa (Dubrovnik) notes: \'I heard a voice crying in the mountains in the Albanian language.\' It is the earliest known mention of spoken Albanian.'**
+  String get timelineEventVoiceInTheMountains;
 
-  /// No description provided for @timelineEvent1347ce.
+  /// No description provided for @timelineEventALanguageOfTheirOwn.
   ///
   /// In en, this message translates to:
-  /// **'The Black Death plague sweeps Europe and devastates Balkan populations, including Albania'**
-  String get timelineEvent1347ce;
+  /// **'A Dominican report to the French king notes that the Albanians have a language quite unlike Latin, but use Latin letters in their books.'**
+  String get timelineEventALanguageOfTheirOwn;
 
-  /// No description provided for @timelineEvent1355ce.
+  /// No description provided for @timelineEventAlbanianPrincipalities.
   ///
   /// In en, this message translates to:
-  /// **'After the death of Stefan Dušan, the Albanian principalities of Balsha, Topia, Muzaka and Kastrioti rise'**
-  String get timelineEvent1355ce;
+  /// **'Stefan Dušan\'s Serbian Empire, which had conquered most Albanian lands, breaks up after his death. Families such as the Balsha, Thopia, Muzaka, Dukagjini and Kastrioti rule their own principalities.'**
+  String get timelineEventAlbanianPrincipalities;
 
-  /// No description provided for @timelineEvent1389ce.
+  /// No description provided for @timelineEventBattleOfSavra.
   ///
   /// In en, this message translates to:
-  /// **'Albanian nobles fight beside Serbian forces at the Battle of Kosovo'**
-  String get timelineEvent1389ce;
+  /// **'At the Battle of Savra, an Ottoman army defeats and kills Balsha II, lord of Durrës. Many Albanian lords soon become Ottoman vassals.'**
+  String get timelineEventBattleOfSavra;
 
-  /// No description provided for @timelineEvent1428ce.
+  /// No description provided for @timelineEventBattleOfKosovo.
   ///
   /// In en, this message translates to:
-  /// **'Gjergj Kastrioti, the future Skanderbeg, comes of age in the Ottoman court before returning to lead Albanian resistance'**
-  String get timelineEvent1428ce;
+  /// **'Albanian lords fight alongside Prince Lazar\'s Serbian army against the Ottomans on the Field of Kosovo. Both Lazar and Sultan Murad I are killed.'**
+  String get timelineEventBattleOfKosovo;
 
-  /// No description provided for @timelineEvent1443ce.
+  /// No description provided for @timelineEventOttomansTakeTheSouth.
   ///
   /// In en, this message translates to:
-  /// **'Skanderbeg defects from the Ottoman army at the Battle of Niš and seizes Krujë'**
-  String get timelineEvent1443ce;
+  /// **'Ottoman forces capture Vlorë, Kaninë and Berat. A year later Gjirokastër falls too.'**
+  String get timelineEventOttomansTakeTheSouth;
 
-  /// No description provided for @timelineEvent1444ce.
+  /// No description provided for @timelineEventRevoltOf1432.
   ///
   /// In en, this message translates to:
-  /// **'The League of Lezhë unites Albanian princes under Skanderbeg\'s command'**
-  String get timelineEvent1444ce;
+  /// **'Albanian lords led by Gjergj Arianiti rise against Ottoman rule and win several battles before the revolt is crushed in 1436.'**
+  String get timelineEventRevoltOf1432;
 
-  /// No description provided for @timelineEvent1450ce.
+  /// No description provided for @timelineEventSkanderbegReturns.
   ///
   /// In en, this message translates to:
-  /// **'First Siege of Krujë: Skanderbeg withstands Sultan Murad II'**
-  String get timelineEvent1450ce;
+  /// **'Gjergj Kastrioti, an Ottoman commander known as Skanderbeg, deserts at the Battle of Niš, takes Krujë on 28 November and raises his red flag with the black double-headed eagle.'**
+  String get timelineEventSkanderbegReturns;
 
-  /// No description provided for @timelineEvent1466ce.
+  /// No description provided for @timelineEventLeagueOfLezhe.
   ///
   /// In en, this message translates to:
-  /// **'Sultan Mehmed II launches the Second Siege of Krujë and builds the fortress of Elbasan'**
-  String get timelineEvent1466ce;
+  /// **'Albanian princes unite under Skanderbeg in the League of Lezhë. Months later they win their first great victory, at Torvioll.'**
+  String get timelineEventLeagueOfLezhe;
 
-  /// No description provided for @timelineEvent1468ce.
+  /// No description provided for @timelineEventFirstSiegeOfKruja.
   ///
   /// In en, this message translates to:
-  /// **'Death of Skanderbeg in Lezhë; Albanian resistance gradually crumbles'**
-  String get timelineEvent1468ce;
+  /// **'Sultan Murad II besieges Krujë for months with a huge army, but the garrison holds out and he withdraws.'**
+  String get timelineEventFirstSiegeOfKruja;
 
-  /// No description provided for @timelineEvent1479ce.
+  /// No description provided for @timelineEventBattleOfAlbulena.
   ///
   /// In en, this message translates to:
-  /// **'Fall of Shkodër — Ottoman conquest of Albania is complete'**
-  String get timelineEvent1479ce;
+  /// **'Skanderbeg routs a large Ottoman army at Albulena (Ujëbardha), one of his most celebrated victories.'**
+  String get timelineEventBattleOfAlbulena;
 
-  /// No description provided for @timelineEvent1571ce.
+  /// No description provided for @timelineEventBaptismalFormula.
   ///
   /// In en, this message translates to:
-  /// **'Battle of Lepanto — Albanian sailors fight on both sides of the Christian–Ottoman naval struggle'**
-  String get timelineEvent1571ce;
+  /// **'Archbishop Pal Engjëlli writes a baptismal formula in Albanian into a Latin letter: \'Un\'te paghesont\' pr\'emenit t\'Atit e t\'Birit e t\'Spertit Senit.\' It is the oldest known written Albanian sentence.'**
+  String get timelineEventBaptismalFormula;
 
-  /// No description provided for @timelineEvent1788ce.
+  /// No description provided for @timelineEventMehmedsSieges.
   ///
   /// In en, this message translates to:
-  /// **'Ali Pasha of Tepelenë establishes the semi-autonomous Pashalik of Yanina'**
-  String get timelineEvent1788ce;
+  /// **'Sultan Mehmed II, conqueror of Constantinople, besieges Krujë twice and builds the fortress of Elbasan to cut Skanderbeg\'s lands in two. Krujë still holds.'**
+  String get timelineEventMehmedsSieges;
 
-  /// No description provided for @timelineEvent1789ce.
+  /// No description provided for @timelineEventSkanderbegDies.
   ///
   /// In en, this message translates to:
-  /// **'The French Revolution begins; its ideals later inspire the Albanian National Awakening (Rilindja)'**
-  String get timelineEvent1789ce;
+  /// **'Skanderbeg dies of fever in Lezhë on 17 January. Without him, the resistance slowly gives way.'**
+  String get timelineEventSkanderbegDies;
 
-  /// No description provided for @timelineEvent1830ce.
+  /// No description provided for @timelineEventArbereshMigration.
   ///
   /// In en, this message translates to:
-  /// **'The Massacre of the Beys at Manastir ends Albanian feudal autonomy under Ottoman reforms'**
-  String get timelineEvent1830ce;
+  /// **'As the Ottomans advance, thousands of Albanians cross to southern Italy and Sicily. Their descendants, the Arbëreshë, still speak Albanian in dozens of villages today.'**
+  String get timelineEventArbereshMigration;
 
-  /// No description provided for @timelineEvent1878ce.
+  /// No description provided for @timelineEventShkoderFalls.
   ///
   /// In en, this message translates to:
-  /// **'The League of Prizren is founded — the first organised Albanian national movement'**
-  String get timelineEvent1878ce;
+  /// **'After a long siege, Venice hands Shkodër to the Ottomans. Almost all of Albania is now under Ottoman rule; Durrës follows in 1501.'**
+  String get timelineEventShkoderFalls;
 
-  /// No description provided for @timelineEvent1908ce.
+  /// No description provided for @timelineEventMeshari.
   ///
   /// In en, this message translates to:
-  /// **'The Congress of Manastir standardises the Albanian Latin alphabet'**
-  String get timelineEvent1908ce;
+  /// **'Gjon Buzuku, a Catholic priest, completes the Meshari (Missal), the oldest surviving book in Albanian. A single copy survives, in the Vatican Library.'**
+  String get timelineEventMeshari;
 
-  /// No description provided for @timelineEvent1912ce.
+  /// No description provided for @timelineEventBardhiDictionary.
   ///
   /// In en, this message translates to:
-  /// **'Ismail Qemali proclaims Albanian independence in Vlorë on 28 November'**
-  String get timelineEvent1912ce;
+  /// **'Frang Bardhi publishes a Latin–Albanian dictionary in Rome, the first dictionary of the Albanian language.'**
+  String get timelineEventBardhiDictionary;
 
-  /// No description provided for @timelineEvent1914ce.
+  /// No description provided for @timelineEventIslamization.
   ///
   /// In en, this message translates to:
-  /// **'World War I — Albania becomes a contested battleground for several European powers'**
-  String get timelineEvent1914ce;
+  /// **'Over the 17th century most Albanians convert to Islam, often to escape heavy taxes and to rise in Ottoman service. Catholic and Orthodox communities endure.'**
+  String get timelineEventIslamization;
 
-  /// No description provided for @timelineEvent1920ce.
+  /// No description provided for @timelineEventCuneusProphetarum.
   ///
   /// In en, this message translates to:
-  /// **'The Congress of Lushnjë makes Tirana the capital of Albania'**
-  String get timelineEvent1920ce;
+  /// **'Archbishop Pjetër Bogdani publishes Cuneus Prophetarum (The Band of the Prophets) in Padua, the first major original work of Albanian prose.'**
+  String get timelineEventCuneusProphetarum;
 
-  /// No description provided for @timelineEvent1928ce.
+  /// No description provided for @timelineEventVoskopojePress.
   ///
   /// In en, this message translates to:
-  /// **'Ahmet Zogu is crowned King Zog I of the Albanians'**
-  String get timelineEvent1928ce;
+  /// **'Voskopojë, a rich trading town near Korçë, opens one of the first printing presses in the Ottoman Balkans. In 1744 it founds the New Academy.'**
+  String get timelineEventVoskopojePress;
 
-  /// No description provided for @timelineEvent1939ce.
+  /// No description provided for @timelineEventBushatiPashalik.
   ///
   /// In en, this message translates to:
-  /// **'World War II begins'**
-  String get timelineEvent1939ce;
+  /// **'Mehmed Pasha Bushati makes Shkodër the seat of a near-independent pashalik that his family rules until 1831.'**
+  String get timelineEventBushatiPashalik;
 
-  /// No description provided for @timelineEvent1939ceAlbania.
+  /// No description provided for @timelineEventAliPashaRises.
   ///
   /// In en, this message translates to:
-  /// **'Italy invades Albania, beginning the Axis occupation'**
-  String get timelineEvent1939ceAlbania;
+  /// **'Ali Pasha becomes ruler of Ioannina and builds a near-independent state across southern Albania and mainland Greece.'**
+  String get timelineEventAliPashaRises;
 
-  /// No description provided for @timelineEvent1944ce.
+  /// No description provided for @timelineEventAliPashaFalls.
   ///
   /// In en, this message translates to:
-  /// **'Albania is liberated by partisan forces; Enver Hoxha\'s communist regime begins'**
-  String get timelineEvent1944ce;
+  /// **'After a long siege at Ioannina, the Sultan\'s agents kill the elderly Ali Pasha and send his head to Constantinople.'**
+  String get timelineEventAliPashaFalls;
 
-  /// No description provided for @timelineEvent1967ce.
+  /// No description provided for @timelineEventMassacreOfTheBeys.
   ///
   /// In en, this message translates to:
-  /// **'Albania declares itself the world\'s first officially atheist state'**
-  String get timelineEvent1967ce;
+  /// **'The Ottoman grand vizier invites Albanian beys to Manastir with a promise of amnesty and has some 500 of them killed, breaking the power of the old lords.'**
+  String get timelineEventMassacreOfTheBeys;
 
-  /// No description provided for @timelineEvent1991ce.
+  /// No description provided for @timelineEventVeqilharxhiPrimer.
   ///
   /// In en, this message translates to:
-  /// **'First multi-party elections end 46 years of communist rule'**
-  String get timelineEvent1991ce;
+  /// **'Naum Veqilharxhi publishes an Albanian spelling book in an alphabet of his own invention, one of the first works of the National Awakening.'**
+  String get timelineEventVeqilharxhiPrimer;
 
-  /// No description provided for @timelineEvent1997ce.
+  /// No description provided for @timelineEventLeagueOfPrizren.
   ///
   /// In en, this message translates to:
-  /// **'The collapse of nationwide pyramid schemes triggers civil unrest'**
-  String get timelineEvent1997ce;
+  /// **'As the Great Powers prepare to hand Albanian-inhabited lands to Serbia and Montenegro, Albanian leaders meet in Prizren to defend them. It is the first organised national movement; Ottoman troops crush it in 1881.'**
+  String get timelineEventLeagueOfPrizren;
 
-  /// No description provided for @timelineEvent2009ce.
+  /// No description provided for @timelineEventIstanbulAlphabet.
   ///
   /// In en, this message translates to:
-  /// **'Albania joins NATO'**
-  String get timelineEvent2009ce;
+  /// **'Sami Frashëri and fellow patriots found a society in Istanbul to print books in Albanian and publish an alphabet for the language.'**
+  String get timelineEventIstanbulAlphabet;
 
-  /// No description provided for @timelineEvent2019ce.
+  /// No description provided for @timelineEventHerdsAndFields.
   ///
   /// In en, this message translates to:
-  /// **'A devastating earthquake strikes the Durrës region'**
-  String get timelineEvent2019ce;
+  /// **'Naim Frashëri publishes Bagëti e Bujqësi (Herds and Fields), a hymn to the Albanian countryside that becomes the best-loved poem of the Awakening.'**
+  String get timelineEventHerdsAndFields;
 
-  /// No description provided for @privacyPolicy.
+  /// No description provided for @timelineEventFirstAlbanianSchool.
   ///
   /// In en, this message translates to:
-  /// **'Privacy Policy'**
-  String get privacyPolicy;
+  /// **'On 7 March, the Mësonjëtorja opens in Korçë, the first school to teach in Albanian.'**
+  String get timelineEventFirstAlbanianSchool;
 
-  /// No description provided for @privacyStatement.
+  /// No description provided for @timelineEventSchoolForGirls.
   ///
   /// In en, this message translates to:
-  /// **'As explained in our {privacyUrl} we do not collect any personal information.'**
-  String privacyStatement(Object privacyUrl);
+  /// **'Sevasti Qiriazi founds the first Albanian school for girls in Korçë, where girls learn to read and write in their own language.'**
+  String get timelineEventSchoolForGirls;
+
+  /// No description provided for @timelineEventSamiManifesto.
+  ///
+  /// In en, this message translates to:
+  /// **'Sami Frashëri publishes Albania: What It Was, What It Is and What It Will Be, a blueprint for a free Albanian state.'**
+  String get timelineEventSamiManifesto;
+
+  /// No description provided for @timelineEventFirstAlbanianLiturgy.
+  ///
+  /// In en, this message translates to:
+  /// **'In Boston, Fan Noli celebrates the first Orthodox liturgy in the Albanian language, the start of an Albanian Orthodox church.'**
+  String get timelineEventFirstAlbanianLiturgy;
+
+  /// No description provided for @timelineEventCongressOfManastir.
+  ///
+  /// In en, this message translates to:
+  /// **'The Congress of Manastir adopts the Latin-based Albanian alphabet that is still used today.'**
+  String get timelineEventCongressOfManastir;
+
+  /// No description provided for @timelineEventFlagAtDeciq.
+  ///
+  /// In en, this message translates to:
+  /// **'During the highland uprising of 1911, Ded Gjo Luli\'s fighters win at Deçiq and raise the Albanian flag, for the first time since the 15th century.'**
+  String get timelineEventFlagAtDeciq;
+
+  /// No description provided for @timelineEventIndependence.
+  ///
+  /// In en, this message translates to:
+  /// **'On 28 November, Ismail Qemali raises the flag in Vlorë and declares Albania independent of the Ottoman Empire.'**
+  String get timelineEventIndependence;
+
+  /// No description provided for @timelineEventLondonBorders.
+  ///
+  /// In en, this message translates to:
+  /// **'The Great Powers recognise an independent Albania but leave Kosovo and other Albanian-inhabited lands outside its borders.'**
+  String get timelineEventLondonBorders;
+
+  /// No description provided for @timelineEventPrinceWied.
+  ///
+  /// In en, this message translates to:
+  /// **'Prince Wilhelm of Wied arrives to rule the new Principality of Albania. Within six months, revolt and World War I drive him out.'**
+  String get timelineEventPrinceWied;
+
+  /// No description provided for @timelineEventRepublicOfKorca.
+  ///
+  /// In en, this message translates to:
+  /// **'Under French military protection, Korçë becomes an autonomous Albanian republic with its own schools, stamps and flag.'**
+  String get timelineEventRepublicOfKorca;
+
+  /// No description provided for @timelineEventCongressOfLushnje.
+  ///
+  /// In en, this message translates to:
+  /// **'The Congress of Lushnjë rejects plans to divide Albania among its neighbours and makes Tirana the capital.'**
+  String get timelineEventCongressOfLushnje;
+
+  /// No description provided for @timelineEventVloraWar.
+  ///
+  /// In en, this message translates to:
+  /// **'Albanian volunteers besiege the Italian army in Vlorë, and by September Italy withdraws from mainland Albania. In December, Albania joins the League of Nations.'**
+  String get timelineEventVloraWar;
+
+  /// No description provided for @timelineEventOrthodoxAutocephaly.
+  ///
+  /// In en, this message translates to:
+  /// **'The Congress of Berat declares the Albanian Orthodox Church autocephalous, independent of the Patriarchate of Constantinople.'**
+  String get timelineEventOrthodoxAutocephaly;
+
+  /// No description provided for @timelineEventJuneRevolution.
+  ///
+  /// In en, this message translates to:
+  /// **'A revolt brings Bishop Fan Noli to power with a programme of reforms. Six months later Ahmet Zogu returns with foreign backing and Noli flees.'**
+  String get timelineEventJuneRevolution;
+
+  /// No description provided for @timelineEventKingZog.
+  ///
+  /// In en, this message translates to:
+  /// **'President Ahmet Zogu proclaims himself Zog I, King of the Albanians.'**
+  String get timelineEventKingZog;
+
+  /// No description provided for @timelineEventBektashiCentre.
+  ///
+  /// In en, this message translates to:
+  /// **'Banned in Turkey, the Bektashi Sufi order decides at a congress in Korçë to move its world headquarters to Tirana, where it remains today.'**
+  String get timelineEventBektashiCentre;
+
+  /// No description provided for @timelineEventKanunPublished.
+  ///
+  /// In en, this message translates to:
+  /// **'Shtjefën Gjeçovi\'s collection of the Kanun of Lekë Dukagjini, the customary law of the northern highlands, is published in full.'**
+  String get timelineEventKanunPublished;
+
+  /// No description provided for @timelineEventItalianInvasion.
+  ///
+  /// In en, this message translates to:
+  /// **'On 7 April, Mussolini\'s troops land at Durrës and other ports. King Zog flees, and Albania is joined to the Italian crown.'**
+  String get timelineEventItalianInvasion;
+
+  /// No description provided for @timelineEventKokalariBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Musine Kokalari publishes As My Old Mother Tells Me, stories in the dialect of Gjirokastër. She is the first Albanian woman to publish prose.'**
+  String get timelineEventKokalariBook;
+
+  /// No description provided for @timelineEventWarWithGreece.
+  ///
+  /// In en, this message translates to:
+  /// **'Italy attacks Greece from Albanian soil. The Greek counter-attack pushes deep into the south, taking Korçë in November and Gjirokastër in December.'**
+  String get timelineEventWarWithGreece;
+
+  /// No description provided for @timelineEventResistanceOrganises.
+  ///
+  /// In en, this message translates to:
+  /// **'At the Peza Conference, communists and nationalists form the National Liberation Movement. The rival nationalist Balli Kombëtar is founded later that year.'**
+  String get timelineEventResistanceOrganises;
+
+  /// No description provided for @timelineEventGermanOccupation.
+  ///
+  /// In en, this message translates to:
+  /// **'Italy surrenders in September and German troops occupy Albania. The rival resistance groups now fight each other as well as the occupiers.'**
+  String get timelineEventGermanOccupation;
+
+  /// No description provided for @timelineEventBesaJews.
+  ///
+  /// In en, this message translates to:
+  /// **'Albanian families, Muslim and Christian, hide Jewish refugees from the occupiers, honouring besa, a sacred promise. Albania ends the war with more Jews than it had before.'**
+  String get timelineEventBesaJews;
+
+  /// No description provided for @timelineEventGovernmentAtBerat.
+  ///
+  /// In en, this message translates to:
+  /// **'Meeting in Berat in October, the communist-led resistance council forms a provisional government with Enver Hoxha as prime minister.'**
+  String get timelineEventGovernmentAtBerat;
+
+  /// No description provided for @timelineEventLiberation.
+  ///
+  /// In en, this message translates to:
+  /// **'On 29 November the last German troops leave. The communist-led partisans take power, and Enver Hoxha begins four decades of one-party rule.'**
+  String get timelineEventLiberation;
+
+  /// No description provided for @timelineEventPeoplesRepublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Albania is proclaimed a People\'s Republic. Opponents are tried and imprisoned, among them the writer Musine Kokalari.'**
+  String get timelineEventPeoplesRepublic;
+
+  /// No description provided for @timelineEventCorfuChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Mines in the Corfu Channel badly damage two British destroyers and kill 44 sailors. The dispute becomes the first case judged by the International Court of Justice.'**
+  String get timelineEventCorfuChannel;
+
+  /// No description provided for @timelineEventBreakWithYugoslavia.
+  ///
+  /// In en, this message translates to:
+  /// **'When Tito breaks with Stalin, Hoxha cuts ties with Yugoslavia and turns to the Soviet Union.'**
+  String get timelineEventBreakWithYugoslavia;
+
+  /// No description provided for @timelineEventBreakWithMoscow.
+  ///
+  /// In en, this message translates to:
+  /// **'Albania sides with China against Khrushchev. The Soviet Union breaks off relations and pulls its forces out of the naval base at Vlorë.'**
+  String get timelineEventBreakWithMoscow;
+
+  /// No description provided for @timelineEventAtheistState.
+  ///
+  /// In en, this message translates to:
+  /// **'The regime closes or destroys mosques and churches and declares Albania the world\'s first atheist state.'**
+  String get timelineEventAtheistState;
+
+  /// No description provided for @timelineEventBunkers.
+  ///
+  /// In en, this message translates to:
+  /// **'Fearing invasion, the regime covers the country with concrete bunkers, some 170,000 of them, built from the late 1960s to the mid-1980s.'**
+  String get timelineEventBunkers;
+
+  /// No description provided for @timelineEventChronicleInStone.
+  ///
+  /// In en, this message translates to:
+  /// **'Ismail Kadare publishes Chronicle in Stone, which shows his native Gjirokastër during World War II through the eyes of a boy.'**
+  String get timelineEventChronicleInStone;
+
+  /// No description provided for @timelineEventOrthographicCongress.
+  ///
+  /// In en, this message translates to:
+  /// **'The Congress of Orthography fixes a single standard for written Albanian, based mainly on the southern Tosk dialect.'**
+  String get timelineEventOrthographicCongress;
+
+  /// No description provided for @timelineEventBreakWithChina.
+  ///
+  /// In en, this message translates to:
+  /// **'China ends its aid, and Albania breaks with its last ally, relying only on itself.'**
+  String get timelineEventBreakWithChina;
+
+  /// No description provided for @timelineEventMotherTeresaNobel.
+  ///
+  /// In en, this message translates to:
+  /// **'Mother Teresa, born Anjezë Gonxhe Bojaxhiu to an Albanian family in Skopje, receives the Nobel Peace Prize for her work among the poor of Calcutta.'**
+  String get timelineEventMotherTeresaNobel;
+
+  /// No description provided for @timelineEventHoxhaDies.
+  ///
+  /// In en, this message translates to:
+  /// **'Enver Hoxha dies on 11 April. His successor, Ramiz Alia, loosens controls only slowly.'**
+  String get timelineEventHoxhaDies;
+
+  /// No description provided for @timelineEventRegimeCracks.
+  ///
+  /// In en, this message translates to:
+  /// **'In July, thousands of Albanians rush into foreign embassies to leave the country. In December, student protests in Tirana force the regime to allow opposition parties.'**
+  String get timelineEventRegimeCracks;
+
+  /// No description provided for @timelineEventFaithReturns.
+  ///
+  /// In en, this message translates to:
+  /// **'On 4 November, the priest Simon Jubani says the first public Mass in decades, in a cemetery in Shkodër. Within months, mosques and churches reopen across the country.'**
+  String get timelineEventFaithReturns;
+
+  /// No description provided for @timelineEventFirstFreeElections.
+  ///
+  /// In en, this message translates to:
+  /// **'In March, Albania holds its first multi-party elections in decades. The former communists win, but a year later the Democratic Party takes power.'**
+  String get timelineEventFirstFreeElections;
+
+  /// No description provided for @timelineEventVloraShip.
+  ///
+  /// In en, this message translates to:
+  /// **'On 8 August the freighter Vlora reaches Bari carrying an estimated 20,000 Albanians, the defining image of a mass exodus.'**
+  String get timelineEventVloraShip;
+
+  /// No description provided for @timelineEventPyramidCrisis.
+  ///
+  /// In en, this message translates to:
+  /// **'The collapse of pyramid investment schemes wipes out the savings of much of the country and sets off armed unrest in which more than 2,000 people die.'**
+  String get timelineEventPyramidCrisis;
+
+  /// No description provided for @timelineEventKosovoRefugees.
+  ///
+  /// In en, this message translates to:
+  /// **'During the Kosovo war, Albania takes in some 450,000 refugees, most of them in private homes.'**
+  String get timelineEventKosovoRefugees;
+
+  /// No description provided for @timelineEventIsoPolyphony.
+  ///
+  /// In en, this message translates to:
+  /// **'UNESCO proclaims Albanian folk iso-polyphony, the many-voiced singing of the south, a masterpiece of humanity\'s oral and intangible heritage.'**
+  String get timelineEventIsoPolyphony;
+
+  /// No description provided for @timelineEventKadareBooker.
+  ///
+  /// In en, this message translates to:
+  /// **'Ismail Kadare wins the first Man Booker International Prize for his body of work.'**
+  String get timelineEventKadareBooker;
+
+  /// No description provided for @timelineEventNatoMembership.
+  ///
+  /// In en, this message translates to:
+  /// **'Albania becomes a member of NATO on 1 April and applies to join the European Union weeks later.'**
+  String get timelineEventNatoMembership;
+
+  /// No description provided for @timelineEventEuCandidate.
+  ///
+  /// In en, this message translates to:
+  /// **'Albania becomes an official candidate for membership of the European Union.'**
+  String get timelineEventEuCandidate;
+
+  /// No description provided for @timelineEventDurresEarthquake.
+  ///
+  /// In en, this message translates to:
+  /// **'A magnitude 6.4 earthquake strikes near Durrës on 26 November, killing 51 people and leaving thousands homeless.'**
+  String get timelineEventDurresEarthquake;
+
+  /// No description provided for @timelineEventEuTalks.
+  ///
+  /// In en, this message translates to:
+  /// **'Albania formally opens accession negotiations with the European Union on 19 July.'**
+  String get timelineEventEuTalks;
 
   /// No description provided for @pageNotFoundBackButton.
   ///

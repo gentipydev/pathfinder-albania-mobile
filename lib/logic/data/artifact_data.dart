@@ -8,7 +8,6 @@ class ArtifactData {
     required this.title,
     required this.image,
     required this.imageSmall,
-    required this.imageMedium,
     required this.date,
     required this.period,
     required this.country,
@@ -16,9 +15,6 @@ class ArtifactData {
     required this.dimension,
     required this.classification,
     required this.culture,
-    required this.objectType,
-    required this.objectBeginYear,
-    required this.objectEndYear,
     this.iconName = '',
   });
 
@@ -29,7 +25,6 @@ class ArtifactData {
       title: (json['title'] as String?) ?? '',
       image: url,
       imageSmall: (json['image_small'] as String?) ?? url,
-      imageMedium: (json['image_medium'] as String?) ?? url,
       date: (json['date'] as String?) ?? '',
       period: (json['period'] as String?) ?? '',
       country: (json['country'] as String?) ?? '',
@@ -37,9 +32,6 @@ class ArtifactData {
       dimension: (json['dimension'] as String?) ?? '',
       classification: (json['classification'] as String?) ?? '',
       culture: (json['culture'] as String?) ?? '',
-      objectType: (json['object_type'] as String?) ?? '',
-      objectBeginYear: (json['object_begin_year'] as int?) ?? 0,
-      objectEndYear: (json['object_end_year'] as int?) ?? 0,
       iconName: (json['icon_name'] as String?) ?? '',
     );
   }
@@ -48,10 +40,6 @@ class ArtifactData {
   final String title;
   final String image;
   final String imageSmall;
-  final String imageMedium;
-  final int objectBeginYear;
-  final int objectEndYear;
-  final String objectType;
 
   final String date;
   final String period;
@@ -61,10 +49,4 @@ class ArtifactData {
   final String classification;
   final String culture;
   final String iconName;
-
-  /// Approximate creation year for the time-range search histogram.
-  int get year => objectBeginYear;
-
-  /// Whitespace-joined haystack used by the in-destination keyword filter.
-  String get keywords => '$culture $medium $classification $period $country $objectType'.toLowerCase();
 }

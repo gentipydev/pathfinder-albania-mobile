@@ -5,10 +5,10 @@ import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' show MapboxOptions;
+import 'package:travel_buddy/agent/agent_module.dart';
+import 'package:travel_buddy/config/env.dart';
 import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/features/auth/bloc/auth_event.dart';
-import 'package:travel_buddy/features/preferences/bloc/preferences_bloc.dart';
-import 'package:travel_buddy/features/preferences/bloc/preferences_event.dart';
 import 'package:travel_buddy/features/settings/bloc/settings_event.dart';
 import 'package:travel_buddy/logic/common/dio_client.dart';
 import 'package:travel_buddy/logic/common/platform_info.dart';
@@ -20,7 +20,7 @@ class AppLogic {
 
   /// Set by `startWarmup`. `bootstrap` awaits it before kicking off
   /// `artifactsBloc.preloadAll()` so the eight catalog requests don't
-  /// race the Render free tier's 30–60 s cold-start.
+  /// race the backend's scale-from-zero cold-start.
   Future<void>? _warmupFuture;
 
   /// Held for the lifetime of the app to flush throttled saves on
@@ -51,14 +51,11 @@ class AppLogic {
   Future<void> bootstrap() async {
     debugPrint('bootstrap start...');
     // Set min-sizes for desktop apps
-    // TODO: Test on Linux and confirm whether it's safe to call there, according to issue #183 its not.
     if (!kIsWeb && (PlatformInfo.isWindows || PlatformInfo.isMacOS)) {
       await DesktopWindow.setMinWindowSize($styles.sizes.minAppSize);
     }
 
     if (kIsWeb) {
-      // SB: This is intentionally not a debugPrint, as it's a message for users who open the console on web.
-      // TODO(rebrand): replace with the Travel Buddy github issues URL.
       debugPrint('Thanks for checking out Travel Buddy on the web!');
       // Required on web to automatically enable accessibility features
       WidgetsFlutterBinding.ensureInitialized().ensureSemantics();
@@ -66,6 +63,12 @@ class AppLogic {
 
     // Load any bitmaps the views might need
     await AppBitmaps.init();
+
+    // Mapbox needs its public access token before any MapWidget is built.
+    // Guarded so a missing token leaves maps blank instead of throwing on
+    // launch — the same fail-soft posture the app takes elsewhere.
+    final mapboxToken = Env.mapboxAccessToken;
+    if (mapboxToken.isNotEmpty) MapboxOptions.setAccessToken(mapboxToken);
 
     // Set preferred refresh rate to the max possible (the OS may ignore this)
     if (!kIsWeb && PlatformInfo.isAndroid) {
@@ -75,14 +78,8 @@ class AppLogic {
     // Settings
     await settingsBloc.loadFromPersistence();
 
-    // Auth (must run after Supabase.initialize in main())
-    authBloc.add(const AuthInitialized());
-
-    // Preferences: fire-and-forget. Handler self-guards on missing access
-    // token so a cold-start dispatch before the session is restored is a
-    // no-op; AuthBloc dispatches a follow-up load in `_ensureSyncedAndLoad`
-    // for the freshly-signed-in case.
-    GetIt.I<PreferencesBloc>().add(const PreferencesLoadRequested());
+    // Agent side: restore the auth session and load preferences.
+    if (Env.agentEnabled) AgentModule.onBootstrap();
 
     // Localizations: LocaleLogic resolves from persisted/system locale and
     // returns the code; SettingsBloc adopts it without re-running the
@@ -124,22 +121,24 @@ class AppLogic {
 
     // Load initial view (replace empty initial view which is covered by a native splash screen)
     final showIntro = settingsBloc.state.hasCompletedOnboarding == false;
-    final authed = authBloc.state.isAuthenticated;
     if (showIntro) {
       appRouter.go(ScreenPaths.intro);
-    } else if (!authed) {
+    } else if (needsLogin) {
       appRouter.go(ScreenPaths.auth);
     } else {
       appRouter.go(initialDeeplink ?? ScreenPaths.home);
     }
   }
 
-  /// Fires a fire-and-forget GET `/` against the backend so the Render
-  /// free-tier dyno wakes up while the rest of bootstrap runs. Stores the
+  /// Fires a fire-and-forget GET `/` against the backend so an idled
+  /// instance wakes up while the rest of bootstrap runs. Stores the
   /// future so `_warmupThenPreload` can wait on it. Safe to call multiple
   /// times — subsequent calls are no-ops.
+  ///
+  /// The backend has no `GET /` route, so this 404s by design — the point
+  /// is the round trip, not the response.
   void startWarmup() {
-    if (_warmupFuture != null) return;
+    if (_warmupFuture != null || !Env.hasApiBaseUrl) return;
     _warmupFuture = appDio
         .get<dynamic>(
           '/',
@@ -166,11 +165,7 @@ class AppLogic {
     unawaited(collectiblesBloc.flushPendingSaveAwaitable());
   }
 
-  Future<T?> showFullscreenDialogRoute<T>(
-    BuildContext context,
-    Widget child, {
-    bool transparent = false,
-  }) async {
+  Future<T?> showFullscreenDialogRoute<T>(BuildContext context, Widget child) async {
     return await Navigator.of(context).push<T>(
       PageRoutes.dialog<T>(child, duration: $styles.times.pageTransition),
     );
@@ -294,13 +289,5 @@ class AppLogic {
     for (var url in urls) {
       precacheUrl(url, context);
     }
-  }
-}
-
-class AppImageCache extends WidgetsFlutterBinding {
-  @override
-  ImageCache createImageCache() {
-    this.imageCache.maximumSizeBytes = 250 << 20; // 250mb
-    return super.createImageCache();
   }
 }

@@ -23,16 +23,4 @@ extension DestinationTypeSlug on DestinationType {
         DestinationType.kruja => 'kruja',
         DestinationType.theth => 'theth',
       };
-
-  static DestinationType? fromSlug(String slug) =>
-      DestinationType.values.firstWhereSlugOrNull(slug);
-}
-
-extension on Iterable<DestinationType> {
-  DestinationType? firstWhereSlugOrNull(String slug) {
-    for (final t in this) {
-      if (t.slug == slug) return t;
-    }
-    return null;
-  }
 }

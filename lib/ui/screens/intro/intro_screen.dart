@@ -45,8 +45,7 @@ class _IntroScreenState extends State<IntroScreen> {
   void _handleIntroCompletePressed() {
     if (_currentPage.value == pageData.length - 1) {
       settingsBloc.add(const SettingsOnboardingCompletedToggled(true));
-      final authed = authBloc.state.isAuthenticated;
-      context.go(authed ? ScreenPaths.home : ScreenPaths.auth);
+      context.go(needsLogin ? ScreenPaths.auth : ScreenPaths.home);
     }
   }
 
@@ -82,9 +81,9 @@ class _IntroScreenState extends State<IntroScreen> {
 
     // Set the page data, as strings may have changed based on locale
     pageData = [
-      _PageData($strings.introTitleJourney, $strings.introDescriptionNavigate, 'camel', '1'),
+      _PageData($strings.introTitleJourney, $strings.introDescriptionNavigate, 'butrint', '1'),
       _PageData($strings.introTitleExplore, $strings.introDescriptionUncover, 'kruja', '2'),
-      _PageData($strings.introTitleDiscover, $strings.introDescriptionLearn, 'statue', '3'),
+      _PageData($strings.introTitleDiscover, $strings.introDescriptionLearn, 'apollonia', '3'),
     ];
 
     // This view uses a full screen PageView to enable swipe navigation.

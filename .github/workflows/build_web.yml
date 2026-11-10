@@ -50,6 +50,8 @@ jobs:
         SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
         API_BASE_URL=${API_BASE_URL}
         EOF
+        # No MAPBOX_ACCESS_TOKEN: mapbox_maps_flutter is iOS/Android only, so
+        # every map surface renders its unsupported-platform fallback on web.
 
     - name: Build Flutter web app - with WASM
       if: ${{ inputs.wasm }}

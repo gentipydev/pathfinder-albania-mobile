@@ -56,47 +56,44 @@ void main() {
         timelineLogicProvider: () => timelineLogic,
       );
 
-  test('initial state matches legacy field defaults (isSearchPanelOpen=true)',
-      () {
+  test('initial state defaults', () {
     final bloc = build();
     expect(bloc.state, const SettingsState());
     expect(bloc.state.hasCompletedOnboarding, isFalse);
-    expect(bloc.state.hasDismissedSearchMessage, isFalse);
-    expect(bloc.state.isSearchPanelOpen, isTrue);
     expect(bloc.state.currentLocale, isNull);
     expect(bloc.state.prevDestinationIndex, isNull);
   });
 
-  test(
-      'load with empty JSON flips isSearchPanelOpen to FALSE (legacy quirk preserved)',
-      () async {
+  test('load with empty JSON keeps the defaults', () async {
     SharedPreferences.setMockInitialValues({'settings.dat': '{}'});
     final bloc = build();
     await bloc.loadFromPersistence();
-    expect(bloc.state.isSearchPanelOpen, isFalse);
-    expect(bloc.state.hasCompletedOnboarding, isFalse);
-    expect(bloc.state.currentLocale, isNull);
-    expect(bloc.state.prevDestinationIndex, isNull);
+    expect(bloc.state, const SettingsState());
   });
 
-  test('load with populated JSON honors legacy lastDestinationIndex key',
-      () async {
+  test(
+      'load with populated JSON honors legacy lastDestinationIndex key and '
+      'ignores retired search keys', () async {
     SharedPreferences.setMockInitialValues({
       'settings.dat': jsonEncode({
         'hasCompletedOnboarding': true,
+        // Retired keys written by older builds; loading must ignore them.
         'hasDismissedSearchMessage': true,
-        'currentLocale': 'sq',
         'isSearchPanelOpen': true,
+        'currentLocale': 'sq',
         'lastDestinationIndex': 3,
       }),
     });
     final bloc = build();
     await bloc.loadFromPersistence();
-    expect(bloc.state.hasCompletedOnboarding, isTrue);
-    expect(bloc.state.hasDismissedSearchMessage, isTrue);
-    expect(bloc.state.currentLocale, 'sq');
-    expect(bloc.state.isSearchPanelOpen, isTrue);
-    expect(bloc.state.prevDestinationIndex, 3);
+    expect(
+      bloc.state,
+      const SettingsState(
+        hasCompletedOnboarding: true,
+        currentLocale: 'sq',
+        prevDestinationIndex: 3,
+      ),
+    );
   });
 
   test('load with malformed types falls back to defaults', () async {
@@ -120,15 +117,6 @@ void main() {
     act: (b) => b.add(const SettingsOnboardingCompletedToggled(true)),
     expect: () => [
       const SettingsState(hasCompletedOnboarding: true),
-    ],
-  );
-
-  blocTest<SettingsBloc, SettingsState>(
-    'SettingsSearchPanelToggled emits',
-    build: build,
-    act: (b) => b.add(const SettingsSearchPanelToggled(false)),
-    expect: () => [
-      const SettingsState(isSearchPanelOpen: false),
     ],
   );
 
@@ -239,6 +227,8 @@ void main() {
     expect(parsed['currentLocale'], 'sq');
     expect(parsed.containsKey('prevDestinationIndex'), isFalse,
         reason: 'must not introduce a new key');
+    expect(parsed.containsKey('hasDismissedSearchMessage'), isFalse);
+    expect(parsed.containsKey('isSearchPanelOpen'), isFalse);
   });
 
   testWidgets(

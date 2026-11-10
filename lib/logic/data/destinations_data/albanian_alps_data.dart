@@ -2,22 +2,14 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
 
 class AlbanianAlpsData extends DestinationData {
-  // TODO(rebrand): lat/lng, videoId, year ranges, and event year keys below
-  // are inherited from the original upstream template data and need to be
-  // replaced with real Albanian Alps values.
   AlbanianAlpsData()
     : super(
         type: DestinationType.albanianAlps,
         title: $strings.albanianAlpsTitle,
-        subTitle: $strings.albanianAlpsSubTitle,
         regionTitle: $strings.albanianAlpsRegionTitle,
-        videoId: 'lJKX3Y7Vqvs',
-        startYr: -2600,
-        endYr: -2500,
-        artifactStartYr: -2800,
-        artifactEndYr: -2300,
+        videoId: 'ino-e2NHikE',
+        startYr: 1400,
         artifactCulture: $strings.albanianAlpsArtifactCulture,
-        artifactGeolocation: $strings.albanianAlpsArtifactGeolocation,
         lat: 42.4552,
         lng: 19.8030,
         pullQuote1Top: $strings.albanianAlpsPullQuote1Top,
@@ -36,12 +28,12 @@ class AlbanianAlpsData extends DestinationData {
         locationInfo1: $strings.albanianAlpsLocationInfo1,
         locationInfo2: $strings.albanianAlpsLocationInfo2,
         events: {
-          -2575: $strings.albanianAlps2575bce,
-          -2465: $strings.albanianAlps2465bce,
-          -443: $strings.albanianAlps443bce,
-          1925: $strings.albanianAlps1925ce,
-          1979: $strings.albanianAlps1979ce,
-          1990: $strings.albanianAlps1990ce,
+          1909: $strings.albanianAlps1909ce,
+          1929: $strings.albanianAlps1929ce,
+          1996: $strings.albanianAlps1996ce,
+          2009: $strings.albanianAlps2009ce,
+          2011: $strings.albanianAlps2011ce,
+          2022: $strings.albanianAlps2022ce,
         },
       );
 }

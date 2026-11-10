@@ -3,12 +3,17 @@ import 'dart:async';
 import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_circular_text/circular_text.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' deferred as google_map;
-import 'package:travel_buddy/common_libs.dart';
+// `hide Size`: Mapbox exports its own Size, which shadows dart:ui's
+// everywhere Flutter widgets need it.
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' hide Size;
+// `hide Point`: common_libs re-exports dart:math, whose Point collides with
+// the GeoJSON Point that Mapbox geometries are built from.
+import 'package:travel_buddy/common_libs.dart' hide Point;
 import 'package:travel_buddy/logic/common/animate_utils.dart';
 import 'package:travel_buddy/logic/common/platform_info.dart';
 import 'package:travel_buddy/logic/common/string_utils.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
+import 'package:travel_buddy/styles/map_style.dart';
 import 'package:travel_buddy/ui/common/app_icons.dart';
 import 'package:travel_buddy/ui/common/blend_mask.dart';
 import 'package:travel_buddy/ui/common/centered_box.dart';
@@ -16,7 +21,7 @@ import 'package:travel_buddy/ui/common/compass_divider.dart';
 import 'package:travel_buddy/ui/common/controls/trackpad_listener.dart';
 import 'package:travel_buddy/ui/common/curved_clippers.dart';
 import 'package:travel_buddy/ui/common/fullscreen_keyboard_list_scroller.dart';
-import 'package:travel_buddy/ui/common/google_maps_marker.dart';
+import 'package:travel_buddy/ui/common/map_marker.dart';
 import 'package:travel_buddy/ui/common/gradient_container.dart';
 import 'package:travel_buddy/ui/common/hidden_collectible.dart';
 import 'package:travel_buddy/ui/common/pop_router_on_over_scroll.dart';

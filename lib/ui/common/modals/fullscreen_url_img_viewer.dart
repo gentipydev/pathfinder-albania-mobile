@@ -4,11 +4,17 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/ui/common/app_icons.dart';
 import 'package:travel_buddy/ui/common/controls/app_header.dart';
 import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
+import 'package:travel_buddy/ui/common/remote_photo.dart';
 import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
 
 class FullscreenUrlImgViewer extends StatefulWidget {
-  const FullscreenUrlImgViewer({super.key, required this.urls, this.index = 0});
+  const FullscreenUrlImgViewer({super.key, required this.urls, this.thumbUrls, this.index = 0});
   final List<String> urls;
+
+  /// Optional small copies of [urls] (same order), usually already cached
+  /// from a grid or carousel. Each shows at once while its full-size image
+  /// loads over it.
+  final List<String>? thumbUrls;
   final int index;
 
   static const double imageScale = 2.5;
@@ -67,7 +73,11 @@ class _FullscreenUrlImgViewerState extends State<FullscreenUrlImgViewer> {
           physics: enableSwipe ? PageScrollPhysics() : NeverScrollableScrollPhysics(),
           controller: _controller,
           itemCount: widget.urls.length,
-          itemBuilder: (_, index) => _Viewer(widget.urls[index], _isZoomed),
+          itemBuilder: (_, index) => _Viewer(
+            widget.urls[index],
+            _isZoomed,
+            thumbUrl: (widget.thumbUrls?.length ?? 0) > index ? widget.thumbUrls![index] : null,
+          ),
           onPageChanged: (_) => AppHaptics.lightImpact(),
         );
       },
@@ -126,10 +136,11 @@ class _FullscreenUrlImgViewerState extends State<FullscreenUrlImgViewer> {
 }
 
 class _Viewer extends StatefulWidget {
-  const _Viewer(this.url, this.isZoomed);
+  const _Viewer(this.url, this.isZoomed, {this.thumbUrl});
 
   final String url;
   final ValueNotifier<bool> isZoomed;
+  final String? thumbUrl;
 
   @override
   State<_Viewer> createState() => _ViewerState();
@@ -142,6 +153,11 @@ class _ViewerState extends State<_Viewer> with SingleTickerProviderStateMixin {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  bool get _hasThumb {
+    final thumb = widget.thumbUrl;
+    return thumb != null && thumb.isNotEmpty && thumb != widget.url;
   }
 
   /// Reset zoom level to 1 on double-tap
@@ -158,12 +174,19 @@ class _ViewerState extends State<_Viewer> with SingleTickerProviderStateMixin {
         maxScale: 5,
         child: Hero(
           tag: widget.url,
-          child: AppImage(
-            image: widget.url.isEmpty ? null : NetworkImage(widget.url),
-            fit: BoxFit.contain,
-            scale: FullscreenUrlImgViewer.imageScale,
-            progress: true,
-          ),
+          child: _hasThumb
+              ? RemotePhoto(
+                  widget.url,
+                  placeholderUrl: widget.thumbUrl,
+                  fit: BoxFit.contain,
+                  scale: FullscreenUrlImgViewer.imageScale,
+                )
+              : AppImage(
+                  image: widget.url.isEmpty ? null : photoImageProvider(widget.url),
+                  fit: BoxFit.contain,
+                  scale: FullscreenUrlImgViewer.imageScale,
+                  progress: true,
+                ),
         ),
       ),
     );

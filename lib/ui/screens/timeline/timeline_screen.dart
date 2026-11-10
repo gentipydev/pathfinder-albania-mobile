@@ -43,7 +43,26 @@ class TimelineScreen extends StatefulWidget {
 class _TimelineScreenState extends State<TimelineScreen> {
   /// Create a scroll controller that the top and bottom timelines can share
   final ScrollController _scroller = ScrollController();
-  final _year = ValueNotifier<int>(0);
+
+  /// Starts where the viewport starts (the timeline's first year), so the era label is right before any scroll.
+  final _year = ValueNotifier<int>(destinationsLogic.timelineStartYear);
+
+  /// Ticks when the main timeline's extent or viewport changes (first layout, zoom, resize). The scroll offset
+  /// doesn't always move then (e.g. when opening at 1500 BCE), so the scrubber listens to this as well.
+  final _scrollMetricsVersion = ValueNotifier<int>(0);
+
+  @override
+  void dispose() {
+    _scroller.dispose();
+    _year.dispose();
+    _scrollMetricsVersion.dispose();
+    super.dispose();
+  }
+
+  bool _handleScrollMetricsChanged(ScrollMetricsNotification n) {
+    if (n.depth == 0) _scrollMetricsVersion.value++;
+    return false;
+  }
 
   void _handleViewportYearChanged(int value) => _year.value = value;
 
@@ -61,16 +80,19 @@ class _TimelineScreenState extends State<TimelineScreen> {
             padding: EdgeInsets.only(bottom: 0),
             child: Column(
               children: [
-                AppHeader(title: $strings.timelineTitleGlobalTimeline),
+                AppHeader(title: $strings.timelineTitle),
 
                 /// Vertically scrolling timeline, manages a ScrollController.
                 Expanded(
-                  child: _ScrollingViewport(
-                    scroller: _scroller,
-                    minSize: minSize,
-                    maxSize: maxSize,
-                    selectedDestination: widget.type,
-                    onYearChanged: _handleViewportYearChanged,
+                  child: NotificationListener<ScrollMetricsNotification>(
+                    onNotification: _handleScrollMetricsChanged,
+                    child: _ScrollingViewport(
+                      scroller: _scroller,
+                      minSize: minSize,
+                      maxSize: maxSize,
+                      selectedDestination: widget.type,
+                      onYearChanged: _handleViewportYearChanged,
+                    ),
                   ),
                 ),
 
@@ -89,8 +111,8 @@ class _TimelineScreenState extends State<TimelineScreen> {
                     padding: EdgeInsets.symmetric(horizontal: $styles.insets.lg),
                     child: _BottomScrubber(
                       _scroller,
+                      scrollMetrics: _scrollMetricsVersion,
                       size: scrubberSize,
-                      timelineMinSize: minSize,
                       selectedDestination: widget.type,
                     ),
                   ),

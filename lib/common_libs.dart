@@ -26,4 +26,3 @@ export 'package:travel_buddy/ui/app_scaffold.dart';
 export 'package:travel_buddy/ui/common/controls/app_image.dart';
 export 'package:travel_buddy/ui/common/controls/buttons.dart';
 export 'package:travel_buddy/ui/common/controls/circle_buttons.dart';
-export 'package:travel_buddy/ui/common/controls/scroll_decorator.dart';

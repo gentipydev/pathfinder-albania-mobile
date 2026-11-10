@@ -2,22 +2,14 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
 
 class BeratData extends DestinationData {
-  // TODO(rebrand): lat/lng, videoId, year ranges, and event year keys below
-  // are inherited from the original upstream template data and need to be
-  // replaced with real Berat values.
   BeratData()
     : super(
         type: DestinationType.berat,
         title: $strings.beratTitle,
-        subTitle: $strings.beratSubTitle,
         regionTitle: $strings.beratRegionTitle,
-        videoId: 'k_615AauSds',
-        startYr: 1922,
-        endYr: 1931,
-        artifactStartYr: 1600,
-        artifactEndYr: 2100,
-        artifactCulture: '',
-        artifactGeolocation: $strings.beratArtifactGeolocation,
+        videoId: 'ryqFzg9z9FU',
+        startYr: -700,
+        artifactCulture: $strings.beratArtifactCulture,
         lat: 40.7053,
         lng: 19.9519,
         pullQuote1Top: $strings.beratPullQuote1Top,
@@ -36,12 +28,12 @@ class BeratData extends DestinationData {
         locationInfo1: $strings.beratLocationInfo1,
         locationInfo2: $strings.beratLocationInfo2,
         events: {
-          1850: $strings.berat1850ce,
-          1921: $strings.berat1921ce,
+          -200: $strings.berat200bce,
+          1417: $strings.berat1417ce,
+          1547: $strings.berat1547ce,
           1922: $strings.berat1922ce,
-          1926: $strings.berat1926ce,
-          1931: $strings.berat1931ce,
-          2006: $strings.berat2006ce,
+          1961: $strings.berat1961ce,
+          2008: $strings.berat2008ce,
         },
       );
 }

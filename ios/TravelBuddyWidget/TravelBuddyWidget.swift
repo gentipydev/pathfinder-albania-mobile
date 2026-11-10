@@ -8,6 +8,8 @@ struct TravelBuddyTimelineEntry : TimelineEntry {
     let date: Date
     // Custom field for the Travel Buddy view
     let discoveredCount:Int;
+    // Number of collectibles in the backend catalog (0 until the app sends it)
+    var totalCount:Int = 0;
     var title:String = "";
     var subTitle:String = "";
     var imageData:String = "";
@@ -27,11 +29,6 @@ struct TravelBuddyWidget: Widget {
     }
 }
 
-struct TravelBuddyConfig {
-    let iosKey = "group.com.travelbuddy.app.widget"
-    let discoveredCountKey = "dicoveredCount"
-}
-
 /// TimelineProvider, returns various TravelBuddyTimelineEntry configurations for different contexts
 struct TravelBuddyTimelineProvider: TimelineProvider {
     // Provide an entry for a placeholder version of the widget
@@ -44,12 +41,14 @@ struct TravelBuddyTimelineProvider: TimelineProvider {
         let entry:TravelBuddyTimelineEntry
         let userDefaults = UserDefaults(suiteName: "group.com.travelbuddy.app.widget")
         let discoveredCount = userDefaults?.integer(forKey: "discoveredCount") ?? 0
+        let totalCount = userDefaults?.integer(forKey: "totalCount") ?? 0
         let title = userDefaults?.string(forKey: "lastDiscoveredTitle") ?? ""
         let subTitle = userDefaults?.string(forKey: "lastDiscoveredSubTitle") ?? ""
         let imageData = userDefaults?.string(forKey: "lastDiscoveredImageData") ?? ""
         entry = TravelBuddyTimelineEntry(
             date: Date(),
             discoveredCount:discoveredCount,
+            totalCount: totalCount,
             title: title,
             subTitle: subTitle.prefix(1).capitalized + subTitle.dropFirst(),
             imageData: imageData

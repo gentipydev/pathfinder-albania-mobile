@@ -131,6 +131,17 @@ void main() {
     await bloc.close();
   });
 
+  test('no backend configured returns empty results without requesting', () async {
+    final bloc = ArtifactsBloc(httpGet: http_.get, baseUrl: () => '');
+    final result = await bloc.getForDestination(DestinationType.butrint);
+    expect(result.highlights, isEmpty);
+    expect(result.collectibles, isEmpty);
+    expect(await bloc.getById('h-1'), isNull);
+    expect(http_.totalCallCount, 0);
+    expect(bloc.state.dataVersion, 0);
+    await bloc.close();
+  });
+
   test('parallel getForDestination calls dedupe to one fetch', () async {
     final completer = Completer<HttpResponse>();
     http_.respond('/destinations/butrint/artifacts', _ok(_bodyForButrint()));
@@ -179,6 +190,33 @@ void main() {
       expect(CollectibleData.forDestination(DestinationType.butrint).length, 1);
     },
   );
+
+  // The artifact carousel reads HighlightData right after awaiting
+  // getForDestination, so the lists must already be filled when the await
+  // returns, not later when the bloc handles its internal event.
+  test('legacy lists are filled as soon as getForDestination returns', () async {
+    http_.respond('/destinations/berat/artifacts', _ok(_bodyForBerat()));
+    final bloc = build();
+    await bloc.getForDestination(DestinationType.berat);
+    expect(
+      HighlightData.forDestination(DestinationType.berat).map((h) => h.id),
+      ['h-3'],
+    );
+    await bloc.close();
+  });
+
+  test('a caller sharing an in-flight fetch also sees the filled lists', () async {
+    final completer = Completer<HttpResponse>();
+    final bloc = ArtifactsBloc(httpGet: (url, {headers}) => completer.future);
+    final first = bloc.getForDestination(DestinationType.butrint);
+    final second = bloc.getForDestination(DestinationType.butrint);
+    completer.complete(_ok(_bodyForButrint()));
+    await second;
+    expect(HighlightData.forDestination(DestinationType.butrint).length, 2);
+    expect(CollectibleData.forDestination(DestinationType.butrint).length, 1);
+    await first;
+    await bloc.close();
+  });
 
   blocTest<ArtifactsBloc, ArtifactsState>(
     'getById cache miss fetches and emits new state',

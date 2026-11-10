@@ -29,11 +29,6 @@ class Throttler {
     _timer = null;
   }
 
-  void reset() {
-    _action = null;
-    _timer = null;
-  }
-
   /// Cancel the pending timer and fire any queued action immediately. Used by
   /// `ThrottledSaveLoadMixin.flushPendingSave` so a backgrounded app doesn't
   /// lose a write that was still inside the throttle window.

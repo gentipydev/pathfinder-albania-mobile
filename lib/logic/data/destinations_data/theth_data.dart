@@ -2,22 +2,14 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
 
 class ThethData extends DestinationData {
-  // TODO(rebrand): lat/lng, videoId, year ranges, and event year keys below
-  // are inherited from the original upstream template data and need to be
-  // replaced with real Theth values.
   ThethData()
     : super(
         type: DestinationType.theth,
         title: $strings.thethTitle,
-        subTitle: $strings.thethSubTitle,
         regionTitle: $strings.thethRegionTitle,
-        videoId: 'cnMa-Sm9H4k',
-        startYr: 1450,
-        endYr: 1572,
-        artifactStartYr: 1200,
-        artifactEndYr: 1700,
+        videoId: 'Ob1A95pc-H8',
+        startYr: 1670,
         artifactCulture: $strings.thethArtifactCulture,
-        artifactGeolocation: $strings.thethArtifactGeolocation,
         lat: 42.4046,
         lng: 19.7681,
         pullQuote1Top: $strings.thethPullQuote1Top,
@@ -36,12 +28,12 @@ class ThethData extends DestinationData {
         locationInfo1: $strings.thethLocationInfo1,
         locationInfo2: $strings.thethLocationInfo2,
         events: {
-          1438: $strings.theth1438ce,
-          1572: $strings.theth1572ce,
-          1867: $strings.theth1867ce,
-          1911: $strings.theth1911ce,
-          1964: $strings.theth1964ce,
-          1997: $strings.theth1997ce,
+          1892: $strings.theth1892ce,
+          1908: $strings.theth1908ce,
+          1966: $strings.theth1966ce,
+          2011: $strings.theth2011ce,
+          2017: $strings.theth2017ce,
+          2022: $strings.theth2022ce,
         },
       );
 }

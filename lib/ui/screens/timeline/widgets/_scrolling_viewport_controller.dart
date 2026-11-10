@@ -26,9 +26,19 @@ class _ScrollingViewportController extends ChangeNotifier {
         final pos = calculateScrollPosFromYear(data.startYr);
         scroller.jumpTo(pos - 200);
         scroller.animateTo(pos, duration: $styles.times.extraSlow, curve: Curves.easeOutCubic);
-        scroller.addListener(_updateCurrentYear);
       }
+      // Track the year for every entry point, including Home (no destination),
+      // so the era label and resize handling always see the current year.
+      scroller.addListener(_updateCurrentYear);
+      _updateCurrentYear();
     });
+  }
+
+  @override
+  void dispose() {
+    scroller.removeListener(_updateCurrentYear);
+    _currentYr.dispose();
+    super.dispose();
   }
 
   void _updateCurrentYear() => _currentYr.value = calculateYearFromScrollPos();

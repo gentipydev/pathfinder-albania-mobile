@@ -98,7 +98,6 @@ class _Text {
 
   late final TextStyle destinationTitle = _createFont(destinationTitleFont, sizePx: 64, heightPx: 56);
 
-  late final TextStyle h1 = _createFont(titleFont, sizePx: 64, heightPx: 62);
   late final TextStyle h2 = _createFont(titleFont, sizePx: 32, heightPx: 46);
   late final TextStyle h3 = _createFont(
     titleFont,
@@ -208,9 +207,8 @@ class _Corners {
   late final double sm = 4;
   late final double md = 8;
 
-  /// Card / bubble / photo radius — fills the gap between [md] and [lg].
+  /// Card / bubble / photo radius.
   late final double card = 16;
-  late final double lg = 32;
 
   /// Fully-rounded pill radius.
   late final double pill = 999;

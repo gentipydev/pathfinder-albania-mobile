@@ -8,7 +8,6 @@ class DestinationIllustrationConfig {
     this.enableFg = true,
     this.enableBg = true,
     this.enableMg = true,
-    this.enableHero = true,
     this.enableAnims = true,
     this.shortMode = false,
   });
@@ -17,7 +16,6 @@ class DestinationIllustrationConfig {
   final bool enableFg;
   final bool enableBg;
   final bool enableMg;
-  final bool enableHero;
   final bool enableAnims;
   final bool shortMode;
 
@@ -25,13 +23,11 @@ class DestinationIllustrationConfig {
   factory DestinationIllustrationConfig.fg({
     double zoom = _defaultZoom,
     bool isShowing = true,
-    bool enableHero = true,
     bool enableAnims = true,
     bool shortMode = false,
   }) => DestinationIllustrationConfig(
     zoom: zoom,
     isShowing: isShowing,
-    enableHero: enableHero,
     enableAnims: enableAnims,
     enableBg: false,
     enableMg: false,
@@ -40,13 +36,11 @@ class DestinationIllustrationConfig {
   factory DestinationIllustrationConfig.bg({
     double zoom = _defaultZoom,
     bool isShowing = true,
-    bool enableHero = true,
     bool enableAnims = true,
     bool shortMode = false,
   }) => DestinationIllustrationConfig(
     zoom: zoom,
     isShowing: isShowing,
-    enableHero: enableHero,
     enableAnims: enableAnims,
     enableFg: false,
     enableMg: false,
@@ -55,13 +49,11 @@ class DestinationIllustrationConfig {
   factory DestinationIllustrationConfig.mg({
     double zoom = _defaultZoom,
     bool isShowing = true,
-    bool enableHero = true,
     bool enableAnims = true,
     bool shortMode = false,
   }) => DestinationIllustrationConfig(
     zoom: zoom,
     isShowing: isShowing,
-    enableHero: enableHero,
     enableAnims: enableAnims,
     enableBg: false,
     enableFg: false,

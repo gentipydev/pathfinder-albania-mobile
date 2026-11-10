@@ -1,7 +1,7 @@
 part of '../collection_screen.dart';
 
-class _CollectionListCard extends StatelessWidget with GetItMixin {
-  _CollectionListCard({
+class _CollectionListCard extends StatelessWidget {
+  const _CollectionListCard({
     super.key,
     this.width,
     this.height,

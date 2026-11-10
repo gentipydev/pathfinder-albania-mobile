@@ -41,6 +41,10 @@ class RenderBlendMask extends RenderProxyBox {
       );
     }
     super.paint(context, offset);
-    context.canvas.restore();
+    // One restore per saveLayer above. An empty [blendModes] saves nothing, so
+    // it must restore nothing, or it pops a parent's clip/transform.
+    for (var i = 0; i < blendModes.length; i++) {
+      context.canvas.restore();
+    }
   }
 }

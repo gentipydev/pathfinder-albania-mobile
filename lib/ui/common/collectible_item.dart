@@ -1,6 +1,7 @@
 import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
 import 'package:travel_buddy/features/collectibles/bloc/collectibles_event.dart';
+import 'package:travel_buddy/features/collectibles/bloc/collectibles_helpers.dart';
 import 'package:travel_buddy/logic/common/animate_utils.dart';
 import 'package:travel_buddy/logic/data/collectible_data.dart';
 import 'package:travel_buddy/ui/common/opening_card.dart';
@@ -8,7 +9,7 @@ import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
 import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
 import 'package:travel_buddy/ui/screens/collectible_found/collectible_found_screen.dart';
 
-class CollectibleItem extends StatelessWidget with GetItMixin {
+class CollectibleItem extends StatelessWidget {
   CollectibleItem(this.collectible, {this.size = 64.0, super.key, this.focus}) {
     // Hero into the collectible-found screen uses the artifact image when
     // available; falls back to the bundled icon if the catalog or network
@@ -26,7 +27,7 @@ class CollectibleItem extends StatelessWidget with GetItMixin {
   void _handleTap(BuildContext context) async {
     final bloc = context.read<CollectiblesBloc>();
     final screen = CollectibleFoundScreen(collectible: collectible, imageProvider: _imageProvider);
-    appLogic.showFullscreenDialogRoute(context, screen, transparent: true);
+    appLogic.showFullscreenDialogRoute(context, screen);
     AppHaptics.mediumImpact();
 
     // wait to update the state, to ensure the hero works properly:
@@ -40,7 +41,7 @@ class CollectibleItem extends StatelessWidget with GetItMixin {
   @override
   Widget build(BuildContext context) {
     final states = context.watch<CollectiblesBloc>().state.statesById;
-    bool isLost = states[collectible.id] == CollectibleState.lost;
+    bool isLost = collectibleStateOf(states, collectible.id) == CollectibleState.lost;
     // Use an OpeningCard to let the collectible smoothly collapse its size once it has been found
     return SizedBox(
       height: isLost ? size : null,

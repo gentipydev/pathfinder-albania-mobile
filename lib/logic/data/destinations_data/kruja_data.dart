@@ -2,22 +2,14 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
 
 class KrujaData extends DestinationData {
-  // TODO(rebrand): lat/lng, videoId, year ranges, and event year keys below
-  // are inherited from the original upstream template data and need to be
-  // replaced with real Kruja values.
   KrujaData()
     : super(
         type: DestinationType.kruja,
         title: $strings.krujaTitle,
-        subTitle: $strings.krujaSubTitle,
         regionTitle: $strings.krujaRegionTitle,
-        videoId: 'ezDiSkOU0wc',
-        startYr: -312,
-        endYr: 100,
-        artifactStartYr: -500,
-        artifactEndYr: 500,
+        videoId: 'SIxTr3WbZlY',
+        startYr: 400,
         artifactCulture: $strings.krujaArtifactCulture,
-        artifactGeolocation: $strings.krujaArtifactGeolocation,
         lat: 41.5147,
         lng: 19.7884,
         pullQuote1Top: $strings.krujaPullQuote1Top,
@@ -36,11 +28,11 @@ class KrujaData extends DestinationData {
         locationInfo1: $strings.krujaLocationInfo1,
         locationInfo2: $strings.krujaLocationInfo2,
         events: {
-          -1200: $strings.kruja1200bce,
-          -106: $strings.kruja106bce,
-          551: $strings.kruja551ce,
-          1812: $strings.kruja1812ce,
-          1958: $strings.kruja1958ce,
+          1190: $strings.kruja1190ce,
+          1443: $strings.kruja1443ce,
+          1450: $strings.kruja1450ce,
+          1478: $strings.kruja1478ce,
+          1982: $strings.kruja1982ce,
           1989: $strings.kruja1989ce,
         },
       );

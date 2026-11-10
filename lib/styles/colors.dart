@@ -25,17 +25,15 @@ class AppColors {
   /// Elevated dark surface, one step above [black], for cards / chips / sheets.
   final Color surface = const Color(0xFF242120);
 
-  final bool isDark = false;
-
-  Color shift(Color c, double d) => ColorUtils.shiftHsl(c, d * (isDark ? -1 : 1));
+  Color shift(Color c, double d) => ColorUtils.shiftHsl(c, d);
 
   ThemeData toThemeData() {
     /// Create a TextTheme and ColorScheme, that we can use to generate ThemeData
-    TextTheme txtTheme = (isDark ? ThemeData.dark() : ThemeData.light()).textTheme;
+    TextTheme txtTheme = ThemeData.light().textTheme;
     Color txtColor = white;
     ColorScheme colorScheme = ColorScheme(
       // Map our custom theme to the Material ColorScheme
-      brightness: isDark ? Brightness.dark : Brightness.light,
+      brightness: Brightness.light,
       primary: accent1,
       primaryContainer: accent1,
       secondary: accent1,

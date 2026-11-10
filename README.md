@@ -22,6 +22,17 @@ flutter run -d ios
 flutter run -d android
 ```
 
+### App modes
+
+The app has two parts, and `APP_MODE` in `.env` picks which are switched on:
+
+| `APP_MODE` | What runs |
+|---|---|
+| `showcase` | Only the destinations showcase: the home carousel of the eight destinations and everything reachable from it (editorial, photos, artifacts, timeline, collection). No bottom nav, chat, trips, profile or sign-in, and Supabase is never initialized, so the `SUPABASE_*` keys can stay empty. Still needs `API_BASE_URL` for photos and artifacts. |
+| `full` (default) | The showcase plus the agent side: the Explore / Buddy / My Trips / Profile bottom nav, chat, trips, profile and sign-in. |
+
+The code is split the same way. Everything agent-side lives in `lib/agent/`, and `lib/agent/agent_module.dart` is the one place that plugs it in. Only the composition root (`lib/main.dart`, `lib/router.dart`, `lib/logic/app_logic.dart`) may import `lib/agent/`. `test/architecture/import_boundary_test.dart` enforces this.
+
 ### Web (WASM)
 
 The app supports Flutter Web's WebAssembly target. To run it locally:

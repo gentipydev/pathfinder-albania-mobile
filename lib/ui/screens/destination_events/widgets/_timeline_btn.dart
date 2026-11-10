@@ -13,10 +13,10 @@ class _TimelineBtn extends StatelessWidget {
       child: SizedBox(
         width: width,
         child: AppBtn.from(
-          text: $strings.eventsListButtonOpenGlobal,
+          text: $strings.eventsListButtonOpenTimeline,
           expand: true,
           onPressed: handleBtnPressed,
-          semanticLabel: $strings.eventsListButtonOpenGlobal,
+          semanticLabel: $strings.eventsListButtonOpenTimeline,
         ),
       ),
     );

@@ -1,19 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/app_icons.dart';
 import 'package:travel_buddy/ui/common/ignore_pointer.dart';
-
-/// Shared methods across button types
-Widget _buildIcon(
-  BuildContext context,
-  AppIcons icon, {
-  required bool isSecondary,
-  required double? size,
-}) => AppIcon(
-  icon,
-  color: isSecondary ? $styles.colors.black : $styles.colors.offWhite,
-  size: size ?? 18,
-);
 
 /// The core button that drives all other buttons.
 class AppBtn extends StatelessWidget {
@@ -22,64 +9,46 @@ class AppBtn extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.semanticLabel,
-    this.enableFeedback = true,
-    this.pressEffect = true,
-    this.hoverEffect = true,
     this.child,
     this.padding,
-    this.expand = false,
-    this.isSecondary = false,
     this.circular = false,
     this.minimumSize,
     this.bgColor,
-    this.border,
-    this.focusNode,
-    this.onFocusChanged,
-  }) : _builder = null;
+  }) : enableFeedback = true,
+       hoverEffect = true,
+       expand = false,
+       isSecondary = false,
+       focusNode = null,
+       onFocusChanged = null,
+       _builder = null;
 
   AppBtn.from({
     super.key,
     required this.onPressed,
-    this.enableFeedback = true,
-    this.pressEffect = true,
-    this.hoverEffect = true,
     this.padding,
     this.expand = false,
     this.isSecondary = false,
-    this.minimumSize,
-    this.bgColor,
-    this.border,
-    this.focusNode,
-    this.onFocusChanged,
     String? semanticLabel,
     String? text,
-    AppIcons? icon,
-    double? iconSize,
-  }) : child = null,
+  }) : enableFeedback = true,
+       hoverEffect = true,
+       minimumSize = null,
+       bgColor = null,
+       focusNode = null,
+       onFocusChanged = null,
+       child = null,
        circular = false {
     if (semanticLabel == null && text == null) {
       throw ('AppBtn.from must include either text or semanticLabel');
     }
     this.semanticLabel = semanticLabel ?? text ?? '';
     _builder = (context) {
-      if (text == null && icon == null) return SizedBox.shrink();
-      Text? txt = text == null
-          ? null
-          : Text(
-              text.toUpperCase(),
-              style: $styles.text.btn,
-              textHeightBehavior: TextHeightBehavior(applyHeightToFirstAscent: false),
-            );
-      Widget? icn = icon == null ? null : _buildIcon(context, icon, isSecondary: isSecondary, size: iconSize);
-      if (txt != null && icn != null) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [txt, Gap($styles.insets.xs), icn],
-        );
-      } else {
-        return (txt ?? icn)!;
-      }
+      if (text == null) return SizedBox.shrink();
+      return Text(
+        text.toUpperCase(),
+        style: $styles.text.btn,
+        textHeightBehavior: TextHeightBehavior(applyHeightToFirstAscent: false),
+      );
     };
   }
 
@@ -89,18 +58,16 @@ class AppBtn extends StatelessWidget {
     required this.onPressed,
     required this.semanticLabel,
     this.enableFeedback = true,
-    this.pressEffect = true,
     this.hoverEffect = true,
     this.child,
-    this.padding = EdgeInsets.zero,
-    this.isSecondary = false,
-    this.circular = false,
     this.minimumSize,
     this.focusNode,
     this.onFocusChanged,
-  }) : expand = false,
+  }) : padding = EdgeInsets.zero,
+       isSecondary = false,
+       circular = false,
+       expand = false,
        bgColor = Colors.transparent,
-       border = null,
        _builder = null;
 
   // interaction:
@@ -122,16 +89,14 @@ class AppBtn extends StatelessWidget {
 
   // style:
   final bool isSecondary;
-  final BorderSide? border;
   final Color? bgColor;
-  final bool pressEffect;
   final bool hoverEffect;
 
   @override
   Widget build(BuildContext context) {
     Color defaultColor = isSecondary ? $styles.colors.white : $styles.colors.greyStrong;
     Color textColor = isSecondary ? $styles.colors.black : $styles.colors.white;
-    BorderSide side = border ?? BorderSide.none;
+    BorderSide side = BorderSide.none;
 
     Widget content = _builder?.call(context) ?? child ?? SizedBox.shrink();
     if (expand) content = Center(child: content);
@@ -192,7 +157,7 @@ class AppBtn extends StatelessWidget {
     );
 
     // add press effect:
-    if (pressEffect && onPressed != null) button = _ButtonPressEffect(button);
+    if (onPressed != null) button = _ButtonPressEffect(button);
     if (hoverEffect && kIsWeb) button = _ButtonHoverEffect(button, circular);
 
     // add semantics?

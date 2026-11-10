@@ -12,8 +12,8 @@ import 'package:travel_buddy/logic/data/destinations_data/korca_data.dart';
 class DestinationsLogic {
   List<DestinationData> all = [];
 
-  final int timelineStartYear = -3000;
-  final int timelineEndYear = 2200;
+  final int timelineStartYear = -1500;
+  final int timelineEndYear = 2100;
 
   DestinationData getData(DestinationType value) {
     DestinationData? result = all.firstWhereOrNull((w) => w.type == value);

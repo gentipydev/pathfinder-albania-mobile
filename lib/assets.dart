@@ -1,16 +1,15 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
 
 /// Loads bitmap assets into memory that may be required later
 class AppBitmaps {
-  static late final BitmapDescriptor mapMarker;
+  /// Raw PNG bytes for the generic location pin. Mapbox annotations take the
+  /// encoded image directly (`PointAnnotationOptions.image`) and scale it via
+  /// `iconSize`, so no device-pixel-ratio baking is needed here.
+  static late final Uint8List mapMarker;
 
   static Future<void> init() async {
-    mapMarker = await BitmapDescriptor.asset(
-      ImageConfiguration(devicePixelRatio: PlatformInfo.pixelRatio),
-      '${ImagePaths.common}/location-pin.png',
-    );
+    final data = await rootBundle.load('${ImagePaths.common}/location-pin.png');
+    mapMarker = data.buffer.asUint8List();
   }
 }
 
@@ -25,12 +24,10 @@ class ImagePaths {
   static String ribbonEnd = '$common/ribbon-end.png';
 
   static String textures = '$common/texture';
-  static String icons = '$common/icons';
 
   static String roller1 = '$textures/roller-1-white.gif';
   static String roller2 = '$textures/roller-2-white.gif';
 
-  static String appLogo = '$common/app-logo.png';
   static String appLogoPlain = '$common/app-logo-plain.png';
 }
 
@@ -60,5 +57,9 @@ extension DestinationAssetExtensions on DestinationType {
   String get photo2 => '$assetPath/photo-2.jpg';
   String get photo3 => '$assetPath/photo-3.jpg';
   String get photo4 => '$assetPath/photo-4.jpg';
+
+  /// The four photos bundled with the app; the gallery falls back to these
+  /// when the backend has none (or can't be reached).
+  List<String> get bundledPhotos => [photo1, photo2, photo3, photo4];
   String get flattened => '$assetPath/flattened.jpg';
 }

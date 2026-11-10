@@ -9,9 +9,6 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Travel Buddy';
-
-  @override
   String get localeSwapButton => 'Shqip';
 
   @override
@@ -29,13 +26,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appBarTitleLocation => 'Location Info';
 
   @override
-  String get bottomScrubberSemanticScrubber => 'scrubber';
-
-  @override
   String get bottomScrubberSemanticTimeline => 'Timeline Scrubber, drag horizontally to navigate the timeline.';
-
-  @override
-  String get rangeSelector => 'Range selector, drag horizontally to adjust the range.';
 
   @override
   String collectionLabelDiscovered(Object percentage) {
@@ -51,7 +42,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get collectionButtonReset => 'Reset Collection';
 
   @override
-  String get eventsListButtonOpenGlobal => 'Open global timeline';
+  String get eventsListButtonOpenTimeline => 'Open the story timeline';
 
   @override
   String newlyDiscoveredSemanticNew(Object count, Object suffix) {
@@ -64,26 +55,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get resultsPopupEnglishContent =>
-      'This content is provided by the Metropolitan Museum of Art Collection API, and is only available in English.';
-
-  @override
-  String get resultsSemanticDismiss => 'dismiss message';
-
-  @override
   String get scrollingContentSemanticYoutube => 'Youtube thumbnail';
 
   @override
   String get scrollingContentSemanticOpen => 'Open fullscreen maps view';
-
-  @override
-  String get searchInputTitleSuggestions => 'Suggestions';
-
-  @override
-  String get searchInputHintSearch => 'Search (ex. type or material)';
-
-  @override
-  String get searchInputSemanticClear => 'clear search';
 
   @override
   String timelineSemanticDate(Object fromDate, Object endDate) {
@@ -123,12 +98,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get artifactsSemanticsPrevious => 'Previous artifact';
-
-  @override
-  String get artifactsSemanticsNext => 'Next artifact';
-
-  @override
   String get artifactsSemanticArtifact => 'Artifact';
 
   @override
@@ -158,9 +127,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get circleButtonsSemanticClose => 'close';
-
-  @override
   String get circleButtonsSemanticBack => 'back';
 
   @override
@@ -179,111 +145,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get collectionPopupResetConfirm => 'Are you sure you want to reset your collection?';
 
   @override
-  String get eightWaySemanticSwipeDetector => 'eight-way swipe detector';
-
-  @override
-  String get expandingTimeSelectorSemanticSelector => 'time range selector';
-
-  @override
   String get fullscreenImageViewerSemanticFull => 'full screen image, no description available';
 
   @override
-  String get homeMenuButtonExplore => 'Explore the timeline';
+  String get introTitleJourney => 'Step into the past';
 
   @override
-  String get homeMenuButtonView => 'View your collection';
+  String get introDescriptionNavigate =>
+      'Three thousand years of Albanian history, from Illyrian hill forts to Ottoman bazaars.';
 
   @override
-  String get homeMenuButtonAbout => 'About this app';
+  String get introTitleExplore => 'Explore Albania';
 
   @override
-  String get homeMenuViewingLabel => 'Viewing';
+  String get introDescriptionUncover => 'Ancient cities, castle towns and mountain valleys in eight destinations.';
 
   @override
-  String get homeMenuJumpToDestination => 'Jump to a destination';
+  String get introTitleDiscover => 'Find hidden artifacts';
 
   @override
-  String get homeMenuConversations => 'My conversations';
-
-  @override
-  String get homeMenuPreferences => 'Travel preferences';
-
-  @override
-  String get homeMenuPlanTrip => 'Plan a trip';
-
-  @override
-  String get homeMenuAskBuddy => 'Ask Buddy';
-
-  @override
-  String homeMenuPlanTripPrompt(String destination) {
-    return 'Plan a trip to $destination, Albania.';
-  }
-
-  @override
-  String homeMenuAskBuddyPrompt(String destination) {
-    return 'Tell me about $destination, Albania — what\'s special and what should I see?';
-  }
-
-  @override
-  String get homeMenuAboutTagline => 'Travel Buddy is your AI-powered guide to the eight destinations of Albania. ';
-
-  @override
-  String homeMenuAboutBuilt(Object flutterUrl) {
-    return 'Built with $flutterUrl.';
-  }
-
-  @override
-  String homeMenuAboutLearn(Object appUrl) {
-    return 'Learn more at $appUrl.';
-  }
-
-  @override
-  String homeMenuAboutSource(Object githubUrl) {
-    return 'To see the source code for this app, please visit the $githubUrl.';
-  }
-
-  @override
-  String get homeMenuAboutRepo => 'Travel Buddy github repo';
-
-  @override
-  String get homeMenuAboutFlutter => 'Flutter';
-
-  @override
-  String get homeMenuAboutApp => 'travelbuddy.app';
-
-  @override
-  String homeMenuAboutPublic(Object metUrl) {
-    return 'Public-domain artworks from $metUrl.';
-  }
-
-  @override
-  String get homeMenuAboutMet => 'The Metropolitan Museum of Art, New York';
-
-  @override
-  String homeMenuAboutPhotography(Object unsplashUrl) {
-    return 'Photography from $unsplashUrl.';
-  }
-
-  @override
-  String get homeMenuAboutUnsplash => 'Unsplash';
-
-  @override
-  String get introTitleJourney => 'Journey to the past';
-
-  @override
-  String get introDescriptionNavigate => 'Navigate the intersection of time, art, and culture.';
-
-  @override
-  String get introTitleExplore => 'Explore places';
-
-  @override
-  String get introDescriptionUncover => 'Uncover remarkable human-made structures from around the world.';
-
-  @override
-  String get introTitleDiscover => 'Discover artifacts';
-
-  @override
-  String get introDescriptionLearn => 'Learn about cultures throughout time by examining things they left behind.';
+  String get introDescriptionLearn => 'Discover objects from every era and build your own collection.';
 
   @override
   String get introSemanticNavigate => 'Navigate';
@@ -296,12 +177,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get introSemanticAppName => 'Travel Buddy';
-
-  @override
-  String get labelledToggleSemanticToggle => 'toggle';
-
-  @override
-  String get photoGallerySemanticCollectible => 'collectible!';
 
   @override
   String photoGallerySemanticFocus(Object photoIndex, Object photoTotal) {
@@ -317,10 +192,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eraPrehistory => 'Prehistory';
 
   @override
-  String get eraClassical => 'Classical Era';
+  String get eraAntiquity => 'Antiquity';
 
   @override
-  String get eraEarlyModern => 'Early Modern Era';
+  String get eraMiddleAges => 'Middle Ages';
+
+  @override
+  String get eraOttoman => 'Ottoman Era';
 
   @override
   String get eraModern => 'Modern Era';
@@ -332,6 +210,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yearCE => 'CE';
 
   @override
+  String get yearToday => 'today';
+
+  @override
   String yearFormat(Object date, Object era) {
     return '$date $era';
   }
@@ -340,30 +221,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get year => 'Year';
 
   @override
-  String timelineLabelConstruction(Object title) {
-    return 'Construction of $title begins.';
+  String timelineLabelOrigin(Object title) {
+    return '$title: the story begins.';
   }
 
   @override
-  String get timelineTitleGlobalTimeline => 'Global Timeline';
-
-  @override
-  String get wallpaperModalSave => 'Save this poster to your photo gallery?';
-
-  @override
-  String get wallpaperModalSaving => 'Saving Image. Please wait...';
-
-  @override
-  String get wallpaperModalSaveComplete => 'Save complete!';
-
-  @override
-  String get wallpaperSemanticSharePhoto => 'share photo';
-
-  @override
-  String get wallpaperSemanticTakePhoto => 'take photo';
-
-  @override
-  String get wallpaperCheckboxShowTitle => 'Show Title';
+  String get timelineTitle => 'Albanian Story Timeline';
 
   @override
   String get destinationDetailsTabLabelInformation => 'information and history';
@@ -381,25 +244,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get destinationDetailsTabSemanticBack => 'back to destination selection';
 
   @override
-  String get homeSemanticOpenMain => 'Open main menu';
-
-  @override
   String get homeSemanticDestination => 'destination';
 
   @override
   String get butrintTitle => 'Butrint';
 
   @override
-  String get butrintSubTitle => 'The Ancient Crossroads';
-
-  @override
   String get butrintRegionTitle => 'Sarandë, Albania';
 
   @override
   String get butrintArtifactCulture => 'Illyrian-Roman';
-
-  @override
-  String get butrintArtifactGeolocation => 'Southern Albania';
 
   @override
   String get butrintPullQuote1Top => 'A Microcosm of';
@@ -423,14 +277,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'The ancient theater, built in the 3rd century BCE, could seat approximately 1,500 spectators and is one of the best-preserved in the region.';
 
   @override
-  String get butrintVideoCaption => '“Butrint - Albania\'s UNESCO World Heritage Site.” Youtube.';
+  String get butrintVideoCaption => '“Butrint Albania | The ruins of Butrinti Albania.” Visit Albania, YouTube.';
 
   @override
   String get butrintMapCaption => 'Map showing location of Butrint National Park in southern Albania.';
 
   @override
   String get butrintHistoryInfo1 =>
-      'Butrint is an archaeological site in southern Albania, opposite the Greek island of Corfu. First settled by Greek colonists from Corfu in the 8th century BCE, it grew into an important city of the ancient world. According to legend, the city was founded by Trojan refugees led by Aeneas.\nThe Romans conquered Butrint in 167 BCE, and Julius Caesar later designated it a colony for veterans. Under Roman rule, the city flourished with the construction of an aqueduct, public baths, and a forum.';
+      'Butrint is an archaeological site in southern Albania, opposite the Greek island of Corfu. First settled by Greek colonists from Corfu in the 8th century BCE, it grew into an important city of the ancient world. According to legend, the city was founded by Trojan refugees led by Aeneas.\nButrint became a Roman protectorate in 228 BCE, and Julius Caesar later designated it a colony for veterans. Under Roman rule, the city flourished with the construction of an aqueduct, public baths, and a forum.';
 
   @override
   String get butrintHistoryInfo2 =>
@@ -453,57 +307,32 @@ class AppLocalizationsEn extends AppLocalizations {
       'The strategic position of Butrint, on a narrow strait between the mainland and Corfu, made it an important stop along ancient Mediterranean trade routes. The surrounding landscape of marshes, lagoons, and the Ionian Sea coast has been crucial to the site\'s history as both a defensive position and a thriving port.';
 
   @override
-  String get butrint600ce =>
-      'Greek colonists from Corfu establish a settlement at Butrint, which grows into a significant trading post';
+  String get butrint228bce => 'Butrint becomes a Roman protectorate, together with Corfu.';
 
   @override
-  String get butrint832ce =>
-      'Butrint serves as a major Byzantine ecclesiastical center with construction of the Great Basilica';
+  String get butrint44bce =>
+      'Julius Caesar makes Butrint a colony for his veterans; under Augustus the town doubles in size.';
 
   @override
-  String get butrint998ce => 'The city comes under various regional powers as the Byzantine Empire\'s control weakens';
+  String get butrint1386ce => 'Venice buys Corfu and Butrint from the Angevins and keeps Butrint as an outpost.';
 
   @override
-  String get butrint1100ce =>
-      'Normans and Angevins contest control of Butrint as part of broader Mediterranean conflicts';
+  String get butrint1798ce => 'Ali Pasha of Tepelena takes Butrint from the French.';
 
   @override
-  String get butrint1527ce =>
-      'The Venetian Republic fortifies Butrint, constructing a castle and tower to defend against Ottoman expansion';
+  String get butrint1928ce => 'Italian archaeologist Luigi Maria Ugolini begins the first modern excavations.';
 
   @override
-  String get butrint1535ce =>
-      'Ottoman forces gain control of the wider region, and Butrint gradually declines as a settlement';
-
-  @override
-  String get butrintCollectible1Title => 'Pendant';
-
-  @override
-  String get butrintCollectible1Icon => 'jewelry';
-
-  @override
-  String get butrintCollectible2Title => 'Bird Ornament';
-
-  @override
-  String get butrintCollectible2Icon => 'jewelry';
-
-  @override
-  String get butrintCollectible3Title => 'Vue de Buthrotum';
-
-  @override
-  String get butrintCollectible3Icon => 'picture';
+  String get butrint1992ce => 'Butrint is inscribed on the UNESCO World Heritage List.';
 
   @override
   String get beratTitle => 'Berat';
 
   @override
-  String get beratSubTitle => 'City of a Thousand Windows';
-
-  @override
   String get beratRegionTitle => 'Berat, Albania';
 
   @override
-  String get beratArtifactGeolocation => 'Central Albania';
+  String get beratArtifactCulture => 'Byzantine-Albanian';
 
   @override
   String get beratPullQuote1Top => 'A Rare Example of';
@@ -527,14 +356,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'The castle quarter (Kalaja) has been continuously inhabited for over 2,400 years and still houses a living community within its 13th-century walls.';
 
   @override
-  String get beratVideoCaption => '“Berat - City of a Thousand Windows, Albania.” Youtube.';
+  String get beratVideoCaption => '“Berat, Albania - The pride of Albanian architecture.” Visit Albania, YouTube.';
 
   @override
   String get beratMapCaption => 'Map showing location of Berat in central Albania.';
 
   @override
   String get beratHistoryInfo1 =>
-      'Berat is one of the oldest continuously inhabited cities in Albania, located along the banks of the Osum River. The castle on the hilltop has been inhabited since the 4th century BCE, when it was an important Illyrian settlement known as Antipatrea, founded by the Illyrian king Antipater.\nUnder Roman rule, the city served as a strategic military outpost along the Via Egnatia trade route.';
+      'Berat is one of the oldest continuously inhabited cities in Albania, located along the banks of the Osum River. The castle hill has been inhabited since at least the 7th century BCE; in antiquity the fortified town here was known as Antipatrea, a name probably honouring the Macedonian regent Antipater.\nUnder Roman rule, the city served as a strategic military outpost along the Via Egnatia trade route.';
 
   @override
   String get beratHistoryInfo2 =>
@@ -557,61 +386,32 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Osum River canyon, stretching southeast of the city, is one of the most dramatic natural features in Albania, with vertical canyon walls reaching over 260 feet (80 m). The surrounding region has been cultivated since antiquity, producing olives, grapes, and figs in the mild Mediterranean-influenced climate.';
 
   @override
-  String get berat1850ce =>
-      'Berat experiences a cultural renaissance under the Ottoman Tanzimat reforms, with new schools and civic buildings constructed';
+  String get berat200bce => 'The Romans storm and burn Antipatrea, the fortified town on Berat\'s hill.';
 
   @override
-  String get berat1921ce =>
-      'Following Albanian independence, Berat becomes an important administrative center of the new Albanian state';
+  String get berat1417ce => 'Berat becomes part of the Ottoman Empire.';
 
   @override
-  String get berat1922ce =>
-      'The first modern schools in Albanian language are established in Berat, advancing the national education movement';
+  String get berat1547ce =>
+      'The icon painter Onufri signs a church fresco dated 23 July 1547; Berat\'s castle museum now bears his name.';
 
   @override
-  String get berat1926ce =>
-      'Archaeological surveys begin documenting the historic architecture of Berat\'s castle and Ottoman quarters';
+  String get berat1922ce => 'The Congress of Berat proclaims the autocephaly of the Albanian Orthodox Church.';
 
   @override
-  String get berat1931ce =>
-      'Restoration work begins on the castle walls and Byzantine churches within the Kalaja quarter';
+  String get berat1961ce => 'Berat is declared a \"Museum City\", protecting its historic quarters.';
 
   @override
-  String get berat2006ce =>
-      'Berat\'s historic center receives preliminary recognition leading to its UNESCO World Heritage inscription in 2008';
-
-  @override
-  String get beratCollectible1Title => 'Engraved Horn';
-
-  @override
-  String get beratCollectible1Icon => 'statue';
-
-  @override
-  String get beratCollectible2Title => 'Fixed fan';
-
-  @override
-  String get beratCollectible2Icon => 'jewelry';
-
-  @override
-  String get beratCollectible3Title => 'Handkerchiefs (one of two)';
-
-  @override
-  String get beratCollectible3Icon => 'textile';
+  String get berat2008ce => 'Berat joins Gjirokastër on the UNESCO World Heritage List.';
 
   @override
   String get gjirokasterTitle => 'Gjirokastër';
-
-  @override
-  String get gjirokasterSubTitle => 'The Stone City';
 
   @override
   String get gjirokasterRegionTitle => 'Gjirokastër, Albania';
 
   @override
   String get gjirokasterArtifactCulture => 'Ottoman-Albanian';
-
-  @override
-  String get gjirokasterArtifactGeolocation => 'Southern Albania';
 
   @override
   String get gjirokasterPullQuote1Top => 'A Rare Example of';
@@ -635,18 +435,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'The city\'s distinctive tower houses, known as \"kullë,\" feature slate-stone roofs and fortified architecture unique to the region, giving Gjirokastër its name \"The Stone City.\"';
 
   @override
-  String get gjirokasterVideoCaption => '“Gjirokastër - Albania\'s Stone City, UNESCO World Heritage.” Youtube.';
+  String get gjirokasterVideoCaption => '“Gjirokaster Albania | Gjirokastra Albania.” Visit Albania, YouTube.';
 
   @override
   String get gjirokasterMapCaption => 'Map showing location of Gjirokastër in southern Albania.';
 
   @override
   String get gjirokasterHistoryInfo1 =>
-      'Gjirokastër is a city in southern Albania, situated in the Drino River valley. The area has been settled since at least the 1st century CE, and a fortress has stood on the hilltop since the 3rd century. The name Gjirokastër likely derives from the medieval Greek \"Argyrokastron\" meaning \"Silver Castle.\"\nThe city rose to prominence in the 13th century as a center of the Despotate of Epirus and later became an important stronghold contested between Byzantine, Serbian, and Ottoman forces.';
+      'Gjirokastër is a city in southern Albania, situated in the Drino River valley. The first fortress on the hilltop dates to the 5th–6th centuries CE. The name Gjirokastër likely derives from the medieval Greek \"Argyrokastron\" meaning \"Silver Castle.\"\nThe city rose to prominence in the 13th century as a center of the Despotate of Epirus and later became an important stronghold contested between Byzantine, Serbian, and Ottoman forces.';
 
   @override
   String get gjirokasterHistoryInfo2 =>
-      'Under Ottoman rule from 1417 onward, Gjirokastër became the center of a large sanjak (administrative district) and thrived as a bazaar city. Wealthy landowners built the distinctive fortified tower houses that define the city\'s character.\nThe city was inscribed as a UNESCO World Heritage Site in 2005 as \"a rare example of a well-preserved Ottoman town, built by farmers of large estates.\" It is the birthplace of both former Albanian dictator Enver Hoxha and Nobel Prize-winning author Ismail Kadare.';
+      'Under Ottoman rule from 1418 onward, Gjirokastër became the center of a large sanjak (administrative district) and thrived as a bazaar city. Wealthy landowners built the distinctive fortified tower houses that define the city\'s character.\nThe city was inscribed as a UNESCO World Heritage Site in 2005 as \"a rare example of a well-preserved Ottoman town, built by farmers of large estates.\" It is the birthplace of both former Albanian dictator Enver Hoxha and Nobel Prize-winning author Ismail Kadare.';
 
   @override
   String get gjirokasterConstructionInfo1 =>
@@ -665,61 +465,33 @@ class AppLocalizationsEn extends AppLocalizations {
       'The surrounding region, known as Dropull, has been a crossroads of cultures for millennia. The Drino Valley connects the Adriatic coast with the interior Balkans, and the ancient route from the coast at Butrint passed through this valley toward the Via Egnatia.';
 
   @override
-  String get gjirokaster70ce =>
-      'Early Roman-era settlement exists in the Drino Valley region, with fortifications on the hilltop that would later become Gjirokastër';
+  String get gjirokaster1336ce =>
+      'Byzantine emperor John VI Kantakouzenos records the town as Argyrokastro, the first mention of its name.';
 
   @override
-  String get gjirokaster82ce =>
-      'The hilltop fortress is expanded as a strategic defensive position guarding the Drino Valley trade routes';
+  String get gjirokaster1418ce => 'After a siege, the Ottomans take the city from the Zenebishi family.';
 
   @override
-  String get gjirokaster1140ce =>
-      'Argyrokastron emerges as a significant Byzantine settlement and is contested during the Norman invasions of the Balkans';
+  String get gjirokaster1811ce =>
+      'Gjirokastër becomes part of Ali Pasha\'s Pashalik of Yanina; he later enlarges the castle.';
 
   @override
-  String get gjirokaster1490ce =>
-      'Under Ottoman rule, Gjirokastër develops into a thriving bazaar town with construction of the Old Bazaar and early tower houses';
+  String get gjirokaster1932ce => 'King Zog\'s government expands the prison inside the castle.';
 
   @override
-  String get gjirokaster1829ce =>
-      'Ali Pasha of Ioannina undertakes major expansion of the fortress, adding fortifications, an aqueduct, and a clock tower';
+  String get gjirokaster1936ce => 'Writer Ismail Kadare is born in the city.';
 
   @override
-  String get gjirokaster1990ce =>
-      'Following the fall of communism, restoration efforts begin and Gjirokastër receives UNESCO World Heritage status in 2005';
-
-  @override
-  String get gjirokasterCollectible1Title => 'Glass hexagonal amphoriskos';
-
-  @override
-  String get gjirokasterCollectible1Icon => 'vase';
-
-  @override
-  String get gjirokasterCollectible2Title => 'Bronze plaque of Mithras slaying the bull';
-
-  @override
-  String get gjirokasterCollectible2Icon => 'statue';
-
-  @override
-  String get gjirokasterCollectible3Title => 'Veduta di Argirocastro';
-
-  @override
-  String get gjirokasterCollectible3Icon => 'picture';
+  String get gjirokaster2005ce => 'The historic centre is inscribed on the UNESCO World Heritage List.';
 
   @override
   String get apolloniaTitle => 'Apollonia';
-
-  @override
-  String get apolloniaSubTitle => 'The Ancient City of Learning';
 
   @override
   String get apolloniaRegionTitle => 'Fier, Albania';
 
   @override
   String get apolloniaArtifactCulture => 'Illyrian-Greek';
-
-  @override
-  String get apolloniaArtifactGeolocation => 'Central Albania';
 
   @override
   String get apolloniaPullQuote1Top => 'An Admirable City';
@@ -743,7 +515,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'The young Octavian (later Emperor Augustus) was studying in Apollonia when he received news of Julius Caesar\'s assassination in 44 BCE, a pivotal moment in Roman history.';
 
   @override
-  String get apolloniaVideoCaption => '“Apollonia Archaeological Park - Ancient Albania.” Youtube.';
+  String get apolloniaVideoCaption => '“Apollonia, Albania by Drone.” Visit Albania, YouTube.';
 
   @override
   String get apolloniaMapCaption => 'Map showing location of Apollonia near Fier in central Albania.';
@@ -773,61 +545,31 @@ class AppLocalizationsEn extends AppLocalizations {
       'In antiquity, the Vjosa River flowed much closer to the city, providing direct access to the Adriatic coast and enabling Apollonia to function as an important port city. The fertile surrounding plain supported agricultural production, while the hilltop position offered natural defensive advantages.';
 
   @override
-  String get apollonia700bce =>
-      'Greek colonists from Corinth and Corcyra found Apollonia in 588 BCE on Illyrian territory, establishing a settlement that would grow into a major city';
+  String get apollonia588bce => 'Greek colonists from Corinth and Corcyra found Apollonia on Illyrian land.';
 
   @override
-  String get apollonia214bce =>
-      'Apollonia becomes a key Roman ally during the Illyrian Wars and serves as a staging ground for Roman military campaigns in the eastern Mediterranean';
+  String get apollonia229bce => 'Apollonia comes under the control of the Roman Republic.';
 
   @override
-  String get apollonia121bce =>
-      'The city flourishes as a center of trade along the Via Egnatia, connecting Rome to its eastern provinces';
+  String get apollonia148bce => 'Apollonia becomes part of the new Roman province of Macedonia.';
 
   @override
-  String get apollonia556ce =>
-      'An earthquake alters the course of the Vjosa River, destroying Apollonia\'s harbor and beginning the city\'s irreversible decline';
+  String get apollonia44bce => 'Young Octavian, the future Emperor Augustus, is studying in Apollonia.';
 
   @override
-  String get apollonia618ce =>
-      'The remains of the city serve as a quarry for building materials; the Byzantine Monastery of St. Mary is constructed within the ancient walls';
+  String get apollonia1272ce => 'The Byzantine Monastery of St. Mary is built within the ruins of the ancient city.';
 
   @override
-  String get apollonia1487ce =>
-      'The site lies largely forgotten and overgrown until systematic archaeological excavations begin under Austrian and later French archaeologists in the early 20th century';
-
-  @override
-  String get apolloniaCollectible1Title => 'Biographies of Lian Po and Lin Xiangru';
-
-  @override
-  String get apolloniaCollectible1Icon => 'scroll';
-
-  @override
-  String get apolloniaCollectible2Title => 'Jar with Dragon';
-
-  @override
-  String get apolloniaCollectible2Icon => 'vase';
-
-  @override
-  String get apolloniaCollectible3Title => 'Panel with Peonies and Butterfly';
-
-  @override
-  String get apolloniaCollectible3Icon => 'textile';
+  String get apollonia1924ce => 'A French archaeological mission begins systematic excavations, which last until 1938.';
 
   @override
   String get thethTitle => 'Thethi';
-
-  @override
-  String get thethSubTitle => 'The Alpine Sanctuary';
 
   @override
   String get thethRegionTitle => 'Shkodër, Albania';
 
   @override
   String get thethArtifactCulture => 'Albanian Highland';
-
-  @override
-  String get thethArtifactGeolocation => 'Northern Albania';
 
   @override
   String get thethPullQuote1Top => 'A Living Fragment of';
@@ -854,7 +596,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Thethi valley sits at approximately 2,500 feet (760 m) above sea level, surrounded by peaks exceeding 8,000 feet (2,500 m), including the dramatic Radohima massif.';
 
   @override
-  String get thethVideoCaption => '“Thethi National Park - Albania\'s Hidden Alpine Paradise.” Youtube.';
+  String get thethVideoCaption => '“Theth Albania - Albanian Alps.” Visit Albania, YouTube.';
 
   @override
   String get thethMapCaption => 'Map showing location of Thethi in the Albanian Alps, northern Albania.';
@@ -884,61 +626,31 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Blue Eye of Thethi (Syri i Kaltër), a stunning natural spring pool of vivid turquoise water, is one of the valley\'s most remarkable natural features. The Grunas Waterfall, cascading 100 feet (30 m) down a limestone cliff, is another iconic landmark. The valley connects to Valbona via a popular mountain pass trek at approximately 5,900 feet (1,800 m).';
 
   @override
-  String get theth1438ce =>
-      'Albanian highland clans are well established in the Thethi valley, governed by the Kanun of Lëkë Dukagjini';
+  String get theth1892ce => 'The village church of Theth is built.';
 
   @override
-  String get theth1572ce =>
-      'The highland communities resist Ottoman control, maintaining autonomy through the rugged terrain of the Albanian Alps';
+  String get theth1908ce => 'Edith Durham travels through the highlands and describes Theth in High Albania (1909).';
 
   @override
-  String get theth1867ce =>
-      'British traveler and diplomat Edith Durham visits the Albanian highlands, later documenting the traditional way of life in her celebrated writings';
+  String get theth1966ce => 'Theth National Park is created.';
 
   @override
-  String get theth1911ce =>
-      'Albania declares independence in 1912; the highland regions play a crucial role in the national awakening and resistance movements';
+  String get theth2011ce => 'The Peaks of the Balkans trail opens, linking Theth with Kosovo and Montenegro.';
 
   @override
-  String get theth1964ce =>
-      'Thethi National Park is established in 1966, one of Albania\'s first protected areas, preserving the alpine ecosystem';
+  String get theth2017ce => 'Albanologist Robert Elsie is laid to rest in Theth.';
 
   @override
-  String get theth1997ce =>
-      'The Peaks of the Balkans trail is inaugurated, connecting Albania, Kosovo, and Montenegro and bringing renewed international attention to Thethi';
-
-  @override
-  String get thethCollectible1Title => 'Eight-Pointed Star Tunic';
-
-  @override
-  String get thethCollectible1Icon => 'textile';
-
-  @override
-  String get thethCollectible2Title => 'Camelid figurine';
-
-  @override
-  String get thethCollectible2Icon => 'statue';
-
-  @override
-  String get thethCollectible3Title => 'Double Bowl';
-
-  @override
-  String get thethCollectible3Icon => 'vase';
+  String get theth2022ce => 'Theth becomes part of the new Alps of Albania National Park.';
 
   @override
   String get krujaTitle => 'Krujë';
-
-  @override
-  String get krujaSubTitle => 'The Fortress of Skanderbeg';
 
   @override
   String get krujaRegionTitle => 'Durrës County, Albania';
 
   @override
   String get krujaArtifactCulture => 'Medieval Albanian';
-
-  @override
-  String get krujaArtifactGeolocation => 'Central Albania';
 
   @override
   String get krujaPullQuote1Top => 'The Shield of Christendom';
@@ -965,7 +677,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'The castle sits at an elevation of approximately 1,970 feet (600 m) atop the Skanderbeg Mountain (Mali i Sariut), providing a commanding view of the surrounding plains.';
 
   @override
-  String get krujaVideoCaption => '“Krujë Castle and the Legacy of Skanderbeg - Albania.” Youtube.';
+  String get krujaVideoCaption => '“KRUJA CITY & CASTLE 2021 | 4K DRONE CINEMATIC VIDEO.” GOGLA, YouTube.';
 
   @override
   String get krujaMapCaption => 'Map showing location of Krujë in central Albania.';
@@ -995,60 +707,32 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Skanderbeg Mountain (Mali i Sariut) rises steeply behind the castle to approximately 3,500 feet (1,070 m). The surrounding terrain of steep gorges and dense forests provided natural defensive advantages that Skanderbeg exploited in his guerrilla tactics against the much larger Ottoman forces. The nearby Sarisalltiku peak features a cave shrine venerated by both Muslims and Christians.';
 
   @override
-  String get kruja1200bce =>
-      'Early Illyrian settlements exist in the Krujë region, taking advantage of the natural fortress position';
+  String get kruja1190ce =>
+      'Krujë becomes the capital of the Principality of Arbër, the first Albanian state of the Middle Ages.';
 
   @override
-  String get kruja106bce => 'The region falls under Roman control as part of the province of Illyricum';
+  String get kruja1443ce => 'On 28 November, Skanderbeg takes Krujë and raises the Albanian flag over the castle.';
 
   @override
-  String get kruja551ce =>
-      'Byzantine-era fortifications are constructed on the hilltop, establishing the castle as a strategic defensive position';
+  String get kruja1450ce => 'Skanderbeg\'s forces withstand the first Ottoman siege, led by Sultan Murad II.';
 
   @override
-  String get kruja1812ce =>
-      'The castle ruins and old bazaar are documented by European travelers as interest in Albanian history grows';
+  String get kruja1478ce => 'After a siege of more than a year, Krujë falls to the Ottomans.';
 
   @override
-  String get kruja1958ce =>
-      'The Skanderbeg Museum within the castle is established, becoming Albania\'s most important national memorial';
+  String get kruja1982ce => 'The Skanderbeg Museum opens beside the castle.';
 
   @override
-  String get kruja1989ce =>
-      'Krujë becomes a major tourist destination and symbol of Albanian national identity after the fall of communism';
-
-  @override
-  String get krujaCollectible1Title => 'Camel and riders';
-
-  @override
-  String get krujaCollectible1Icon => 'statue';
-
-  @override
-  String get krujaCollectible2Title => 'Vessel';
-
-  @override
-  String get krujaCollectible2Icon => 'vase';
-
-  @override
-  String get krujaCollectible3Title => 'Open bowl';
-
-  @override
-  String get krujaCollectible3Icon => 'vase';
+  String get kruja1989ce => 'The National Ethnographic Museum opens in a Toptani family house built in 1764.';
 
   @override
   String get albanianAlpsTitle => 'Albanian Alps';
-
-  @override
-  String get albanianAlpsSubTitle => 'The Accursed Mountains';
 
   @override
   String get albanianAlpsRegionTitle => 'Northern Albania';
 
   @override
   String get albanianAlpsArtifactCulture => 'Albanian Highland';
-
-  @override
-  String get albanianAlpsArtifactGeolocation => 'Northern Albania';
 
   @override
   String get albanianAlpsPullQuote1Top => 'Europe\'s Last Great';
@@ -1072,7 +756,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Jezerca, the highest peak at 8,839 feet (2,694 m), is one of the most dramatic limestone summits in the Balkans, featuring permanent snowfields and glacial cirques.';
 
   @override
-  String get albanianAlpsVideoCaption => '“Albanian Alps - Bjeshkët e Nemuna, Europe\'s Last Wilderness.” Youtube.';
+  String get albanianAlpsVideoCaption => '“Valbona, Albania.” Visit Albania, YouTube.';
 
   @override
   String get albanianAlpsMapCaption => 'Map showing location of the Albanian Alps in northern Albania.';
@@ -1091,7 +775,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get albanianAlpsConstructionInfo2 =>
-      'Human structures in the Albanian Alps reflect the mountain environment. Traditional highland houses (kullë) are built from massive limestone blocks with timber interiors, designed to withstand heavy snowfall and provide defense. Stone-walled pastures, ancient mule trails, and small mountain churches dot the landscape.\nThe Peaks of the Balkans trail, a 120-mile (192 km) hiking route established in 2013, connects communities across three countries using many of these traditional paths.';
+      'Human structures in the Albanian Alps reflect the mountain environment. Traditional highland houses (kullë) are built from massive limestone blocks with timber interiors, designed to withstand heavy snowfall and provide defense. Stone-walled pastures, ancient mule trails, and small mountain churches dot the landscape.\nThe Peaks of the Balkans trail, a 120-mile (192 km) hiking route opened in 2011, connects communities across three countries using many of these traditional paths.';
 
   @override
   String get albanianAlpsLocationInfo1 =>
@@ -1102,61 +786,33 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Valbona Valley National Park and Thethi National Park protect much of the Albanian portion of the range. Lake Koman, accessible by ferry through a dramatic canyon often compared to Scandinavian fjords, provides a stunning approach to the mountains from the south. The region receives some of the highest precipitation in Europe, feeding numerous rivers and waterfalls.';
 
   @override
-  String get albanianAlps2575bce =>
-      'Early human habitation in the Albanian Alps region dates back to the Bronze Age, with evidence of pastoral communities in the highland valleys';
+  String get albanianAlps1909ce =>
+      'Edith Durham publishes High Albania, the classic account of life among the highland clans.';
 
   @override
-  String get albanianAlps2465bce =>
-      'Illyrian tribes establish seasonal settlements in the mountain pastures, developing the transhumance traditions that continue to this day';
+  String get albanianAlps1929ce =>
+      'British climbers make the first recorded ascent of Maja Jezercë (2,694 m), the range\'s highest peak.';
 
   @override
-  String get albanianAlps443bce =>
-      'Greek and Roman writers document the fierce independence of the mountain-dwelling Illyrian tribes and the difficult terrain of the region';
+  String get albanianAlps1996ce => 'Valbona Valley National Park is created.';
 
   @override
-  String get albanianAlps1925ce =>
-      'British traveler Edith Durham publishes detailed accounts of life in the Albanian highlands, bringing international attention to the region';
+  String get albanianAlps2009ce => 'A glacier is discovered in the Albanian part of the range.';
 
   @override
-  String get albanianAlps1979ce =>
-      'Thethi National Park and Valbona Valley are designated as protected areas, preserving the alpine ecosystems';
+  String get albanianAlps2011ce => 'The Peaks of the Balkans trail opens across Albania, Kosovo and Montenegro.';
 
   @override
-  String get albanianAlps1990ce =>
-      'After the fall of communism, the Albanian Alps open to international hikers and the Peaks of the Balkans trail is eventually established in 2013';
-
-  @override
-  String get albanianAlpsCollectible1Title => 'Two papyrus fragments';
-
-  @override
-  String get albanianAlpsCollectible1Icon => 'scroll';
-
-  @override
-  String get albanianAlpsCollectible2Title => 'Fragmentary Face of King Khafre';
-
-  @override
-  String get albanianAlpsCollectible2Icon => 'statue';
-
-  @override
-  String get albanianAlpsCollectible3Title => 'Jewelry Elements';
-
-  @override
-  String get albanianAlpsCollectible3Icon => 'jewelry';
+  String get albanianAlps2022ce => 'Theth, Valbona and nearby reserves merge into the Alps of Albania National Park.';
 
   @override
   String get korcaTitle => 'Korçë';
-
-  @override
-  String get korcaSubTitle => 'The Cradle of Albanian Culture';
 
   @override
   String get korcaRegionTitle => 'Korçë, Albania';
 
   @override
   String get korcaArtifactCulture => 'Albanian Orthodox';
-
-  @override
-  String get korcaArtifactGeolocation => 'Southeastern Albania';
 
   @override
   String get korcaPullQuote1Top => 'Not Just a Cathedral,';
@@ -1183,7 +839,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Korçë is home to the first Albanian-language school, opened on March 7, 1887, a date now celebrated as Teacher\'s Day (Dita e Mësuesit) across Albania.';
 
   @override
-  String get korcaVideoCaption => '“Korçë - The Cradle of Albanian Culture and the Resurrection Cathedral.” Youtube.';
+  String get korcaVideoCaption => '“Korçë, Dardhë | Dardhe Korce Albania.” Visit Albania, YouTube.';
 
   @override
   String get korcaMapCaption => 'Map showing location of Korçë in southeastern Albania.';
@@ -1194,7 +850,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get korcaHistoryInfo2 =>
-      'The original Orthodox Cathedral was destroyed during the communist period when Albania declared itself the world\'s first atheist state in 1967, demolishing nearly all religious buildings. The new Resurrection Cathedral (Katedralja Ngjallja e Krishtit) was built between 1992 and 2003 on the foundations of the old cathedral, symbolizing both religious revival and national cultural renewal.\nKorçë is also renowned for its contribution to Albanian music, art, and the famous annual Korçë Beer Festival, one of the largest in the Balkans.';
+      'The original Orthodox Cathedral was destroyed during the communist period when Albania declared itself the world\'s first atheist state in 1967, demolishing nearly all religious buildings. The new Resurrection Cathedral (Katedralja Ngjallja e Krishtit) was built between 1994 and 2002 on the foundations of the old cathedral, symbolizing both religious revival and national cultural renewal.\nKorçë is also renowned for its contribution to Albanian music, art, and the famous annual Korçë Beer Festival, one of the largest in the Balkans.';
 
   @override
   String get korcaConstructionInfo1 =>
@@ -1202,7 +858,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get korcaConstructionInfo2 =>
-      'The cathedral\'s construction spanned over a decade, from 1992 to 2003. Modern reinforced concrete and steel frame construction was used for structural integrity, while traditional stone and decorative elements maintain the Byzantine aesthetic.\nThe bell tower, rising beside the cathedral, houses a set of bells that ring across the city. The surrounding plaza and park create a cultural center for the city, connecting to the National Museum of Medieval Art, which houses one of the finest collections of Byzantine icons in the world.';
+      'The cathedral was built between 1994 and 2002. Modern reinforced concrete and steel frame construction was used for structural integrity, while traditional stone and decorative elements maintain the Byzantine aesthetic.\nThe bell tower, rising beside the cathedral, houses a set of bells that ring across the city. The surrounding plaza and park create a cultural center for the city, connecting to the National Museum of Medieval Art, which houses one of the finest collections of Byzantine icons in the world.';
 
   @override
   String get korcaLocationInfo1 =>
@@ -1213,210 +869,420 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Korçë plateau has been inhabited since prehistoric times due to its fertile soil and strategic position along ancient trade routes connecting the Adriatic and Aegean seas. The nearby archaeological site of Maliq, on the shores of a former lake, has yielded evidence of continuous habitation dating back to the Neolithic period, around 6000 BCE.';
 
   @override
-  String get korca1631ce =>
-      'Korçë develops as an Ottoman administrative and trade center with construction of mosques, bazaars, and hans (inns)';
+  String get korca1769ce => 'After nearby Voskopojë is sacked, part of its trade moves to Korçë.';
 
   @override
-  String get korca1647ce =>
-      'The city\'s importance grows as a crossroads of trade routes connecting Thessaloniki, Ioannina, and the Albanian coast';
+  String get korca1887ce => 'The first Albanian-language school, the Mësonjëtorja, opens on 7 March.';
 
   @override
-  String get korca1658ce =>
-      'Cultural and religious communities flourish in Korçë, establishing it as a multi-ethnic center of learning';
+  String get korca1891ce => 'Sevasti Qiriazi founds the first Albanian school for girls.';
 
   @override
-  String get korca1901ce =>
-      'Korçë becomes a center of the Albanian national movement with the opening of the first Albanian-language school in 1887';
+  String get korca1916ce => 'Under French protection, the Autonomous Albanian Republic of Korçë is proclaimed.';
 
   @override
-  String get korca1984ce =>
-      'During the communist era, the original Orthodox Cathedral and most religious buildings are demolished as Albania is declared an atheist state';
+  String get korca1968ce => 'The communist regime demolishes the city\'s Orthodox cathedral of St. George.';
 
   @override
-  String get korca1998ce =>
-      'Construction of the new Resurrection Cathedral begins after the fall of communism, completed in 2003 as a symbol of cultural renewal';
+  String get korca1994ce => 'Construction of the Resurrection Cathedral begins; it is consecrated in 2002.';
 
   @override
-  String get korcaCollectible1Title => 'Dagger with Scabbard';
+  String get timelineEventIllyrianTribes =>
+      'Illyrian peoples such as the Taulantii, Ardiaei, Dardani and Enchelei take shape across the western Balkans.';
 
   @override
-  String get korcaCollectible1Icon => 'jewelry';
+  String get timelineEventEpidamnos =>
+      'Settlers from Corcyra and Corinth found Epidamnos on Taulantian land. As Dyrrachium, today\'s Durrës, it becomes the great port of the Adriatic coast.';
 
   @override
-  String get korcaCollectible2Title => 'The House of Bijapur';
+  String get timelineEventBardylisDefeatsMacedon =>
+      'The Illyrian king Bardylis defeats and kills King Perdiccas III of Macedon. A year later Perdiccas\'s brother, Philip II, strikes back and defeats him.';
 
   @override
-  String get korcaCollectible2Icon => 'picture';
+  String get timelineEventAlexanderAtPelion =>
+      'At Pelion, in the south-east of today\'s Albania, the young Alexander the Great breaks an alliance of the Illyrian kings Cleitus and Glaukias.';
 
   @override
-  String get korcaCollectible3Title => 'Panel of Nasta\'liq Calligraphy';
+  String get timelineEventGlaukiasShieldsPyrrhus =>
+      'King Glaukias of the Taulantii shelters the infant Pyrrhus of Epirus and refuses to hand him to his enemies. Years later he helps restore him to the Epirote throne.';
 
   @override
-  String get korcaCollectible3Icon => 'scroll';
+  String get timelineEventTeutaTakesTheHelm =>
+      'After King Agron\'s sudden death, his widow Teuta rules the Ardiaean kingdom for his young son. Her fleets raid the Adriatic and Ionian coasts and sack Phoenice (today\'s Finiq), the richest city of Epirus.';
 
   @override
-  String get timelineEvent2900bce => 'Bronze Age tumuli traditions emerge across the Western Balkans';
+  String get timelineEventTeutaDefiesRome =>
+      'Rome sends 200 ships against Queen Teuta. The First Illyrian War ends in 228 BCE with Corcyra, Epidamnos and Apollonia under Roman protection.';
 
   @override
-  String get timelineEvent2700bce =>
-      'The Maliq settlement near Korçë grows into one of the earliest agrarian communities of the southern Balkans';
+  String get timelineEventGentiusFalls =>
+      'In the Third Illyrian War, Rome defeats King Gentius within weeks and captures him at Scodra (Shkodër). His kingdom is broken up into districts under Roman control.';
 
   @override
-  String get timelineEvent2600bce =>
-      'Early Bronze Age communities flourish along the Adriatic coast of present-day Albania';
+  String get timelineEventEpirusSacked =>
+      'To punish Epirus for siding with Macedon, Rome sacks 70 of its towns and sells 150,000 people into slavery. The south of today\'s Albania is among the lands hit.';
 
   @override
-  String get timelineEvent2560bce => 'The Cetina cultural horizon links communities across the Western Balkans';
+  String get timelineEventViaEgnatia =>
+      'Rome builds the Via Egnatia, a road from Dyrrachium and Apollonia over the mountains to Thessalonica, later extended to Byzantium.';
 
   @override
-  String get timelineEvent1200bce =>
-      'Illyrian tribes — Taulantii, Ardiaei, Dardani, Enchelei, Chaones — consolidate across the western Balkans';
+  String get timelineEventCaesarAndPompey =>
+      'In Rome\'s civil war, Julius Caesar besieges Pompey at Dyrrachium (Durrës) but is driven off. Weeks later he wins the war at Pharsalus in Greece.';
 
   @override
-  String get timelineEvent627bce =>
-      'Greek settlers from Corinth and Corcyra found Epidamnos, the future Dyrrhachium and modern Durrës';
+  String get timelineEventPaulInIllyricum =>
+      'In his letter to the Romans, the apostle Paul writes that he has preached the gospel \'as far as Illyricum\'.';
 
   @override
-  String get timelineEvent358bce => 'Bardylis I of the Dardanian Kingdom defeats Macedonia under Perdiccas III';
+  String get timelineEventEmpireSplits =>
+      'When Emperor Theodosius I dies, the Roman Empire is split for good. The Albanian lands fall to the eastern half, ruled from Constantinople.';
 
   @override
-  String get timelineEvent229bce =>
-      'First Illyrian War: Queen Teuta of the Ardiaeans clashes with Rome over Adriatic piracy';
+  String get timelineEventAnastasiusEmperor =>
+      'Anastasius I, born in Dyrrachium (Durrës), becomes Byzantine emperor and later strengthens the walls of his home city.';
 
   @override
-  String get timelineEvent168bce =>
-      'Third Illyrian War ends; King Gentius is defeated and Illyria becomes a Roman protectorate';
+  String get timelineEventButrintBaptistery =>
+      'Butrint builds a great baptistery whose mosaic floor of birds, animals and vines is among the finest early Christian mosaics in the Balkans.';
 
   @override
-  String get timelineEvent146bce =>
-      'Rome begins constructing the Via Egnatia, linking Dyrrhachium across Illyria to Byzantium';
+  String get timelineEventCodexBeratinus =>
+      'Scribes copy the Gospels of Matthew and Mark in silver ink on purple parchment. Kept in Berat since at least 1356, the Codex Beratinus is one of the oldest Gospel books in the world.';
 
   @override
-  String get timelineEvent395ce => 'The Roman Empire splits; Illyria is absorbed into the Eastern Byzantine realm';
+  String get timelineEventBasilReconquers =>
+      'Emperor Basil II destroys the Bulgarian state, which had ruled much of the region, and restores Byzantine rule through the Theme of Dyrrachium.';
 
   @override
-  String get timelineEvent500ce =>
-      'The Albanian coast flourishes as a key Byzantine corridor between Constantinople and the western Mediterranean';
+  String get timelineEventAlbanoiNamed =>
+      'A Byzantine chronicle names \'Albanoi\' among the troops of the rebel general George Maniakes, one of the first written records of the Albanians.';
 
   @override
-  String get timelineEvent632ce =>
-      'Death of Muhammad (61) and founding of Islam — the faith that will later reshape Albania under Ottoman rule';
+  String get timelineEventGreatSchism =>
+      'The churches of Rome and Constantinople split. Over time Albanian Christians divide along the same line: Catholic in the north, Orthodox in the south.';
 
   @override
-  String get timelineEvent1018ce => 'Basil II reconquers Illyria; the Byzantine Theme of Dyrrhachium is re-established';
+  String get timelineEventNormansAtDyrrachium =>
+      'Robert Guiscard\'s Normans defeat Emperor Alexios I at Dyrrachium, opening a long struggle between Normans, Venetians and Byzantines for the coast.';
 
   @override
-  String get timelineEvent1043ce =>
-      'First written reference to the name Albanoi — Albanians take part in the revolt of George Maniakes';
+  String get timelineEventArbanon =>
+      'Progon, lord of Krujë, founds Arbanon, the first Albanian state of the Middle Ages. His sons Gjin and Dhimitër rule after him.';
 
   @override
-  String get timelineEvent1081ce => 'Battle of Dyrrhachium: Norman forces under Robert Guiscard defeat the Byzantines';
+  String get timelineEventRegnumAlbaniae =>
+      'Charles of Anjou, king of Sicily, is proclaimed King of Albania (Regnum Albaniae), a Crusader-era state on the coast around Durrës.';
 
   @override
-  String get timelineEvent1190ce => 'Progon founds the Principality of Arbanon — the first Albanian medieval state';
+  String get timelineEventSiegeOfBerat =>
+      'An Angevin army besieges Berat, but a Byzantine relief force captures its commander, Hugh of Sully, and the besiegers flee towards Vlorë.';
 
   @override
-  String get timelineEvent1271ce => 'Charles of Anjou proclaims the Kingdom of Albania (Regnum Albaniae)';
+  String get timelineEventVoiceInTheMountains =>
+      'A court record in Ragusa (Dubrovnik) notes: \'I heard a voice crying in the mountains in the Albanian language.\' It is the earliest known mention of spoken Albanian.';
 
   @override
-  String get timelineEvent1347ce =>
-      'The Black Death plague sweeps Europe and devastates Balkan populations, including Albania';
+  String get timelineEventALanguageOfTheirOwn =>
+      'A Dominican report to the French king notes that the Albanians have a language quite unlike Latin, but use Latin letters in their books.';
 
   @override
-  String get timelineEvent1355ce =>
-      'After the death of Stefan Dušan, the Albanian principalities of Balsha, Topia, Muzaka and Kastrioti rise';
+  String get timelineEventAlbanianPrincipalities =>
+      'Stefan Dušan\'s Serbian Empire, which had conquered most Albanian lands, breaks up after his death. Families such as the Balsha, Thopia, Muzaka, Dukagjini and Kastrioti rule their own principalities.';
 
   @override
-  String get timelineEvent1389ce => 'Albanian nobles fight beside Serbian forces at the Battle of Kosovo';
+  String get timelineEventBattleOfSavra =>
+      'At the Battle of Savra, an Ottoman army defeats and kills Balsha II, lord of Durrës. Many Albanian lords soon become Ottoman vassals.';
 
   @override
-  String get timelineEvent1428ce =>
-      'Gjergj Kastrioti, the future Skanderbeg, comes of age in the Ottoman court before returning to lead Albanian resistance';
+  String get timelineEventBattleOfKosovo =>
+      'Albanian lords fight alongside Prince Lazar\'s Serbian army against the Ottomans on the Field of Kosovo. Both Lazar and Sultan Murad I are killed.';
 
   @override
-  String get timelineEvent1443ce => 'Skanderbeg defects from the Ottoman army at the Battle of Niš and seizes Krujë';
+  String get timelineEventOttomansTakeTheSouth =>
+      'Ottoman forces capture Vlorë, Kaninë and Berat. A year later Gjirokastër falls too.';
 
   @override
-  String get timelineEvent1444ce => 'The League of Lezhë unites Albanian princes under Skanderbeg\'s command';
+  String get timelineEventRevoltOf1432 =>
+      'Albanian lords led by Gjergj Arianiti rise against Ottoman rule and win several battles before the revolt is crushed in 1436.';
 
   @override
-  String get timelineEvent1450ce => 'First Siege of Krujë: Skanderbeg withstands Sultan Murad II';
+  String get timelineEventSkanderbegReturns =>
+      'Gjergj Kastrioti, an Ottoman commander known as Skanderbeg, deserts at the Battle of Niš, takes Krujë on 28 November and raises his red flag with the black double-headed eagle.';
 
   @override
-  String get timelineEvent1466ce =>
-      'Sultan Mehmed II launches the Second Siege of Krujë and builds the fortress of Elbasan';
+  String get timelineEventLeagueOfLezhe =>
+      'Albanian princes unite under Skanderbeg in the League of Lezhë. Months later they win their first great victory, at Torvioll.';
 
   @override
-  String get timelineEvent1468ce => 'Death of Skanderbeg in Lezhë; Albanian resistance gradually crumbles';
+  String get timelineEventFirstSiegeOfKruja =>
+      'Sultan Murad II besieges Krujë for months with a huge army, but the garrison holds out and he withdraws.';
 
   @override
-  String get timelineEvent1479ce => 'Fall of Shkodër — Ottoman conquest of Albania is complete';
+  String get timelineEventBattleOfAlbulena =>
+      'Skanderbeg routs a large Ottoman army at Albulena (Ujëbardha), one of his most celebrated victories.';
 
   @override
-  String get timelineEvent1571ce =>
-      'Battle of Lepanto — Albanian sailors fight on both sides of the Christian–Ottoman naval struggle';
+  String get timelineEventBaptismalFormula =>
+      'Archbishop Pal Engjëlli writes a baptismal formula in Albanian into a Latin letter: \'Un\'te paghesont\' pr\'emenit t\'Atit e t\'Birit e t\'Spertit Senit.\' It is the oldest known written Albanian sentence.';
 
   @override
-  String get timelineEvent1788ce => 'Ali Pasha of Tepelenë establishes the semi-autonomous Pashalik of Yanina';
+  String get timelineEventMehmedsSieges =>
+      'Sultan Mehmed II, conqueror of Constantinople, besieges Krujë twice and builds the fortress of Elbasan to cut Skanderbeg\'s lands in two. Krujë still holds.';
 
   @override
-  String get timelineEvent1789ce =>
-      'The French Revolution begins; its ideals later inspire the Albanian National Awakening (Rilindja)';
+  String get timelineEventSkanderbegDies =>
+      'Skanderbeg dies of fever in Lezhë on 17 January. Without him, the resistance slowly gives way.';
 
   @override
-  String get timelineEvent1830ce =>
-      'The Massacre of the Beys at Manastir ends Albanian feudal autonomy under Ottoman reforms';
+  String get timelineEventArbereshMigration =>
+      'As the Ottomans advance, thousands of Albanians cross to southern Italy and Sicily. Their descendants, the Arbëreshë, still speak Albanian in dozens of villages today.';
 
   @override
-  String get timelineEvent1878ce => 'The League of Prizren is founded — the first organised Albanian national movement';
+  String get timelineEventShkoderFalls =>
+      'After a long siege, Venice hands Shkodër to the Ottomans. Almost all of Albania is now under Ottoman rule; Durrës follows in 1501.';
 
   @override
-  String get timelineEvent1908ce => 'The Congress of Manastir standardises the Albanian Latin alphabet';
+  String get timelineEventMeshari =>
+      'Gjon Buzuku, a Catholic priest, completes the Meshari (Missal), the oldest surviving book in Albanian. A single copy survives, in the Vatican Library.';
 
   @override
-  String get timelineEvent1912ce => 'Ismail Qemali proclaims Albanian independence in Vlorë on 28 November';
+  String get timelineEventBardhiDictionary =>
+      'Frang Bardhi publishes a Latin–Albanian dictionary in Rome, the first dictionary of the Albanian language.';
 
   @override
-  String get timelineEvent1914ce =>
-      'World War I — Albania becomes a contested battleground for several European powers';
+  String get timelineEventIslamization =>
+      'Over the 17th century most Albanians convert to Islam, often to escape heavy taxes and to rise in Ottoman service. Catholic and Orthodox communities endure.';
 
   @override
-  String get timelineEvent1920ce => 'The Congress of Lushnjë makes Tirana the capital of Albania';
+  String get timelineEventCuneusProphetarum =>
+      'Archbishop Pjetër Bogdani publishes Cuneus Prophetarum (The Band of the Prophets) in Padua, the first major original work of Albanian prose.';
 
   @override
-  String get timelineEvent1928ce => 'Ahmet Zogu is crowned King Zog I of the Albanians';
+  String get timelineEventVoskopojePress =>
+      'Voskopojë, a rich trading town near Korçë, opens one of the first printing presses in the Ottoman Balkans. In 1744 it founds the New Academy.';
 
   @override
-  String get timelineEvent1939ce => 'World War II begins';
+  String get timelineEventBushatiPashalik =>
+      'Mehmed Pasha Bushati makes Shkodër the seat of a near-independent pashalik that his family rules until 1831.';
 
   @override
-  String get timelineEvent1939ceAlbania => 'Italy invades Albania, beginning the Axis occupation';
+  String get timelineEventAliPashaRises =>
+      'Ali Pasha becomes ruler of Ioannina and builds a near-independent state across southern Albania and mainland Greece.';
 
   @override
-  String get timelineEvent1944ce => 'Albania is liberated by partisan forces; Enver Hoxha\'s communist regime begins';
+  String get timelineEventAliPashaFalls =>
+      'After a long siege at Ioannina, the Sultan\'s agents kill the elderly Ali Pasha and send his head to Constantinople.';
 
   @override
-  String get timelineEvent1967ce => 'Albania declares itself the world\'s first officially atheist state';
+  String get timelineEventMassacreOfTheBeys =>
+      'The Ottoman grand vizier invites Albanian beys to Manastir with a promise of amnesty and has some 500 of them killed, breaking the power of the old lords.';
 
   @override
-  String get timelineEvent1991ce => 'First multi-party elections end 46 years of communist rule';
+  String get timelineEventVeqilharxhiPrimer =>
+      'Naum Veqilharxhi publishes an Albanian spelling book in an alphabet of his own invention, one of the first works of the National Awakening.';
 
   @override
-  String get timelineEvent1997ce => 'The collapse of nationwide pyramid schemes triggers civil unrest';
+  String get timelineEventLeagueOfPrizren =>
+      'As the Great Powers prepare to hand Albanian-inhabited lands to Serbia and Montenegro, Albanian leaders meet in Prizren to defend them. It is the first organised national movement; Ottoman troops crush it in 1881.';
 
   @override
-  String get timelineEvent2009ce => 'Albania joins NATO';
+  String get timelineEventIstanbulAlphabet =>
+      'Sami Frashëri and fellow patriots found a society in Istanbul to print books in Albanian and publish an alphabet for the language.';
 
   @override
-  String get timelineEvent2019ce => 'A devastating earthquake strikes the Durrës region';
+  String get timelineEventHerdsAndFields =>
+      'Naim Frashëri publishes Bagëti e Bujqësi (Herds and Fields), a hymn to the Albanian countryside that becomes the best-loved poem of the Awakening.';
 
   @override
-  String get privacyPolicy => 'Privacy Policy';
+  String get timelineEventFirstAlbanianSchool =>
+      'On 7 March, the Mësonjëtorja opens in Korçë, the first school to teach in Albanian.';
 
   @override
-  String privacyStatement(Object privacyUrl) {
-    return 'As explained in our $privacyUrl we do not collect any personal information.';
-  }
+  String get timelineEventSchoolForGirls =>
+      'Sevasti Qiriazi founds the first Albanian school for girls in Korçë, where girls learn to read and write in their own language.';
+
+  @override
+  String get timelineEventSamiManifesto =>
+      'Sami Frashëri publishes Albania: What It Was, What It Is and What It Will Be, a blueprint for a free Albanian state.';
+
+  @override
+  String get timelineEventFirstAlbanianLiturgy =>
+      'In Boston, Fan Noli celebrates the first Orthodox liturgy in the Albanian language, the start of an Albanian Orthodox church.';
+
+  @override
+  String get timelineEventCongressOfManastir =>
+      'The Congress of Manastir adopts the Latin-based Albanian alphabet that is still used today.';
+
+  @override
+  String get timelineEventFlagAtDeciq =>
+      'During the highland uprising of 1911, Ded Gjo Luli\'s fighters win at Deçiq and raise the Albanian flag, for the first time since the 15th century.';
+
+  @override
+  String get timelineEventIndependence =>
+      'On 28 November, Ismail Qemali raises the flag in Vlorë and declares Albania independent of the Ottoman Empire.';
+
+  @override
+  String get timelineEventLondonBorders =>
+      'The Great Powers recognise an independent Albania but leave Kosovo and other Albanian-inhabited lands outside its borders.';
+
+  @override
+  String get timelineEventPrinceWied =>
+      'Prince Wilhelm of Wied arrives to rule the new Principality of Albania. Within six months, revolt and World War I drive him out.';
+
+  @override
+  String get timelineEventRepublicOfKorca =>
+      'Under French military protection, Korçë becomes an autonomous Albanian republic with its own schools, stamps and flag.';
+
+  @override
+  String get timelineEventCongressOfLushnje =>
+      'The Congress of Lushnjë rejects plans to divide Albania among its neighbours and makes Tirana the capital.';
+
+  @override
+  String get timelineEventVloraWar =>
+      'Albanian volunteers besiege the Italian army in Vlorë, and by September Italy withdraws from mainland Albania. In December, Albania joins the League of Nations.';
+
+  @override
+  String get timelineEventOrthodoxAutocephaly =>
+      'The Congress of Berat declares the Albanian Orthodox Church autocephalous, independent of the Patriarchate of Constantinople.';
+
+  @override
+  String get timelineEventJuneRevolution =>
+      'A revolt brings Bishop Fan Noli to power with a programme of reforms. Six months later Ahmet Zogu returns with foreign backing and Noli flees.';
+
+  @override
+  String get timelineEventKingZog => 'President Ahmet Zogu proclaims himself Zog I, King of the Albanians.';
+
+  @override
+  String get timelineEventBektashiCentre =>
+      'Banned in Turkey, the Bektashi Sufi order decides at a congress in Korçë to move its world headquarters to Tirana, where it remains today.';
+
+  @override
+  String get timelineEventKanunPublished =>
+      'Shtjefën Gjeçovi\'s collection of the Kanun of Lekë Dukagjini, the customary law of the northern highlands, is published in full.';
+
+  @override
+  String get timelineEventItalianInvasion =>
+      'On 7 April, Mussolini\'s troops land at Durrës and other ports. King Zog flees, and Albania is joined to the Italian crown.';
+
+  @override
+  String get timelineEventKokalariBook =>
+      'Musine Kokalari publishes As My Old Mother Tells Me, stories in the dialect of Gjirokastër. She is the first Albanian woman to publish prose.';
+
+  @override
+  String get timelineEventWarWithGreece =>
+      'Italy attacks Greece from Albanian soil. The Greek counter-attack pushes deep into the south, taking Korçë in November and Gjirokastër in December.';
+
+  @override
+  String get timelineEventResistanceOrganises =>
+      'At the Peza Conference, communists and nationalists form the National Liberation Movement. The rival nationalist Balli Kombëtar is founded later that year.';
+
+  @override
+  String get timelineEventGermanOccupation =>
+      'Italy surrenders in September and German troops occupy Albania. The rival resistance groups now fight each other as well as the occupiers.';
+
+  @override
+  String get timelineEventBesaJews =>
+      'Albanian families, Muslim and Christian, hide Jewish refugees from the occupiers, honouring besa, a sacred promise. Albania ends the war with more Jews than it had before.';
+
+  @override
+  String get timelineEventGovernmentAtBerat =>
+      'Meeting in Berat in October, the communist-led resistance council forms a provisional government with Enver Hoxha as prime minister.';
+
+  @override
+  String get timelineEventLiberation =>
+      'On 29 November the last German troops leave. The communist-led partisans take power, and Enver Hoxha begins four decades of one-party rule.';
+
+  @override
+  String get timelineEventPeoplesRepublic =>
+      'Albania is proclaimed a People\'s Republic. Opponents are tried and imprisoned, among them the writer Musine Kokalari.';
+
+  @override
+  String get timelineEventCorfuChannel =>
+      'Mines in the Corfu Channel badly damage two British destroyers and kill 44 sailors. The dispute becomes the first case judged by the International Court of Justice.';
+
+  @override
+  String get timelineEventBreakWithYugoslavia =>
+      'When Tito breaks with Stalin, Hoxha cuts ties with Yugoslavia and turns to the Soviet Union.';
+
+  @override
+  String get timelineEventBreakWithMoscow =>
+      'Albania sides with China against Khrushchev. The Soviet Union breaks off relations and pulls its forces out of the naval base at Vlorë.';
+
+  @override
+  String get timelineEventAtheistState =>
+      'The regime closes or destroys mosques and churches and declares Albania the world\'s first atheist state.';
+
+  @override
+  String get timelineEventBunkers =>
+      'Fearing invasion, the regime covers the country with concrete bunkers, some 170,000 of them, built from the late 1960s to the mid-1980s.';
+
+  @override
+  String get timelineEventChronicleInStone =>
+      'Ismail Kadare publishes Chronicle in Stone, which shows his native Gjirokastër during World War II through the eyes of a boy.';
+
+  @override
+  String get timelineEventOrthographicCongress =>
+      'The Congress of Orthography fixes a single standard for written Albanian, based mainly on the southern Tosk dialect.';
+
+  @override
+  String get timelineEventBreakWithChina =>
+      'China ends its aid, and Albania breaks with its last ally, relying only on itself.';
+
+  @override
+  String get timelineEventMotherTeresaNobel =>
+      'Mother Teresa, born Anjezë Gonxhe Bojaxhiu to an Albanian family in Skopje, receives the Nobel Peace Prize for her work among the poor of Calcutta.';
+
+  @override
+  String get timelineEventHoxhaDies =>
+      'Enver Hoxha dies on 11 April. His successor, Ramiz Alia, loosens controls only slowly.';
+
+  @override
+  String get timelineEventRegimeCracks =>
+      'In July, thousands of Albanians rush into foreign embassies to leave the country. In December, student protests in Tirana force the regime to allow opposition parties.';
+
+  @override
+  String get timelineEventFaithReturns =>
+      'On 4 November, the priest Simon Jubani says the first public Mass in decades, in a cemetery in Shkodër. Within months, mosques and churches reopen across the country.';
+
+  @override
+  String get timelineEventFirstFreeElections =>
+      'In March, Albania holds its first multi-party elections in decades. The former communists win, but a year later the Democratic Party takes power.';
+
+  @override
+  String get timelineEventVloraShip =>
+      'On 8 August the freighter Vlora reaches Bari carrying an estimated 20,000 Albanians, the defining image of a mass exodus.';
+
+  @override
+  String get timelineEventPyramidCrisis =>
+      'The collapse of pyramid investment schemes wipes out the savings of much of the country and sets off armed unrest in which more than 2,000 people die.';
+
+  @override
+  String get timelineEventKosovoRefugees =>
+      'During the Kosovo war, Albania takes in some 450,000 refugees, most of them in private homes.';
+
+  @override
+  String get timelineEventIsoPolyphony =>
+      'UNESCO proclaims Albanian folk iso-polyphony, the many-voiced singing of the south, a masterpiece of humanity\'s oral and intangible heritage.';
+
+  @override
+  String get timelineEventKadareBooker =>
+      'Ismail Kadare wins the first Man Booker International Prize for his body of work.';
+
+  @override
+  String get timelineEventNatoMembership =>
+      'Albania becomes a member of NATO on 1 April and applies to join the European Union weeks later.';
+
+  @override
+  String get timelineEventEuCandidate => 'Albania becomes an official candidate for membership of the European Union.';
+
+  @override
+  String get timelineEventDurresEarthquake =>
+      'A magnitude 6.4 earthquake strikes near Durrës on 26 November, killing 51 people and leaving thousands homeless.';
+
+  @override
+  String get timelineEventEuTalks =>
+      'Albania formally opens accession negotiations with the European Union on 19 July.';
 
   @override
   String get pageNotFoundBackButton => 'Back to civilization';

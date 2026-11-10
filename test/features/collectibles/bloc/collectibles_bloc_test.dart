@@ -22,7 +22,6 @@ ArtifactData _artifact(String id, {String title = 'Test'}) => ArtifactData(
       title: title,
       image: '',
       imageSmall: '',
-      imageMedium: '',
       date: '',
       period: '',
       country: '',
@@ -30,9 +29,6 @@ ArtifactData _artifact(String id, {String title = 'Test'}) => ArtifactData(
       dimension: '',
       classification: '',
       culture: '',
-      objectType: '',
-      objectBeginYear: 0,
-      objectEndYear: 0,
     );
 
 void main() {
@@ -100,12 +96,12 @@ void main() {
     );
 
     blocTest<CollectiblesBloc, CollectiblesState>(
-      'with persisted JSON populates known IDs and drops orphans',
+      'with persisted JSON keeps saved states, including ids the catalog has not loaded yet',
       setUp: () {
         SharedPreferences.setMockInitialValues({
           'collectibles.dat': jsonEncode({
             'col-1': CollectibleState.discovered,
-            'col-orphan': CollectibleState.discovered,
+            'col-later': CollectibleState.discovered,
           }),
         });
       },
@@ -115,11 +111,43 @@ void main() {
         expect(b.state.statesById, {
           'col-1': CollectibleState.discovered,
           'col-2': CollectibleState.lost,
+          'col-later': CollectibleState.discovered,
         });
-        expect(b.state.statesById.containsKey('col-orphan'), isFalse);
-        expect(b.state.discoveredCount, 1);
+        expect(b.state.discoveredCount, 2);
         expect(b.state.exploredCount, 0);
         expect(b.state.isLoaded, isTrue);
+      },
+    );
+
+    test(
+      'a cold start before the catalog arrives keeps earlier discoveries on the next save',
+      () async {
+        // On launch the collectibles load runs before the artifacts catalog
+        // is fetched, so the catalog is still empty here.
+        for (final t in DestinationType.values) {
+          CollectibleData.replaceForDestination(t, const []);
+        }
+        SharedPreferences.setMockInitialValues({
+          'collectibles.dat': jsonEncode({'col-1': CollectibleState.discovered}),
+        });
+
+        final bloc = build();
+        await bloc.loadFromPersistence();
+        expect(bloc.state.statesById, {'col-1': CollectibleState.discovered});
+
+        bloc.add(const CollectiblesStateChanged(
+          id: 'col-2',
+          state: CollectibleState.discovered,
+        ));
+        await bloc.flushPendingSaveAwaitable();
+
+        final prefs = await SharedPreferences.getInstance();
+        final saved = jsonDecode(prefs.getString('collectibles.dat')!) as Map;
+        expect(saved, {
+          'col-1': CollectibleState.discovered,
+          'col-2': CollectibleState.discovered,
+        });
+        await bloc.close();
       },
     );
 
@@ -153,6 +181,10 @@ void main() {
         ).called(1);
         verify(
           () => nativeWidget.save<int>('discoveredCount', 1),
+        ).called(1);
+        // The widget's gauge divides by the catalog size (2 seeded items).
+        verify(
+          () => nativeWidget.save<int>('totalCount', 2),
         ).called(1);
       },
     );
@@ -228,6 +260,7 @@ void main() {
       expect(b.state.discoveredCount, 0);
       expect(b.state.exploredCount, 0);
       verify(() => nativeWidget.save<int>('discoveredCount', 0)).called(1);
+      verify(() => nativeWidget.save<int>('totalCount', 2)).called(1);
     },
   );
 

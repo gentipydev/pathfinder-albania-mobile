@@ -16,6 +16,15 @@ class _BottomTextContent extends StatelessWidget {
   final bool overlapMode;
   int get _currentPage => state._currentPage.value.round();
 
+  /// While the highlights load, the title and date render as text-shaped
+  /// skeleton bones (their placeholder text is never shown or read out).
+  Widget _skeletonWhileLoading(Widget child) {
+    if (!artifact.isPlaceholder) return child;
+    return ExcludeSemantics(
+      child: Skeletonizer(effect: skeletonEffect(SkeletonTone.light), child: child),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget textContent = Text(
@@ -47,34 +56,36 @@ class _BottomTextContent extends StatelessWidget {
                       onDecrease: () => state._handleArtifactTap(_currentPage - 1),
                       onTap: () => state._handleArtifactTap(_currentPage),
                       liveRegion: true,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          // Force column to stretch horizontally so text is centered
-                          SizedBox(width: double.infinity),
-                          // Stop text from scaling to make layout a little easier, it's already quite large
-                          StaticTextScale(
-                            child: overlapMode
-                                ? Container(
-                                    padding: EdgeInsets.all($styles.insets.xxs),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular($styles.corners.md),
-                                      color: $styles.colors.white.withAlpha(130),
-                                    ),
-                                    child: textContent,
-                                  )
-                                : textContent,
-                          ),
-                          if (!shortMode) ...[
-                            Gap($styles.insets.xxs),
-                            Text(
-                              artifact.date.isEmpty ? '--' : artifact.date,
-                              style: $styles.text.body,
-                              textAlign: TextAlign.center,
+                      child: _skeletonWhileLoading(
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            // Force column to stretch horizontally so text is centered
+                            SizedBox(width: double.infinity),
+                            // Stop text from scaling to make layout a little easier, it's already quite large
+                            StaticTextScale(
+                              child: overlapMode
+                                  ? Container(
+                                      padding: EdgeInsets.all($styles.insets.xxs),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular($styles.corners.md),
+                                        color: $styles.colors.white.withAlpha(130),
+                                      ),
+                                      child: textContent,
+                                    )
+                                  : textContent,
                             ),
+                            if (!shortMode) ...[
+                              Gap($styles.insets.xxs),
+                              Text(
+                                artifact.date.isEmpty ? '--' : artifact.date,
+                                style: $styles.text.body,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ],
-                        ],
-                      ).maybeAnimate(key: ValueKey(artifact.artifactId)).fadeIn(),
+                        ).maybeAnimate(key: ValueKey(artifact.artifactId)).fadeIn(),
+                      ),
                     ),
                   ),
                 ],
@@ -83,7 +94,7 @@ class _BottomTextContent extends StatelessWidget {
               Spacer(),
               if (!shortMode)
                 AppPageIndicator(
-                  count: state._artifacts.length,
+                  count: state._items.length,
                   controller: state._pageController!,
                   semanticPageTitle: $strings.artifactsSemanticArtifact,
                 ),

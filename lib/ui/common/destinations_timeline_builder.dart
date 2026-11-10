@@ -37,18 +37,31 @@ class DestinationsTimelineBuilder extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (_, constraints) {
-        /// Builds one timeline track, may contain multiple destinations, but they should not overlap
+        /// Builds one timeline track. Destinations in a track can overlap in years, so they are painted
+        /// longest range first: shorter ones sit on top and every destination keeps a visible stretch.
+        /// A selected destination is painted last so it is never covered.
         Widget buildSingleTimelineTrack(BuildContext context, List<DestinationType> types) {
+          int span(DestinationType t) {
+            final data = destinationsLogic.getData(t);
+            return data.endYrOrNow - data.startYr;
+          }
+
+          int rank(DestinationType t) => selectedDestinations.contains(t) ? 1 : 0;
+          final ordered = [...types]
+            ..sort((a, b) {
+              final bySelection = rank(a).compareTo(rank(b));
+              return bySelection != 0 ? bySelection : span(b).compareTo(span(a));
+            });
           return Stack(
             clipBehavior: Clip.none,
-            children: types.map(
+            children: ordered.map(
               (t) {
                 final data = destinationsLogic.getData(t);
                 // To keep the math simple, first figure out a multiplier we can use to convert yrs to pixels.
                 int totalYrs = destinationsLogic.timelineEndYear - destinationsLogic.timelineStartYear;
                 double pxToYrRatio = totalYrs / ((isHz ? constraints.maxWidth : constraints.maxHeight));
                 // Now we just need to calculate year spans, and then convert them to pixels for the start/end position in the Stack
-                int destinationYrs = data.endYr - data.startYr;
+                int destinationYrs = data.endYrOrNow - data.startYr;
                 int yrsFromStart = data.startYr - destinationsLogic.timelineStartYear;
                 double startPx = yrsFromStart / pxToYrRatio;
                 double sizePx = destinationYrs / pxToYrRatio;
@@ -109,7 +122,9 @@ class _DefaultTrackEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: isSelected ? $styles.colors.accent2 : Colors.transparent,
+        // Unselected pills are filled with the scrubber panel's colour, so a pill painted on top
+        // hides the outline of the one beneath instead of crossing it.
+        color: isSelected ? $styles.colors.accent2 : $styles.colors.greyStrong,
         borderRadius: BorderRadius.circular(99),
         border: Border.all(color: $styles.colors.accent2),
       ),

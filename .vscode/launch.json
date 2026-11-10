@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutter-destinations-app",
+            "name": "travel-buddy",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "flutter-destinations-app (profile mode)",
+            "name": "travel-buddy (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "flutter-destinations-app (release mode)",
+            "name": "travel-buddy (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

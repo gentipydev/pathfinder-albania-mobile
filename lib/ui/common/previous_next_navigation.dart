@@ -12,13 +12,11 @@ class PreviousNextNavigation extends StatefulWidget {
     required this.child,
     this.maxWidth = 1000,
     this.nextBtnColor,
-    this.previousBtnColor,
     this.listenToMouseWheel = true,
   });
   final VoidCallback? onPreviousPressed;
   final VoidCallback? onNextPressed;
   final Color? nextBtnColor;
-  final Color? previousBtnColor;
   final Widget child;
   final double? maxWidth;
   final bool listenToMouseWheel;
@@ -79,7 +77,6 @@ class _PreviousNextNavigationState extends State<PreviousNextNavigation> {
                         icon: AppIcons.prev,
                         onPressed: widget.onPreviousPressed,
                         semanticLabel: 'Previous',
-                        bgColor: widget.previousBtnColor,
                       ),
                       Spacer(),
                       CircleIconBtn(

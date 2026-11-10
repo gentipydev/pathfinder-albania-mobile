@@ -20,8 +20,8 @@ part 'widgets/_collection_list.dart';
 part 'widgets/_collection_list_card.dart';
 part 'widgets/_newly_discovered_items_btn.dart';
 
-class CollectionScreen extends StatefulWidget with GetItStatefulWidgetMixin {
-  CollectionScreen({required this.fromId, super.key});
+class CollectionScreen extends StatefulWidget {
+  const CollectionScreen({required this.fromId, super.key});
 
   final String fromId;
 
@@ -29,7 +29,7 @@ class CollectionScreen extends StatefulWidget with GetItStatefulWidgetMixin {
   State<CollectionScreen> createState() => _CollectionScreenState();
 }
 
-class _CollectionScreenState extends State<CollectionScreen> with GetItStateMixin {
+class _CollectionScreenState extends State<CollectionScreen> {
   final GlobalKey _scrollKey = GlobalKey();
 
   @override

@@ -13,9 +13,6 @@ class _ScrollingContent extends StatelessWidget {
   String _fixNewlines(String text) {
     const nl = '\n';
     final chunks = text.split(nl);
-    while (chunks.last == nl) {
-      chunks.removeLast();
-    }
     chunks.removeWhere((element) => element.trim().isEmpty);
     final result = chunks.join('$nl$nl');
     return result;
@@ -231,25 +228,32 @@ class _MapsThumbnail extends StatefulWidget {
 }
 
 class _MapsThumbnailState extends State<_MapsThumbnail> {
-  late dynamic startPos;
+  MapboxMap? _map;
+  bool _pinInstalled = false;
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  late final Position _position = Position(widget.data.lng, widget.data.lat);
 
-  Future<void> _loadGoogleMap() async {
-    try {
-      await google_map.loadLibrary();
-    } catch (e) {
-      debugPrint('Error loading Google Map: $e');
-    }
+  /// Built once: MapWidget re-runs a viewport transition whenever this value
+  /// differs from the previous build's.
+  late final ViewportState _viewport = CameraViewportState(
+    center: Point(coordinates: _position),
+    zoom: 3,
+  );
+
+  Future<void> _installPin() async {
+    final map = _map;
+    if (map == null || !mounted || _pinInstalled) return;
+    _pinInstalled = true;
+    final manager = await map.annotations.createPointAnnotationManager();
+    if (!mounted) return;
+    await manager.create(buildPinAnnotationOptions(_position));
   }
 
   @override
   Widget build(BuildContext context) {
     void handlePressed() => context.go(ScreenPaths.maps(widget.data.type));
-    if (PlatformInfo.isDesktop) return SizedBox.shrink();
+    // Mapbox ships iOS and Android only — web and desktop get no thumbnail.
+    if (PlatformInfo.isDesktopOrWeb) return const SizedBox.shrink();
     return AspectRatio(
       aspectRatio: 1.65,
       child: MergeSemantics(
@@ -267,33 +271,17 @@ class _MapsThumbnailState extends State<_MapsThumbnail> {
                     children: [
                       Positioned.fill(child: ColoredBox(color: Colors.transparent)),
                       IgnorePointer(
-                        child: FutureBuilder<void>(
-                          future: _loadGoogleMap(),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState == ConnectionState.done) {
-                              if (snapshot.hasError) {
-                                return Text(
-                                  'Google Map Load Error: ${snapshot.error}',
-                                  style: $styles.text.bodySmallBold.copyWith(
-                                    color: $styles.colors.accent3,
-                                  ),
-                                );
-                              }
-                              startPos = google_map.CameraPosition(
-                                target: google_map.LatLng(widget.data.lat, widget.data.lng),
-                                zoom: 3,
-                              );
-                              return google_map.GoogleMap(
-                                markers: {getMapsMarker(startPos.target)},
-                                zoomControlsEnabled: false,
-                                mapType: google_map.MapType.normal,
-                                mapToolbarEnabled: false,
-                                initialCameraPosition: startPos,
-                                myLocationButtonEnabled: false,
-                              );
-                            }
-                            return const CircularProgressIndicator();
+                        child: MapWidget(
+                          key: const ValueKey('destination_thumbnail_map'),
+                          styleUri: kMapboxNormalStyle,
+                          viewport: _viewport,
+                          onMapCreated: (map) {
+                            _map = map;
+                            unawaited(map.scaleBar.updateSettings(ScaleBarSettings(enabled: false)));
+                            unawaited(map.compass.updateSettings(CompassSettings(enabled: false)));
                           },
+                          // Annotations can only be created against a loaded style.
+                          onStyleLoadedListener: (_) => unawaited(_installPin()),
                         ),
                       ),
                     ],

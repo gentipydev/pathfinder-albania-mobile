@@ -3,8 +3,8 @@ import 'package:travel_buddy/features/settings/bloc/settings_event.dart';
 import 'package:travel_buddy/logic/common/animate_utils.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
 import 'package:travel_buddy/ui/common/app_icons.dart';
-import 'package:travel_buddy/ui/common/controls/app_header.dart';
 import 'package:travel_buddy/ui/common/controls/app_page_indicator.dart';
+import 'package:travel_buddy/ui/common/controls/locale_switcher.dart';
 import 'package:travel_buddy/ui/common/controls/trackpad_listener.dart';
 import 'package:travel_buddy/ui/common/gradient_container.dart';
 import 'package:travel_buddy/ui/common/ignore_pointer.dart';
@@ -12,7 +12,6 @@ import 'package:travel_buddy/ui/common/previous_next_navigation.dart';
 import 'package:travel_buddy/ui/common/themed_text.dart';
 import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
 import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
-import 'package:travel_buddy/ui/screens/home_menu/home_menu.dart';
 import 'package:travel_buddy/ui/destination_illustrations/common/animated_clouds.dart';
 import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration.dart';
 import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_config.dart';
@@ -21,8 +20,8 @@ import 'package:travel_buddy/ui/destination_illustrations/common/destination_tit
 part '_vertical_swipe_controller.dart';
 part 'widgets/_animated_arrow_button.dart';
 
-class HomeScreen extends StatefulWidget with GetItStatefulWidgetMixin {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -33,7 +32,6 @@ class HomeScreen extends StatefulWidget with GetItStatefulWidgetMixin {
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   late final PageController _pageController;
   List<DestinationData> get _destinations => destinationsLogic.all;
-  bool _isMenuOpen = false;
 
   /// Set initial destinationIndex
   late int _destinationIndex = 0;
@@ -80,19 +78,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       settingsBloc.add(SettingsPrevDestinationIndexChanged(_destinationIndex));
     });
     AppHaptics.lightImpact();
-  }
-
-  void _handleOpenMenuPressed() async {
-    setState(() => _isMenuOpen = true);
-    DestinationType? pickedDestination = await appLogic.showFullscreenDialogRoute<DestinationType>(
-      context,
-      HomeMenu(data: currentDestination),
-      transparent: true,
-    );
-    setState(() => _isMenuOpen = false);
-    if (pickedDestination != null) {
-      _setPageIndex(_destinations.indexWhere((w) => w.type == pickedDestination));
-    }
   }
 
   void _handleFadeAnimInit(AnimationController controller) {
@@ -298,108 +283,127 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         /// Floating controls / UI
         AnimatedSwitcher(
           duration: $styles.times.fast,
-          child: AnimatedOpacity(
-            opacity: _isMenuOpen ? 0 : 1,
-            duration: $styles.times.med,
-            child: RepaintBoundary(
-              child: OverflowBox(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(width: double.infinity),
-                    const Spacer(),
+          child: RepaintBoundary(
+            child: OverflowBox(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(width: double.infinity),
+                  const Spacer(),
 
-                    /// Title Content
-                    LightText(
-                      child: IgnorePointerKeepSemantics(
-                        child: Transform.translate(
-                          offset: Offset(0, 30),
-                          child: Column(
-                            children: [
-                              Semantics(
-                                liveRegion: true,
-                                button: true,
-                                header: true,
-                                onIncrease: () => _setPageIndex(_destinationIndex + 1),
-                                onDecrease: () => _setPageIndex(_destinationIndex - 1),
-                                onTap: () => _showDetailsPage(),
-                                // Hide the title when the menu is open for visual polish
-                                child: DestinationTitleText(currentDestination, enableShadows: true),
-                              ),
-                              Gap($styles.insets.md),
-                              AppPageIndicator(
-                                count: _numDestinations,
-                                controller: _pageController,
-                                color: $styles.colors.white,
-                                dotSize: 8,
-                                onDotPressed: _handlePageIndicatorDotPressed,
-                                semanticPageTitle: $strings.homeSemanticDestination,
-                              ),
-                              Gap($styles.insets.md),
-                            ],
-                          ),
+                  /// Title Content
+                  LightText(
+                    child: IgnorePointerKeepSemantics(
+                      child: Transform.translate(
+                        offset: Offset(0, 30),
+                        child: Column(
+                          children: [
+                            Semantics(
+                              liveRegion: true,
+                              button: true,
+                              header: true,
+                              onIncrease: () => _setPageIndex(_destinationIndex + 1),
+                              onDecrease: () => _setPageIndex(_destinationIndex - 1),
+                              onTap: () => _showDetailsPage(),
+                              child: DestinationTitleText(currentDestination, enableShadows: true),
+                            ),
+                            Gap($styles.insets.md),
+                            AppPageIndicator(
+                              count: _numDestinations,
+                              controller: _pageController,
+                              color: $styles.colors.white,
+                              dotSize: 8,
+                              onDotPressed: _handlePageIndicatorDotPressed,
+                              semanticPageTitle: $strings.homeSemanticDestination,
+                            ),
+                            Gap($styles.insets.md),
+                          ],
                         ),
                       ),
                     ),
+                  ),
 
-                    /// Animated arrow and background
-                    /// Wrap in a container that is full-width to make it easier to find for screen readers
-                    Container(
-                      width: double.infinity,
-                      alignment: Alignment.center,
+                  /// Animated arrow and background
+                  /// Wrap in a container that is full-width to make it easier to find for screen readers
+                  Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
 
-                      /// Lose state of child objects when index changes, this will re-run all the animated switcher and the arrow anim
-                      key: ValueKey(_destinationIndex),
-                      child: Stack(
-                        children: [
-                          /// Expanding rounded rect that grows in height as user swipes up
-                          Positioned.fill(
-                            child: _swipeController.buildListener(
-                              builder: (swipeAmt, _, child) {
-                                double heightFactor = .5 + .5 * (1 + swipeAmt * 4);
-                                return FractionallySizedBox(
-                                  alignment: Alignment.bottomCenter,
-                                  heightFactor: heightFactor,
-                                  child: Opacity(opacity: swipeAmt * .5, child: child),
-                                );
-                              },
-                              child: VtGradient(
-                                [
-                                  $styles.colors.white.withValues(alpha: 0),
-                                  $styles.colors.white.withValues(alpha: 1),
-                                ],
-                                const [.3, 1],
-                                borderRadius: BorderRadius.circular(99),
-                              ),
+                    /// Lose state of child objects when index changes, this will re-run all the animated switcher and the arrow anim
+                    key: ValueKey(_destinationIndex),
+                    child: Stack(
+                      children: [
+                        /// Expanding rounded rect that grows in height as user swipes up
+                        Positioned.fill(
+                          child: _swipeController.buildListener(
+                            builder: (swipeAmt, _, child) {
+                              double heightFactor = .5 + .5 * (1 + swipeAmt * 4);
+                              return FractionallySizedBox(
+                                alignment: Alignment.bottomCenter,
+                                heightFactor: heightFactor,
+                                child: Opacity(opacity: swipeAmt * .5, child: child),
+                              );
+                            },
+                            child: VtGradient(
+                              [
+                                $styles.colors.white.withValues(alpha: 0),
+                                $styles.colors.white.withValues(alpha: 1),
+                              ],
+                              const [.3, 1],
+                              borderRadius: BorderRadius.circular(99),
                             ),
                           ),
+                        ),
 
-                          /// Arrow Btn that fades in and out
-                          _AnimatedArrowButton(
-                            onTap: _showDetailsPage,
-                            semanticTitle: currentDestination.title,
-                          ),
-                        ],
-                      ),
+                        /// Arrow Btn that fades in and out
+                        _AnimatedArrowButton(
+                          onTap: _showDetailsPage,
+                          semanticTitle: currentDestination.title,
+                        ),
+                      ],
                     ),
-                    Gap($styles.insets.md),
-                  ],
-                ),
+                  ),
+                  // Keep the arrow clear of the iOS home indicator when this
+                  // screen is shown full-screen (APP_MODE=showcase). Inside the
+                  // full-mode bottom nav the inset is already consumed, so this is 0.
+                  Gap($styles.insets.md + MediaQuery.paddingOf(context).bottom),
+                ],
               ),
             ),
           ),
         ),
 
-        /// Menu Btn
+        /// Language toggle (same geometry as an AppHeader trailing btn)
+        TopRight(
+          child: SafeArea(
+            bottom: false,
+            child: SizedBox(
+              height: 64 * $styles.scale,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [const LocaleSwitcher(), Gap($styles.insets.sm)],
+              ),
+            ),
+          ),
+        ),
+
+        /// Story timeline (same geometry as an AppHeader back btn)
         TopLeft(
-          child: AnimatedOpacity(
-            duration: $styles.times.fast,
-            opacity: _isMenuOpen ? 0 : 1,
-            child: AppHeader(
-              backIcon: AppIcons.menu,
-              backBtnSemantics: $strings.homeSemanticOpenMain,
-              onBack: _handleOpenMenuPressed,
-              isTransparent: true,
+          child: SafeArea(
+            bottom: false,
+            child: SizedBox(
+              height: 64 * $styles.scale,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Gap($styles.insets.sm),
+                  CircleIconBtn(
+                    icon: AppIcons.timeline,
+                    onPressed: () => context.go(ScreenPaths.timeline(null)),
+                    semanticLabel: $strings.eventsListButtonOpenTimeline,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

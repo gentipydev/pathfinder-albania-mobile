@@ -37,20 +37,13 @@ class HttpResponse {
   HttpResponse({
     required this.statusCode,
     this.body,
-    this.headers,
     NetErrorType? errorType,
   }) : errorType = errorType ?? _classify(statusCode);
 
   factory HttpResponse.fromDio(Response<dynamic> r) {
     final data = r.data;
     final body = data is String ? data : data?.toString();
-    final headers = <String, String>{};
-    r.headers.forEach((k, v) => headers[k] = v.join(', '));
-    return HttpResponse(
-      statusCode: r.statusCode ?? -1,
-      body: body,
-      headers: headers,
-    );
+    return HttpResponse(statusCode: r.statusCode ?? -1, body: body);
   }
 
   factory HttpResponse.error(NetErrorType type) =>
@@ -58,7 +51,6 @@ class HttpResponse {
 
   final int statusCode;
   final String? body;
-  final Map<String, String>? headers;
   final NetErrorType errorType;
 
   bool get success => errorType == NetErrorType.none;

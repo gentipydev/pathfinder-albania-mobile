@@ -4,33 +4,19 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:travel_buddy/agent/agent_module.dart';
 import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/config/env.dart';
 import 'package:travel_buddy/features/artifacts/bloc/artifacts_bloc.dart';
-import 'package:travel_buddy/features/auth/bloc/auth_bloc.dart';
-import 'package:travel_buddy/features/buddy/bloc/buddy_bloc.dart';
 import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
-import 'package:travel_buddy/features/preferences/bloc/preferences_bloc.dart';
 import 'package:travel_buddy/features/settings/bloc/settings_bloc.dart';
 import 'package:travel_buddy/features/settings/bloc/settings_state.dart';
-import 'package:travel_buddy/features/trips/bloc/trips_bloc.dart';
-import 'package:travel_buddy/features/tts/bloc/tts_bloc.dart';
-import 'package:travel_buddy/features/voice/bloc/voice_bloc.dart';
 import 'package:travel_buddy/l10n/app_localizations.dart';
-import 'package:travel_buddy/logic/buddy/attachment_service.dart';
-import 'package:travel_buddy/logic/buddy/chat_service.dart';
-import 'package:travel_buddy/logic/buddy/conversations_service.dart';
 import 'package:travel_buddy/logic/locale_logic.dart';
 import 'package:travel_buddy/logic/native_widget_service.dart';
-import 'package:travel_buddy/logic/preferences/preferences_service.dart';
 import 'package:travel_buddy/logic/timeline_logic.dart';
 import 'package:travel_buddy/logic/destination_photos_logic.dart';
 import 'package:travel_buddy/logic/destinations_logic.dart';
-import 'package:travel_buddy/logic/auto_track_prefs.dart';
-import 'package:travel_buddy/services/location_service.dart';
-import 'package:travel_buddy/services/trip_service.dart';
-import 'package:travel_buddy/services/user_service.dart';
 import 'package:travel_buddy/ui/common/app_shortcuts.dart';
 import 'package:travel_buddy/utils/dev_bloc_observer.dart';
 import 'package:travel_buddy/utils/sentry_scrubber.dart';
@@ -78,17 +64,17 @@ void main() async {
       try {
         await dotenv.load(fileName: '.env');
         Env.assertValid();
-        await Supabase.initialize(
-          url: Env.supabaseUrl,
-          anonKey: Env.supabaseAnonKey,
-        );
+        // APP_MODE=showcase skips the agent side entirely, Supabase included.
+        if (Env.agentEnabled) await AgentModule.initServices();
 
         // Start app
         registerSingletons();
+        if (Env.agentEnabled) AgentModule.registerSingletons();
 
-        // Wake the Render free-tier backend in parallel with the rest of
-        // bootstrap so the first chat send doesn't pay the 30-60s cold-start
-        // cost. Stored on AppLogic so bootstrap can sequence preloadAll behind it.
+        // Wake the backend in parallel with the rest of bootstrap: the
+        // showcase's artifact preload waits on it, and in full mode the first
+        // chat send doesn't pay a scale-from-zero cold-start cost either.
+        // Stored on AppLogic so bootstrap can sequence preloadAll behind it.
         appLogic.startWarmup();
 
         runApp(const DestinationsApp());
@@ -129,18 +115,11 @@ class _DestinationsAppState extends State<DestinationsApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<SettingsBloc>.value(value: GetIt.I<SettingsBloc>()),
-        BlocProvider<AuthBloc>.value(value: GetIt.I<AuthBloc>()),
-        BlocProvider<TripsBloc>.value(value: GetIt.I<TripsBloc>()),
-        BlocProvider<TtsBloc>.value(value: GetIt.I<TtsBloc>()),
-        BlocProvider<VoiceBloc>.value(value: GetIt.I<VoiceBloc>()),
-        BlocProvider<BuddyBloc>.value(value: GetIt.I<BuddyBloc>()),
         BlocProvider<ArtifactsBloc>.value(value: GetIt.I<ArtifactsBloc>()),
         BlocProvider<CollectiblesBloc>.value(
           value: GetIt.I<CollectiblesBloc>(),
         ),
-        BlocProvider<PreferencesBloc>.value(
-          value: GetIt.I<PreferencesBloc>(),
-        ),
+        if (Env.agentEnabled) ...AgentModule.blocProviders(),
       ],
       child: BlocSelector<SettingsBloc, SettingsState, String?>(
         selector: (s) => s.currentLocale,
@@ -166,7 +145,8 @@ class _DestinationsAppState extends State<DestinationsApp> {
   }
 }
 
-/// Create singletons (logic and services) that can be shared across the app.
+/// Create the showcase / shared singletons (logic and services). Agent-side
+/// singletons are registered by `AgentModule.registerSingletons`.
 void registerSingletons() {
   // Top level app controller
   GetIt.I.registerLazySingleton<AppLogic>(() => AppLogic());
@@ -187,41 +167,6 @@ void registerSingletons() {
   GetIt.I.registerLazySingleton<ArtifactsBloc>(() => ArtifactsBloc());
   // Collectibles (resolves NativeWidgetService and ArtifactsBloc lazily)
   GetIt.I.registerLazySingleton<CollectiblesBloc>(() => CollectiblesBloc());
-  // Auth
-  GetIt.I.registerLazySingleton<AuthBloc>(() => AuthBloc());
-  // Buddy chat
-  GetIt.I.registerLazySingleton<ChatService>(() => ChatService());
-  GetIt.I.registerLazySingleton<ConversationsService>(
-    () => ConversationsService(),
-  );
-  GetIt.I.registerLazySingleton<AttachmentService>(() => AttachmentService());
-  GetIt.I.registerLazySingleton<BuddyBloc>(
-    () => BuddyBloc(service: GetIt.I<ChatService>()),
-  );
-  GetIt.I.registerLazySingleton<VoiceBloc>(() => VoiceBloc());
-  GetIt.I.registerLazySingleton<TtsBloc>(() => TtsBloc());
-  // Preferences
-  GetIt.I.registerLazySingleton<PreferencesService>(() => PreferencesService());
-  GetIt.I.registerLazySingleton<PreferencesBloc>(
-    () => PreferencesBloc(service: GetIt.I<PreferencesService>()),
-  );
-  // Users (sync hook into AuthLogic creates the local users row idempotently)
-  GetIt.I.registerLazySingleton<UserService>(() => UserService());
-  // Trips
-  GetIt.I.registerLazySingleton<TripService>(() => TripService());
-  GetIt.I.registerLazySingleton<TripsBloc>(
-    () => TripsBloc(
-      service: GetIt.I<TripService>(),
-      tokenReader: () =>
-          Supabase.instance.client.auth.currentSession?.accessToken,
-      buddyBlocProvider: () => GetIt.I<BuddyBloc>(),
-    ),
-  );
-  // Visit detection (foreground-only auto-completion of itinerary stops).
-  // Eagerly registered so the consent sheet on TripDetailScreen can read
-  // the persisted decision before the first frame.
-  GetIt.I.registerLazySingleton<LocationService>(() => LocationService());
-  GetIt.I.registerLazySingleton<AutoTrackPrefs>(() => AutoTrackPrefs());
 }
 
 /// Add syntax sugar for quickly accessing the main "logic" controllers in the app
@@ -232,9 +177,6 @@ TimelineLogic get timelineLogic => GetIt.I.get<TimelineLogic>();
 SettingsBloc get settingsBloc => GetIt.I.get<SettingsBloc>();
 DestinationPhotosLogic get destinationPhotosLogic => GetIt.I.get<DestinationPhotosLogic>();
 LocaleLogic get localeLogic => GetIt.I.get<LocaleLogic>();
-AuthBloc get authBloc => GetIt.I.get<AuthBloc>();
-BuddyBloc get buddyBloc => GetIt.I.get<BuddyBloc>();
-TripsBloc get tripsBloc => GetIt.I.get<TripsBloc>();
 ArtifactsBloc get artifactsBloc => GetIt.I.get<ArtifactsBloc>();
 CollectiblesBloc get collectiblesBloc => GetIt.I.get<CollectiblesBloc>();
 

@@ -8,8 +8,8 @@ import 'package:travel_buddy/ui/common/collectible_item.dart';
 /// collectible is always shown. Renders nothing while the catalog is still
 /// being loaded — collectibles populate asynchronously via the post-warmup
 /// preload, so a first-launch render can race the network.
-class HiddenCollectible extends StatelessWidget with GetItMixin {
-  HiddenCollectible(
+class HiddenCollectible extends StatelessWidget {
+  const HiddenCollectible(
     this.currentDestination, {
     super.key,
     required this.index,

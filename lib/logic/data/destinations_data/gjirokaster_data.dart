@@ -2,22 +2,14 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
 
 class GjirokasterData extends DestinationData {
-  // TODO(rebrand): lat/lng, videoId, year ranges, and event year keys below
-  // are inherited from the original upstream template data and need to be
-  // replaced with real Gjirokastër values.
   GjirokasterData()
     : super(
         type: DestinationType.gjirokaster,
         title: $strings.gjirokasterTitle,
-        subTitle: $strings.gjirokasterSubTitle,
         regionTitle: $strings.gjirokasterRegionTitle,
-        videoId: 'GXoEpNjgKzg',
-        startYr: 70,
-        endYr: 80,
-        artifactStartYr: 0,
-        artifactEndYr: 500,
+        videoId: 'rGi3Zr_EOss',
+        startYr: 400,
         artifactCulture: $strings.gjirokasterArtifactCulture,
-        artifactGeolocation: $strings.gjirokasterArtifactGeolocation,
         lat: 40.0801,
         lng: 20.1383,
         pullQuote1Top: $strings.gjirokasterPullQuote1Top,
@@ -36,12 +28,12 @@ class GjirokasterData extends DestinationData {
         locationInfo1: $strings.gjirokasterLocationInfo1,
         locationInfo2: $strings.gjirokasterLocationInfo2,
         events: {
-          70: $strings.gjirokaster70ce,
-          82: $strings.gjirokaster82ce,
-          1140: $strings.gjirokaster1140ce,
-          1490: $strings.gjirokaster1490ce,
-          1829: $strings.gjirokaster1829ce,
-          1990: $strings.gjirokaster1990ce,
+          1336: $strings.gjirokaster1336ce,
+          1418: $strings.gjirokaster1418ce,
+          1811: $strings.gjirokaster1811ce,
+          1932: $strings.gjirokaster1932ce,
+          1936: $strings.gjirokaster1936ce,
+          2005: $strings.gjirokaster2005ce,
         },
       );
 }

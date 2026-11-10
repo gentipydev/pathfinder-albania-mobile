@@ -8,23 +8,19 @@ import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
 // Shows a set of clouds that animated onto stage.
 // When value-key is changed, a new set of clouds will animate into place and the old ones will animate out.
 // Uses a random seed system, to make sure we get the same set of clouds for each destination, without actually having to hand-position them.
-class AnimatedClouds extends StatefulWidget with GetItStatefulWidgetMixin {
-  AnimatedClouds({
+class AnimatedClouds extends StatefulWidget {
+  const AnimatedClouds({
     super.key,
-    this.enableAnimations = true,
     required this.destinationType,
     required this.opacity,
-    this.cloudSize = 500,
   });
   final DestinationType destinationType;
-  final bool enableAnimations;
   final double opacity;
-  final double cloudSize;
   @override
   State<AnimatedClouds> createState() => _AnimatedCloudsState();
 }
 
-class _AnimatedCloudsState extends State<AnimatedClouds> with SingleTickerProviderStateMixin, GetItStateMixin {
+class _AnimatedCloudsState extends State<AnimatedClouds> with SingleTickerProviderStateMixin {
   late List<_Cloud> _clouds = [];
   List<_Cloud> _oldClouds = [];
   late final AnimationController _anim = AnimationController(vsync: this, duration: 1500.animateMs);
@@ -67,10 +63,8 @@ class _AnimatedCloudsState extends State<AnimatedClouds> with SingleTickerProvid
     };
   }
 
-  /// Starts playing the clouds animation, or jumps right to the end, based on [AnimatedClouds.enableAnimations]
-  void _showClouds() {
-    widget.enableAnimations ? _anim.forward(from: 0) : _anim.value = 1;
-  }
+  /// Starts playing the clouds animation.
+  void _showClouds() => _anim.forward(from: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +115,7 @@ class _AnimatedCloudsState extends State<AnimatedClouds> with SingleTickerProvid
         flipX: rnd.getBool(),
         flipY: rnd.getBool(),
         opacity: widget.opacity,
-        size: widget.cloudSize,
+        size: 500,
       );
     }).toList();
   }

@@ -2,27 +2,20 @@ import 'package:travel_buddy/common_libs.dart';
 import 'package:travel_buddy/logic/data/destination_data.dart';
 
 class ApolloniaData extends DestinationData {
-  // TODO(rebrand): lat/lng, videoId, year ranges, and event year keys below
-  // are inherited from the original upstream template data and need to be
-  // replaced with real Apollonia values.
   ApolloniaData()
     : super(
         type: DestinationType.apollonia,
         title: $strings.apolloniaTitle,
-        subTitle: $strings.apolloniaSubTitle,
         regionTitle: $strings.apolloniaRegionTitle,
         videoId: 't1gj4M0J2BU',
-        startYr: -700,
-        endYr: 1644,
-        artifactStartYr: -700,
-        artifactEndYr: 1650,
+        startYr: -588,
+        endYr: 400,
         artifactCulture: $strings.apolloniaArtifactCulture,
-        artifactGeolocation: $strings.apolloniaArtifactGeolocation,
         lat: 40.7210,
         lng: 19.4712,
         pullQuote1Top: $strings.apolloniaPullQuote1Top,
         pullQuote1Bottom: $strings.apolloniaPullQuote1Bottom,
-        pullQuote1Author: '', //No key because it doesn't generate for empty values
+        pullQuote1Author: '',
         pullQuote2: $strings.apolloniaPullQuote2,
         pullQuote2Author: $strings.apolloniaPullQuote2Author,
         callout1: $strings.apolloniaCallout1,
@@ -36,12 +29,12 @@ class ApolloniaData extends DestinationData {
         locationInfo1: $strings.apolloniaLocationInfo1,
         locationInfo2: $strings.apolloniaLocationInfo2,
         events: {
-          -700: $strings.apollonia700bce,
-          -214: $strings.apollonia214bce,
-          -121: $strings.apollonia121bce,
-          556: $strings.apollonia556ce,
-          618: $strings.apollonia618ce,
-          1487: $strings.apollonia1487ce,
+          -588: $strings.apollonia588bce,
+          -229: $strings.apollonia229bce,
+          -148: $strings.apollonia148bce,
+          -44: $strings.apollonia44bce,
+          1272: $strings.apollonia1272ce,
+          1924: $strings.apollonia1924ce,
         },
       );
 }

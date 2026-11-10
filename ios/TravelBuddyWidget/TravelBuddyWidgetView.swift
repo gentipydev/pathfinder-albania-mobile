@@ -10,7 +10,9 @@ struct TravelBuddyWidgetView : View {
         let showTitle = family == .systemLarge
         let showIcon = family != .systemSmall
         let showTitleAndDesc = family != .systemSmall
-        let progressPct = Double(entry.discoveredCount) / 24.0
+        let progressPct = entry.totalCount > 0
+            ? min(1, Double(entry.discoveredCount) / Double(entry.totalCount))
+            : 0
         let iconImage = FlutterImages.icon;
         let title = entry.title.isEmpty ? "Travel Buddy" : entry.title;
         let subTitle = entry.subTitle.isEmpty ? "Search for hidden artifacts" : entry.subTitle;

@@ -1,8 +1,8 @@
 part of '../collection_screen.dart';
 
 @immutable
-class _CollectionList extends StatefulWidget with GetItStatefulWidgetMixin {
-  _CollectionList({
+class _CollectionList extends StatefulWidget {
+  const _CollectionList({
     this.onReset,
     required this.fromId,
     this.scrollKey,
@@ -18,7 +18,7 @@ class _CollectionList extends StatefulWidget with GetItStatefulWidgetMixin {
   State<_CollectionList> createState() => _CollectionListState();
 }
 
-class _CollectionListState extends State<_CollectionList> with GetItStateMixin {
+class _CollectionListState extends State<_CollectionList> {
   final ScrollController scrollController = ScrollController();
 
   late final ValueNotifier<bool> _vtMode = ValueNotifier(true)..addListener(_maintainScrollPos);

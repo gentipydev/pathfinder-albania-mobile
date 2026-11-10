@@ -91,11 +91,14 @@ class _DoubleBorderImage extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
         child: ColoredBox(
           color: $styles.colors.greyMedium,
-          child: AppImage(
-            image: data.imageUrlSmall.isEmpty ? null : NetworkImage(data.imageUrlSmall),
-            fit: BoxFit.cover,
-            scale: 0.5,
-          ),
+          child: data.isPlaceholder
+              ? const ImageSkeleton()
+              : AppImage(
+                  image: data.imageUrlSmall.isEmpty ? null : photoImageProvider(data.imageUrlSmall),
+                  fit: BoxFit.cover,
+                  scale: 1.0,
+                  skeleton: true,
+                ),
         ),
       ),
     ),

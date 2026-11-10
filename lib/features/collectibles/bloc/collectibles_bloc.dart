@@ -12,8 +12,7 @@ import 'package:travel_buddy/logic/data/collectible_data.dart';
 import 'package:travel_buddy/logic/native_widget_service.dart';
 
 /// Persistent collection state — which collectibles the user has
-/// discovered, explored, or not yet found. Replaces the legacy
-/// `CollectiblesLogic`.
+/// discovered, explored, or not yet found.
 ///
 /// Persists `state.statesById` to SharedPreferences via the
 /// `ThrottledSaveLoadMixin` (2-second debounce). The `'collectibles.dat'`
@@ -87,10 +86,15 @@ class CollectiblesBloc extends Bloc<CollectiblesEvent, CollectiblesState>
       final loaded = _pendingLoad ?? const <String, dynamic>{};
       _pendingLoad = null;
 
-      final states = <String, int>{};
+      // Keep every saved entry, not just the ids in the current catalog: on
+      // launch this runs before the artifacts catalog is fetched, and
+      // dropping unknown ids would erase earlier discoveries on the next save.
+      final states = <String, int>{
+        for (final e in loaded.entries)
+          if (e.value is int) e.key: e.value as int,
+      };
       for (final c in collectiblesData) {
-        final raw = loaded[c.id];
-        states[c.id] = (raw is int) ? raw : CollectibleState.lost;
+        states.putIfAbsent(c.id, () => CollectibleState.lost);
       }
 
       final discovered = states.values
@@ -158,6 +162,7 @@ class CollectiblesBloc extends Bloc<CollectiblesEvent, CollectiblesState>
     Emitter<CollectiblesState> emit,
   ) async {
     final states = <String, int>{
+      for (final id in state.statesById.keys) id: CollectibleState.lost,
       for (final c in collectiblesData) c.id: CollectibleState.lost,
     };
     unawaited(_updateNativeHomeWidgetData());
@@ -183,7 +188,7 @@ class CollectiblesBloc extends Bloc<CollectiblesEvent, CollectiblesState>
     }
   }
 
-  // ---- private helpers (lifted from collectibles_logic.dart:99-123) ----
+  // ---- private helpers ----
 
   Future<void> _updateNativeHomeWidgetData({
     String title = '',
@@ -198,18 +203,19 @@ class CollectiblesBloc extends Bloc<CollectiblesEvent, CollectiblesState>
       subTitle = artifactData?.date ?? '';
     }
     await _nativeWidget.save<String>('lastDiscoveredSubTitle', subTitle);
-    // TODO(rebrand): restore the http.readBytes fetch once Albanian
-    // collectible artwork is hosted on our own CDN. Currently `imageUrl`
-    // resolves to the upstream Wonderous proxy (www.wonderous.info) which
-    // 404s from this fork, so we skip the fetch and leave the home widget
-    // image empty.
+    // TODO: the home widget's image is left empty. Collectible images now
+    // come from the backend artifact catalog, so `imageUrl` could be fetched
+    // here (http.readBytes → base64) to show the artwork in the widget.
     String imageBase64 = '';
     await _nativeWidget.save<String>('lastDiscoveredImageData', imageBase64);
     await _nativeWidget.markDirty();
   }
 
-  Future<void> _persistFoundCountToWidget(int total) async {
-    await _nativeWidget.save<int>('discoveredCount', total);
+  /// Sends the found count and the catalog size, so the widget's progress
+  /// gauge follows the backend catalog instead of a fixed total.
+  Future<void> _persistFoundCountToWidget(int found) async {
+    await _nativeWidget.save<int>('discoveredCount', found);
+    await _nativeWidget.save<int>('totalCount', collectiblesData.length);
     await _nativeWidget.markDirty();
   }
 }

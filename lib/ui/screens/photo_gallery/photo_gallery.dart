@@ -3,14 +3,16 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_buddy/common_libs.dart';
+import 'package:travel_buddy/features/artifacts/bloc/artifacts_bloc.dart';
 import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
 import 'package:travel_buddy/features/collectibles/bloc/collectibles_helpers.dart';
 import 'package:travel_buddy/features/collectibles/bloc/collectibles_state.dart';
 import 'package:travel_buddy/logic/common/animate_utils.dart';
-import 'package:travel_buddy/ui/common/controls/app_loading_indicator.dart';
+import 'package:travel_buddy/logic/destination_photos_logic.dart';
 import 'package:travel_buddy/ui/common/controls/eight_way_swipe_detector.dart';
 import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
 import 'package:travel_buddy/ui/common/hidden_collectible.dart';
+import 'package:travel_buddy/ui/common/image_skeleton.dart';
 import 'package:travel_buddy/ui/common/modals/fullscreen_url_img_viewer.dart';
 import 'package:travel_buddy/ui/common/remote_photo.dart';
 import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
@@ -26,10 +28,10 @@ class PhotoGallery extends StatefulWidget {
   });
   final Size? imageSize;
   final DestinationType destinationType;
-  /// Fires `true` when real photos are about to render fullscreen, `false`
-  /// while loading or when the manifest is empty. The parent uses this to
-  /// keep the tab-bar pill visible on the empty state, where there's no
-  /// photo backdrop for the design's edge-to-edge layout to sit on.
+  /// Fires `true` once the grid (photos, or their skeletons while loading)
+  /// fills the screen, `false` when the manifest is empty. The parent uses
+  /// this to keep the tab-bar pill visible on the empty state, where there's
+  /// no photo backdrop for the design's edge-to-edge layout to sit on.
   final ValueChanged<bool>? onHasPhotosChanged;
 
   @override
@@ -44,10 +46,10 @@ class _PhotoGalleryState extends State<PhotoGallery> {
   final double _scale = 1;
   bool _skipNextOffsetTween = false;
   late Duration swipeDuration = $styles.times.med * .4;
-  /// Public Supabase URLs returned by the backend manifest, padded out to
-  /// `_imgCount` (25) by repeating the catalog if the user hasn't seeded
-  /// enough photos yet.
-  final _photoUrls = ValueNotifier<List<String>>([]);
+  /// Photos from the backend manifest (full-size + small-copy URLs), padded
+  /// out to `_imgCount` (25) by repeating the catalog if the user hasn't
+  /// seeded enough photos yet.
+  final _photos = ValueNotifier<List<GalleryPhoto>>([]);
   bool _isLoading = true;
   int get _imgCount => pow(_gridSize, 2).round();
 
@@ -61,12 +63,16 @@ class _PhotoGalleryState extends State<PhotoGallery> {
     super.initState();
     _loadPhotos();
     _focusNodes[_index].requestFocus();
+    // The skeleton grid fills the screen while loading, just like photos.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _isLoading) widget.onHasPhotosChanged?.call(true);
+    });
   }
 
   Future<void> _loadPhotos() async {
     final fetched = await destinationPhotosLogic.getPhotos(widget.destinationType);
     if (!mounted) return;
-    final padded = List<String>.from(fetched);
+    final padded = List<GalleryPhoto>.from(fetched);
     if (padded.isNotEmpty) {
       while (padded.length < _imgCount) {
         padded.addAll(List.from(padded));
@@ -74,7 +80,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
       if (padded.length > _imgCount) padded.length = _imgCount;
     }
     setState(() {
-      _photoUrls.value = padded;
+      _photos.value = padded;
       _isLoading = false;
     });
     widget.onHasPhotosChanged?.call(padded.isNotEmpty);
@@ -166,10 +172,15 @@ class _PhotoGalleryState extends State<PhotoGallery> {
     final states = collectiblesBloc.state.statesById;
     if (_checkCollectibleIndex(index, states) && isSelected) return;
     if (_index == index) {
-      final urls = List<String>.from(_photoUrls.value);
+      final photos = _photos.value;
+      if (photos.isEmpty) return; // still loading
       int? newIndex = await appLogic.showFullscreenDialogRoute(
         context,
-        FullscreenUrlImgViewer(urls: urls, index: _index),
+        FullscreenUrlImgViewer(
+          urls: [for (final p in photos) p.url],
+          thumbUrls: [for (final p in photos) p.thumbUrl],
+          index: _index,
+        ),
       );
 
       if (newIndex != null) {
@@ -193,14 +204,16 @@ class _PhotoGalleryState extends State<PhotoGallery> {
 
   @override
   Widget build(BuildContext context) {
+    // Rebuild when the artifacts catalog arrives, so the hidden-collectible
+    // cell appears once there is a collectible to hide.
+    context.select<ArtifactsBloc, int>((b) => b.state.dataVersion);
     return FullscreenKeyboardListener(
       onKeyDown: _handleKeyDown,
-      child: ValueListenableBuilder<List<String>>(
-        valueListenable: _photoUrls,
+      child: ValueListenableBuilder<List<GalleryPhoto>>(
+        valueListenable: _photos,
         builder: (_, value, _) {
-          if (value.isEmpty) {
-            return _isLoading ? Center(child: AppLoadingIndicator()) : _buildEmptyState();
-          }
+          // While loading, the grid is built with skeleton tiles.
+          if (value.isEmpty && !_isLoading) return _buildEmptyState();
           Size imgSize = context.isLandscape
               ? Size(context.widthPx * .5, context.heightPx * .66)
               : Size(context.widthPx * .66, context.heightPx * .5);
@@ -267,7 +280,8 @@ class _PhotoGalleryState extends State<PhotoGallery> {
         selector: (s) => s.statesById,
         builder: (_, states) {
           bool isSelected = index == _index;
-          final imgUrl = _photoUrls.value[index];
+          final photos = _photos.value;
+          final GalleryPhoto? photo = index < photos.length ? photos[index] : null;
           late String semanticLbl;
           if (_checkCollectibleIndex(index, states)) {
             semanticLbl = $strings.collectibleItemSemanticCollectible;
@@ -282,10 +296,9 @@ class _PhotoGalleryState extends State<PhotoGallery> {
             curve: Curves.easeOut,
             tween: Tween(begin: 1, end: isSelected ? 1.15 : 1),
             builder: (_, value, child) => Transform.scale(scale: value, child: child),
-            child: RemotePhoto(
-              imgUrl,
-              fit: BoxFit.cover,
-            ).maybeAnimate().fade(),
+            child: photo == null
+                ? const ImageSkeleton()
+                : RemotePhoto(photo.thumbUrl, fit: BoxFit.cover).maybeAnimate().fade(),
           );
 
           return MergeSemantics(

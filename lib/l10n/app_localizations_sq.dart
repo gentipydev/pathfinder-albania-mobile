@@ -9,9 +9,6 @@ class AppLocalizationsSq extends AppLocalizations {
   AppLocalizationsSq([String locale = 'sq']) : super(locale);
 
   @override
-  String get appName => 'Travel Buddy';
-
-  @override
   String get localeSwapButton => 'English';
 
   @override
@@ -29,14 +26,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get appBarTitleLocation => 'Informacioni i Vendndodhjes';
 
   @override
-  String get bottomScrubberSemanticScrubber => 'rrëshqitës';
-
-  @override
   String get bottomScrubberSemanticTimeline =>
       'Rrëshqitësi i vijës kohore, tërhiqeni horizontalisht për të lundruar në vijën kohore.';
-
-  @override
-  String get rangeSelector => 'Zgjedhësi i diapazonit, tërhiqeni horizontalisht për të rregulluar diapazonin.';
 
   @override
   String collectionLabelDiscovered(Object percentage) {
@@ -52,7 +43,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get collectionButtonReset => 'Rivendos Koleksionin';
 
   @override
-  String get eventsListButtonOpenGlobal => 'Hap vijën kohore globale';
+  String get eventsListButtonOpenTimeline => 'Hap historinë e Shqipërisë';
 
   @override
   String newlyDiscoveredSemanticNew(Object count, Object suffix) {
@@ -65,26 +56,10 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get resultsPopupEnglishContent =>
-      'Ky përmbajtje ofrohet nga API-ja e Koleksionit të Muzeut Metropolitan të Artit, dhe është e disponueshme vetëm në anglisht.';
-
-  @override
-  String get resultsSemanticDismiss => 'hiq mesazhin';
-
-  @override
   String get scrollingContentSemanticYoutube => 'Miniatura e Youtube';
 
   @override
   String get scrollingContentSemanticOpen => 'Hap pamjen e hartës në ekran të plotë';
-
-  @override
-  String get searchInputTitleSuggestions => 'Sugjerime';
-
-  @override
-  String get searchInputHintSearch => 'Kërko (p.sh. lloji ose materiali)';
-
-  @override
-  String get searchInputSemanticClear => 'pastro kërkimin';
 
   @override
   String timelineSemanticDate(Object fromDate, Object endDate) {
@@ -124,12 +99,6 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get artifactsSemanticsPrevious => 'Artefakti i mëparshëm';
-
-  @override
-  String get artifactsSemanticsNext => 'Artefakti tjetër';
-
-  @override
   String get artifactsSemanticArtifact => 'Artefakt';
 
   @override
@@ -159,9 +128,6 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get circleButtonsSemanticClose => 'mbyll';
-
-  @override
   String get circleButtonsSemanticBack => 'kthehu';
 
   @override
@@ -180,113 +146,26 @@ class AppLocalizationsSq extends AppLocalizations {
   String get collectionPopupResetConfirm => 'Jeni të sigurt që dëshironi të rivendosni koleksionin tuaj?';
 
   @override
-  String get eightWaySemanticSwipeDetector => 'detektor rrëshqitjeje tetëdrejtimësh';
-
-  @override
-  String get expandingTimeSelectorSemanticSelector => 'zgjedhës i diapazonit kohor';
-
-  @override
   String get fullscreenImageViewerSemanticFull => 'imazh në ekran të plotë, nuk ka përshkrim të disponueshëm';
 
   @override
-  String get homeMenuButtonExplore => 'Eksploroni vijën kohore';
+  String get introTitleJourney => 'Hyni në të kaluarën';
 
   @override
-  String get homeMenuButtonView => 'Shikoni koleksionin tuaj';
+  String get introDescriptionNavigate =>
+      'Tre mijë vjet histori shqiptare, nga kalatë ilire në kodra te pazaret osmane.';
 
   @override
-  String get homeMenuButtonAbout => 'Rreth këtij aplikacioni';
+  String get introTitleExplore => 'Eksploroni Shqipërinë';
 
   @override
-  String get homeMenuViewingLabel => 'Po shihni';
+  String get introDescriptionUncover => 'Qytete antike, qytete me kala dhe lugina malore në tetë destinacione.';
 
   @override
-  String get homeMenuJumpToDestination => 'Kalo te një destinacion';
+  String get introTitleDiscover => 'Gjeni artefakte të fshehura';
 
   @override
-  String get homeMenuConversations => 'Bisedat e mia';
-
-  @override
-  String get homeMenuPreferences => 'Preferencat e udhëtimit';
-
-  @override
-  String get homeMenuPlanTrip => 'Planifiko udhëtim';
-
-  @override
-  String get homeMenuAskBuddy => 'Pyet Buddy-n';
-
-  @override
-  String homeMenuPlanTripPrompt(String destination) {
-    return 'Planifiko një udhëtim në $destination, Shqipëri.';
-  }
-
-  @override
-  String homeMenuAskBuddyPrompt(String destination) {
-    return 'Më trego për $destination, Shqipëri — çfarë e bën të veçantë dhe çfarë duhet të shoh?';
-  }
-
-  @override
-  String get homeMenuAboutTagline =>
-      'Travel Buddy është udhërrëfyesi juaj me inteligjencë artificiale për tetë mrekullitë e Shqipërisë. ';
-
-  @override
-  String homeMenuAboutBuilt(Object flutterUrl) {
-    return 'Ndërtuar me $flutterUrl.';
-  }
-
-  @override
-  String homeMenuAboutLearn(Object appUrl) {
-    return 'Mësoni më shumë në $appUrl.';
-  }
-
-  @override
-  String homeMenuAboutSource(Object githubUrl) {
-    return 'Për të parë kodin burimor të këtij aplikacioni, vizitoni $githubUrl.';
-  }
-
-  @override
-  String get homeMenuAboutRepo => 'Depoja e Travel Buddy në github';
-
-  @override
-  String get homeMenuAboutFlutter => 'Flutter';
-
-  @override
-  String get homeMenuAboutApp => 'travelbuddy.app';
-
-  @override
-  String homeMenuAboutPublic(Object metUrl) {
-    return 'Vepra arti në pronësi publike nga $metUrl.';
-  }
-
-  @override
-  String get homeMenuAboutMet => 'Muzeu Metropolitan i Artit, Nju Jork';
-
-  @override
-  String homeMenuAboutPhotography(Object unsplashUrl) {
-    return 'Fotografi nga $unsplashUrl.';
-  }
-
-  @override
-  String get homeMenuAboutUnsplash => 'Unsplash';
-
-  @override
-  String get introTitleJourney => 'Udhëtim në të kaluarën';
-
-  @override
-  String get introDescriptionNavigate => 'Lundroni në kryqëzimin e kohës, artit dhe kulturës.';
-
-  @override
-  String get introTitleExplore => 'Eksploroni vende';
-
-  @override
-  String get introDescriptionUncover =>
-      'Zbuloni struktura të jashtëzakonshme të ndërtuara nga njeriu nga e gjithë bota.';
-
-  @override
-  String get introTitleDiscover => 'Zbuloni artefakte';
-
-  @override
-  String get introDescriptionLearn => 'Mësoni rreth kulturave përgjatë kohës duke ekzaminuar gjërat që lanë pas.';
+  String get introDescriptionLearn => 'Zbuloni objekte nga çdo epokë dhe krijoni koleksionin tuaj.';
 
   @override
   String get introSemanticNavigate => 'Lundro';
@@ -299,12 +178,6 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get introSemanticAppName => 'Travel Buddy';
-
-  @override
-  String get labelledToggleSemanticToggle => 'ndërro';
-
-  @override
-  String get photoGallerySemanticCollectible => 'koleksionueshme!';
 
   @override
   String photoGallerySemanticFocus(Object photoIndex, Object photoTotal) {
@@ -320,10 +193,13 @@ class AppLocalizationsSq extends AppLocalizations {
   String get eraPrehistory => 'Parahistoria';
 
   @override
-  String get eraClassical => 'Epoka Klasike';
+  String get eraAntiquity => 'Antikiteti';
 
   @override
-  String get eraEarlyModern => 'Epoka e Hershme Moderne';
+  String get eraMiddleAges => 'Mesjeta';
+
+  @override
+  String get eraOttoman => 'Periudha Osmane';
 
   @override
   String get eraModern => 'Epoka Moderne';
@@ -335,6 +211,9 @@ class AppLocalizationsSq extends AppLocalizations {
   String get yearCE => 'e.s.';
 
   @override
+  String get yearToday => 'sot';
+
+  @override
   String yearFormat(Object date, Object era) {
     return '$date $era';
   }
@@ -343,30 +222,12 @@ class AppLocalizationsSq extends AppLocalizations {
   String get year => 'Viti';
 
   @override
-  String timelineLabelConstruction(Object title) {
-    return 'Fillon ndërtimi i $title.';
+  String timelineLabelOrigin(Object title) {
+    return '$title: nis historia.';
   }
 
   @override
-  String get timelineTitleGlobalTimeline => 'Vija Kohore Globale';
-
-  @override
-  String get wallpaperModalSave => 'Ruani këtë poster në galerinë tuaj të fotove?';
-
-  @override
-  String get wallpaperModalSaving => 'Duke ruajtur imazhin. Ju lutem prisni...';
-
-  @override
-  String get wallpaperModalSaveComplete => 'Ruajtja u kompletua!';
-
-  @override
-  String get wallpaperSemanticSharePhoto => 'ndaj foton';
-
-  @override
-  String get wallpaperSemanticTakePhoto => 'bëj foto';
-
-  @override
-  String get wallpaperCheckboxShowTitle => 'Shfaq Titullin';
+  String get timelineTitle => 'Historia e Shqipërisë';
 
   @override
   String get destinationDetailsTabLabelInformation => 'informacion dhe histori';
@@ -384,25 +245,16 @@ class AppLocalizationsSq extends AppLocalizations {
   String get destinationDetailsTabSemanticBack => 'kthehu te zgjedhja e destinacionit';
 
   @override
-  String get homeSemanticOpenMain => 'Hap menunë kryesore';
-
-  @override
   String get homeSemanticDestination => 'destinacion';
 
   @override
   String get butrintTitle => 'Butrinti';
 
   @override
-  String get butrintSubTitle => 'Udhëkryqi i Lashtë';
-
-  @override
   String get butrintRegionTitle => 'Sarandë, Shqipëri';
 
   @override
   String get butrintArtifactCulture => 'Iliro-Romake';
-
-  @override
-  String get butrintArtifactGeolocation => 'Shqipëria Jugore';
 
   @override
   String get butrintPullQuote1Top => 'Një Mikrokozëm i';
@@ -426,14 +278,14 @@ class AppLocalizationsSq extends AppLocalizations {
       'Teatri antik, i ndërtuar në shekullin e 3-të p.e.s., mund të mbante rreth 1,500 spektatorë dhe është një nga më të ruajturit në rajon.';
 
   @override
-  String get butrintVideoCaption => '“Butrinti - Vendi i Trashëgimisë Botërore të UNESCO-s në Shqipëri.” Youtube.';
+  String get butrintVideoCaption => '“Butrint Albania | The ruins of Butrinti Albania.” Visit Albania, YouTube.';
 
   @override
   String get butrintMapCaption => 'Harta që tregon vendndodhjen e Parkut Kombëtar të Butrintit në Shqipërinë jugore.';
 
   @override
   String get butrintHistoryInfo1 =>
-      'Butrinti është një sit arkeologjik në Shqipërinë jugore, përballë ishullit grek të Korfuzit. I vendosur fillimisht nga kolonistët grekë nga Korfuzi në shekullin e 8-të p.e.s., ai u rrit në një qytet të rëndësishëm të botës antike. Sipas legjendës, qyteti u themelua nga refugjatë trojanë të udhëhequr nga Enea.\nRomakët pushtuan Butrintin në vitin 167 p.e.s., dhe Jul Çezari më vonë e caktoi atë si koloni për veteranët. Nën sundimin romak, qyteti lulëzoi me ndërtimin e një akuedukti, banjave publike dhe një forumi.';
+      'Butrinti është një sit arkeologjik në Shqipërinë jugore, përballë ishullit grek të Korfuzit. I vendosur fillimisht nga kolonistët grekë nga Korfuzi në shekullin e 8-të p.e.s., ai u rrit në një qytet të rëndësishëm të botës antike. Sipas legjendës, qyteti u themelua nga refugjatë trojanë të udhëhequr nga Enea.\nButrinti u bë protektorat romak në vitin 228 p.e.s., dhe Jul Çezari më vonë e caktoi atë si koloni për veteranët. Nën sundimin romak, qyteti lulëzoi me ndërtimin e një akuedukti, banjave publike dhe një forumi.';
 
   @override
   String get butrintHistoryInfo2 =>
@@ -456,58 +308,32 @@ class AppLocalizationsSq extends AppLocalizations {
       'Pozicioni strategjik i Butrintit, në një ngushticë midis tokës kryesore dhe Korfuzit, e bëri atë një ndalesë të rëndësishme përgjatë rrugëve tregtare antike të Mesdheut. Peizazhi përreth i moçaleve, lagunave dhe bregdetit të Detit Jon ka qenë vendimtar për historinë e vendit si pozicion mbrojtës ashtu edhe si port i lulëzuar.';
 
   @override
-  String get butrint600ce =>
-      'Kolonistët grekë nga Korfuzi vendosin një vendbanim në Butrint, i cili rritet në një pikë tregtare të rëndësishme';
+  String get butrint228bce => 'Butrinti bëhet protektorat romak, së bashku me Korfuzin.';
 
   @override
-  String get butrint832ce =>
-      'Butrinti shërben si një qendër e madhe kishtare bizantine me ndërtimin e Bazilikës së Madhe';
+  String get butrint44bce => 'Jul Çezari e bën Butrintin koloni për veteranët e tij; nën Augustin qyteti dyfishohet.';
 
   @override
-  String get butrint998ce =>
-      'Qyteti bie nën fuqi të ndryshme rajonale ndërsa kontrolli i Perandorisë Bizantine dobësohet';
+  String get butrint1386ce =>
+      'Venediku blen Korfuzin dhe Butrintin nga Anzhuinët dhe e mban Butrintin si pikë të përparme.';
 
   @override
-  String get butrint1100ce =>
-      'Normanët dhe anzhuvët kontestojnë kontrollin e Butrintit si pjesë e konflikteve më të gjera mesdhetare';
+  String get butrint1798ce => 'Ali Pashë Tepelena ua merr Butrintin francezëve.';
 
   @override
-  String get butrint1527ce =>
-      'Republika e Venedikut forcon Butrintin, duke ndërtuar një kështjellë dhe kullë për t\'u mbrojtuar kundër zgjerimit osman';
+  String get butrint1928ce => 'Arkeologu italian Luigi Maria Ugolini nis gërmimet e para moderne.';
 
   @override
-  String get butrint1535ce =>
-      'Forcat osmane marrin kontrollin e rajonit më të gjerë, dhe Butrinti gradualisht bie si vendbanim';
-
-  @override
-  String get butrintCollectible1Title => 'Varëse';
-
-  @override
-  String get butrintCollectible1Icon => 'jewelry';
-
-  @override
-  String get butrintCollectible2Title => 'Ornament Zogu';
-
-  @override
-  String get butrintCollectible2Icon => 'jewelry';
-
-  @override
-  String get butrintCollectible3Title => 'Vue de Buthrotum';
-
-  @override
-  String get butrintCollectible3Icon => 'picture';
+  String get butrint1992ce => 'Butrinti regjistrohet në Listën e Trashëgimisë Botërore të UNESCO-s.';
 
   @override
   String get beratTitle => 'Berati';
 
   @override
-  String get beratSubTitle => 'Qyteti i Një Mijë Dritareve';
-
-  @override
   String get beratRegionTitle => 'Berat, Shqipëri';
 
   @override
-  String get beratArtifactGeolocation => 'Shqipëria Qendrore';
+  String get beratArtifactCulture => 'Bizantino-Shqiptare';
 
   @override
   String get beratPullQuote1Top => 'Një Shembull i Rrallë i';
@@ -531,14 +357,14 @@ class AppLocalizationsSq extends AppLocalizations {
       'Lagja e kështjellës (Kalaja) ka qenë e banuar vazhdimisht për mbi 2,400 vjet dhe ende strehon një komunitet të gjallë brenda mureve të saj të shekullit të 13-të.';
 
   @override
-  String get beratVideoCaption => '“Berati - Qyteti i Një Mijë Dritareve, Shqipëri.” Youtube.';
+  String get beratVideoCaption => '“Berat, Albania - The pride of Albanian architecture.” Visit Albania, YouTube.';
 
   @override
   String get beratMapCaption => 'Harta që tregon vendndodhjen e Beratit në Shqipërinë qendrore.';
 
   @override
   String get beratHistoryInfo1 =>
-      'Berati është një nga qytetet më të vjetra të banuara vazhdimisht në Shqipëri, i vendosur përgjatë brigjeve të Lumit Osum. Kështjella në majë të kodrës ka qenë e banuar që nga shekulli i 4-të p.e.s., kur ishte një vendbanim i rëndësishëm ilir i njohur si Antipatrea, i themeluar nga mbreti ilir Antipater.\nNën sundimin romak, qyteti shërbeu si një bazë ushtarake strategjike përgjatë rrugës tregtare Via Egnatia.';
+      'Berati është një nga qytetet më të vjetra të banuara vazhdimisht në Shqipëri, i vendosur përgjatë brigjeve të Lumit Osum. Kodra e kështjellës ka qenë e banuar të paktën që nga shekulli i 7-të p.e.s.; në antikitet qyteti i fortifikuar këtu njihej si Antipatrea, emër që ka të ngjarë t\'i kushtohet regjentit maqedonas Antipatri.\nNën sundimin romak, qyteti shërbeu si një bazë ushtarake strategjike përgjatë rrugës tregtare Via Egnatia.';
 
   @override
   String get beratHistoryInfo2 =>
@@ -561,61 +387,32 @@ class AppLocalizationsSq extends AppLocalizations {
       'Kanioni i Lumit Osum, që shtrihet në juglindje të qytetit, është një nga tiparet natyrore më dramatike në Shqipëri, me mure kanjoni vertikale që arrijnë mbi 80 m (260 këmbë). Rajoni përreth është kultivuar që nga antikiteti, duke prodhuar ullinj, rrush dhe fiq në klimën e butë me ndikim mesdhetar.';
 
   @override
-  String get berat1850ce =>
-      'Berati përjeton një rilindje kulturore nën reformat osmane të Tanzimatit, me ndërtimin e shkollave dhe ndërtesave të reja qytetare';
+  String get berat200bce => 'Romakët sulmojnë dhe djegin Antipatrean, qytetin e fortifikuar në kodrën e Beratit.';
 
   @override
-  String get berat1921ce =>
-      'Pas pavarësisë shqiptare, Berati bëhet një qendër e rëndësishme administrative e shtetit të ri shqiptar';
+  String get berat1417ce => 'Berati bëhet pjesë e Perandorisë Osmane.';
 
   @override
-  String get berat1922ce =>
-      'Shkollat e para moderne në gjuhën shqipe krijohen në Berat, duke avancuar lëvizjen e arsimit kombëtar';
+  String get berat1547ce =>
+      'Piktori i ikonave Onufri nënshkruan një afresk kishe të datuar më 23 korrik 1547; muzeu në kalanë e Beratit sot mban emrin e tij.';
 
   @override
-  String get berat1926ce =>
-      'Studimet arkeologjike fillojnë dokumentimin e arkitekturës historike të kështjellës së Beratit dhe lagjeve osmane';
+  String get berat1922ce => 'Kongresi i Beratit shpall autoqefalinë e Kishës Ortodokse Shqiptare.';
 
   @override
-  String get berat1931ce =>
-      'Puna e restaurimit fillon në muret e kështjellës dhe kishat bizantine brenda lagjes së Kalasë';
+  String get berat1961ce => 'Berati shpallet \"Qytet-Muze\", duke mbrojtur lagjet e tij historike.';
 
   @override
-  String get berat2006ce =>
-      'Qendra historike e Beratit merr njohje paraprake që çon në regjistrimin e saj në UNESCO në 2008';
-
-  @override
-  String get beratCollectible1Title => 'Bri i Gdhendur';
-
-  @override
-  String get beratCollectible1Icon => 'statue';
-
-  @override
-  String get beratCollectible2Title => 'Frerë e fiksuar';
-
-  @override
-  String get beratCollectible2Icon => 'jewelry';
-
-  @override
-  String get beratCollectible3Title => 'Shami dore (një nga dy)';
-
-  @override
-  String get beratCollectible3Icon => 'textile';
+  String get berat2008ce => 'Berati i bashkohet Gjirokastrës në Listën e Trashëgimisë Botërore të UNESCO-s.';
 
   @override
   String get gjirokasterTitle => 'Gjirokastra';
-
-  @override
-  String get gjirokasterSubTitle => 'Qyteti i Gurit';
 
   @override
   String get gjirokasterRegionTitle => 'Gjirokastër, Shqipëri';
 
   @override
   String get gjirokasterArtifactCulture => 'Osmano-Shqiptare';
-
-  @override
-  String get gjirokasterArtifactGeolocation => 'Shqipëria Jugore';
 
   @override
   String get gjirokasterPullQuote1Top => 'Një Shembull i Rrallë i';
@@ -639,19 +436,18 @@ class AppLocalizationsSq extends AppLocalizations {
       'Shtëpitë karakteristike kullë të qytetit, të njohura si \"kullë,\" kanë çati me pllaka guri dhe arkitekturë të forcuar unike për rajonin, duke i dhënë Gjirokastrës emrin \"Qyteti i Gurit.\"';
 
   @override
-  String get gjirokasterVideoCaption =>
-      '“Gjirokastra - Qyteti i Gurit i Shqipërisë, Trashëgimi Botërore e UNESCO-s.” Youtube.';
+  String get gjirokasterVideoCaption => '“Gjirokaster Albania | Gjirokastra Albania.” Visit Albania, YouTube.';
 
   @override
   String get gjirokasterMapCaption => 'Harta që tregon vendndodhjen e Gjirokastrës në Shqipërinë jugore.';
 
   @override
   String get gjirokasterHistoryInfo1 =>
-      'Gjirokastra është një qytet në Shqipërinë jugore, i vendosur në luginën e Lumit Drino. Zona ka qenë e banuar që nga të paktën shekulli i 1-rë e.s., dhe një fortesë ka qëndruar në majë të kodrës që nga shekulli i 3-të. Emri Gjirokastër ka të ngjarë të rrjedh nga greqishtja mesjetare \"Argyrokastron\" që do të thotë \"Kështjella e Argjenditë.\"\nQyteti u ngrit në rëndësi në shekullin e 13-të si qendër e Despotëtit të Epirit dhe më vonë u bë një kala e rëndësishme e kontestuar midis forcave bizantine, serbe dhe osmane.';
+      'Gjirokastra është një qytet në Shqipërinë jugore, i vendosur në luginën e Lumit Drino. Fortesa e parë në majë të kodrës daton nga shekujt e 5-të dhe të 6-të e.s. Emri Gjirokastër ka të ngjarë të rrjedh nga greqishtja mesjetare \"Argyrokastron\" që do të thotë \"Kështjella e Argjenditë.\"\nQyteti u ngrit në rëndësi në shekullin e 13-të si qendër e Despotëtit të Epirit dhe më vonë u bë një kala e rëndësishme e kontestuar midis forcave bizantine, serbe dhe osmane.';
 
   @override
   String get gjirokasterHistoryInfo2 =>
-      'Nën sundimin osman nga 1417 e tutje, Gjirokastra u bë qendra e një sanxhaku të madh (njësi administrative) dhe lulëzoi si qytet pazar. Pronarët e pasur të tokës ndërtuan shtëpitë e dallueshme kullë të forcuara që përcaktojnë karakterin e qytetit.\nQyteti u regjistrua si Vend i Trashëgimisë Botërore të UNESCO-s në 2005 si \"një shembull i rrallë i një qyteti osman të ruajtur mirë, i ndërtuar nga fermerë të pronave të mëdha.\" Është vendlindja e ish-diktatorit shqiptar Enver Hoxha dhe autorit fitues të Çmimit Nobel, Ismail Kadare.';
+      'Nën sundimin osman nga 1418 e tutje, Gjirokastra u bë qendra e një sanxhaku të madh (njësi administrative) dhe lulëzoi si qytet pazar. Pronarët e pasur të tokës ndërtuan shtëpitë e dallueshme kullë të forcuara që përcaktojnë karakterin e qytetit.\nQyteti u regjistrua si Vend i Trashëgimisë Botërore të UNESCO-s në 2005 si \"një shembull i rrallë i një qyteti osman të ruajtur mirë, i ndërtuar nga fermerë të pronave të mëdha.\" Është vendlindja e ish-diktatorit shqiptar Enver Hoxha dhe autorit fitues të Çmimit Nobel, Ismail Kadare.';
 
   @override
   String get gjirokasterConstructionInfo1 =>
@@ -670,61 +466,33 @@ class AppLocalizationsSq extends AppLocalizations {
       'Rajoni përreth, i njohur si Dropulli, ka qenë një udhëkryq kulturash për mijëvjeçarë. Lugina e Drinit lidh bregdetin adriatik me Ballkanin e brendshëm, dhe rruga antike nga bregdeti në Butrint kalonte nëpër këtë luginë drejt Via Egnatia-s.';
 
   @override
-  String get gjirokaster70ce =>
-      'Vendbanimi i hershëm i epokës romake ekziston në rajonin e Luginës së Drinit, me fortime në majë të kodrës që më vonë do të bëhej Gjirokastra';
+  String get gjirokaster1336ce =>
+      'Perandori bizantin Joan VI Kantakuzeni e përmend qytetin si Argjirokastro, përmendja e parë e emrit të tij.';
 
   @override
-  String get gjirokaster82ce =>
-      'Fortesa në majë të kodrës zgjerohet si pozicion mbrojtës strategjik që ruante rrugët tregtare të Luginës së Drinit';
+  String get gjirokaster1418ce => 'Pas një rrethimi, osmanët e marrin qytetin nga familja Zenebishi.';
 
   @override
-  String get gjirokaster1140ce =>
-      'Argyrokastron shfaqet si vendbanim i rëndësishëm bizantin dhe kontestohet gjatë pushtimeve normane të Ballkanit';
+  String get gjirokaster1811ce =>
+      'Gjirokastra bëhet pjesë e Pashallëkut të Janinës së Ali Pashës; më pas ai e zgjeron kalanë.';
 
   @override
-  String get gjirokaster1490ce =>
-      'Nën sundimin osman, Gjirokastra zhvillohet në një qytet pazar të lulëzuar me ndërtimin e Pazarit të Vjetër dhe shtëpive të para kullë';
+  String get gjirokaster1932ce => 'Qeveria e Mbretit Zog zgjeron burgun brenda kalasë.';
 
   @override
-  String get gjirokaster1829ce =>
-      'Ali Pashë Tepelena ndërmerr zgjerimin e madh të kalasë, duke shtuar fortime, akuadukt dhe kullë sahati';
+  String get gjirokaster1936ce => 'Shkrimtari Ismail Kadare lind në këtë qytet.';
 
   @override
-  String get gjirokaster1990ce =>
-      'Pas rënies së komunizmit, fillojnë përpjekjet e restaurimit dhe Gjirokastra merr statusin e Trashëgimisë Botërore të UNESCO-s në 2005';
-
-  @override
-  String get gjirokasterCollectible1Title => 'Amforiskos gjashtëkëndësh qelqi';
-
-  @override
-  String get gjirokasterCollectible1Icon => 'vase';
-
-  @override
-  String get gjirokasterCollectible2Title => 'Pllakë bronzi e Mitrës duke vrarë demin';
-
-  @override
-  String get gjirokasterCollectible2Icon => 'statue';
-
-  @override
-  String get gjirokasterCollectible3Title => 'Veduta di Argirocastro';
-
-  @override
-  String get gjirokasterCollectible3Icon => 'picture';
+  String get gjirokaster2005ce => 'Qendra historike regjistrohet në Listën e Trashëgimisë Botërore të UNESCO-s.';
 
   @override
   String get apolloniaTitle => 'Apolonia';
-
-  @override
-  String get apolloniaSubTitle => 'Qyteti i Lashtë i Dijes';
 
   @override
   String get apolloniaRegionTitle => 'Fier, Shqipëri';
 
   @override
   String get apolloniaArtifactCulture => 'Iliro-Greke';
-
-  @override
-  String get apolloniaArtifactGeolocation => 'Shqipëria Qendrore';
 
   @override
   String get apolloniaPullQuote1Top => 'Një Qytet i Admirueshëm';
@@ -748,7 +516,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'I riu Oktavian (më vonë Perandori August) po studionte në Apoloni kur mori lajmin e vrasjes së Jul Çezarit në 44 p.e.s., një moment vendimtar në historinë romake.';
 
   @override
-  String get apolloniaVideoCaption => '“Parku Arkeologjik i Apolonisë - Shqipëria Antike.” Youtube.';
+  String get apolloniaVideoCaption => '“Apollonia, Albania by Drone.” Visit Albania, YouTube.';
 
   @override
   String get apolloniaMapCaption => 'Harta që tregon vendndodhjen e Apolonisë pranë Fierit në Shqipërinë qendrore.';
@@ -778,61 +546,31 @@ class AppLocalizationsSq extends AppLocalizations {
       'Në antikitet, Lumi Vjosa rrinte shumë më pranë qytetit, duke siguruar qasje të drejtpërdrejtë në bregdetin adriatik dhe duke mundësuar që Apolonia të funksiononte si një qytet i rëndësishëm portual. Fusha pjellore përreth mbështeste prodhimin bujqësor, ndërsa pozicioni në kodër ofronte avantazhe natyrore mbrojtëse.';
 
   @override
-  String get apollonia700bce =>
-      'Kolonistët grekë nga Korinti dhe Korkira themelojnë Apoloninë në 588 p.e.s. në territorin ilir, duke vendosur një vendbanim që do të rritet në një qytet të madh';
+  String get apollonia588bce => 'Kolonë grekë nga Korinti dhe Korkyra themelojnë Apoloninë në tokë ilire.';
 
   @override
-  String get apollonia214bce =>
-      'Apolonia bëhet një aleate kyçe romake gjatë Luftërave Ilire dhe shërben si bazë për fushatat ushtarake romake në Mesdheun lindor';
+  String get apollonia229bce => 'Apolonia kalon nën kontrollin e Republikës Romake.';
 
   @override
-  String get apollonia121bce =>
-      'Qyteti lulëzon si qendër tregtie përgjatë Via Egnatia-s, duke lidhur Romën me provincat e saj lindore';
+  String get apollonia148bce => 'Apolonia bëhet pjesë e provincës së re romake të Maqedonisë.';
 
   @override
-  String get apollonia556ce =>
-      'Një tërmet ndryshon rrjedhën e Lumit Vjosa, duke shkatërruar portin e Apolonisë dhe duke filluar rënien e pakthyeshme të qytetit';
+  String get apollonia44bce => 'I riu Oktavian, perandori i ardhshëm August, studion në Apoloni.';
 
   @override
-  String get apollonia618ce =>
-      'Mbetjet e qytetit shërbejnë si guroré për materiale ndërtimi; Manastiri Bizantin i Shën Mërisë ndërtohet brenda mureve antike';
+  String get apollonia1272ce => 'Manastiri bizantin i Shën Mërisë ngrihet mes rrënojave të qytetit antik.';
 
   @override
-  String get apollonia1487ce =>
-      'Vendi mbetet kryesisht i harruar dhe i mbuluar nga bimësia derisa gërmimet sistematike arkeologjike fillojnë nën arkeologët austriakë dhe më vonë francezë në fillim të shekullit të 20-të';
-
-  @override
-  String get apolloniaCollectible1Title => 'Biografitë e Lian Po-s dhe Lin Xiangru-s';
-
-  @override
-  String get apolloniaCollectible1Icon => 'scroll';
-
-  @override
-  String get apolloniaCollectible2Title => 'Vazo me Dragua';
-
-  @override
-  String get apolloniaCollectible2Icon => 'vase';
-
-  @override
-  String get apolloniaCollectible3Title => 'Panel me Peoni dhe Flutur';
-
-  @override
-  String get apolloniaCollectible3Icon => 'textile';
+  String get apollonia1924ce => 'Një mision arkeologjik francez nis gërmimet sistematike, që zgjasin deri më 1938.';
 
   @override
   String get thethTitle => 'Thethi';
-
-  @override
-  String get thethSubTitle => 'Streha Alpine';
 
   @override
   String get thethRegionTitle => 'Shkodër, Shqipëri';
 
   @override
   String get thethArtifactCulture => 'Malësia Shqiptare';
-
-  @override
-  String get thethArtifactGeolocation => 'Shqipëria Veriore';
 
   @override
   String get thethPullQuote1Top => 'Një Fragment i Gjallë i';
@@ -859,7 +597,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'Lugina e Thethit ndodhet në rreth 760 m (2,500 këmbë) mbi nivelin e detit, e rrethuar nga maja që tejkalojnë 2,500 m (8,000 këmbë), përfshirë masivin dramatik të Radohimës.';
 
   @override
-  String get thethVideoCaption => '“Parku Kombëtar i Thethit - Parajsa e Fshehur Alpine e Shqipërisë.” Youtube.';
+  String get thethVideoCaption => '“Theth Albania - Albanian Alps.” Visit Albania, YouTube.';
 
   @override
   String get thethMapCaption => 'Harta që tregon vendndodhjen e Thethit në Alpet Shqiptare, Shqipëria veriore.';
@@ -889,61 +627,32 @@ class AppLocalizationsSq extends AppLocalizations {
       'Syri i Kaltër i Thethit, një pellg natyror burimi me ujë të kaltërt të gjallë turkuaz, është një nga tiparet natyrore më të jashtëzakonshme të luginës. Ujëvara e Grunasit, që bie 30 m (100 këmbë) poshtë një shkëmbi gëlqeror, është një tjetër pikë referimi ikonike. Lugina lidhet me Valbonën nëpërmjet një shtegu të njohur kalimi malor në rreth 1,800 m (5,900 këmbë).';
 
   @override
-  String get theth1438ce =>
-      'Fiset malësore shqiptare janë vendosur mirë në luginën e Thethit, të qeverisur nga Kanuni i Lëkë Dukagjinit';
+  String get theth1892ce => 'Ndërtohet kisha e fshatit Theth.';
 
   @override
-  String get theth1572ce =>
-      'Komunitetet malësore i rezistojnë kontrollit osman, duke ruajtur autonominë nëpërmjet terrenit të ashpër të Alpeve Shqiptare';
+  String get theth1908ce =>
+      'Edith Durham udhëton nëpër malësi dhe e përshkruan Thethin në librin \"High Albania\" (1909).';
 
   @override
-  String get theth1867ce =>
-      'Udhëtarja dhe diplomtja britanike Edith Durham viziton malësinë shqiptare, duke dokumentuar më vonë mënyrën tradicionale të jetesës në shkrimet e saj të çmuara';
+  String get theth1966ce => 'Krijohet Parku Kombëtar i Thethit.';
 
   @override
-  String get theth1911ce =>
-      'Shqipëria shpall pavarësinë në 1912; rajonet malësore luajnë një rol vendimtar në zgjimin kombëtar dhe lëvizjet e rezistencës';
+  String get theth2011ce => 'Hapet shtegu \"Majat e Ballkanit\", që e lidh Thethin me Kosovën dhe Malin e Zi.';
 
   @override
-  String get theth1964ce =>
-      'Parku Kombëtar i Thethit krijohet në 1966, një nga zonat e para të mbrojtuar të Shqipërisë, duke ruajtur ekosistemin alpin';
+  String get theth2017ce => 'Albanologu Robert Elsie prehet në Theth.';
 
   @override
-  String get theth1997ce =>
-      'Shtegu i Majave të Ballkanit inaugurohet, duke lidhur Shqipërinë, Kosovën dhe Malin e Zi dhe duke sjellë vëmendje të ripërtëritur ndërkombëtare në Theth';
-
-  @override
-  String get thethCollectible1Title => 'Tunika me Yll Tetëcepësh';
-
-  @override
-  String get thethCollectible1Icon => 'textile';
-
-  @override
-  String get thethCollectible2Title => 'Figurinë kamelide';
-
-  @override
-  String get thethCollectible2Icon => 'statue';
-
-  @override
-  String get thethCollectible3Title => 'Tas i Dyfishtë';
-
-  @override
-  String get thethCollectible3Icon => 'vase';
+  String get theth2022ce => 'Thethi bëhet pjesë e Parkut të ri Kombëtar \"Alpet e Shqipërisë\".';
 
   @override
   String get krujaTitle => 'Kruja';
-
-  @override
-  String get krujaSubTitle => 'Kalaja e Skënderbeut';
 
   @override
   String get krujaRegionTitle => 'Qarku i Durrësit, Shqipëri';
 
   @override
   String get krujaArtifactCulture => 'Mesjetare Shqiptare';
-
-  @override
-  String get krujaArtifactGeolocation => 'Shqipëria Qendrore';
 
   @override
   String get krujaPullQuote1Top => 'Mburoja e Krishterimit';
@@ -970,7 +679,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'Kalaja ndodhet në një lartësi prej rreth 600 m (1,970 këmbë) në majë të Malit të Skënderbeut (Mali i Sariut), duke ofruar një pamje komanduese mbi fushat përreth.';
 
   @override
-  String get krujaVideoCaption => '“Kalaja e Krujës dhe Trashëgimia e Skënderbeut - Shqipëri.” Youtube.';
+  String get krujaVideoCaption => '“KRUJA CITY & CASTLE 2021 | 4K DRONE CINEMATIC VIDEO.” GOGLA, YouTube.';
 
   @override
   String get krujaMapCaption => 'Harta që tregon vendndodhjen e Krujës në Shqipërinë qendrore.';
@@ -1000,60 +709,32 @@ class AppLocalizationsSq extends AppLocalizations {
       'Mali i Skënderbeut (Mali i Sariut) ngrihet pjerrësisht prapa kalasë deri në rreth 1,070 m (3,500 këmbë). Terreni përreth i grykave të pjerrëta dhe pyjeve të dendura ofroi avantazhe natyrore mbrojtëse që Skënderbeu i shfrytëzoi në taktikat e tij guerile kundër forcave shumë më të mëdha osmane. Maja e afërt e Sarisalltikut ka një shpellë-faltore të nderuar nga myslimanët dhe të krishterët.';
 
   @override
-  String get kruja1200bce =>
-      'Vendbanimet e hershme ilire ekzistojnë në rajonin e Krujës, duke shfrytëzuar pozicionin natyror të fortesës';
+  String get kruja1190ce => 'Kruja bëhet kryeqyteti i Principatës së Arbrit, shteti i parë shqiptar i Mesjetës.';
 
   @override
-  String get kruja106bce => 'Rajoni bie nën kontrollin romak si pjesë e provincës së Ilirikut';
+  String get kruja1443ce => 'Më 28 nëntor, Skënderbeu merr Krujën dhe ngre flamurin shqiptar mbi kala.';
 
   @override
-  String get kruja551ce =>
-      'Fortimet e epokës bizantine ndërtohen në majë të kodrës, duke krijuar kështjellën si pozicion mbrojtës strategjik';
+  String get kruja1450ce =>
+      'Forcat e Skënderbeut i rezistojnë rrethimit të parë osman, të udhëhequr nga sulltan Murati II.';
 
   @override
-  String get kruja1812ce =>
-      'Rrënojat e kalasë dhe pazari i vjetër dokumentohen nga udhëtarët evropianë ndërsa interesi për historinë shqiptare rritet';
+  String get kruja1478ce => 'Pas një rrethimi mbi një vjeçar, Kruja bie në duart e osmanëve.';
 
   @override
-  String get kruja1958ce =>
-      'Muzeu i Skënderbeut brenda kalasë krijohet, duke u bërë memoriali më i rëndësishëm kombëtar i Shqipërisë';
+  String get kruja1982ce => 'Muzeu i Skënderbeut hapet pranë kalasë.';
 
   @override
-  String get kruja1989ce =>
-      'Kruja bëhet një destinacion i madh turistik dhe simbol i identitetit kombëtar shqiptar pas rënies së komunizmit';
-
-  @override
-  String get krujaCollectible1Title => 'Deve me kalorës';
-
-  @override
-  String get krujaCollectible1Icon => 'statue';
-
-  @override
-  String get krujaCollectible2Title => 'Enë';
-
-  @override
-  String get krujaCollectible2Icon => 'vase';
-
-  @override
-  String get krujaCollectible3Title => 'Tas i hapur';
-
-  @override
-  String get krujaCollectible3Icon => 'vase';
+  String get kruja1989ce => 'Muzeu Etnografik Kombëtar hapet në një shtëpi të familjes Toptani, të ndërtuar më 1764.';
 
   @override
   String get albanianAlpsTitle => 'Alpet Shqiptare';
-
-  @override
-  String get albanianAlpsSubTitle => 'Bjeshkët e Nemuna';
 
   @override
   String get albanianAlpsRegionTitle => 'Shqipëria Veriore';
 
   @override
   String get albanianAlpsArtifactCulture => 'Malësia Shqiptare';
-
-  @override
-  String get albanianAlpsArtifactGeolocation => 'Shqipëria Veriore';
 
   @override
   String get albanianAlpsPullQuote1Top => 'Natyra e Fundit e Madhe';
@@ -1077,8 +758,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'Jezerca, maja më e lartë me 2,694 m (8,839 këmbë), është një nga majat më dramatike prej guri gëlqeror në Ballkan, me fusha të përhershme bore dhe cirqe akullnajore.';
 
   @override
-  String get albanianAlpsVideoCaption =>
-      '“Alpet Shqiptare - Bjeshkët e Nemuna, Natyra e Fundit e Virgjër e Evropës.” Youtube.';
+  String get albanianAlpsVideoCaption => '“Valbona, Albania.” Visit Albania, YouTube.';
 
   @override
   String get albanianAlpsMapCaption => 'Harta që tregon vendndodhjen e Alpeve Shqiptare në Shqipërinë veriore.';
@@ -1097,7 +777,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get albanianAlpsConstructionInfo2 =>
-      'Strukturat njerëzore në Alpet Shqiptare pasqyrojnë mjedisin malor. Shtëpitë tradicionale malësore (kullë) janë ndërtuara nga blloqe masive guri gëlqeror me brendësi druri, të dizajnuara për t\'i rezistuar borës së rëndë dhe për të siguruar mbrojtje. Kullosa me mure guri, shtigje antike mushkash dhe kisha të vogla malore mbushin peizazhin.\nShtegu i Majave të Ballkanit, një itinerar ecjeje prej 192 km (120 miljesh) i krijuar në 2013, lidh komunitete nëpër tre vende duke përdorur shumë nga këto shtigje tradicionale.';
+      'Strukturat njerëzore në Alpet Shqiptare pasqyrojnë mjedisin malor. Shtëpitë tradicionale malësore (kullë) janë ndërtuara nga blloqe masive guri gëlqeror me brendësi druri, të dizajnuara për t\'i rezistuar borës së rëndë dhe për të siguruar mbrojtje. Kullosa me mure guri, shtigje antike mushkash dhe kisha të vogla malore mbushin peizazhin.\nShtegu i Majave të Ballkanit, një itinerar ecjeje prej 192 km (120 miljesh) i hapur në 2011, lidh komunitete nëpër tre vende duke përdorur shumë nga këto shtigje tradicionale.';
 
   @override
   String get albanianAlpsLocationInfo1 =>
@@ -1108,61 +788,34 @@ class AppLocalizationsSq extends AppLocalizations {
       'Parku Kombëtar i Luginës së Valbonës dhe Parku Kombëtar i Thethit mbrojnë shumicën e pjesës shqiptare të vargut. Liqeni i Komanit, i aksesueshëm me traget nëpër një kanjon dramatik shpesh të krahasuar me fjordet skandinave, ofron një qasje mahnitëse në male nga jugu. Rajoni merr disa nga reshjet më të larta në Evropë, duke ushqyer lumenj dhe ujëvara të shumta.';
 
   @override
-  String get albanianAlps2575bce =>
-      'Banimi i hershëm njerëzor në rajonin e Alpeve Shqiptare daton në Epokën e Bronzit, me dëshmi të komuniteteve baritore në luginat malësore';
+  String get albanianAlps1909ce =>
+      'Edith Durham boton \"High Albania\", rrëfimin klasik për jetën mes fiseve të malësisë.';
 
   @override
-  String get albanianAlps2465bce =>
-      'Fiset ilire vendosin vendbanime sezonale në kullotat malore, duke zhvilluar traditat e transhumancës që vazhdojnë deri më sot';
+  String get albanianAlps1929ce =>
+      'Alpinistë britanikë bëjnë ngjitjen e parë të regjistruar në Majën e Jezercës (2 694 m), majën më të lartë të vargmalit.';
 
   @override
-  String get albanianAlps443bce =>
-      'Shkrimtarët grekë dhe romakë dokumentojnë pavarësinë e egër të fiseve ilire malore dhe terrenin e vështirë të rajonit';
+  String get albanianAlps1996ce => 'Krijohet Parku Kombëtar i Luginës së Valbonës.';
 
   @override
-  String get albanianAlps1925ce =>
-      'Udhëtarja britanike Edith Durham publikon tregime të detajuara të jetës në malësinë shqiptare, duke sjellë vëmendje ndërkombëtare në rajon';
+  String get albanianAlps2009ce => 'Zbulohet një akullnajë në pjesën shqiptare të vargmalit.';
 
   @override
-  String get albanianAlps1979ce =>
-      'Parku Kombëtar i Thethit dhe Lugina e Valbonës caktohen si zona të mbrojtuar, duke ruajtur ekosistemet alpine';
+  String get albanianAlps2011ce => 'Hapet shtegu \"Majat e Ballkanit\" përmes Shqipërisë, Kosovës dhe Malit të Zi.';
 
   @override
-  String get albanianAlps1990ce =>
-      'Pas rënies së komunizmit, Alpet Shqiptare hapen për ecësit ndërkombëtarë dhe shtegu i Majave të Ballkanit krijohet përfundimisht në 2013';
-
-  @override
-  String get albanianAlpsCollectible1Title => 'Dy fragmente papirusi';
-
-  @override
-  String get albanianAlpsCollectible1Icon => 'scroll';
-
-  @override
-  String get albanianAlpsCollectible2Title => 'Fytyra fragmentare e Mbretit Khafre';
-
-  @override
-  String get albanianAlpsCollectible2Icon => 'statue';
-
-  @override
-  String get albanianAlpsCollectible3Title => 'Elemente Stoli';
-
-  @override
-  String get albanianAlpsCollectible3Icon => 'jewelry';
+  String get albanianAlps2022ce =>
+      'Thethi, Valbona dhe rezervatet përreth bashkohen në Parkun Kombëtar \"Alpet e Shqipërisë\".';
 
   @override
   String get korcaTitle => 'Korça';
-
-  @override
-  String get korcaSubTitle => 'Djepi i Kulturës Shqiptare';
 
   @override
   String get korcaRegionTitle => 'Korçë, Shqipëri';
 
   @override
   String get korcaArtifactCulture => 'Ortodokse Shqiptare';
-
-  @override
-  String get korcaArtifactGeolocation => 'Shqipëria Juglindore';
 
   @override
   String get korcaPullQuote1Top => 'Jo Vetëm një Katedrale,';
@@ -1189,7 +842,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'Korça është shtëpia e shkollës së parë në gjuhën shqipe, e hapur më 7 mars 1887, një datë që tani festohet si Dita e Mësuesit në të gjithë Shqipërinë.';
 
   @override
-  String get korcaVideoCaption => '“Korça - Djepi i Kulturës Shqiptare dhe Katedralja e Ringjalljes.” Youtube.';
+  String get korcaVideoCaption => '“Korçë, Dardhë | Dardhe Korce Albania.” Visit Albania, YouTube.';
 
   @override
   String get korcaMapCaption => 'Harta që tregon vendndodhjen e Korçës në Shqipërinë juglindore.';
@@ -1200,7 +853,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get korcaHistoryInfo2 =>
-      'Katedralja origjinale ortodokse u shkatërrua gjatë periudhës komuniste kur Shqipëria u shpall shteti i parë ateist në botë në 1967, duke shembur pothuajse të gjitha ndërtesat fetare. Katedralja e re e Ringjalljes (Katedralja Ngjallja e Krishtit) u ndërtua midis 1992 dhe 2003 mbi themelet e katedrales së vjetër, duke simbolizuar si ringjalljen fetare ashtu edhe ripërtëritjen kulturore kombëtare.\nKorça është gjithashtu e njohur për kontributin e saj në muzikën, artin shqiptar dhe Festivalin e famshëm vjetor të Birrës së Korçës, një nga më të mëdhenjtë në Ballkan.';
+      'Katedralja origjinale ortodokse u shkatërrua gjatë periudhës komuniste kur Shqipëria u shpall shteti i parë ateist në botë në 1967, duke shembur pothuajse të gjitha ndërtesat fetare. Katedralja e re e Ringjalljes (Katedralja Ngjallja e Krishtit) u ndërtua midis 1994 dhe 2002 mbi themelet e katedrales së vjetër, duke simbolizuar si ringjalljen fetare ashtu edhe ripërtëritjen kulturore kombëtare.\nKorça është gjithashtu e njohur për kontributin e saj në muzikën, artin shqiptar dhe Festivalin e famshëm vjetor të Birrës së Korçës, një nga më të mëdhenjtë në Ballkan.';
 
   @override
   String get korcaConstructionInfo1 =>
@@ -1208,7 +861,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get korcaConstructionInfo2 =>
-      'Ndërtimi i katedrales zgjati mbi një dekadë, nga 1992 deri në 2003. Ndërtimi modern me beton të armuar dhe skelet çeliku u përdor për integritetin strukturor, ndërsa elementet tradicionale prej guri dhe dekorative ruajnë estetikën bizantine.\nKambanorja, që ngrihet pranë katedrales, strehon një set kambanash që biën nëpër qytet. Sheshi dhe parku përreth krijojnë një qendër kulturore për qytetin, duke u lidhur me Muzeun Kombëtar të Artit Mesjetar, i cili strehon një nga koleksionet më të mira të ikonave bizantine në botë.';
+      'Katedralja u ndërtua midis viteve 1994 dhe 2002. Ndërtimi modern me beton të armuar dhe skelet çeliku u përdor për integritetin strukturor, ndërsa elementet tradicionale prej guri dhe dekorative ruajnë estetikën bizantine.\nKambanorja, që ngrihet pranë katedrales, strehon një set kambanash që biën nëpër qytet. Sheshi dhe parku përreth krijojnë një qendër kulturore për qytetin, duke u lidhur me Muzeun Kombëtar të Artit Mesjetar, i cili strehon një nga koleksionet më të mira të ikonave bizantine në botë.';
 
   @override
   String get korcaLocationInfo1 =>
@@ -1219,209 +872,421 @@ class AppLocalizationsSq extends AppLocalizations {
       'Platforma e Korçës ka qenë e banuar që nga kohërat parahistorike për shkak të tokës së pjellore dhe pozicionit strategjik përgjatë rrugëve antike tregtare që lidhnin Detin Adriatik me Detin Egje. Vendi arkeologjik i afërt i Maliqit, në brigjet e një liqeni të dikurshëm, ka dhënë dëshmi të banimit të vazhdueshëm që daton nga periudha neolitike, rreth 6000 p.e.s.';
 
   @override
-  String get korca1631ce =>
-      'Korça zhvillohet si qendër administrative dhe tregtare osmane me ndërtimin e xhamive, pazareve dhe haneve';
+  String get korca1769ce => 'Pas shkatërrimit të Voskopojës fqinje, një pjesë e tregtisë së saj kalon në Korçë.';
 
   @override
-  String get korca1647ce =>
-      'Rëndësia e qytetit rritet si udhëkryq i rrugëve tregtare që lidhin Selanikun, Joaninën dhe bregdetin shqiptar';
+  String get korca1887ce => 'Më 7 mars hapet Mësonjëtorja, shkolla e parë në gjuhën shqipe.';
 
   @override
-  String get korca1658ce =>
-      'Komunitetet kulturore dhe fetare lulëzojnë në Korçë, duke e vendosur atë si qendër shumëtnike dijeje';
+  String get korca1891ce => 'Sevasti Qiriazi themelon shkollën e parë shqipe për vajza.';
 
   @override
-  String get korca1901ce =>
-      'Korça bëhet qendër e lëvizjes kombëtare shqiptare me hapjen e shkollës së parë në gjuhën shqipe në 1887';
+  String get korca1916ce => 'Nën mbrojtjen franceze shpallet Republika Autonome Shqiptare e Korçës.';
 
   @override
-  String get korca1984ce =>
-      'Gjatë epokës komuniste, Katedralja origjinale Ortodokse dhe shumica e ndërtesave fetare shemben ndërsa Shqipëria shpallet shtet ateist';
+  String get korca1968ce => 'Regjimi komunist rrëzon katedralen ortodokse të Shën Gjergjit.';
 
   @override
-  String get korca1998ce =>
-      'Ndërtimi i Katedrales së re të Ringjalljes fillon pas rënies së komunizmit, e përfunduar në 2003 si simbol i ripërtëritjes kulturore';
+  String get korca1994ce => 'Nis ndërtimi i Katedrales së Ngjalljes së Krishtit; ajo shenjtërohet në vitin 2002.';
 
   @override
-  String get korcaCollectible1Title => 'Hanxhar me Këllëf';
+  String get timelineEventIllyrianTribes =>
+      'Popuj ilirë si taulantët, ardianët, dardanët dhe enkelejtë formohen në të gjithë Ballkanin Perëndimor.';
 
   @override
-  String get korcaCollectible1Icon => 'jewelry';
+  String get timelineEventEpidamnos =>
+      'Kolonë nga Korkyra dhe Korinti themelojnë Epidamnin në tokën e taulantëve. Si Dyrrah, Durrësi i sotëm, ai bëhet porti i madh i bregdetit të Adriatikut.';
 
   @override
-  String get korcaCollectible2Title => 'Shtëpia e Bijapur-it';
+  String get timelineEventBardylisDefeatsMacedon =>
+      'Mbreti ilir Bardhyli mund dhe vret mbretin Perdika III të Maqedonisë. Një vit më vonë vëllai i Perdikës, Filipi II, kundërsulmon dhe e mund.';
 
   @override
-  String get korcaCollectible2Icon => 'picture';
+  String get timelineEventAlexanderAtPelion =>
+      'Aleksandri i Madh, ende i ri, shpartallon në Pelion, në juglindje të Shqipërisë së sotme, aleancën e mbretërve ilirë, Klitit dhe Glaukias.';
 
   @override
-  String get korcaCollectible3Title => 'Panel i Kaligrafisë Nasta\'liq';
+  String get timelineEventGlaukiasShieldsPyrrhus =>
+      'Mbreti Glaukia i taulantëve strehon foshnjën Pirro të Epirit dhe refuzon t\'ua dorëzojë armiqve të tij. Vite më vonë e ndihmon të rikthehet në fronin e Epirit.';
 
   @override
-  String get korcaCollectible3Icon => 'scroll';
+  String get timelineEventTeutaTakesTheHelm =>
+      'Pas vdekjes së papritur të mbretit Agron, e veja e tij Teuta sundon mbretërinë e ardianëve në emër të djalit të vogël të Agronit. Flotat e saj sulmojnë brigjet e Adriatikut dhe të Jonit dhe plaçkitin Foinikën (Finiqin e sotëm), qytetin më të pasur të Epirit.';
 
   @override
-  String get timelineEvent2900bce => 'Traditat e tumujve të Epokës së Bronzit shfaqen në Ballkanin Perëndimor';
+  String get timelineEventTeutaDefiesRome =>
+      'Roma dërgon 200 anije kundër mbretëreshës Teuta. Lufta e Parë Ilire mbaron më 228 p.e.s. me Korkyrën, Epidamnin dhe Apoloninë nën mbrojtjen romake.';
 
   @override
-  String get timelineEvent2700bce =>
-      'Vendbanimi i Maliqit pranë Korçës rritet në një nga komunitetet bujqësore më të hershme të Ballkanit jugor';
+  String get timelineEventGentiusFalls =>
+      'Në Luftën e Tretë Ilire, Roma e mund mbretin Genti brenda pak javësh dhe e zë rob në Shkodër. Mbretëria e tij copëtohet në krahina nën kontrollin romak.';
 
   @override
-  String get timelineEvent2600bce =>
-      'Komunitetet e Epokës së Hershme të Bronzit lulëzojnë përgjatë bregdetit të Adriatikut në Shqipërinë e sotme';
+  String get timelineEventEpirusSacked =>
+      'Për ta ndëshkuar Epirin që kishte mbajtur anën e Maqedonisë, Roma plaçkit 70 qytete të tij dhe shet si skllevër 150 000 njerëz. Edhe jugu i Shqipërisë së sotme është ndër trojet e goditura.';
 
   @override
-  String get timelineEvent2560bce => 'Horizonti kulturor i Cetinës lidh komunitetet në të gjithë Ballkanin Perëndimor';
+  String get timelineEventViaEgnatia =>
+      'Roma ndërton Rrugën Egnatia, që nis nga Dyrrahu dhe Apolonia, kapërcen malet deri në Selanik dhe më vonë zgjatet deri në Bizant.';
 
   @override
-  String get timelineEvent1200bce =>
-      'Fiset ilire — Taulantët, Ardianët, Dardanët, Enkelejtë, Kaonët — konsolidohen në të gjithë Ballkanin Perëndimor';
+  String get timelineEventCaesarAndPompey =>
+      'Në luftën civile romake, Jul Cezari rrethon Pompeun në Dyrrah (Durrës), por zmbrapset. Disa javë më vonë ai e fiton luftën në Farsal të Greqisë.';
 
   @override
-  String get timelineEvent627bce =>
-      'Kolonë grekë nga Korinthi dhe Korkyra themelojnë Epidamnin, Dyrrahun e ardhshëm dhe Durrësin e sotëm';
+  String get timelineEventPaulInIllyricum =>
+      'Në letrën drejtuar romakëve, apostulli Pal shkruan se e ka predikuar ungjillin \'deri në Ilirik\'.';
 
   @override
-  String get timelineEvent358bce => 'Bardyli I i Mbretërisë Dardane mund Perdikën III të Maqedonisë';
+  String get timelineEventEmpireSplits =>
+      'Me vdekjen e perandorit Theodosi I, Perandoria Romake ndahet përfundimisht. Trojet shqiptare i bien gjysmës lindore, që sundohet nga Kostandinopoja.';
 
   @override
-  String get timelineEvent229bce =>
-      'Lufta e Parë Ilire: Mbretëresha Teuta e Ardianëve përballet me Romën për pirateri në Adriatik';
+  String get timelineEventAnastasiusEmperor =>
+      'Anastasi I, i lindur në Dyrrah (Durrës), bëhet perandor bizantin dhe më vonë forcon muret e qytetit të tij të lindjes.';
 
   @override
-  String get timelineEvent168bce =>
-      'Lufta e Tretë Ilire mbaron; mbreti Genti mposhtet dhe Iliria bëhet protektorat romak';
+  String get timelineEventButrintBaptistery =>
+      'Butrinti ndërton një pagëzimore të madhe, dyshemeja e së cilës me mozaikë zogjsh, kafshësh dhe hardhish është ndër mozaikët më të bukur paleokristianë të Ballkanit.';
 
   @override
-  String get timelineEvent146bce =>
-      'Roma fillon ndërtimin e Rrugës Egnatia, duke lidhur Dyrrahun përmes Ilirisë me Bizantin';
+  String get timelineEventCodexBeratinus =>
+      'Kopistë shkruajnë Ungjijtë e Mateut dhe të Markut me bojë argjendi mbi pergamenë të purpurt. I ruajtur në Berat të paktën që nga viti 1356, Kodiku i Beratit është ndër librat më të vjetër të Ungjillit në botë.';
 
   @override
-  String get timelineEvent395ce => 'Perandoria Romake ndahet; Iliria përfshihet në Perandorinë Lindore Bizantine';
+  String get timelineEventBasilReconquers =>
+      'Perandori Vasili II shkatërron shtetin bullgar, që kishte sunduar pjesën më të madhe të rajonit, dhe rivendos sundimin bizantin përmes Temës së Dyrrahut.';
 
   @override
-  String get timelineEvent500ce =>
-      'Bregdeti shqiptar lulëzon si një korridor kyç bizantin midis Kostandinopojës dhe Mesdheut perëndimor';
+  String get timelineEventAlbanoiNamed =>
+      'Një kronikë bizantine përmend \'albanoi\' mes trupave të gjeneralit rebel Gjergj Maniaku, një nga dëshmitë e para të shkruara për shqiptarët.';
 
   @override
-  String get timelineEvent632ce =>
-      'Vdekja e Muhametit (61) dhe themelimi i Islamit — feja që më vonë do të riformësojë Shqipërinë nën sundimin osman';
+  String get timelineEventGreatSchism =>
+      'Kishat e Romës dhe të Kostandinopojës ndahen. Me kalimin e kohës edhe të krishterët shqiptarë ndahen sipas së njëjtës vijë: katolikë në veri, ortodoksë në jug.';
 
   @override
-  String get timelineEvent1018ce => 'Bazili II ripushton Ilirinë; Tema bizantine e Dyrrahut rivendoset';
+  String get timelineEventNormansAtDyrrachium =>
+      'Normanët e Robert Guiskardit mundin perandorin Aleks I në Dyrrah dhe hapin një luftë të gjatë mes normanëve, venedikasve dhe bizantinëve për bregdetin.';
 
   @override
-  String get timelineEvent1043ce =>
-      'Përmendja e parë e shkruar e emrit Albanoi — shqiptarët marrin pjesë në kryengritjen e Gjergj Maniakut';
+  String get timelineEventArbanon =>
+      'Progoni, zot i Krujës, themelon Arbrin, shtetin e parë shqiptar të Mesjetës. Pas tij sundojnë bijtë e tij, Gjini dhe Dhimitri.';
 
   @override
-  String get timelineEvent1081ce => 'Beteja e Dyrrahut: forcat normane nën Robert Guiscardin mundin bizantinët';
+  String get timelineEventRegnumAlbaniae =>
+      'Karli i Anzhuit, mbret i Sicilisë, shpallet mbret i Arbërisë (Regnum Albaniae), një shtet i kohës së kryqëzatave në bregdetin përreth Durrësit.';
 
   @override
-  String get timelineEvent1190ce => 'Progoni themelon Principatën e Arbanonit — shteti i parë mesjetar shqiptar';
+  String get timelineEventSiegeOfBerat =>
+      'Një ushtri anzhuine rrethon Beratin, por forcat bizantine që vijnë në ndihmë zënë rob komandantin e saj, Hygo de Sylinë, dhe rrethuesit ikin drejt Vlorës.';
 
   @override
-  String get timelineEvent1271ce => 'Karli i Anzhuit shpall Mbretërinë e Arbërisë (Regnum Albaniae)';
+  String get timelineEventVoiceInTheMountains =>
+      'Një dokument gjyqësor në Raguzë (Dubrovnik) shënon: \'Dëgjova një zë që thërriste në mal në gjuhën shqipe.\' Është përmendja më e hershme e njohur e shqipes së folur.';
 
   @override
-  String get timelineEvent1347ce =>
-      'Murtaja e Zezë përhapet në Evropë dhe shkretëron popullsitë ballkanike, përfshirë Shqipërinë';
+  String get timelineEventALanguageOfTheirOwn =>
+      'Një raport i një murgu domenikan për mbretin e Francës shënon se shqiptarët kanë një gjuhë krejt të ndryshme nga latinishtja, por në librat e tyre përdorin shkronja latine.';
 
   @override
-  String get timelineEvent1355ce =>
-      'Pas vdekjes së Stefan Dushanit, ngrihen principatat shqiptare të Balshajve, Topiajve, Muzakajve dhe Kastriotëve';
+  String get timelineEventAlbanianPrincipalities =>
+      'Perandoria Serbe e Stefan Dushanit, që kishte pushtuar shumicën e trojeve shqiptare, shpërbëhet pas vdekjes së tij. Familje si Balshajt, Topiajt, Muzakajt, Dukagjinët dhe Kastriotët sundojnë principatat e tyre.';
 
   @override
-  String get timelineEvent1389ce => 'Fisnikët shqiptarë luftojnë krah forcave serbe në Betejën e Kosovës';
+  String get timelineEventBattleOfSavra =>
+      'Në Betejën e Savrës, një ushtri osmane mund dhe vret Balshën II, zotin e Durrësit. Shumë zotër shqiptarë shpejt bëhen vasalë të osmanëve.';
 
   @override
-  String get timelineEvent1428ce =>
-      'Gjergj Kastrioti, Skënderbeu i ardhshëm, rritet në oborrin osman para se të kthehet për të udhëhequr rezistencën shqiptare';
+  String get timelineEventBattleOfKosovo =>
+      'Zotër shqiptarë luftojnë krah ushtrisë serbe të princit Lazar kundër osmanëve në Fushë-Kosovë. Vriten si Lazari, ashtu edhe sulltan Murati I.';
 
   @override
-  String get timelineEvent1443ce => 'Skënderbeu braktis ushtrinë osmane në Betejën e Nishit dhe merr Krujën';
+  String get timelineEventOttomansTakeTheSouth =>
+      'Forcat osmane pushtojnë Vlorën, Kaninën dhe Beratin. Një vit më vonë bie edhe Gjirokastra.';
 
   @override
-  String get timelineEvent1444ce => 'Besëlidhja e Lezhës bashkon princat shqiptarë nën komandën e Skënderbeut';
+  String get timelineEventRevoltOf1432 =>
+      'Zotër shqiptarë të prirë nga Gjergj Arianiti ngrihen kundër sundimit osman dhe fitojnë disa beteja, para se kryengritja të shtypet më 1436.';
 
   @override
-  String get timelineEvent1450ce => 'Rrethimi i Parë i Krujës: Skënderbeu përballon sulltan Muratin II';
+  String get timelineEventSkanderbegReturns =>
+      'Gjergj Kastrioti, komandant osman i njohur si Skënderbe, braktis ushtrinë në Betejën e Nishit, merr Krujën më 28 nëntor dhe ngre flamurin e tij të kuq me shqiponjën e zezë dykrenare.';
 
   @override
-  String get timelineEvent1466ce => 'Sulltan Mehmeti II nis Rrethimin e Dytë të Krujës dhe ndërton kalanë e Elbasanit';
+  String get timelineEventLeagueOfLezhe =>
+      'Princat shqiptarë bashkohen nën Skënderbeun në Besëlidhjen e Lezhës. Pas disa muajsh ata korrin fitoren e parë të madhe, në Torvioll.';
 
   @override
-  String get timelineEvent1468ce => 'Vdekja e Skënderbeut në Lezhë; rezistenca shqiptare shuhet gradualisht';
+  String get timelineEventFirstSiegeOfKruja =>
+      'Sulltan Murati II e rrethon Krujën për muaj të tërë me një ushtri të madhe, por garnizoni qëndron dhe ai tërhiqet.';
 
   @override
-  String get timelineEvent1479ce => 'Rënia e Shkodrës — pushtimi osman i Shqipërisë përfundon';
+  String get timelineEventBattleOfAlbulena =>
+      'Skënderbeu shpartallon një ushtri të madhe osmane në Albulenë (Ujëbardhë), një nga fitoret e tij më të famshme.';
 
   @override
-  String get timelineEvent1571ce =>
-      'Beteja e Lepantos — marinarë shqiptarë luftojnë në të dy palët e përballjes detare të krishterë–osmane';
+  String get timelineEventBaptismalFormula =>
+      'Kryepeshkopi Pal Engjëlli shkruan në një letër latinisht një formulë pagëzimi në shqip: \'Un\'te paghesont\' pr\'emenit t\'Atit e t\'Birit e t\'Spertit Senit.\' Është fjalia më e vjetër e njohur e shkruar shqip.';
 
   @override
-  String get timelineEvent1788ce => 'Ali Pashë Tepelena themelon Pashallëkun gjysmë të pavarur të Janinës';
+  String get timelineEventMehmedsSieges =>
+      'Sulltan Mehmeti II, pushtuesi i Kostandinopojës, e rrethon Krujën dy herë dhe ndërton kalanë e Elbasanit për t\'i ndarë më dysh trojet e Skënderbeut. Kruja sërish qëndron.';
 
   @override
-  String get timelineEvent1789ce =>
-      'Fillon Revolucioni Francez; idealet e tij më vonë frymëzojnë Rilindjen Kombëtare Shqiptare';
+  String get timelineEventSkanderbegDies =>
+      'Skënderbeu vdes nga ethet në Lezhë më 17 janar. Pa të, qëndresa gradualisht shuhet.';
 
   @override
-  String get timelineEvent1830ce =>
-      'Masakra e Bejlerëve në Manastir i jep fund autonomisë feudale shqiptare nën reformat osmane';
+  String get timelineEventArbereshMigration =>
+      'Ndërsa osmanët përparojnë, mijëra shqiptarë kalojnë në Italinë e Jugut dhe në Sicili. Pasardhësit e tyre, arbëreshët, flasin ende shqip sot në dhjetëra fshatra.';
 
   @override
-  String get timelineEvent1878ce => 'Themelohet Lidhja e Prizrenit — lëvizja e parë e organizuar kombëtare shqiptare';
+  String get timelineEventShkoderFalls =>
+      'Pas një rrethimi të gjatë, Venediku ua dorëzon Shkodrën osmanëve. Pothuajse e gjithë Shqipëria tani është nën sundimin osman; Durrësi bie më 1501.';
 
   @override
-  String get timelineEvent1908ce => 'Kongresi i Manastirit standardizon alfabetin shqip me bazë latine';
+  String get timelineEventMeshari =>
+      'Gjon Buzuku, prift katolik, përfundon \'Mesharin\', librin më të vjetër të ruajtur në gjuhën shqipe. Ruhet vetëm një kopje, në Bibliotekën e Vatikanit.';
 
   @override
-  String get timelineEvent1912ce => 'Ismail Qemali shpall pavarësinë e Shqipërisë në Vlorë më 28 Nëntor';
+  String get timelineEventBardhiDictionary =>
+      'Frang Bardhi boton në Romë një fjalor latinisht–shqip, fjalorin e parë të gjuhës shqipe.';
 
   @override
-  String get timelineEvent1914ce =>
-      'Lufta e Parë Botërore — Shqipëria bëhet fushëbeteje e disputuar mes disa fuqive evropiane';
+  String get timelineEventIslamization =>
+      'Gjatë shekullit XVII shumica e shqiptarëve kalojnë në Islam, shpesh për t\'u shpëtuar taksave të rënda dhe për t\'u ngritur në shërbimin osman. Bashkësitë katolike dhe ortodokse mbijetojnë.';
 
   @override
-  String get timelineEvent1920ce => 'Kongresi i Lushnjës e bën Tiranën kryeqytetin e Shqipërisë';
+  String get timelineEventCuneusProphetarum =>
+      'Kryepeshkopi Pjetër Bogdani boton në Padovë \'Cuneus Prophetarum\' (\'Çeta e profetëve\'), veprën e parë të madhe origjinale të prozës shqipe.';
 
   @override
-  String get timelineEvent1928ce => 'Ahmet Zogu kurorëzohet Mbreti Zog I i Shqiptarëve';
+  String get timelineEventVoskopojePress =>
+      'Voskopoja, një qytet i pasur tregtar pranë Korçës, hap një nga shtypshkronjat e para në Ballkanin osman. Më 1744 ajo themelon Akademinë e Re.';
 
   @override
-  String get timelineEvent1939ce => 'Fillon Lufta e Dytë Botërore';
+  String get timelineEventBushatiPashalik =>
+      'Mehmet Pashë Bushati e bën Shkodrën qendrën e një pashallëku pothuajse të pavarur, të cilin familja e tij e sundon deri më 1831.';
 
   @override
-  String get timelineEvent1939ceAlbania => 'Italia pushton Shqipërinë dhe nis pushtimin e fuqive të Boshtit';
+  String get timelineEventAliPashaRises =>
+      'Ali Pasha bëhet sundimtar i Janinës dhe ngre një shtet pothuajse të pavarur, që shtrihet në Shqipërinë e Jugut dhe në Greqinë kontinentale.';
 
   @override
-  String get timelineEvent1944ce => 'Shqipëria çlirohet nga forcat partizane; nis regjimi komunist i Enver Hoxhës';
+  String get timelineEventAliPashaFalls =>
+      'Pas një rrethimi të gjatë në Janinë, njerëzit e Sulltanit vrasin Ali Pashën e moshuar dhe ia dërgojnë kokën në Stamboll.';
 
   @override
-  String get timelineEvent1967ce => 'Shqipëria shpall veten shtetin e parë zyrtarisht ateist në botë';
+  String get timelineEventMassacreOfTheBeys =>
+      'Veziri i madh osman fton bejlerët shqiptarë në Manastir me premtimin e faljes dhe vret rreth 500 prej tyre, duke thyer pushtetin e zotërve të vjetër.';
 
   @override
-  String get timelineEvent1991ce => 'Zgjedhjet e para shumëpartiake i japin fund 46 viteve të sundimit komunist';
+  String get timelineEventVeqilharxhiPrimer =>
+      'Naum Veqilharxhi boton një abetare shqip me një alfabet të shpikur prej tij, një nga veprat e para të Rilindjes Kombëtare.';
 
   @override
-  String get timelineEvent1997ce => 'Rënia e skemave piramidale në mbarë vendin shkakton trazira civile';
+  String get timelineEventLeagueOfPrizren =>
+      'Ndërsa Fuqitë e Mëdha përgatiten t\'u japin Serbisë dhe Malit të Zi troje të banuara nga shqiptarë, krerët shqiptarë mblidhen në Prizren për t\'i mbrojtur. Është lëvizja e parë kombëtare e organizuar; trupat osmane e shtypin më 1881.';
 
   @override
-  String get timelineEvent2009ce => 'Shqipëria anëtarësohet në NATO';
+  String get timelineEventIstanbulAlphabet =>
+      'Sami Frashëri dhe bashkatdhetarë të tij themelojnë në Stamboll një shoqëri për botimin e librave shqip dhe nxjerrin një alfabet për gjuhën shqipe.';
 
   @override
-  String get timelineEvent2019ce => 'Një tërmet shkatërrues godet rajonin e Durrësit';
+  String get timelineEventHerdsAndFields =>
+      'Naim Frashëri boton \'Bagëti e Bujqësi\', një himn për fshatin shqiptar që bëhet poema më e dashur e Rilindjes.';
 
   @override
-  String get privacyPolicy => 'Politika e Privatësisë';
+  String get timelineEventFirstAlbanianSchool =>
+      'Më 7 mars hapet në Korçë Mësonjëtorja, shkolla e parë që mëson në gjuhën shqipe.';
 
   @override
-  String privacyStatement(Object privacyUrl) {
-    return 'Siç shpjegohet në $privacyUrl tonë, ne nuk mbledhim asnjë informacion personal.';
-  }
+  String get timelineEventSchoolForGirls =>
+      'Sevasti Qiriazi themelon në Korçë shkollën e parë shqipe për vajza, ku vajzat mësojnë të lexojnë e të shkruajnë në gjuhën e tyre.';
+
+  @override
+  String get timelineEventSamiManifesto =>
+      'Sami Frashëri boton \'Shqipëria ç\'ka qenë, ç\'është e ç\'do të bëhet?\', një projekt për një shtet shqiptar të lirë.';
+
+  @override
+  String get timelineEventFirstAlbanianLiturgy =>
+      'Në Boston, Fan Noli kremton liturgjinë e parë ortodokse në gjuhën shqipe, fillimi i një kishe ortodokse shqiptare.';
+
+  @override
+  String get timelineEventCongressOfManastir =>
+      'Kongresi i Manastirit miraton alfabetin e shqipes me bazë latine që përdoret ende sot.';
+
+  @override
+  String get timelineEventFlagAtDeciq =>
+      'Gjatë kryengritjes së malësorëve më 1911, luftëtarët e Ded Gjo Lulit fitojnë në Deçiq dhe ngrenë flamurin shqiptar për herë të parë që nga shekulli XV.';
+
+  @override
+  String get timelineEventIndependence =>
+      'Më 28 nëntor, Ismail Qemali ngre flamurin në Vlorë dhe shpall Shqipërinë të pavarur nga Perandoria Osmane.';
+
+  @override
+  String get timelineEventLondonBorders =>
+      'Fuqitë e Mëdha e njohin Shqipërinë të pavarur, por e lënë Kosovën dhe troje të tjera me shqiptarë jashtë kufijve të saj.';
+
+  @override
+  String get timelineEventPrinceWied =>
+      'Princ Vilhelm Vidi mbërrin për të sunduar Principatën e re të Shqipërisë. Brenda gjashtë muajve, kryengritjet dhe Lufta e Parë Botërore e detyrojnë të largohet.';
+
+  @override
+  String get timelineEventRepublicOfKorca =>
+      'Nën mbrojtjen ushtarake franceze, Korça bëhet republikë autonome shqiptare, me shkollat, pullat dhe flamurin e saj.';
+
+  @override
+  String get timelineEventCongressOfLushnje =>
+      'Kongresi i Lushnjës hedh poshtë planet për ndarjen e Shqipërisë mes fqinjëve dhe e bën Tiranën kryeqytet.';
+
+  @override
+  String get timelineEventVloraWar =>
+      'Vullnetarë shqiptarë rrethojnë ushtrinë italiane në Vlorë dhe në shtator Italia tërhiqet nga Shqipëria kontinentale. Në dhjetor Shqipëria pranohet në Lidhjen e Kombeve.';
+
+  @override
+  String get timelineEventOrthodoxAutocephaly =>
+      'Kongresi i Beratit shpall autoqefalinë e Kishës Ortodokse Shqiptare, të pavarur nga Patriarkana e Kostandinopojës.';
+
+  @override
+  String get timelineEventJuneRevolution =>
+      'Një kryengritje e sjell në pushtet peshkopin Fan Noli me një program reformash. Gjashtë muaj më vonë Ahmet Zogu rikthehet me mbështetje të huaj dhe Noli largohet.';
+
+  @override
+  String get timelineEventKingZog => 'Presidenti Ahmet Zogu shpallet Zogu I, Mbret i Shqiptarëve.';
+
+  @override
+  String get timelineEventBektashiCentre =>
+      'I ndaluar në Turqi, urdhri sufi bektashi vendos në një kongres në Korçë të zhvendosë qendrën e tij botërore në Tiranë, ku ndodhet edhe sot.';
+
+  @override
+  String get timelineEventKanunPublished =>
+      'Botohet e plotë përmbledhja e Shtjefën Gjeçovit e \'Kanunit të Lekë Dukagjinit\', e drejta zakonore e malësive të veriut.';
+
+  @override
+  String get timelineEventItalianInvasion =>
+      'Më 7 prill, trupat e Musolinit zbarkojnë në Durrës dhe në porte të tjera. Mbreti Zog largohet dhe Shqipëria i bashkohet kurorës italiane.';
+
+  @override
+  String get timelineEventKokalariBook =>
+      'Musine Kokalari boton \'Siç më thotë nënua plakë\', tregime në të folmen e Gjirokastrës. Ajo është gruaja e parë shqiptare që boton prozë.';
+
+  @override
+  String get timelineEventWarWithGreece =>
+      'Italia sulmon Greqinë nga toka shqiptare. Kundërsulmi grek depërton thellë në jug dhe merr Korçën në nëntor dhe Gjirokastrën në dhjetor.';
+
+  @override
+  String get timelineEventResistanceOrganises =>
+      'Në Konferencën e Pezës, komunistë dhe nacionalistë formojnë Lëvizjen Nacionalçlirimtare. Më vonë po atë vit themelohet Balli Kombëtar, një organizatë nacionaliste rivale.';
+
+  @override
+  String get timelineEventGermanOccupation =>
+      'Italia kapitullon në shtator dhe trupat gjermane pushtojnë Shqipërinë. Grupet rivale të rezistencës tani luftojnë edhe njëra-tjetrën, krahas pushtuesve.';
+
+  @override
+  String get timelineEventBesaJews =>
+      'Familje shqiptare, myslimane e të krishtera, fshehin refugjatë hebrenj nga pushtuesit, duke mbajtur besën, një premtim të shenjtë. Shqipëria e mbyll luftën me më shumë hebrenj se sa kishte para saj.';
+
+  @override
+  String get timelineEventGovernmentAtBerat =>
+      'I mbledhur në Berat në tetor, këshilli i rezistencës i udhëhequr nga komunistët formon një qeveri të përkohshme me Enver Hoxhën kryeministër.';
+
+  @override
+  String get timelineEventLiberation =>
+      'Më 29 nëntor largohen trupat e fundit gjermane. Partizanët e udhëhequr nga komunistët marrin pushtetin dhe Enver Hoxha nis katër dekada sundimi njëpartiak.';
+
+  @override
+  String get timelineEventPeoplesRepublic =>
+      'Shqipëria shpallet Republikë Popullore. Kundërshtarët gjykohen dhe burgosen, ndër ta shkrimtarja Musine Kokalari.';
+
+  @override
+  String get timelineEventCorfuChannel =>
+      'Minat në Kanalin e Korfuzit dëmtojnë rëndë dy luftanije britanike dhe vrasin 44 marinarë. Mosmarrëveshja bëhet çështja e parë e gjykuar nga Gjykata Ndërkombëtare e Drejtësisë.';
+
+  @override
+  String get timelineEventBreakWithYugoslavia =>
+      'Kur Titoja prishet me Stalinin, Hoxha i ndërpret lidhjet me Jugosllavinë dhe kthehet nga Bashkimi Sovjetik.';
+
+  @override
+  String get timelineEventBreakWithMoscow =>
+      'Shqipëria mban anën e Kinës kundër Hrushovit. Bashkimi Sovjetik ndërpret marrëdhëniet dhe tërheq forcat e veta nga baza detare e Vlorës.';
+
+  @override
+  String get timelineEventAtheistState =>
+      'Regjimi mbyll ose shkatërron xhamitë dhe kishat dhe e shpall Shqipërinë shtetin e parë ateist në botë.';
+
+  @override
+  String get timelineEventBunkers =>
+      'Nga frika e një pushtimi, regjimi e mbush vendin me bunkerë betoni, rreth 170 000 të tillë, të ndërtuar nga fundi i viteve 1960 deri në mesin e viteve 1980.';
+
+  @override
+  String get timelineEventChronicleInStone =>
+      'Ismail Kadare boton \'Kronikë në gur\', ku Gjirokastra e tij e lindjes gjatë Luftës së Dytë Botërore shihet me sytë e një fëmije.';
+
+  @override
+  String get timelineEventOrthographicCongress =>
+      'Kongresi i Drejtshkrimit përcakton një normë të vetme për shqipen e shkruar, të mbështetur kryesisht në dialektin toskë të jugut.';
+
+  @override
+  String get timelineEventBreakWithChina =>
+      'Kina ndërpret ndihmat dhe Shqipëria prishet me aleatin e saj të fundit, duke u mbështetur vetëm te forcat e veta.';
+
+  @override
+  String get timelineEventMotherTeresaNobel =>
+      'Nënë Tereza, e lindur si Anjezë Gonxhe Bojaxhiu në një familje shqiptare në Shkup, merr Çmimin Nobel për Paqe për punën e saj mes të varfërve të Kalkutës.';
+
+  @override
+  String get timelineEventHoxhaDies =>
+      'Enver Hoxha vdes më 11 prill. Pasardhësi i tij, Ramiz Alia, i lehtëson kontrollet vetëm ngadalë.';
+
+  @override
+  String get timelineEventRegimeCracks =>
+      'Në korrik, mijëra shqiptarë futen në ambasadat e huaja për t\'u larguar nga vendi. Në dhjetor, protestat e studentëve në Tiranë e detyrojnë regjimin të lejojë partitë opozitare.';
+
+  @override
+  String get timelineEventFaithReturns =>
+      'Më 4 nëntor, dom Simon Jubani thotë meshën e parë publike pas dekadash, në një varrezë në Shkodër. Brenda pak muajsh, xhamitë dhe kishat rihapen në të gjithë vendin.';
+
+  @override
+  String get timelineEventFirstFreeElections =>
+      'Në mars, Shqipëria mban zgjedhjet e para shumëpartiake pas dekadash. Fitojnë ish-komunistët, por një vit më vonë pushtetin e merr Partia Demokratike.';
+
+  @override
+  String get timelineEventVloraShip =>
+      'Më 8 gusht anija e mallrave \'Vlora\' mbërrin në Bari me rreth 20 000 shqiptarë në bord, pamja që shënjoi një eksod masiv.';
+
+  @override
+  String get timelineEventPyramidCrisis =>
+      'Rënia e skemave piramidale fshin kursimet e një pjese të madhe të vendit dhe shkakton trazira të armatosura, ku humbin jetën më shumë se 2 000 njerëz.';
+
+  @override
+  String get timelineEventKosovoRefugees =>
+      'Gjatë luftës në Kosovë, Shqipëria pret rreth 450 000 refugjatë, shumicën prej tyre në shtëpi private.';
+
+  @override
+  String get timelineEventIsoPolyphony =>
+      'UNESCO e shpall isopolifoninë popullore shqiptare, këngën me shumë zëra të jugut, kryevepër të trashëgimisë gojore dhe shpirtërore të njerëzimit.';
+
+  @override
+  String get timelineEventKadareBooker =>
+      'Ismail Kadare fiton çmimin e parë \'Man Booker International\' për krijimtarinë e tij.';
+
+  @override
+  String get timelineEventNatoMembership =>
+      'Shqipëria anëtarësohet në NATO më 1 prill dhe pak javë më vonë aplikon për t\'u bërë pjesë e Bashkimit Evropian.';
+
+  @override
+  String get timelineEventEuCandidate =>
+      'Shqipëria merr statusin zyrtar të vendit kandidat për anëtarësim në Bashkimin Evropian.';
+
+  @override
+  String get timelineEventDurresEarthquake =>
+      'Një tërmet me magnitudë 6,4 godet pranë Durrësit më 26 nëntor, duke vrarë 51 njerëz dhe duke lënë mijëra të pastrehë.';
+
+  @override
+  String get timelineEventEuTalks =>
+      'Shqipëria hap zyrtarisht negociatat e anëtarësimit me Bashkimin Evropian më 19 korrik.';
 
   @override
   String get pageNotFoundBackButton => 'Kthehu në qytetërim';

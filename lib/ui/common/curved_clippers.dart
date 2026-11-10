@@ -29,13 +29,6 @@ class ArchPoint {
   }
   final Offset pos;
   late final Offset control;
-
-  static ArchPoint lerp(ArchPoint ptA, ArchPoint ptB, double t) {
-    return ArchPoint(
-      Offset.lerp(ptA.pos, ptB.pos, t) ?? Offset.zero,
-      Offset.lerp(ptA.control, ptB.control, t) ?? Offset.zero,
-    );
-  }
 }
 
 List<ArchPoint> _getArchPts(Size size, ArchType type) {
@@ -83,36 +76,20 @@ List<ArchPoint> _getArchPts(Size size, ArchType type) {
 }
 
 class CurvedTopClipper extends CustomClipper<Path> {
-  CurvedTopClipper({this.flip = false});
-  final bool flip;
-
   @override
   Path getClip(Size size) {
     double radius = size.width / 2;
-    var path = Path();
-    if (flip) {
-      // path.addOval(Rect.fromCircle(center: Offset.zero, radius: 40));
-      path.lineTo(0, size.height - radius);
-      path.arcToPoint(
-        Offset(size.width, size.height - radius),
-        radius: Radius.circular(size.width / 2),
-        clockwise: false,
-      );
-      path.lineTo(size.width, 0);
-      path.lineTo(0, 0);
-    } else {
-      path.lineTo(0, 0);
-      path.lineTo(0, radius);
-      path.arcToPoint(
+    return Path()
+      ..lineTo(0, 0)
+      ..lineTo(0, radius)
+      ..arcToPoint(
         Offset(size.width, radius),
         radius: Radius.circular(radius / 2),
-      );
-      path.lineTo(size.width, size.height);
-      path.lineTo(0, size.height);
-    }
-    return path;
+      )
+      ..lineTo(size.width, size.height)
+      ..lineTo(0, size.height);
   }
 
   @override
-  bool shouldReclip(CurvedTopClipper oldClipper) => oldClipper.flip != flip;
+  bool shouldReclip(CurvedTopClipper oldClipper) => false;
 }
