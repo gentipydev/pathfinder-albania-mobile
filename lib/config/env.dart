@@ -9,8 +9,9 @@ class Env {
   Env._();
 
   /// Mapbox public access token (`pk.…`) used by the destination maps.
-  /// Optional on purpose: a missing token leaves the map blank rather than
-  /// crashing the app, matching how the rest of the app degrades when a
-  /// service is absent.
-  static String get mapboxAccessToken => dotenv.env['MAPBOX_ACCESS_TOKEN'] ?? '';
+  /// Optional on purpose: a missing token (or a missing / empty `.env`)
+  /// leaves the map blank rather than crashing the app, matching how the
+  /// rest of the app degrades when a service is absent.
+  static String get mapboxAccessToken =>
+      dotenv.isInitialized ? dotenv.env['MAPBOX_ACCESS_TOKEN'] ?? '' : '';
 }

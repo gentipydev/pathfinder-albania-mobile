@@ -57,7 +57,9 @@ void main() async {
     },
     appRunner: () async {
       try {
-        await dotenv.load(fileName: '.env');
+        // `.env` only carries the optional Mapbox token, so a missing or
+        // empty file must not stop the app: isOptional swallows both.
+        await dotenv.load(fileName: '.env', isOptional: true);
 
         // Start app
         registerSingletons();

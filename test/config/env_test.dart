@@ -12,4 +12,14 @@ void main() {
     dotenv.loadFromString(envString: 'OTHER=1');
     expect(Env.mapboxAccessToken, '');
   });
+
+  test('an empty .env (loaded as optional, like main.dart does) gives an empty token', () {
+    dotenv.loadFromString(envString: '', isOptional: true);
+    expect(Env.mapboxAccessToken, '');
+  });
+
+  test('reading before any .env was loaded gives an empty token instead of throwing', () {
+    dotenv.clean();
+    expect(Env.mapboxAccessToken, '');
+  });
 }
