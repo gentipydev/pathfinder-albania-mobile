@@ -52,8 +52,19 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   /// Shared by the finish button on the last page and Skip on the others.
-  void _completeIntro() {
-    context.read<SettingsBloc>().add(const SettingsOnboardingCompletedToggled(true));
+  ///
+  /// The router's onboarding gate reads `SettingsBloc.state`, and a Bloc
+  /// handles `add` asynchronously, so navigating right after dispatching
+  /// would still hit the gate and bounce back here (it used to take two
+  /// taps). Wait for the state to flip before leaving.
+  Future<void> _completeIntro() async {
+    final bloc = context.read<SettingsBloc>();
+    final completed = bloc.state.hasCompletedOnboarding
+        ? null
+        : bloc.stream.firstWhere((s) => s.hasCompletedOnboarding);
+    bloc.add(const SettingsOnboardingCompletedToggled(true));
+    if (completed != null) await completed;
+    if (!mounted) return;
     context.go(ScreenPaths.home);
   }
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +12,9 @@ import 'package:pathfinder_albania/features/settings/bloc/settings_event.dart';
 import 'package:pathfinder_albania/features/settings/bloc/settings_state.dart';
 import 'package:pathfinder_albania/l10n/app_localizations.dart';
 import 'package:pathfinder_albania/logic/locale_logic.dart';
+import 'package:pathfinder_albania/ui/common/app_icons.dart';
 import 'package:pathfinder_albania/ui/common/controls/app_page_indicator.dart';
+import 'package:pathfinder_albania/ui/common/controls/circle_buttons.dart';
 import 'package:pathfinder_albania/ui/screens/intro/intro_screen.dart';
 
 class _MockSettingsBloc extends MockBloc<SettingsEvent, SettingsState> implements SettingsBloc {}
@@ -27,12 +31,22 @@ const _phoneLarge = Size(430, 880);
 
 void main() {
   late _MockSettingsBloc bloc;
+  late StreamController<SettingsState> states;
 
   setUpAll(() => registerFallbackValue(_FakeSettingsEvent()));
 
   setUp(() async {
     bloc = _MockSettingsBloc();
-    whenListen(bloc, const Stream<SettingsState>.empty(), initialState: const SettingsState(currentLocale: 'en'));
+    states = StreamController<SettingsState>.broadcast();
+    whenListen(bloc, states.stream, initialState: const SettingsState(currentLocale: 'en'));
+    // Like the real bloc, completing onboarding emits a new state a moment
+    // after `add`, never synchronously.
+    when(() => bloc.add(any())).thenAnswer((invocation) {
+      final event = invocation.positionalArguments.single;
+      if (event is SettingsOnboardingCompletedToggled && event.value) {
+        states.add(SettingsState(currentLocale: bloc.state.currentLocale, hasCompletedOnboarding: true));
+      }
+    });
     if (!GetIt.I.isRegistered<LocaleLogic>()) {
       final logic = LocaleLogic();
       await logic.loadIfChanged(const Locale('en'));
@@ -41,6 +55,7 @@ void main() {
   });
 
   tearDown(() async {
+    await states.close();
     await GetIt.I<LocaleLogic>().loadIfChanged(const Locale('en'));
   });
 
@@ -51,6 +66,9 @@ void main() {
     addTearDown(tester.view.resetDevicePixelRatio);
     final router = GoRouter(
       initialLocation: '/welcome',
+      // The app's onboarding gate: nothing but the intro until it is completed.
+      redirect: (_, state) =>
+          !bloc.state.hasCompletedOnboarding && state.uri.path != '/welcome' ? '/welcome' : null,
       routes: [
         GoRoute(
           path: '/welcome',
@@ -86,9 +104,22 @@ void main() {
     expect(find.text('Shqip'), findsNothing);
   });
 
-  testWidgets('Skip completes onboarding and goes home', (tester) async {
+  testWidgets('one tap on Skip completes onboarding and lands on home', (tester) async {
     await pumpIntro(tester);
     await tester.tap(find.text('Skip'));
+    await tester.pumpAndSettle();
+    verify(() => bloc.add(const SettingsOnboardingCompletedToggled(true))).called(1);
+    expect(find.text('HOME'), findsOneWidget, reason: 'must pass the onboarding gate on the first tap');
+  });
+
+  testWidgets('the arrow on the last page completes onboarding with one tap', (tester) async {
+    await pumpIntro(tester);
+    for (var page = 0; page < 2; page++) {
+      await tester.drag(find.byType(PageView), Offset(-_phoneLarge.width, 0));
+      await tester.pumpAndSettle();
+    }
+    // The intro's own finish arrow (PreviousNextNavigation's arrows are desktop-only).
+    await tester.tap(find.byWidgetPredicate((w) => w is CircleIconBtn && w.icon == AppIcons.next_large));
     await tester.pumpAndSettle();
     verify(() => bloc.add(const SettingsOnboardingCompletedToggled(true))).called(1);
     expect(find.text('HOME'), findsOneWidget);
