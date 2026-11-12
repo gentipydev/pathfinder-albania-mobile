@@ -1,26 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_bloc.dart';
 import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_state.dart';
-import 'package:pathfinder_albania/logic/common/http_client.dart';
+import 'package:pathfinder_albania/logic/common/bundled_content.dart';
 import 'package:pathfinder_albania/logic/data/collectible_data.dart';
 import 'package:pathfinder_albania/logic/data/destination_type.dart';
 import 'package:pathfinder_albania/logic/data/highlight_data.dart';
 
-HttpResponse _ok(Map<String, dynamic> body) =>
-    HttpResponse(statusCode: 200, body: jsonEncode(body));
-
-HttpResponse _serverError() =>
-    HttpResponse(statusCode: 503, body: '{}');
-
-HttpResponse _notFound() =>
-    HttpResponse(statusCode: 404, body: '{}');
-
-Map<String, dynamic> _bodyForButrint() => {
+Map<String, dynamic> _butrint() => {
       'highlights': [
         {'id': 'h-1', 'title': 'Highlight 1'},
         {'id': 'h-2', 'title': 'Highlight 2'},
@@ -30,52 +21,36 @@ Map<String, dynamic> _bodyForButrint() => {
       ],
     };
 
-Map<String, dynamic> _bodyForBerat() => {
+Map<String, dynamic> _berat() => {
       'highlights': [
         {'id': 'h-3', 'title': 'Highlight 3'},
       ],
       'collectibles': [],
     };
 
-class _FakeHttp {
-  int totalCallCount = 0;
-  final Map<String, HttpResponse> _responses = {};
-  final Map<String, int> _callsPerUrl = {};
+/// Stands in for the asset bundle: one text per asset key, counting reads.
+class _FakeAssets {
+  final Map<String, String> _texts = {};
+  int reads = 0;
 
-  void respond(String urlSubstr, HttpResponse response) {
-    _responses[urlSubstr] = response;
-  }
+  void manifest(Map<String, dynamic> json) =>
+      _texts[BundledContent.artifactsManifest] = jsonEncode(json);
 
-  int callsForUrl(String urlSubstr) => _callsPerUrl[urlSubstr] ?? 0;
+  void manifestText(String text) => _texts[BundledContent.artifactsManifest] = text;
 
-  Future<HttpResponse> get(String url, {Map<String, String>? headers}) async {
-    totalCallCount++;
-    for (final entry in _responses.entries) {
-      if (url.contains(entry.key)) {
-        _callsPerUrl[entry.key] = (_callsPerUrl[entry.key] ?? 0) + 1;
-        return entry.value;
-      }
-    }
-    return HttpResponse.error(NetErrorType.disconnected);
+  Future<String> load(String key) async {
+    reads++;
+    final text = _texts[key];
+    if (text == null) throw StateError('Unable to load asset: $key');
+    return text;
   }
 }
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-
-  // `Env.apiBaseUrl` reads from dotenv; seed test values so the URL builder
-  // doesn't throw on `dotenv.env['API_BASE_URL']` access during fetch.
-  setUpAll(() {
-    dotenv.loadFromString(
-      envString: 'API_BASE_URL=https://test.example.com',
-      isOptional: true,
-    );
-  });
-
-  late _FakeHttp http_;
+  late _FakeAssets assets;
 
   setUp(() {
-    http_ = _FakeHttp();
+    assets = _FakeAssets();
     // Reset legacy global lists between tests so the side-effect assertions
     // don't see leftovers from a prior test.
     for (final t in DestinationType.values) {
@@ -84,7 +59,7 @@ void main() {
     }
   });
 
-  ArtifactsBloc build() => ArtifactsBloc(httpGet: http_.get);
+  ArtifactsBloc build() => ArtifactsBloc(loadAsset: assets.load);
 
   test('initial state has empty maps and dataVersion=0', () async {
     final bloc = build();
@@ -96,10 +71,8 @@ void main() {
   });
 
   blocTest<ArtifactsBloc, ArtifactsState>(
-    'getForDestination cache miss fetches, emits, populates state',
-    setUp: () {
-      http_.respond('/destinations/butrint/artifacts', _ok(_bodyForButrint()));
-    },
+    'getForDestination cache miss reads the manifest, emits, populates state',
+    setUp: () => assets.manifest({'butrint': _butrint()}),
     build: build,
     act: (b) async {
       final result = await b.getForDestination(DestinationType.butrint);
@@ -111,61 +84,48 @@ void main() {
       expect(b.state.byDestination[DestinationType.butrint], isNotNull);
       expect(b.state.byId.containsKey('h-1'), isTrue);
       expect(b.state.byId.containsKey('c-1'), isTrue);
-      expect(http_.callsForUrl('/destinations/butrint/artifacts'), 1);
+      expect(assets.reads, 1);
     },
   );
 
-  test('getForDestination cache hit returns cached without fetching', () async {
-    http_.respond('/destinations/butrint/artifacts', _ok(_bodyForButrint()));
+  test('the manifest is read once for every destination and cache hit', () async {
+    assets.manifest({'butrint': _butrint(), 'berat': _berat()});
     final bloc = build();
     final r1 = await bloc.getForDestination(DestinationType.butrint);
     expect(r1.highlights.length, 2);
-    // Wait for the internal emit so cache is populated on state.
+    // Wait for the internal emit so the cache is populated on state.
     await bloc.stream.firstWhere((s) => s.dataVersion > 0);
-    expect(http_.callsForUrl('/destinations/butrint/artifacts'), 1);
+    expect(assets.reads, 1);
 
-    // Second call should hit the cache, not the network.
+    // Second call hits the cache; a different destination reuses the manifest.
     final r2 = await bloc.getForDestination(DestinationType.butrint);
     expect(r2.highlights.length, 2);
-    expect(http_.callsForUrl('/destinations/butrint/artifacts'), 1);
+    final r3 = await bloc.getForDestination(DestinationType.berat);
+    expect(r3.highlights.map((h) => h.objectId), ['h-3']);
+    expect(assets.reads, 1);
     await bloc.close();
   });
 
-  test('no backend configured returns empty results without requesting', () async {
-    final bloc = ArtifactsBloc(httpGet: http_.get, baseUrl: () => '');
-    final result = await bloc.getForDestination(DestinationType.butrint);
-    expect(result.highlights, isEmpty);
-    expect(result.collectibles, isEmpty);
-    expect(await bloc.getById('h-1'), isNull);
-    expect(http_.totalCallCount, 0);
-    expect(bloc.state.dataVersion, 0);
-    await bloc.close();
-  });
-
-  test('parallel getForDestination calls dedupe to one fetch', () async {
-    final completer = Completer<HttpResponse>();
-    http_.respond('/destinations/butrint/artifacts', _ok(_bodyForButrint()));
-    // Replace the fake http with one that holds the response until release.
-    final bloc = ArtifactsBloc(httpGet: (url, {headers}) async {
-      http_.totalCallCount++;
+  test('parallel getForDestination calls dedupe to one read', () async {
+    final completer = Completer<String>();
+    var loads = 0;
+    final bloc = ArtifactsBloc(loadAsset: (_) {
+      loads++;
       return completer.future;
     });
 
     final f1 = bloc.getForDestination(DestinationType.butrint);
     final f2 = bloc.getForDestination(DestinationType.butrint);
-    // Release the in-flight fetch.
-    completer.complete(_ok(_bodyForButrint()));
+    completer.complete(jsonEncode({'butrint': _butrint()}));
     final r1 = await f1;
     final r2 = await f2;
     expect(r1.highlights.length, 2);
     expect(r2.highlights.length, 2);
-    // Only one underlying fetch fired.
-    expect(http_.totalCallCount, 1);
+    expect(loads, 1);
     await bloc.close();
   });
 
-  test('getForDestination on transient 5xx returns empty without poisoning cache', () async {
-    http_.respond('/destinations/butrint/artifacts', _serverError());
+  test('a missing manifest returns empty without poisoning the cache, and the next call retries', () async {
     final bloc = build();
     final result = await bloc.getForDestination(DestinationType.butrint);
     expect(result.highlights, isEmpty);
@@ -173,14 +133,37 @@ void main() {
     // No state emit (no internal event fires for !ok).
     expect(bloc.state.byDestination[DestinationType.butrint], isNull);
     expect(bloc.state.dataVersion, 0);
+    expect(await bloc.getById('h-1'), isNull);
+
+    assets.manifest({'butrint': _butrint()});
+    final retried = await bloc.getForDestination(DestinationType.butrint);
+    expect(retried.highlights.length, 2);
+    expect(assets.reads, 3);
+    await bloc.close();
+  });
+
+  test('a malformed manifest returns empty and leaves the legacy lists alone', () async {
+    assets.manifestText('not json');
+    final bloc = build();
+    final result = await bloc.getForDestination(DestinationType.butrint);
+    expect(result.highlights, isEmpty);
+    expect(bloc.state.dataVersion, 0);
+    expect(HighlightData.forDestination(DestinationType.butrint), isEmpty);
+    await bloc.close();
+  });
+
+  test('a destination absent from the manifest returns empty', () async {
+    assets.manifest({'butrint': _butrint()});
+    final bloc = build();
+    final berat = await bloc.getForDestination(DestinationType.berat);
+    expect(berat.highlights, isEmpty);
+    expect(bloc.state.byDestination.containsKey(DestinationType.berat), isFalse);
     await bloc.close();
   });
 
   blocTest<ArtifactsBloc, ArtifactsState>(
-    'successful fetch invokes the legacy global replaceForDestination',
-    setUp: () {
-      http_.respond('/destinations/butrint/artifacts', _ok(_bodyForButrint()));
-    },
+    'a successful read invokes the legacy global replaceForDestination',
+    setUp: () => assets.manifest({'butrint': _butrint()}),
     build: build,
     act: (b) async {
       await b.getForDestination(DestinationType.butrint);
@@ -195,7 +178,7 @@ void main() {
   // getForDestination, so the lists must already be filled when the await
   // returns, not later when the bloc handles its internal event.
   test('legacy lists are filled as soon as getForDestination returns', () async {
-    http_.respond('/destinations/berat/artifacts', _ok(_bodyForBerat()));
+    assets.manifest({'berat': _berat()});
     final bloc = build();
     await bloc.getForDestination(DestinationType.berat);
     expect(
@@ -205,12 +188,12 @@ void main() {
     await bloc.close();
   });
 
-  test('a caller sharing an in-flight fetch also sees the filled lists', () async {
-    final completer = Completer<HttpResponse>();
-    final bloc = ArtifactsBloc(httpGet: (url, {headers}) => completer.future);
+  test('a caller sharing an in-flight read also sees the filled lists', () async {
+    final completer = Completer<String>();
+    final bloc = ArtifactsBloc(loadAsset: (_) => completer.future);
     final first = bloc.getForDestination(DestinationType.butrint);
     final second = bloc.getForDestination(DestinationType.butrint);
-    completer.complete(_ok(_bodyForButrint()));
+    completer.complete(jsonEncode({'butrint': _butrint()}));
     await second;
     expect(HighlightData.forDestination(DestinationType.butrint).length, 2);
     expect(CollectibleData.forDestination(DestinationType.butrint).length, 1);
@@ -219,26 +202,22 @@ void main() {
   });
 
   blocTest<ArtifactsBloc, ArtifactsState>(
-    'getById cache miss fetches and emits new state',
-    setUp: () {
-      http_.respond(
-        '/artifacts/x-1',
-        _ok({'id': 'x-1', 'title': 'X-One'}),
-      );
-    },
+    'getById finds an artifact in any destination and emits new state',
+    setUp: () => assets.manifest({'butrint': _butrint(), 'berat': _berat()}),
     build: build,
     act: (b) async {
-      final result = await b.getById('x-1');
-      expect(result?.objectId, 'x-1');
-      expect(result?.title, 'X-One');
+      final result = await b.getById('h-3');
+      expect(result?.objectId, 'h-3');
+      expect(result?.title, 'Highlight 3');
     },
     verify: (b) {
-      expect(b.state.byId['x-1']?.title, 'X-One');
+      expect(b.state.byId['h-3']?.title, 'Highlight 3');
+      expect(b.state.byDestination, isEmpty);
     },
   );
 
-  test('getById on 404 returns null without emitting', () async {
-    http_.respond('/artifacts/missing', _notFound());
+  test('getById for an unknown id returns null without emitting', () async {
+    assets.manifest({'butrint': _butrint()});
     final bloc = build();
     final result = await bloc.getById('missing');
     expect(result, isNull);
@@ -247,22 +226,50 @@ void main() {
   });
 
   blocTest<ArtifactsBloc, ArtifactsState>(
-    'preloadAll fetches every destination and bumps dataVersion per success',
-    setUp: () {
-      // Stub two destinations to succeed; remaining default to disconnected.
-      http_.respond('/destinations/butrint/artifacts', _ok(_bodyForButrint()));
-      http_.respond('/destinations/berat/artifacts', _ok(_bodyForBerat()));
-    },
+    'preloadAll reads every listed destination and bumps dataVersion per success',
+    setUp: () => assets.manifest({'butrint': _butrint(), 'berat': _berat()}),
     build: build,
     act: (b) async {
       await b.preloadAll();
     },
     verify: (b) {
-      // Two successes => dataVersion bumped twice.
+      // Two destinations in the manifest => dataVersion bumped twice.
       expect(b.state.dataVersion, 2);
       expect(b.state.byDestination.length, 2);
       expect(b.state.byDestination.containsKey(DestinationType.butrint), isTrue);
       expect(b.state.byDestination.containsKey(DestinationType.berat), isTrue);
+      expect(assets.reads, 1);
     },
   );
+
+  group('the shipped snapshot manifest', () {
+    // Reads the real asset from disk (tests run from the package root), so a
+    // broken or incomplete snapshot fails here instead of on a device.
+    Future<String> fromDisk(String key) => File(key).readAsString();
+
+    test('has every destination, 37 artifacts, 8 collectibles, and every image file', () async {
+      final bloc = ArtifactsBloc(loadAsset: fromDisk);
+      await bloc.preloadAll();
+      // The bloc records each destination through an internal event; let it run.
+      await pumpEventQueue();
+      expect(bloc.state.byDestination.length, DestinationType.values.length);
+      final all = bloc.state.byDestination.values.expand((d) => d.all).toList();
+      expect(all.length, 37);
+      final collectibles = bloc.state.byDestination.values.expand((d) => d.collectibles).toList();
+      expect(collectibles.length, 8);
+      for (final a in all) {
+        expect(a.objectId, isNotEmpty);
+        expect(a.title, isNotEmpty);
+        expect(a.image, startsWith('${BundledContent.root}/artifact-photos/'));
+        expect(File(a.image).existsSync(), isTrue, reason: '${a.image} missing');
+        expect(File(a.imageSmall).existsSync(), isTrue, reason: '${a.imageSmall} missing');
+      }
+      for (final c in collectibles) {
+        expect(c.iconName, isNotEmpty, reason: '${c.objectId} has no icon');
+        expect(File('assets/images/collectibles/${c.iconName}.png').existsSync(), isTrue,
+            reason: 'no icon asset for ${c.iconName}');
+      }
+      await bloc.close();
+    });
+  });
 }

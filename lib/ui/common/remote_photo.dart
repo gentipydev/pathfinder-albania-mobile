@@ -4,9 +4,9 @@ import 'package:pathfinder_albania/ui/common/image_skeleton.dart';
 
 export 'package:pathfinder_albania/logic/common/photo_cache.dart' show photoImageProvider, prefetchPhotoUrls;
 
-/// Renders a backend photo (public Supabase Storage URL) or a bundled asset
-/// path, with a shimmering skeleton until it arrives. `AppImage` retries
-/// failed loads, so network blips don't leave a blank frame.
+/// Renders a photo from the bundled content snapshot (an asset path) or an
+/// http(s) URL, with a shimmering skeleton until it arrives. `AppImage`
+/// retries failed loads, so network blips don't leave a blank frame.
 ///
 /// With [placeholderUrl] (a small copy of the same photo, usually already
 /// cached from a grid or carousel), that copy shows at once and the full

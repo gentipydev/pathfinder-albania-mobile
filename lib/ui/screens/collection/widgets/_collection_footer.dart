@@ -34,7 +34,7 @@ class _CollectionFooter extends StatelessWidget {
     );
   }
 
-  /// 0..1; the catalog comes from the backend, so it can be empty (offline) and must not divide by zero.
+  /// 0..1; the catalog is read asynchronously, so it can still be empty and must not divide by zero.
   double get _progress => total == 0 ? 0 : count / total;
 
   Widget _buildProgressRow(BuildContext context) {

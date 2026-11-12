@@ -3,6 +3,7 @@ import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_bloc.
 import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_event.dart';
 import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_helpers.dart';
 import 'package:pathfinder_albania/logic/common/animate_utils.dart';
+import 'package:pathfinder_albania/logic/common/photo_cache.dart';
 import 'package:pathfinder_albania/logic/data/collectible_data.dart';
 import 'package:pathfinder_albania/ui/common/opening_card.dart';
 import 'package:pathfinder_albania/ui/common/utils/app_haptics.dart';
@@ -12,11 +13,11 @@ import 'package:pathfinder_albania/ui/screens/collectible_found/collectible_foun
 class CollectibleItem extends StatelessWidget {
   CollectibleItem(this.collectible, {this.size = 64.0, super.key, this.focus}) {
     // Hero into the collectible-found screen uses the artifact image when
-    // available; falls back to the bundled icon if the catalog or network
-    // hasn't surfaced the URL yet.
+    // the catalog has one (a bundled snapshot asset today); falls back to
+    // the bundled icon otherwise.
     _imageProvider = collectible.imageUrl.isEmpty
         ? collectible.icon
-        : NetworkImage(collectible.imageUrl);
+        : photoImageProvider(collectible.imageUrl);
   }
 
   final CollectibleData collectible;

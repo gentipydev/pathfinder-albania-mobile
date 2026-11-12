@@ -29,7 +29,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   bloc_concurrency: ^0.3.0
   cached_network_image: ^3.4.1
-  # Direct import only for disk prefetch (lib/ui/common/remote_photo.dart);
+  # Direct import only for disk prefetch (lib/logic/common/photo_cache.dart);
   # same cache that cached_network_image uses.
   flutter_cache_manager: ^3.4.1
   extra_alignments: ^1.0.0+1
@@ -126,6 +126,41 @@ flutter:
     - assets/images/collectibles/
     - assets/images/widget/
     - assets/lottie/
+    # Backend snapshot: artifact catalog + destination photos bundled while the
+    # backend is rewritten (assets/backend_snapshot/README.md). credits/ is not bundled.
+    - assets/backend_snapshot/artifact-photos/albanian_alps/
+    - assets/backend_snapshot/artifact-photos/albanian_alps/thumbs/
+    - assets/backend_snapshot/artifact-photos/apollonia/
+    - assets/backend_snapshot/artifact-photos/apollonia/thumbs/
+    - assets/backend_snapshot/artifact-photos/berat/
+    - assets/backend_snapshot/artifact-photos/berat/thumbs/
+    - assets/backend_snapshot/artifact-photos/butrint/
+    - assets/backend_snapshot/artifact-photos/butrint/thumbs/
+    - assets/backend_snapshot/artifact-photos/gjirokaster/
+    - assets/backend_snapshot/artifact-photos/gjirokaster/thumbs/
+    - assets/backend_snapshot/artifact-photos/korca/
+    - assets/backend_snapshot/artifact-photos/korca/thumbs/
+    - assets/backend_snapshot/artifact-photos/kruja/
+    - assets/backend_snapshot/artifact-photos/kruja/thumbs/
+    - assets/backend_snapshot/artifact-photos/theth/
+    - assets/backend_snapshot/artifact-photos/theth/thumbs/
+    - assets/backend_snapshot/manifests/
+    - assets/backend_snapshot/place-photos/destinations/albanian_alps/
+    - assets/backend_snapshot/place-photos/destinations/albanian_alps/thumbs/
+    - assets/backend_snapshot/place-photos/destinations/apollonia/
+    - assets/backend_snapshot/place-photos/destinations/apollonia/thumbs/
+    - assets/backend_snapshot/place-photos/destinations/berat/
+    - assets/backend_snapshot/place-photos/destinations/berat/thumbs/
+    - assets/backend_snapshot/place-photos/destinations/butrint/
+    - assets/backend_snapshot/place-photos/destinations/butrint/thumbs/
+    - assets/backend_snapshot/place-photos/destinations/gjirokaster/
+    - assets/backend_snapshot/place-photos/destinations/gjirokaster/thumbs/
+    - assets/backend_snapshot/place-photos/destinations/korca/
+    - assets/backend_snapshot/place-photos/destinations/korca/thumbs/
+    - assets/backend_snapshot/place-photos/destinations/kruja/
+    - assets/backend_snapshot/place-photos/destinations/kruja/thumbs/
+    - assets/backend_snapshot/place-photos/destinations/theth/
+    - assets/backend_snapshot/place-photos/destinations/theth/thumbs/
 
   fonts:
     - family: Cinzel

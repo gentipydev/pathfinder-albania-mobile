@@ -203,16 +203,16 @@ class CollectiblesBloc extends Bloc<CollectiblesEvent, CollectiblesState>
       subTitle = artifactData?.date ?? '';
     }
     await _nativeWidget.save<String>('lastDiscoveredSubTitle', subTitle);
-    // TODO: the home widget's image is left empty. Collectible images now
-    // come from the backend artifact catalog, so `imageUrl` could be fetched
-    // here (http.readBytes → base64) to show the artwork in the widget.
+    // TODO: the home widget's image is left empty. Collectible images come
+    // from the artifact catalog (bundled assets today), so `imageUrl` could
+    // be read here (rootBundle → base64) to show the artwork in the widget.
     String imageBase64 = '';
     await _nativeWidget.save<String>('lastDiscoveredImageData', imageBase64);
     await _nativeWidget.markDirty();
   }
 
   /// Sends the found count and the catalog size, so the widget's progress
-  /// gauge follows the backend catalog instead of a fixed total.
+  /// gauge follows the catalog instead of a fixed total.
   Future<void> _persistFoundCountToWidget(int found) async {
     await _nativeWidget.save<int>('discoveredCount', found);
     await _nativeWidget.save<int>('totalCount', collectiblesData.length);

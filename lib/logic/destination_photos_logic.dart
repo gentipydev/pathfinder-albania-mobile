@@ -3,107 +3,100 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 
 import 'package:pathfinder_albania/common_libs.dart';
-import 'package:pathfinder_albania/config/env.dart';
-import 'package:pathfinder_albania/logic/common/http_client.dart';
+import 'package:pathfinder_albania/logic/common/bundled_content.dart';
 import 'package:pathfinder_albania/logic/common/photo_cache.dart';
-
-typedef PhotosHttpFetcher = Future<HttpResponse> Function(String url, {Map<String, String>? headers});
 
 /// One gallery photo: the full-size [url] (fullscreen viewer) and a small
 /// copy [thumbUrl] for the grid. They are the same when there is no small
-/// copy (bundled photos, or an older backend).
+/// copy (the four photos bundled per destination).
 typedef GalleryPhoto = ({String url, String thumbUrl});
 
-/// Fetches the per-destination photo manifest from the backend
-/// (`GET /destinations/{slug}/photos`). The backend lists the
-/// `place-photos/destinations/{slug}/` Supabase folder and returns ordered
-/// public URLs plus a parallel `thumbs` list of small copies; mobile just
-/// renders them.
+/// Reads the per-destination photo list from the bundled snapshot manifest
+/// ([BundledContent.photosManifest]): ordered asset paths plus a parallel
+/// `thumbs` list of small copies; mobile just renders them.
 ///
-/// In-memory cache only — manifests are tiny (one per destination, 8 total).
-/// Image bytes live in the on-disk photo cache (`photo_cache.dart`). Inflight requests are deduped to avoid double-fetching during
-/// fast tab switches.
-///
-/// Only successful 2xx responses are cached. A 5xx (typically a backend
-/// cold-start) leaves the cache untouched so the next screen mount
-/// re-attempts the fetch.
-///
-/// Whenever the backend has no photos for a destination (unreachable, an
-/// error, or an empty Storage folder), [getPhotos] returns the four photos
-/// bundled with the app instead, so the gallery is never empty.
+/// The manifest is read once; parsed lists are kept per destination.
+/// Whenever the snapshot has no photos for a destination (missing entry,
+/// unreadable manifest, or an empty list), [getPhotos] returns the four
+/// photos bundled with the app instead, so the gallery is never empty.
 class DestinationPhotosLogic {
-  DestinationPhotosLogic({PhotosHttpFetcher? httpGet, String Function()? baseUrl})
-    : _httpGet = httpGet ?? HttpClient.get,
-      _baseUrl = baseUrl ?? (() => Env.apiBaseUrl);
+  DestinationPhotosLogic({
+    AssetTextLoader? loadAsset,
+    String manifestKey = BundledContent.photosManifest,
+  })  : _loadAsset = loadAsset ?? BundledContent.loadString,
+        _manifestKey = manifestKey;
 
-  final PhotosHttpFetcher _httpGet;
+  final AssetTextLoader _loadAsset;
+  final String _manifestKey;
 
-  /// Empty when no backend is configured; the fetch is skipped then.
-  final String Function() _baseUrl;
+  /// The decoded manifest, read once. A failed read resolves to null and is
+  /// not kept, so the next call retries.
+  Future<Map<String, dynamic>?>? _manifest;
 
   final Map<DestinationType, List<GalleryPhoto>> _cache = {};
-  final Map<DestinationType, Future<(bool, List<GalleryPhoto>)>> _inflight = {};
 
   Future<List<GalleryPhoto>> getPhotos(DestinationType type) async {
-    final photos = await _getNetworkPhotos(type);
+    final photos = await _getSnapshotPhotos(type);
     if (photos.isNotEmpty) return photos;
     return [for (final p in type.bundledPhotos) (url: p, thumbUrl: p)];
   }
 
-  /// Fetches the manifest and downloads the grid's small copies to disk in
-  /// the background, so the Photos tab opens without a wait. Cheap to call
-  /// repeatedly: the manifest is cached and cached files are skipped.
+  /// Reads the list and warms the grid's small copies, so the Photos tab
+  /// opens without a wait. Cheap to call repeatedly: the list is cached and
+  /// bundled files cost nothing to "prefetch".
   Future<void> prefetch(DestinationType type) async {
     final photos = await getPhotos(type);
     prefetchPhotoUrls(photos.map((p) => p.thumbUrl));
   }
 
-  Future<List<GalleryPhoto>> _getNetworkPhotos(DestinationType type) async {
+  Future<List<GalleryPhoto>> _getSnapshotPhotos(DestinationType type) async {
     final cached = _cache[type];
     if (cached != null) return cached;
+    final (ok, result) = await _read(type);
+    if (ok) _cache[type] = result;
+    return result;
+  }
 
-    final existing = _inflight[type];
-    if (existing != null) {
-      final (_, photos) = await existing;
-      return photos;
-    }
+  Future<Map<String, dynamic>?> _readManifest() {
+    final existing = _manifest;
+    if (existing != null) return existing;
+    late final Future<Map<String, dynamic>?> future;
+    future = _loadManifest().then((manifest) {
+      if (manifest == null && identical(_manifest, future)) _manifest = null;
+      return manifest;
+    });
+    _manifest = future;
+    return future;
+  }
 
-    final future = _fetch(type);
-    _inflight[type] = future;
+  Future<Map<String, dynamic>?> _loadManifest() async {
     try {
-      final (ok, result) = await future;
-      if (ok) _cache[type] = result;
-      return result;
-    } finally {
-      _inflight.remove(type);
+      final decoded = jsonDecode(await _loadAsset(_manifestKey));
+      if (decoded is Map<String, dynamic>) return decoded;
+      dev.log('destinationPhotosLogic: manifest is not a JSON object');
+      return null;
+    } catch (e) {
+      dev.log('destinationPhotosLogic: manifest read failed: $e');
+      return null;
     }
   }
 
-  Future<(bool, List<GalleryPhoto>)> _fetch(DestinationType type) async {
-    final base = _baseUrl();
-    if (base.isEmpty) return (false, const <GalleryPhoto>[]);
-    final url = '$base/destinations/${type.slug}/photos';
-    final response = await _httpGet(url);
-    if (!response.success || response.body == null) {
-      dev.log('destinationPhotosLogic: ${type.slug} -> ${response.statusCode}');
+  Future<(bool, List<GalleryPhoto>)> _read(DestinationType type) async {
+    final manifest = await _readManifest();
+    final entry = manifest?[type.slug];
+    if (entry is! Map<String, dynamic>) {
+      dev.log('destinationPhotosLogic: no manifest entry for ${type.slug}');
       return (false, const <GalleryPhoto>[]);
     }
-    try {
-      final decoded = jsonDecode(response.body!) as Map<String, dynamic>;
-      final rawPhotos = decoded['photos'] as List? ?? const [];
-      final rawThumbs = decoded['thumbs'] as List? ?? const [];
-      final photos = <GalleryPhoto>[];
-      for (var i = 0; i < rawPhotos.length; i++) {
-        final url = rawPhotos[i];
-        if (url is! String) continue;
-        final thumb = i < rawThumbs.length ? rawThumbs[i] : null;
-        photos.add((url: url, thumbUrl: thumb is String && thumb.isNotEmpty ? thumb : url));
-      }
-      return (true, List<GalleryPhoto>.unmodifiable(photos));
-    } catch (e) {
-      // FormatException for invalid JSON, TypeError for a non-object body.
-      dev.log('destinationPhotosLogic parse error: $e');
-      return (false, const <GalleryPhoto>[]);
+    final rawPhotos = entry['photos'] as List? ?? const [];
+    final rawThumbs = entry['thumbs'] as List? ?? const [];
+    final photos = <GalleryPhoto>[];
+    for (var i = 0; i < rawPhotos.length; i++) {
+      final url = rawPhotos[i];
+      if (url is! String) continue;
+      final thumb = i < rawThumbs.length ? rawThumbs[i] : null;
+      photos.add((url: url, thumbUrl: thumb is String && thumb.isNotEmpty ? thumb : url));
     }
+    return (true, List<GalleryPhoto>.unmodifiable(photos));
   }
 }

@@ -33,7 +33,7 @@ class _ArtifactScreenState extends State<ArtifactCarouselScreen> {
   PageController? _pageController;
   final _currentPage = ValueNotifier<double>(9999);
 
-  /// Loaded asynchronously from the backend manifest. While it loads, the
+  /// Loaded asynchronously from the bundled catalog. While it loads, the
   /// carousel is built from [_placeholders] as a skeleton, so wraparound
   /// math and `_BlurredImageBg` never see an empty list.
   late List<HighlightData> _artifacts;

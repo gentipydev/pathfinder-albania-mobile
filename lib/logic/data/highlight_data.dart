@@ -3,7 +3,7 @@ import 'package:pathfinder_albania/logic/data/artifact_data.dart';
 
 /// Featured artifacts for one destination, surfaced in the artifact
 /// carousel screen. The list is populated at runtime by
-/// `ArtifactsBloc.getForDestination` from the backend manifest.
+/// `ArtifactsBloc.getForDestination` from the bundled catalog manifest.
 class HighlightData {
   HighlightData._({
     required this.title,
@@ -49,8 +49,8 @@ class HighlightData {
       _byDestination[destination] ?? const [];
 
   /// Replaces the cached highlights for one destination with a freshly
-  /// fetched list. Called by `ArtifactsBloc` after a successful manifest
-  /// fetch so synchronous `forDestination` callers keep working.
+  /// read list. Called by `ArtifactsBloc` after a successful manifest
+  /// read so synchronous `forDestination` callers keep working.
   static void replaceForDestination(DestinationType destination, List<ArtifactData> artifacts) {
     _byDestination[destination] = [
       for (final a in artifacts) HighlightData.fromArtifact(a),

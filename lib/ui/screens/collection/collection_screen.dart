@@ -7,6 +7,7 @@ import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_bloc.
 import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_event.dart';
 import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_helpers.dart';
 import 'package:pathfinder_albania/logic/common/animate_utils.dart';
+import 'package:pathfinder_albania/logic/common/photo_cache.dart';
 import 'package:pathfinder_albania/logic/data/collectible_data.dart';
 import 'package:pathfinder_albania/logic/data/destination_data.dart';
 import 'package:pathfinder_albania/ui/common/centered_box.dart';

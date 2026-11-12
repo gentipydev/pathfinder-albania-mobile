@@ -2,59 +2,60 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pathfinder_albania/config/env.dart';
 import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_event.dart';
 import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_state.dart';
-import 'package:pathfinder_albania/logic/common/http_client.dart';
+import 'package:pathfinder_albania/logic/common/bundled_content.dart';
 import 'package:pathfinder_albania/logic/data/artifact_data.dart';
 import 'package:pathfinder_albania/logic/data/collectible_data.dart';
 import 'package:pathfinder_albania/logic/data/destination_artifacts.dart';
 import 'package:pathfinder_albania/logic/data/destination_type.dart';
 import 'package:pathfinder_albania/logic/data/highlight_data.dart';
 
-typedef ArtifactsHttpFetcher =
-    Future<HttpResponse> Function(String url, {Map<String, String>? headers});
-
-/// Reactive cache for the backend's curated artifact catalog. Public surface
+/// Reactive cache for the curated artifact catalog, read from the bundled
+/// snapshot manifest ([BundledContent.artifactsManifest]). Public surface
 /// is methods-only — bloc state is driven by internal events fired from the
-/// methods after a successful fetch.
+/// methods after a successful read.
 ///
-/// Side effect on first fetch per destination: rebuilds the legacy
+/// Side effect on first read per destination: rebuilds the legacy
 /// `HighlightData` / `CollectibleData` global lists so existing UI consumers
 /// keep working synchronously after the first await. UI screens that render
-/// before the fetch resolves should use a FutureBuilder against
+/// before the read resolves should use a FutureBuilder against
 /// `getForDestination`.
 ///
-/// Only successful 2xx responses populate the cache and the legacy lists.
-/// Transient failures (typically a backend cold-start) return empty results
-/// to the caller without poisoning the cache, so subsequent mounts retry.
+/// Only a successfully parsed destination populates the cache and the legacy
+/// lists. A missing or malformed manifest returns empty results to the
+/// caller without poisoning the cache, so subsequent mounts retry.
 class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
-  ArtifactsBloc({ArtifactsHttpFetcher? httpGet, String Function()? baseUrl})
-    : _httpGet = httpGet ?? HttpClient.get,
-      _baseUrl = baseUrl ?? (() => Env.apiBaseUrl),
-      super(const ArtifactsState()) {
+  ArtifactsBloc({
+    AssetTextLoader? loadAsset,
+    String manifestKey = BundledContent.artifactsManifest,
+  })  : _loadAsset = loadAsset ?? BundledContent.loadString,
+        _manifestKey = manifestKey,
+        super(const ArtifactsState()) {
     on<ArtifactsDestinationFetchedInternal>(_onDestinationFetched);
     on<ArtifactsByIdFetchedInternal>(_onByIdFetched);
   }
 
-  final ArtifactsHttpFetcher _httpGet;
-
-  /// Empty when no backend is configured; requests are skipped then.
-  final String Function() _baseUrl;
+  final AssetTextLoader _loadAsset;
+  final String _manifestKey;
 
   static const _empty = DestinationArtifacts(
     highlights: [],
     collectibles: [],
   );
 
-  // Dedupe in-flight fetches.
+  /// The decoded manifest, read once. A failed read (missing or malformed
+  /// asset) resolves to null and is not kept, so the next call retries.
+  Future<Map<String, dynamic>?>? _manifest;
+
+  // Dedupe in-flight reads.
   final Map<DestinationType, Future<(bool, DestinationArtifacts)>>
   _inflightDestination = {};
   final Map<String, Future<ArtifactData?>> _inflightById = {};
 
   // ---- public methods (the only public surface) ----
 
-  /// Returns artifacts for a destination from cache, or fetches them.
+  /// Returns artifacts for a destination from cache, or reads them.
   /// On success, populates state, the legacy `HighlightData` /
   /// `CollectibleData` lists, and bumps `dataVersion`.
   Future<DestinationArtifacts> getForDestination(DestinationType type) async {
@@ -89,7 +90,7 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
     }
   }
 
-  /// Single-artifact fetch with cache + dedupe. Used by deep-link details
+  /// Single-artifact lookup with cache + dedupe. Used by deep-link details
   /// when the destination batch hasn't been loaded.
   Future<ArtifactData?> getById(String id) async {
     final cached = state.byId[id];
@@ -111,7 +112,7 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
   }
 
   /// Best-effort warm-up across every destination in parallel. Failures are
-  /// swallowed; individual screens still re-fetch on mount.
+  /// swallowed; individual screens still re-read on mount.
   Future<void> preloadAll() async {
     await Future.wait(
       DestinationType.values.map((t) async {
@@ -152,23 +153,45 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
     emit(state.copyWith(byId: newById));
   }
 
-  // ---- network ----
+  // ---- manifest ----
+
+  Future<Map<String, dynamic>?> _readManifest() {
+    final existing = _manifest;
+    if (existing != null) return existing;
+    late final Future<Map<String, dynamic>?> future;
+    future = _loadManifest().then((manifest) {
+      if (manifest == null && identical(_manifest, future)) _manifest = null;
+      return manifest;
+    });
+    _manifest = future;
+    return future;
+  }
+
+  Future<Map<String, dynamic>?> _loadManifest() async {
+    try {
+      final decoded = jsonDecode(await _loadAsset(_manifestKey));
+      if (decoded is Map<String, dynamic>) return decoded;
+      dev.log('artifactsBloc: manifest is not a JSON object');
+      return null;
+    } catch (e) {
+      // Missing asset, invalid JSON, or an unexpected shape.
+      dev.log('artifactsBloc: manifest read failed: $e');
+      return null;
+    }
+  }
 
   Future<(bool, DestinationArtifacts)> _fetchDestination(
     DestinationType type,
   ) async {
-    final base = _baseUrl();
-    if (base.isEmpty) return (false, _empty);
-    final url = '$base/destinations/${type.slug}/artifacts';
-    final response = await _httpGet(url);
-    if (!response.success || response.body == null) {
-      dev.log('artifactsBloc: ${type.slug} -> ${response.statusCode}');
+    final manifest = await _readManifest();
+    final entry = manifest?[type.slug];
+    if (entry is! Map<String, dynamic>) {
+      dev.log('artifactsBloc: no manifest entry for ${type.slug}');
       return (false, _empty);
     }
     try {
-      final decoded = jsonDecode(response.body!) as Map<String, dynamic>;
       List<ArtifactData> parse(String key) =>
-          (decoded[key] as List? ?? const [])
+          (entry[key] as List? ?? const [])
               .whereType<Map<String, dynamic>>()
               .map(ArtifactData.fromJson)
               .toList(growable: false);
@@ -179,27 +202,33 @@ class ArtifactsBloc extends Bloc<ArtifactsEvent, ArtifactsState> {
           collectibles: parse('collectibles'),
         ),
       );
-    } on FormatException catch (e) {
-      dev.log('artifactsBloc parse error: ${e.message}');
+    } catch (e) {
+      dev.log('artifactsBloc parse error for ${type.slug}: $e');
       return (false, _empty);
     }
   }
 
   Future<ArtifactData?> _fetchById(String id) async {
-    final base = _baseUrl();
-    if (base.isEmpty) return null;
-    final url = '$base/artifacts/$id';
-    final response = await _httpGet(url);
-    if (!response.success || response.body == null) {
-      dev.log('artifactsBloc byId $id -> ${response.statusCode}');
-      return null;
+    final manifest = await _readManifest();
+    if (manifest == null) return null;
+    for (final entry in manifest.values) {
+      if (entry is! Map<String, dynamic>) continue;
+      for (final key in const ['highlights', 'collectibles']) {
+        final list = entry[key];
+        if (list is! List) continue;
+        for (final item in list) {
+          if (item is Map<String, dynamic> && item['id']?.toString() == id) {
+            try {
+              return ArtifactData.fromJson(item);
+            } catch (e) {
+              dev.log('artifactsBloc byId $id parse error: $e');
+              return null;
+            }
+          }
+        }
+      }
     }
-    try {
-      final decoded = jsonDecode(response.body!) as Map<String, dynamic>;
-      return ArtifactData.fromJson(decoded);
-    } on FormatException catch (e) {
-      dev.log('artifactsBloc byId parse error: ${e.message}');
-      return null;
-    }
+    dev.log('artifactsBloc byId $id -> not in manifest');
+    return null;
   }
 }

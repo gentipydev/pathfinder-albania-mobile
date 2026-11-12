@@ -9,7 +9,7 @@ class CollectibleState {
 
 /// Hidden collectible artifact for the gameplay loop. Populated at runtime
 /// by `ArtifactsBloc.getForDestination` — `iconName` comes from the
-/// backend `icon_name` column and maps onto a bundled asset
+/// catalog's `icon_name` field and maps onto a bundled asset
 /// (`assets/images/collectibles/{iconName}.png`). Falls back to 'jewelry'
 /// if the catalog leaves it blank.
 class CollectibleData {
@@ -64,5 +64,5 @@ class CollectibleData {
 
 /// Legacy global accessor retained for synchronous reads from UI sites
 /// that don't go through `CollectiblesBloc`. Kept as a getter so it
-/// always reflects the latest backend-populated state.
+/// always reflects the latest catalog state.
 List<CollectibleData> get collectiblesData => CollectibleData.all;

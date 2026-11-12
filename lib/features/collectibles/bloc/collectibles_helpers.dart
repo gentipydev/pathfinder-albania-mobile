@@ -20,7 +20,7 @@ CollectibleData? firstDiscoveredOrNull(Map<String, int> states) {
 }
 
 /// The saved state of collectible [id]. An id with no saved state yet (a
-/// fresh install, or a collectible newly added to the backend catalog) has
+/// fresh install, or a collectible newly added to the catalog) has
 /// not been found, so it reads as lost.
 int collectibleStateOf(Map<String, int> states, String id) =>
     states[id] ?? CollectibleState.lost;

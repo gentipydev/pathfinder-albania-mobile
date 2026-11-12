@@ -57,12 +57,12 @@ class _CollectibleImage extends StatelessWidget {
                 ),
               ],
       ),
-      // Falls back to the bundled icon asset if the artifact image hasn't
-      // been seeded yet on the backend (or if the network is unreachable).
+      // Falls back to the bundled icon asset if the catalog has no image
+      // for this collectible.
       child: AppImage(
         image: collectible.imageUrlSmall.isEmpty
             ? collectible.icon
-            : NetworkImage(collectible.imageUrlSmall),
+            : photoImageProvider(collectible.imageUrlSmall),
         fit: BoxFit.contain,
         scale: 0.5,
       ),

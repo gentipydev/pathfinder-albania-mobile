@@ -59,7 +59,7 @@ extension DestinationAssetExtensions on DestinationType {
   String get photo4 => '$assetPath/photo-4.jpg';
 
   /// The four photos bundled with the app; the gallery falls back to these
-  /// when the backend has none (or can't be reached).
+  /// when the content snapshot lists none for the destination.
   List<String> get bundledPhotos => [photo1, photo2, photo3, photo4];
   String get flattened => '$assetPath/flattened.jpg';
 }

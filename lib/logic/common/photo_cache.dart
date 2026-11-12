@@ -7,9 +7,9 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 bool _isRemote(String src) => src.startsWith('http://') || src.startsWith('https://');
 
-/// Image provider for a photo source: an http(s) URL from the backend, kept
-/// in the on-disk cache so revisits and relaunches don't download it again,
-/// or the path of a photo bundled in assets/ (the gallery's offline
+/// Image provider for a photo source: an http(s) URL, kept in the on-disk
+/// cache so revisits and relaunches don't download it again, or the path of
+/// a bundled asset (the content snapshot and the gallery's offline
 /// fallback).
 ImageProvider photoImageProvider(String src) => _isRemote(src) ? CachedNetworkImageProvider(src) : AssetImage(src);
 

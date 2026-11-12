@@ -1,7 +1,9 @@
-/// Hydrated from the backend `/artifacts/{id}` and
-/// `/destinations/{slug}/artifacts` endpoints. Image bytes live in the
-/// `artifact-photos` Supabase Storage bucket; the URL fields below are
-/// public Supabase URLs returned by the backend, never built client-side.
+/// One entry of the curated artifact catalog, read from the bundled
+/// snapshot manifest (`assets/backend_snapshot/manifests/artifacts.json`,
+/// which keeps the shape of the old `/destinations/{slug}/artifacts`
+/// response). The image fields are asset paths into the snapshot, or http(s)
+/// URLs once a backend serves the catalog again; `photoImageProvider`
+/// renders both.
 class ArtifactData {
   ArtifactData({
     required this.objectId,

@@ -45,9 +45,9 @@ class _PhotoGalleryState extends State<PhotoGallery> {
   final double _scale = 1;
   bool _skipNextOffsetTween = false;
   late Duration swipeDuration = $styles.times.med * .4;
-  /// Photos from the backend manifest (full-size + small-copy URLs), padded
-  /// out to `_imgCount` (25) by repeating the catalog if the user hasn't
-  /// seeded enough photos yet.
+  /// Photos from the bundled manifest (full-size + small-copy paths), padded
+  /// out to `_imgCount` (25) by repeating the list when a destination has
+  /// fewer photos.
   final _photos = ValueNotifier<List<GalleryPhoto>>([]);
   bool _isLoading = true;
   int get _imgCount => pow(_gridSize, 2).round();

@@ -10,9 +10,10 @@ enum DestinationType {
 }
 
 extension DestinationTypeSlug on DestinationType {
-  /// Snake-case slug used by backend image manifest endpoints
-  /// (`/destinations/{slug}/photos`, `/destinations/{slug}/artifacts`).
-  /// Mirrors the validator set in `app/routers/images.py` on the backend.
+  /// Snake-case slug keying the bundled content manifests and naming the
+  /// snapshot folders (`assets/backend_snapshot/.../<slug>/`). It was the
+  /// destination id of the old backend's image endpoints, kept so the same
+  /// data can come from a network source again later.
   String get slug => switch (this) {
         DestinationType.albanianAlps => 'albanian_alps',
         DestinationType.apollonia => 'apollonia',
