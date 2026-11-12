@@ -4,12 +4,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_day.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_state.dart';
-import 'package:travel_buddy/agent/features/visit_detection/bloc/visit_detector_bloc.dart';
-import 'package:travel_buddy/agent/logic/auto_track_prefs.dart';
-import 'package:travel_buddy/agent/services/location_service.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_day.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_state.dart';
+import 'package:pathfinder_albania/agent/features/visit_detection/bloc/visit_detector_bloc.dart';
+import 'package:pathfinder_albania/agent/logic/auto_track_prefs.dart';
+import 'package:pathfinder_albania/agent/services/location_service.dart';
 
 import '../../../helpers/mock_blocs.dart';
 

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
 
 /// Server-acknowledged stop. Same field set as [StopDraft] plus the assigned
 /// `id` and `sortOrder`. Time fields stay as raw `HH:MM` strings to match

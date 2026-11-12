@@ -1,4 +1,4 @@
-import 'package:travel_buddy/logic/data/artifact_data.dart';
+import 'package:pathfinder_albania/logic/data/artifact_data.dart';
 
 class DestinationArtifacts {
   const DestinationArtifacts({

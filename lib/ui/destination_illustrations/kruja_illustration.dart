@@ -1,9 +1,9 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/fade_color_transition.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/illustration_piece.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/paint_textures.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_builder.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_config.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/fade_color_transition.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/illustration_piece.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/paint_textures.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_builder.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_config.dart';
 
 class KrujaIllustration extends StatelessWidget {
   KrujaIllustration({super.key, required this.config});
@@ -42,6 +42,9 @@ class KrujaIllustration extends StatelessWidget {
         minHeight: 50,
         alignment: Alignment.topCenter,
         fractionalOffset: Offset(-.7, 0),
+        // In the short header (details page) the top edge sits under the status bar / Dynamic Island,
+        // which hid the moon completely. Drop it into the open sky to the left of the rock instead.
+        offset: config.shortMode ? Offset(-115, 70) : Offset.zero,
       ),
     ];
   }

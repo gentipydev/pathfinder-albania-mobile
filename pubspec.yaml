@@ -1,5 +1,5 @@
-name: travel_buddy
-description: AI-powered guide to the eight destinations of Albania.
+name: pathfinder_albania
+description: Pathfinder Albania — AI travel assistant and guide to the eight destinations of Albania.
 publish_to: "none"
 version: 2.2.7+236
 
@@ -98,6 +98,9 @@ icons_launcher:
       favicon_path: "assets/marketing/app-icon-512.png"
     android:
       enable: true
+      adaptive_background_color: "#1E1B18"
+      adaptive_foreground_image: "assets/marketing/app-icon-adaptive-fg.png"
+      adaptive_monochrome_image: "assets/marketing/app-icon-monochrome.png"
     ios:
       enable: true
     macos:

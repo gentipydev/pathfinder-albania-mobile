@@ -4,21 +4,21 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_bloc.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_bloc.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_event.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_state.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_bloc.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_event.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_message.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_service.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_route.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_stream_event.dart';
-import 'package:travel_buddy/agent/logic/buddy/live_stop.dart';
-import 'package:travel_buddy/agent/logic/buddy/live_trip.dart';
-import 'package:travel_buddy/agent/logic/buddy/conversations_service.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_bloc.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_bloc.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_event.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_state.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_bloc.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_event.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_message.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_service.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_route.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_stream_event.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/live_stop.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/live_trip.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/conversations_service.dart';
 
 class _MockChatService extends Mock implements ChatService {}
 

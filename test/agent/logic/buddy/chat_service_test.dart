@@ -4,10 +4,10 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_service.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_stream_event.dart';
-import 'package:travel_buddy/logic/common/dio_client.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_service.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_stream_event.dart';
+import 'package:pathfinder_albania/logic/common/dio_client.dart';
 
 /// Replays a canned SSE response through the real `ChatService` parser by
 /// standing in for the network adapter on the shared `appDio`. [chunks] lets a

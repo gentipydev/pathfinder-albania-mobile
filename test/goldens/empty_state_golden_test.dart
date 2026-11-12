@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/ui/common/empty_state.dart';
+import 'package:pathfinder_albania/ui/common/empty_state.dart';
 
 import '../helpers/widget_test_harness.dart';
 

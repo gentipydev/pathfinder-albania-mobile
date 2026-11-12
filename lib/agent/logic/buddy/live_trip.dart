@@ -1,8 +1,8 @@
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_day.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_stop.dart';
-import 'package:travel_buddy/agent/logic/buddy/live_stop.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_day.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_stop.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/live_stop.dart';
 
 /// Id of the synthetic [Trip] assembled from `itinerary_stop` frames while a
 /// plan is still streaming. Never persisted and never sent to the server — it

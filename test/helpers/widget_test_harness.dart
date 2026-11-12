@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:travel_buddy/l10n/app_localizations.dart';
-import 'package:travel_buddy/logic/locale_logic.dart';
+import 'package:pathfinder_albania/l10n/app_localizations.dart';
+import 'package:pathfinder_albania/logic/locale_logic.dart';
 
 /// Pumps [child] inside a `MaterialApp` configured with the app's
 /// localization delegates so screens that call `$strings.<key>` resolve.

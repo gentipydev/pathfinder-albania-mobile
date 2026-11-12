@@ -51,7 +51,7 @@ void main() {
   });
 
   test('showcase code never imports lib/agent/', () {
-    final offenders = _showcaseLinesWhere((line) => line.contains('package:travel_buddy/agent/'));
+    final offenders = _showcaseLinesWhere((line) => line.contains('package:pathfinder_albania/agent/'));
     expect(
       offenders,
       isEmpty,

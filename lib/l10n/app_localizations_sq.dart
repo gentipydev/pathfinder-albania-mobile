@@ -149,23 +149,34 @@ class AppLocalizationsSq extends AppLocalizations {
   String get fullscreenImageViewerSemanticFull => 'imazh në ekran të plotë, nuk ka përshkrim të disponueshëm';
 
   @override
-  String get introTitleJourney => 'Hyni në të kaluarën';
+  String get introTitleWelcome => 'Njihuni me Pathfinder Albania';
 
   @override
-  String get introDescriptionNavigate =>
-      'Tre mijë vjet histori shqiptare, nga kalatë ilire në kodra te pazaret osmane.';
+  String get introDescWelcome => 'Asistenti yt AI i udhëtimit për Shqipërinë, nga bregdeti Jon te Bjeshkët e Namuna.';
 
   @override
-  String get introTitleExplore => 'Eksploroni Shqipërinë';
+  String get introTitleExplore => 'Eksploroni tetë destinacione';
 
   @override
-  String get introDescriptionUncover => 'Qytete antike, qytete me kala dhe lugina malore në tetë destinacione.';
+  String get introDescExplore =>
+      'Qytete antike, qytete me kala dhe lugina malore, secila me historinë, fotot dhe kronologjinë e vet.';
 
   @override
-  String get introTitleDiscover => 'Gjeni artefakte të fshehura';
+  String get introTitleStory => 'Tre mijë vjet histori';
 
   @override
-  String get introDescriptionLearn => 'Zbuloni objekte nga çdo epokë dhe krijoni koleksionin tuaj.';
+  String get introDescStory =>
+      'Përshkoni kronologjinë nga kalatë ilire te pazaret osmane dhe mblidhni artefakte të fshehura rrugës.';
+
+  @override
+  String get introTitleAsk => 'Pyet, planifiko, nisu';
+
+  @override
+  String get introDescAsk =>
+      'Bisedo me Pathfinder për të planifikuar itinerarin, gjetur vende dhe ruajtur udhëtimet. E njeh Shqipërinë si një vendas.';
+
+  @override
+  String get introSkip => 'Kalo';
 
   @override
   String get introSemanticNavigate => 'Lundro';
@@ -177,7 +188,10 @@ class AppLocalizationsSq extends AppLocalizations {
   String get introSemanticEnterApp => 'Hyni në aplikacion';
 
   @override
-  String get introSemanticAppName => 'Travel Buddy';
+  String get appName => 'Pathfinder Albania';
+
+  @override
+  String get appTagline => 'Asistenti AI i udhëtimit për Shqipërinë';
 
   @override
   String photoGallerySemanticFocus(Object photoIndex, Object photoTotal) {
@@ -1322,7 +1336,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get authPasswordRequired => 'Fjalëkalimi është i detyrueshëm';
 
   @override
-  String get buddyHeaderTitle => 'Shoku i Udhëtimit';
+  String get buddyHeaderTitle => 'Pathfinder';
 
   @override
   String get buddyHeaderSubtitle => 'Udhërrëfyesi juaj AI për Shqipërinë';
@@ -1334,7 +1348,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get buddyEmptySubtitle => 'Më pyesni për vende, ushqim, buxhet ose itinerare në Shqipëri.';
 
   @override
-  String get buddyComposerHint => 'Shkruaji shokut tuaj të udhëtimit…';
+  String get buddyComposerHint => 'Shkruaji Pathfinder-it…';
 
   @override
   String get buddySuggestionTirana => 'Planifikoni një udhëtim 3-ditor në Tiranë';
@@ -1358,17 +1372,17 @@ class AppLocalizationsSq extends AppLocalizations {
   String get buddyItineraryUnstructured => 'Nuk arritëm ta strukturojmë këtë itinerar — përgjigja është më sipër.';
 
   @override
-  String get refineWithBuddyButton => 'Përsosni me Buddy';
+  String get refineWithBuddyButton => 'Përsosni me Pathfinder';
 
   @override
-  String get refineComposerHint => 'Kërkoji Buddy-t të përmirësojë këtë udhëtim…';
+  String get refineComposerHint => 'Kërkoji Pathfinder-it të përmirësojë këtë udhëtim…';
 
   @override
   String get refineEmptyTitle => 'Çfarë duhet të ndryshojmë?';
 
   @override
   String get refineEmptySubtitle =>
-      'Kërkoji Buddy-t ta përshtasë këtë udhëtim — shkurto një ditë, ndrysho një ndalesë, shto diçka të re.';
+      'Kërkoji Pathfinder-it ta përshtasë këtë udhëtim — shkurto një ditë, ndrysho një ndalesë, shto diçka të re.';
 
   @override
   String get refineSuggestionShortenDay => 'Shkurto ditën 2';
@@ -1561,7 +1575,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get preferencesPersonaInfoBody =>
-      'Zgjidh profilin që të ngjan më shumë tani. Është vetëm pikënisja — sa më shumë të bisedosh me Travel Buddy, aq më mirë do ta kuptojë se si udhëton në të vërtetë. Buxhetin tënd, ritmin tënd, çfarë anashkalon, çfarë nuk e humb kurrë. Me kohën, rekomandimet nuk do të duken më të përgjithshme, por sikur janë krijuar enkas për ty.';
+      'Zgjidh profilin që të ngjan më shumë tani. Është vetëm pikënisja — sa më shumë të bisedosh me Pathfinder, aq më mirë do ta kuptojë se si udhëton në të vërtetë. Buxhetin tënd, ritmin tënd, çfarë anashkalon, çfarë nuk e humb kurrë. Me kohën, rekomandimet nuk do të duken më të përgjithshme, por sikur janë krijuar enkas për ty.';
 
   @override
   String get preferencesPersonaInfoDismiss => 'E kuptova';
@@ -1735,7 +1749,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get myTripsEmptyTitle => 'Ende nuk ka udhëtime të ruajtura';
 
   @override
-  String get myTripsEmptySubtitle => 'Planifiko një me Buddy dhe prek Ruaj itinerarin.';
+  String get myTripsEmptySubtitle => 'Planifiko një me Pathfinder dhe prek Ruaj itinerarin.';
 
   @override
   String get myTripsDatesNotSet => 'Data nuk është caktuar';
@@ -1818,7 +1832,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get tripDetailAutoTrackPromptBody =>
-      'Travel Buddy mund t\'i shënojë automatikisht ndalesat kur je afër tyre brenda orarit. Vendndodhja qëndron në pajisjen tënde.';
+      'Pathfinder Albania mund t\'i shënojë automatikisht ndalesat kur je afër tyre brenda orarit. Vendndodhja qëndron në pajisjen tënde.';
 
   @override
   String get tripDetailAutoTrackEnable => 'Aktivizo';
@@ -1841,7 +1855,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get tripDetailAutoTrackErrorBlockedBody =>
-      'Qasja në vendndodhje është bllokuar. Hap Cilësimet për ta lejuar Travel Buddy.';
+      'Qasja në vendndodhje është bllokuar. Hap Cilësimet për ta lejuar Pathfinder Albania.';
 
   @override
   String get tripDetailAutoTrackErrorServiceTitle => 'Aktivizo Shërbimet e Vendndodhjes';

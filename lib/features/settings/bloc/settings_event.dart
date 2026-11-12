@@ -47,7 +47,7 @@ class SettingsLocaleChangeRequested extends SettingsEvent {
 }
 
 /// Bootstrap-only writeback dispatched by `app_logic.bootstrap()` after
-/// `localeLogic.load()` resolves the system/persisted locale. NO cascade —
+/// `localeLogic.load()` resolves the persisted locale (else English). NO cascade —
 /// `bootstrap` calls `destinationsLogic.init()` and `timelineLogic.init()`
 /// directly afterwards.
 class SettingsLocaleHydrated extends SettingsEvent {

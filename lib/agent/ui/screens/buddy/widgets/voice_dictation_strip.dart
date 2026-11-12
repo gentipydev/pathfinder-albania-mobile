@@ -3,9 +3,9 @@ import 'dart:math' as math;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:siri_wave/siri_wave.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/features/voice/bloc/voice_bloc.dart';
-import 'package:travel_buddy/agent/features/voice/bloc/voice_state.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_bloc.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_state.dart';
 
 /// A bare Siri-style waveform shown above the composer while voice dictation
 /// is active. No background, no border, no buttons — the mic button on the

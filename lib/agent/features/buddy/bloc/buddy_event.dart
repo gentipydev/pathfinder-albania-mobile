@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_message.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_message.dart';
 
 abstract class BuddyEvent extends Equatable {
   const BuddyEvent();

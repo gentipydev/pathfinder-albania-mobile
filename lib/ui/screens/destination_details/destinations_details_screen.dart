@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/photo_cache.dart';
-import 'package:travel_buddy/ui/common/lazy_indexed_stack.dart';
-import 'package:travel_buddy/ui/common/measurable_widget.dart';
-import 'package:travel_buddy/ui/screens/artifact/artifact_carousel/artifact_carousel_screen.dart';
-import 'package:travel_buddy/ui/screens/editorial/editorial_screen.dart';
-import 'package:travel_buddy/ui/screens/photo_gallery/photo_gallery.dart';
-import 'package:travel_buddy/ui/screens/destination_details/destination_details_tab_menu.dart';
-import 'package:travel_buddy/ui/screens/destination_events/destination_events.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/photo_cache.dart';
+import 'package:pathfinder_albania/ui/common/lazy_indexed_stack.dart';
+import 'package:pathfinder_albania/ui/common/measurable_widget.dart';
+import 'package:pathfinder_albania/ui/screens/artifact/artifact_carousel/artifact_carousel_screen.dart';
+import 'package:pathfinder_albania/ui/screens/editorial/editorial_screen.dart';
+import 'package:pathfinder_albania/ui/screens/photo_gallery/photo_gallery.dart';
+import 'package:pathfinder_albania/ui/screens/destination_details/destination_details_tab_menu.dart';
+import 'package:pathfinder_albania/ui/screens/destination_events/destination_events.dart';
 
 class DestinationDetailsScreen extends StatefulWidget {
   const DestinationDetailsScreen({super.key, required this.type, this.tabIndex = 0});

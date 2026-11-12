@@ -3,10 +3,10 @@ import SwiftUI
 import Intents
 
 /// Every home-widget requires a TimelineEntry. This is passed into the view and propvides any data it needs
-struct TravelBuddyTimelineEntry : TimelineEntry {
+struct PathfinderTimelineEntry : TimelineEntry {
     // Date is a mandatory field for all TimelineEntries
     let date: Date
-    // Custom field for the Travel Buddy view
+    // Custom field for the Pathfinder Albania view
     let discoveredCount:Int;
     // Number of collectibles in the backend catalog (0 until the app sends it)
     var totalCount:Int = 0;
@@ -16,36 +16,36 @@ struct TravelBuddyTimelineEntry : TimelineEntry {
 }
 
 /// Widget, defines some high level configuration options as well as the primary view that will display the widget.
-struct TravelBuddyWidget: Widget {
-    let kind: String = "TravelBuddyWidget"
+struct PathfinderWidget: Widget {
+    let kind: String = "PathfinderWidget"
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: TravelBuddyTimelineProvider()) { entry in
-            TravelBuddyWidgetView(entry: entry)
+        StaticConfiguration(kind: kind, provider: PathfinderTimelineProvider()) { entry in
+            PathfinderWidgetView(entry: entry)
         }
         .contentMarginsDisabled()
-        .configurationDisplayName("Travel Buddy Widget")
+        .configurationDisplayName("Pathfinder Albania")
         .description("Track your collected artifacts!")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
-/// TimelineProvider, returns various TravelBuddyTimelineEntry configurations for different contexts
-struct TravelBuddyTimelineProvider: TimelineProvider {
+/// TimelineProvider, returns various PathfinderTimelineEntry configurations for different contexts
+struct PathfinderTimelineProvider: TimelineProvider {
     // Provide an entry for a placeholder version of the widget
-    func placeholder(in context: Context) -> TravelBuddyTimelineEntry {
-        TravelBuddyTimelineEntry(date: Date(), discoveredCount: 0)
+    func placeholder(in context: Context) -> PathfinderTimelineEntry {
+        PathfinderTimelineEntry(date: Date(), discoveredCount: 0)
     }
     
     // Provide an entry for the current time and state of the widget
-    func getSnapshot(in context: Context, completion: @escaping (TravelBuddyTimelineEntry) -> ()) {
-        let entry:TravelBuddyTimelineEntry
-        let userDefaults = UserDefaults(suiteName: "group.com.travelbuddy.app.widget")
+    func getSnapshot(in context: Context, completion: @escaping (PathfinderTimelineEntry) -> ()) {
+        let entry:PathfinderTimelineEntry
+        let userDefaults = UserDefaults(suiteName: "group.com.pathfinderalbania.app.widget")
         let discoveredCount = userDefaults?.integer(forKey: "discoveredCount") ?? 0
         let totalCount = userDefaults?.integer(forKey: "totalCount") ?? 0
         let title = userDefaults?.string(forKey: "lastDiscoveredTitle") ?? ""
         let subTitle = userDefaults?.string(forKey: "lastDiscoveredSubTitle") ?? ""
         let imageData = userDefaults?.string(forKey: "lastDiscoveredImageData") ?? ""
-        entry = TravelBuddyTimelineEntry(
+        entry = PathfinderTimelineEntry(
             date: Date(),
             discoveredCount:discoveredCount,
             totalCount: totalCount,
@@ -57,7 +57,7 @@ struct TravelBuddyTimelineProvider: TimelineProvider {
     }
     
     // Provide an array of entries for the current time and, optionally, any future times
-    func getTimeline(in context: Context, completion: @escaping (Timeline<TravelBuddyTimelineEntry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<PathfinderTimelineEntry>) -> ()) {
         getSnapshot(in: context) { (entry) in
             let timeline = Timeline(entries: [entry], policy: .atEnd)
             completion(timeline)

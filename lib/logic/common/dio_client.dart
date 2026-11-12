@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:travel_buddy/config/env.dart';
-import 'package:travel_buddy/logic/common/auth_refresh_interceptor.dart';
-import 'package:travel_buddy/logic/common/dio_logger_interceptor.dart';
-import 'package:travel_buddy/logic/common/retry_interceptor.dart';
+import 'package:pathfinder_albania/config/env.dart';
+import 'package:pathfinder_albania/logic/common/auth_refresh_interceptor.dart';
+import 'package:pathfinder_albania/logic/common/dio_logger_interceptor.dart';
+import 'package:pathfinder_albania/logic/common/retry_interceptor.dart';
 
 final Dio appDio = _buildAppDio();
 

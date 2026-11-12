@@ -1,13 +1,13 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/data/destination_data.dart';
-import 'package:travel_buddy/logic/data/destinations_data/butrint_data.dart';
-import 'package:travel_buddy/logic/data/destinations_data/berat_data.dart';
-import 'package:travel_buddy/logic/data/destinations_data/gjirokaster_data.dart';
-import 'package:travel_buddy/logic/data/destinations_data/apollonia_data.dart';
-import 'package:travel_buddy/logic/data/destinations_data/theth_data.dart';
-import 'package:travel_buddy/logic/data/destinations_data/kruja_data.dart';
-import 'package:travel_buddy/logic/data/destinations_data/albanian_alps_data.dart';
-import 'package:travel_buddy/logic/data/destinations_data/korca_data.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/data/destination_data.dart';
+import 'package:pathfinder_albania/logic/data/destinations_data/butrint_data.dart';
+import 'package:pathfinder_albania/logic/data/destinations_data/berat_data.dart';
+import 'package:pathfinder_albania/logic/data/destinations_data/gjirokaster_data.dart';
+import 'package:pathfinder_albania/logic/data/destinations_data/apollonia_data.dart';
+import 'package:pathfinder_albania/logic/data/destinations_data/theth_data.dart';
+import 'package:pathfinder_albania/logic/data/destinations_data/kruja_data.dart';
+import 'package:pathfinder_albania/logic/data/destinations_data/albanian_alps_data.dart';
+import 'package:pathfinder_albania/logic/data/destinations_data/korca_data.dart';
 
 class DestinationsLogic {
   List<DestinationData> all = [];

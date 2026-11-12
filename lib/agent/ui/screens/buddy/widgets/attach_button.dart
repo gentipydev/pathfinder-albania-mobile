@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_bloc.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_state.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_bloc.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_state.dart';
 
 class AttachButton extends StatelessWidget {
   const AttachButton({super.key, required this.onPicked});

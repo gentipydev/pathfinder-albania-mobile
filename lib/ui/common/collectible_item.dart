@@ -1,13 +1,13 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_event.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_helpers.dart';
-import 'package:travel_buddy/logic/common/animate_utils.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
-import 'package:travel_buddy/ui/common/opening_card.dart';
-import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
-import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
-import 'package:travel_buddy/ui/screens/collectible_found/collectible_found_screen.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_bloc.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_event.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_helpers.dart';
+import 'package:pathfinder_albania/logic/common/animate_utils.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/ui/common/opening_card.dart';
+import 'package:pathfinder_albania/ui/common/utils/app_haptics.dart';
+import 'package:pathfinder_albania/ui/common/utils/duration_utils.dart';
+import 'package:pathfinder_albania/ui/screens/collectible_found/collectible_found_screen.dart';
 
 class CollectibleItem extends StatelessWidget {
   CollectibleItem(this.collectible, {this.size = 64.0, super.key, this.focus}) {

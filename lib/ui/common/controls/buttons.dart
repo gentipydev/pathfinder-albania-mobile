@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/ignore_pointer.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/ignore_pointer.dart';
 
 /// The core button that drives all other buttons.
 class AppBtn extends StatelessWidget {

@@ -2,7 +2,7 @@ import Foundation
 
 struct FlutterImages {
     static let bgEmpty = getAssetPath("/assets/images/widget/background-empty.jpg")
-    static let icon = getAssetPath("/assets/images/widget/travel-buddy-icon.png")
+    static let icon = getAssetPath("/assets/images/widget/pathfinder-icon.png")
 }
 
 func getAssetPath(_ path : String) -> String {

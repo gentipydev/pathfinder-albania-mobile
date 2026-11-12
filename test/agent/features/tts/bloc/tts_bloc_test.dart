@@ -2,9 +2,9 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:travel_buddy/agent/features/tts/bloc/tts_bloc.dart';
-import 'package:travel_buddy/agent/features/tts/bloc/tts_event.dart';
-import 'package:travel_buddy/agent/features/tts/bloc/tts_state.dart';
+import 'package:pathfinder_albania/agent/features/tts/bloc/tts_bloc.dart';
+import 'package:pathfinder_albania/agent/features/tts/bloc/tts_event.dart';
+import 'package:pathfinder_albania/agent/features/tts/bloc/tts_state.dart';
 
 class _MockFlutterTts extends Mock implements FlutterTts {}
 

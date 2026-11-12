@@ -5,8 +5,8 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:travel_buddy/agent/features/tts/bloc/tts_event.dart';
-import 'package:travel_buddy/agent/features/tts/bloc/tts_state.dart';
+import 'package:pathfinder_albania/agent/features/tts/bloc/tts_event.dart';
+import 'package:pathfinder_albania/agent/features/tts/bloc/tts_state.dart';
 
 /// Bloc replacement for the legacy `TtsLogic`. flutter_tts is fully owned by
 /// the bloc; UI drives playback via `TtsSpeakRequested` / `TtsStopRequested`

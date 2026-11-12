@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
 
 class AppBackdrop extends StatelessWidget {
   const AppBackdrop({

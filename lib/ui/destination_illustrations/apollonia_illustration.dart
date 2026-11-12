@@ -1,9 +1,9 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/fade_color_transition.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/illustration_piece.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/paint_textures.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_builder.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_config.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/fade_color_transition.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/illustration_piece.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/paint_textures.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_builder.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_config.dart';
 
 class ApolloniaIllustration extends StatelessWidget {
   ApolloniaIllustration({super.key, required this.config});
@@ -54,7 +54,9 @@ class ApolloniaIllustration extends StatelessWidget {
         minHeight: 250,
         zoomAmt: .05,
         enableHero: true,
-        fractionalOffset: Offset(0, config.shortMode ? .15 : -.15),
+        // The temple's ground ends ~27% above the bottom of its canvas, so in the short header it needs
+        // a bigger push down for its base to cover the sky/page edge like the other landmarks do.
+        fractionalOffset: Offset(0, config.shortMode ? .31 : -.15),
       ),
     ];
   }

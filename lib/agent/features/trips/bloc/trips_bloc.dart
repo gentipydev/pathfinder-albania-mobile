@@ -4,16 +4,16 @@ import 'dart:math' as math;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_day.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_stop.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_bloc.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_event.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_error_mapper.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_event.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_state.dart';
-import 'package:travel_buddy/agent/services/trip_service.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_day.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_stop.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_bloc.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_event.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_error_mapper.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_event.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_state.dart';
+import 'package:pathfinder_albania/agent/services/trip_service.dart';
 
 /// Free-tier cap. Mirrors the backend's `MAX_TRIPS_PER_USER` in
 /// `app/routers/trips.py`. Kept as a top-level constant so the BuddyScreen

@@ -1,11 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:travel_buddy/agent/features/preferences/bloc/preferences_bloc.dart';
-import 'package:travel_buddy/agent/features/preferences/bloc/preferences_event.dart';
-import 'package:travel_buddy/agent/features/preferences/bloc/preferences_state.dart';
-import 'package:travel_buddy/agent/logic/preferences/preferences_service.dart';
-import 'package:travel_buddy/agent/logic/preferences/user_preferences.dart';
+import 'package:pathfinder_albania/agent/features/preferences/bloc/preferences_bloc.dart';
+import 'package:pathfinder_albania/agent/features/preferences/bloc/preferences_event.dart';
+import 'package:pathfinder_albania/agent/features/preferences/bloc/preferences_state.dart';
+import 'package:pathfinder_albania/agent/logic/preferences/preferences_service.dart';
+import 'package:pathfinder_albania/agent/logic/preferences/user_preferences.dart';
 
 class _MockPreferencesService extends Mock implements PreferencesService {}
 

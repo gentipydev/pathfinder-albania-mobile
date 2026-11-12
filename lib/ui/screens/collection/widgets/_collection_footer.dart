@@ -34,8 +34,11 @@ class _CollectionFooter extends StatelessWidget {
     );
   }
 
+  /// 0..1; the catalog comes from the backend, so it can be empty (offline) and must not divide by zero.
+  double get _progress => total == 0 ? 0 : count / total;
+
   Widget _buildProgressRow(BuildContext context) {
-    int percent = (count / total * 100).round();
+    int percent = (_progress * 100).round();
     return Row(
       children: [
         Text(
@@ -52,6 +55,12 @@ class _CollectionFooter extends StatelessWidget {
   }
 
   Widget _buildProgressBar(BuildContext context) {
+    final bar = Container(
+      decoration: BoxDecoration(
+        color: $styles.colors.accent1,
+        borderRadius: BorderRadius.circular(1000),
+      ),
+    );
     return RepaintBoundary(
       child: Container(
         height: $styles.insets.xs,
@@ -59,22 +68,20 @@ class _CollectionFooter extends StatelessWidget {
           color: $styles.colors.white.withValues(alpha: 0.25),
           borderRadius: BorderRadius.circular(1000),
         ),
-        child:
-            Container(
-                  decoration: BoxDecoration(
-                    color: $styles.colors.accent1,
-                    borderRadius: BorderRadius.circular(1000),
+        child: $styles.disableAnimations
+            // With reduce-motion the effects below never run, and they are the only thing that sizes the
+            // bar, so it showed a full track. Size it directly instead.
+            ? FractionallySizedBox(alignment: Alignment.centerLeft, widthFactor: _progress, child: bar)
+            : bar
+                  .maybeAnimate()
+                  .fade(duration: 1500.animateMs, curve: Curves.easeOutExpo)
+                  .custom(
+                    builder: (_, m, child) => FractionallySizedBox(
+                      alignment: Alignment.centerLeft,
+                      widthFactor: m * _progress,
+                      child: child,
+                    ),
                   ),
-                )
-                .maybeAnimate()
-                .fade(duration: 1500.animateMs, curve: Curves.easeOutExpo)
-                .custom(
-                  builder: (_, m, child) => FractionallySizedBox(
-                    alignment: Alignment.centerLeft,
-                    widthFactor: m * count / total,
-                    child: child,
-                  ),
-                ),
       ),
     );
   }

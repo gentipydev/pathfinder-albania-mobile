@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_day.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_stop.dart';
-import 'package:travel_buddy/agent/ui/screens/my_trips/trip_detail_screen.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_day.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_stop.dart';
+import 'package:pathfinder_albania/agent/ui/screens/my_trips/trip_detail_screen.dart';
 
 /// Pure-function tests for the rail-node status resolver. No widget tree.
 void main() {

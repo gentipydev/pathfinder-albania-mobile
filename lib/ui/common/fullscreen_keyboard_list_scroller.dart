@@ -1,6 +1,6 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/throttler.dart';
-import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/throttler.dart';
+import 'package:pathfinder_albania/ui/common/fullscreen_keyboard_listener.dart';
 
 class FullscreenKeyboardListScroller extends StatelessWidget {
   FullscreenKeyboardListScroller({super.key, required this.child, required this.scrollController});

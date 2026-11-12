@@ -1,4 +1,4 @@
-import 'package:travel_buddy/logic/common/save_load_mixin.dart';
+import 'package:pathfinder_albania/logic/common/save_load_mixin.dart';
 
 /// Per-trip "auto-track my visits" opt-in. Stored as a `{tripId: bool}`
 /// map in SharedPreferences via [ThrottledSaveLoadMixin] (2-second

@@ -4,7 +4,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
-import 'package:travel_buddy/assets.dart';
+import 'package:pathfinder_albania/assets.dart';
 
 /// Single generic pin used by the destination maps (editorial thumbnail and
 /// the fullscreen viewer). Trip stops use [buildStopAnnotationOptions] with a

@@ -4,14 +4,14 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travel_buddy/features/artifacts/bloc/artifacts_bloc.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_event.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_state.dart';
-import 'package:travel_buddy/logic/data/artifact_data.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
-import 'package:travel_buddy/logic/data/destination_type.dart';
-import 'package:travel_buddy/logic/native_widget_service.dart';
+import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_bloc.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_bloc.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_event.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_state.dart';
+import 'package:pathfinder_albania/logic/data/artifact_data.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/logic/data/destination_type.dart';
+import 'package:pathfinder_albania/logic/native_widget_service.dart';
 
 class _MockNativeWidget extends Mock implements NativeWidgetService {}
 

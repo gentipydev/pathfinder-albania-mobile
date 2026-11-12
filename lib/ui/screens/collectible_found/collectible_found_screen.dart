@@ -1,12 +1,12 @@
 import 'package:particle_field/particle_field.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/animate_utils.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
-import 'package:travel_buddy/ui/common/app_backdrop.dart';
-import 'package:travel_buddy/ui/common/centered_box.dart';
-import 'package:travel_buddy/ui/common/controls/app_header.dart';
-import 'package:travel_buddy/ui/common/pop_navigator_underlay.dart';
-import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/animate_utils.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/ui/common/app_backdrop.dart';
+import 'package:pathfinder_albania/ui/common/centered_box.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_header.dart';
+import 'package:pathfinder_albania/ui/common/pop_navigator_underlay.dart';
+import 'package:pathfinder_albania/ui/common/utils/duration_utils.dart';
 
 part 'widgets/_animated_ribbon.dart';
 part 'widgets/_celebration_particles.dart';

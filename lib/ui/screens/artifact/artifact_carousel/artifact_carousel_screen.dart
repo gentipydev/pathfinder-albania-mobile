@@ -1,16 +1,16 @@
 import 'dart:ui';
 
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:travel_buddy/common_libs.dart' hide ShimmerEffect;
-import 'package:travel_buddy/logic/common/animate_utils.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
-import 'package:travel_buddy/logic/data/highlight_data.dart';
-import 'package:travel_buddy/ui/common/controls/app_header.dart';
-import 'package:travel_buddy/ui/common/controls/app_page_indicator.dart';
-import 'package:travel_buddy/ui/common/ignore_pointer.dart';
-import 'package:travel_buddy/ui/common/image_skeleton.dart';
-import 'package:travel_buddy/ui/common/remote_photo.dart';
-import 'package:travel_buddy/ui/common/static_text_scale.dart';
+import 'package:pathfinder_albania/common_libs.dart' hide ShimmerEffect;
+import 'package:pathfinder_albania/logic/common/animate_utils.dart';
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/logic/data/highlight_data.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_header.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_page_indicator.dart';
+import 'package:pathfinder_albania/ui/common/ignore_pointer.dart';
+import 'package:pathfinder_albania/ui/common/image_skeleton.dart';
+import 'package:pathfinder_albania/ui/common/remote_photo.dart';
+import 'package:pathfinder_albania/ui/common/static_text_scale.dart';
 
 part 'widgets/_blurred_image_bg.dart';
 part 'widgets/_bottom_text_content.dart';

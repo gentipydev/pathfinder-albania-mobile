@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/logic/common/auth_refresh_interceptor.dart';
+import 'package:pathfinder_albania/logic/common/auth_refresh_interceptor.dart';
 
 void main() {
   group('AuthRefreshInterceptor', () {

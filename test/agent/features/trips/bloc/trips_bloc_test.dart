@@ -3,17 +3,17 @@ import 'dart:async';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_day.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_stop.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_bloc.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_event.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_bloc.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_error_mapper.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_event.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_state.dart';
-import 'package:travel_buddy/agent/services/trip_service.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_day.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_stop.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_bloc.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_event.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_bloc.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_error_mapper.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_event.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_state.dart';
+import 'package:pathfinder_albania/agent/services/trip_service.dart';
 
 class _MockTripService extends Mock implements TripService {}
 

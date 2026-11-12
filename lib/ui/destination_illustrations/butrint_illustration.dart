@@ -1,9 +1,9 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/fade_color_transition.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/illustration_piece.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/paint_textures.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_builder.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_config.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/fade_color_transition.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/illustration_piece.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/paint_textures.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_builder.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_config.dart';
 
 class ButrintIllustration extends StatelessWidget {
   ButrintIllustration({super.key, required this.config});

@@ -1,9 +1,9 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/fade_color_transition.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/illustration_piece.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/paint_textures.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_builder.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_config.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/fade_color_transition.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/illustration_piece.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/paint_textures.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_builder.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_config.dart';
 
 class AlbanianAlpsIllustration extends StatelessWidget {
   AlbanianAlpsIllustration({super.key, required this.config});
@@ -55,7 +55,9 @@ class AlbanianAlpsIllustration extends StatelessWidget {
         heightFactor: .5,
         minHeight: 300,
         zoomAmt: config.shortMode ? -.2 : -2,
-        fractionalOffset: Offset(config.shortMode ? .015 : 0, config.shortMode ? .17 : -.15),
+        // The peaks end ~22% above the bottom of their canvas; in the short header push them down so
+        // their base covers the sky/page edge instead of floating above it.
+        fractionalOffset: Offset(config.shortMode ? .015 : 0, config.shortMode ? .25 : -.15),
       ),
     ];
   }

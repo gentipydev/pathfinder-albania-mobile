@@ -1,9 +1,9 @@
 import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:travel_buddy/agent/logic/preferences/preferences_service.dart';
-import 'package:travel_buddy/ui/common/centered_box.dart';
+import 'package:pathfinder_albania/agent/logic/preferences/preferences_service.dart';
+import 'package:pathfinder_albania/ui/common/centered_box.dart';
 
 class TravelerPersona {
   const TravelerPersona({

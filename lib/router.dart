@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:travel_buddy/agent/agent_module.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/config/env.dart';
-import 'package:travel_buddy/ui/common/modals//fullscreen_video_viewer.dart';
-import 'package:travel_buddy/ui/common/modals/fullscreen_maps_viewer.dart';
-import 'package:travel_buddy/ui/screens/artifact/artifact_details/artifact_details_screen.dart';
-import 'package:travel_buddy/ui/screens/collection/collection_screen.dart';
-import 'package:travel_buddy/ui/screens/home/destinations_home_screen.dart';
-import 'package:travel_buddy/ui/screens/intro/intro_screen.dart';
-import 'package:travel_buddy/ui/screens/page_not_found/page_not_found.dart';
-import 'package:travel_buddy/ui/screens/timeline/timeline_screen.dart';
-import 'package:travel_buddy/ui/screens/destination_details/destinations_details_screen.dart';
-import 'package:travel_buddy/utils/dlog.dart';
-import 'package:travel_buddy/utils/route_logger.dart';
+import 'package:pathfinder_albania/agent/agent_module.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/config/env.dart';
+import 'package:pathfinder_albania/ui/common/modals//fullscreen_video_viewer.dart';
+import 'package:pathfinder_albania/ui/common/modals/fullscreen_maps_viewer.dart';
+import 'package:pathfinder_albania/ui/screens/artifact/artifact_details/artifact_details_screen.dart';
+import 'package:pathfinder_albania/ui/screens/collection/collection_screen.dart';
+import 'package:pathfinder_albania/ui/screens/home/destinations_home_screen.dart';
+import 'package:pathfinder_albania/ui/screens/intro/intro_screen.dart';
+import 'package:pathfinder_albania/ui/screens/page_not_found/page_not_found.dart';
+import 'package:pathfinder_albania/ui/screens/timeline/timeline_screen.dart';
+import 'package:pathfinder_albania/ui/screens/destination_details/destinations_details_screen.dart';
+import 'package:pathfinder_albania/utils/dlog.dart';
+import 'package:pathfinder_albania/utils/route_logger.dart';
 
 /// Shared paths / urls used across the app
 class ScreenPaths {

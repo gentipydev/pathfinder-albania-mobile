@@ -1,6 +1,6 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_bloc.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_event.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_bloc.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_event.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

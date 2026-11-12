@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:travel_buddy/logic/data/destination_type.dart';
+import 'package:pathfinder_albania/logic/data/destination_type.dart';
 
 class DestinationData extends Equatable {
   const DestinationData({

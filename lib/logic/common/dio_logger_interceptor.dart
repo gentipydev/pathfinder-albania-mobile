@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:travel_buddy/utils/dlog.dart';
+import 'package:pathfinder_albania/utils/dlog.dart';
 
 const String _channel = 'http';
 const String _startTimeKey = '_dlogStart';

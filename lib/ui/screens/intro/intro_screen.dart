@@ -1,19 +1,25 @@
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_event.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
-import 'package:travel_buddy/ui/common/app_icons.dart';
-import 'package:travel_buddy/ui/common/controls/app_page_indicator.dart';
-import 'package:travel_buddy/ui/common/gradient_container.dart';
-import 'package:travel_buddy/ui/common/ignore_pointer.dart';
-import 'package:travel_buddy/ui/common/previous_next_navigation.dart';
-import 'package:travel_buddy/ui/common/static_text_scale.dart';
-import 'package:travel_buddy/ui/common/themed_text.dart';
-import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
-import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/config/env.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_bloc.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_event.dart';
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/ui/common/app_icons.dart';
+import 'package:pathfinder_albania/ui/common/app_logo.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_page_indicator.dart';
+import 'package:pathfinder_albania/ui/common/gradient_container.dart';
+import 'package:pathfinder_albania/ui/common/ignore_pointer.dart';
+import 'package:pathfinder_albania/ui/common/previous_next_navigation.dart';
+import 'package:pathfinder_albania/ui/common/static_text_scale.dart';
+import 'package:pathfinder_albania/ui/common/themed_text.dart';
+import 'package:pathfinder_albania/ui/common/utils/app_haptics.dart';
+import 'package:pathfinder_albania/ui/common/utils/duration_utils.dart';
 
 class IntroScreen extends StatefulWidget {
-  const IntroScreen({super.key});
+  const IntroScreen({super.key, this.includeAssistantPage});
+
+  /// Whether to end with the page about the AI assistant. Defaults to
+  /// [Env.agentEnabled], so showcase builds keep the three showcase pages.
+  final bool? includeAssistantPage;
 
   @override
   State<IntroScreen> createState() => _IntroScreenState();
@@ -24,9 +30,13 @@ class _IntroScreenState extends State<IntroScreen> {
   static const double _imageSizeSmall = 150;
   static const double _logoHeight = 126;
   static const double _logoHeightSmall = 96;
-  static const double _textHeight = 110;
-  static const double _textHeightSmall = 100;
+  static const double _textHeight = 190;
+  static const double _textHeightSmall = 170;
   static const double _pageIndicatorHeight = 55;
+
+  /// Below this much height inside the safe area the compact sizes are used.
+  /// The normal layout needs 126 + 250 + 190 + 55 = 621.
+  static const double _smallModeBelowHeight = 640;
 
   static List<_PageData> pageData = [];
 
@@ -43,10 +53,13 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   void _handleIntroCompletePressed() {
-    if (_currentPage.value == pageData.length - 1) {
-      settingsBloc.add(const SettingsOnboardingCompletedToggled(true));
-      context.go(needsLogin ? ScreenPaths.auth : ScreenPaths.home);
-    }
+    if (_currentPage.value == pageData.length - 1) _completeIntro();
+  }
+
+  /// Shared by the finish button on the last page and Skip on the others.
+  void _completeIntro() {
+    context.read<SettingsBloc>().add(const SettingsOnboardingCompletedToggled(true));
+    context.go(needsLogin ? ScreenPaths.auth : ScreenPaths.home);
   }
 
   void _handlePageChanged() {
@@ -77,20 +90,23 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool smallMode = context.heightPx < 550;
+    final availableHeight = MediaQuery.sizeOf(context).height - MediaQuery.paddingOf(context).vertical;
+    final bool smallMode = availableHeight < _smallModeBelowHeight;
+    final bool includeAssistantPage = widget.includeAssistantPage ?? Env.agentEnabled;
 
     // Set the page data, as strings may have changed based on locale
     pageData = [
-      _PageData($strings.introTitleJourney, $strings.introDescriptionNavigate, 'butrint', '1'),
-      _PageData($strings.introTitleExplore, $strings.introDescriptionUncover, 'kruja', '2'),
-      _PageData($strings.introTitleDiscover, $strings.introDescriptionLearn, 'apollonia', '3'),
+      _PageData($strings.introTitleWelcome, $strings.introDescWelcome, 'theth', '1'),
+      _PageData($strings.introTitleExplore, $strings.introDescExplore, 'butrint', '2'),
+      _PageData($strings.introTitleStory, $strings.introDescStory, 'apollonia', '3'),
+      if (includeAssistantPage) _PageData($strings.introTitleAsk, $strings.introDescAsk, 'kruja', '1'),
     ];
 
     // This view uses a full screen PageView to enable swipe navigation.
     // However, we only want the title / description to actually swipe,
     // so we stack a PageView with that content over top of all the other
     // content, and line up their layouts.
-    final List<Widget> pages = pageData.map((e) => _Page(data: e)).toList();
+    final List<Widget> pages = pageData.map((e) => _Page(data: e, smallMode: smallMode)).toList();
 
     /// Return resulting widget tree
     return DefaultTextColor(
@@ -138,7 +154,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           child: Container(
                             height: smallMode ? _logoHeightSmall : _logoHeight,
                             alignment: Alignment.center,
-                            child: _TravelBuddyLogo(),
+                            child: _IntroLogo(small: smallMode),
                           ),
                         ),
 
@@ -185,6 +201,13 @@ class _IntroScreenState extends State<IntroScreen> {
                   _buildHzGradientOverlay(left: true),
                   _buildHzGradientOverlay(),
 
+                  // skip, on every page but the last:
+                  Positioned(
+                    top: $styles.insets.xs,
+                    right: $styles.insets.xs,
+                    child: _buildSkipBtn(),
+                  ),
+
                   // nav help text:
                   if (PlatformInfo.isMobile) ...[
                     // finish button:
@@ -202,6 +225,33 @@ class _IntroScreenState extends State<IntroScreen> {
                     ),
                   ],
                 ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSkipBtn() {
+    final bool hidden = _isOnLastPage;
+    return IgnorePointer(
+      ignoring: hidden,
+      child: ExcludeSemantics(
+        excluding: hidden,
+        child: AnimatedOpacity(
+          opacity: hidden ? 0 : 1,
+          duration: $styles.times.fast,
+          child: AppBtn.basic(
+            semanticLabel: $strings.introSkip,
+            onPressed: _completeIntro,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: $styles.insets.sm, vertical: $styles.insets.xs),
+              child: StaticTextScale(
+                child: Text(
+                  $strings.introSkip,
+                  style: $styles.text.btn.copyWith(color: $styles.colors.accent2, fontSize: 15),
+                ),
               ),
             ),
           ),
@@ -279,14 +329,13 @@ class _PageData {
 }
 
 class _Page extends StatelessWidget {
-  const _Page({required this.data});
+  const _Page({required this.data, required this.smallMode});
 
   final _PageData data;
+  final bool smallMode;
 
   @override
   Widget build(BuildContext context) {
-    bool smallMode = context.heightPx < 550;
-
     return Semantics(
       liveRegion: true,
       child: Padding(
@@ -309,6 +358,7 @@ class _Page extends StatelessWidget {
                     Text(
                       data.title,
                       style: $styles.text.destinationTitle.copyWith(fontSize: 24 * $styles.scale),
+                      textAlign: TextAlign.center,
                     ),
                     Gap($styles.insets.sm),
                     Text(data.desc, style: $styles.text.body, textAlign: TextAlign.center),
@@ -325,30 +375,48 @@ class _Page extends StatelessWidget {
   }
 }
 
-class _TravelBuddyLogo extends StatelessWidget {
+/// The mark with the "Pathfinder / ALBANIA" wordmark under it.
+class _IntroLogo extends StatelessWidget {
+  const _IntroLogo({required this.small});
+
+  final bool small;
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ExcludeSemantics(
-          child: SvgPicture.asset(
-            SvgPaths.compassSimple,
-            colorFilter: $styles.colors.offWhite.colorFilter,
-            height: 48,
-          ),
-        ),
-        Gap($styles.insets.xs),
-        StaticTextScale(
-          child: Text(
-            $strings.introSemanticAppName,
-            style: $styles.text.destinationTitle.copyWith(
-              fontSize: 32 * $styles.scale,
-              color: $styles.colors.offWhite,
+    // Letter spacing also trails the last letter; the same inset on the left keeps the line centred.
+    final double regionSpacing = 5 * $styles.scale;
+    return Semantics(
+      label: $strings.appName,
+      excludeSemantics: true,
+      child: StaticTextScale(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppLogo(width: small ? 44 : 64),
+            Gap(small ? $styles.insets.xxs : $styles.insets.xs),
+            Text(
+              AppLogo.wordmark,
+              style: $styles.text.destinationTitle.copyWith(
+                fontSize: (small ? 24 : 30) * $styles.scale,
+                color: $styles.colors.offWhite,
+              ),
             ),
-          ),
+            Gap($styles.insets.xxs),
+            Padding(
+              padding: EdgeInsets.only(left: regionSpacing),
+              child: Text(
+                AppLogo.wordmarkRegion,
+                style: $styles.text.title1.copyWith(
+                  fontSize: 12 * $styles.scale,
+                  height: 1,
+                  letterSpacing: regionSpacing,
+                  color: $styles.colors.accent1,
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

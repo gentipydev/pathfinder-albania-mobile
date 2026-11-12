@@ -1,9 +1,9 @@
-# Travel Buddy
+# Pathfinder Albania
 
-Release notes for Travel Buddy will be tracked here once the first build ships.
+Release notes for Pathfinder Albania will be tracked here once the first build ships.
 
 # Upstream history
 
 The original upstream template release notes from gskinner.com (versions 2.0.x)
-have been removed because they describe the upstream app, not Travel Buddy.
+have been removed because they describe the upstream app, not Pathfinder Albania.
 The MIT-licensed source code lineage is documented in README.md.

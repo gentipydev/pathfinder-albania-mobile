@@ -1,19 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_bloc.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_error_mapper.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_event.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_state.dart';
-import 'package:travel_buddy/logic/locale_logic.dart';
-import 'package:travel_buddy/ui/common/centered_box.dart';
-import 'package:travel_buddy/ui/common/empty_state.dart';
-import 'package:travel_buddy/ui/common/error_state.dart';
-import 'package:travel_buddy/ui/common/modals/destructive_confirm_sheet.dart';
-import 'package:travel_buddy/agent/ui/screens/my_trips/widgets/trip_error_banner.dart';
-import 'package:travel_buddy/agent/ui/screens/trip_map/trip_map_colors.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_bloc.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_error_mapper.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_event.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_state.dart';
+import 'package:pathfinder_albania/logic/locale_logic.dart';
+import 'package:pathfinder_albania/ui/common/centered_box.dart';
+import 'package:pathfinder_albania/ui/common/empty_state.dart';
+import 'package:pathfinder_albania/ui/common/error_state.dart';
+import 'package:pathfinder_albania/ui/common/modals/destructive_confirm_sheet.dart';
+import 'package:pathfinder_albania/agent/ui/screens/my_trips/widgets/trip_error_banner.dart';
+import 'package:pathfinder_albania/agent/ui/screens/trip_map/trip_map_colors.dart';
 
 /// Drops a leading "N day(s) in " or "N-day " prefix from a
 /// server-stored trip title so the card line shows just the

@@ -4,12 +4,12 @@ import 'dart:convert';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/features/artifacts/bloc/artifacts_bloc.dart';
-import 'package:travel_buddy/features/artifacts/bloc/artifacts_state.dart';
-import 'package:travel_buddy/logic/common/http_client.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
-import 'package:travel_buddy/logic/data/destination_type.dart';
-import 'package:travel_buddy/logic/data/highlight_data.dart';
+import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_bloc.dart';
+import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_state.dart';
+import 'package:pathfinder_albania/logic/common/http_client.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/logic/data/destination_type.dart';
+import 'package:pathfinder_albania/logic/data/highlight_data.dart';
 
 HttpResponse _ok(Map<String, dynamic> body) =>
     HttpResponse(statusCode: 200, body: jsonEncode(body));

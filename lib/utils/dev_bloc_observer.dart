@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travel_buddy/utils/dlog.dart';
+import 'package:pathfinder_albania/utils/dlog.dart';
 
 const String _channel = 'bloc';
 

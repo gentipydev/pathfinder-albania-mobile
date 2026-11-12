@@ -1,4 +1,4 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 /// Reusable inline error placeholder. Used at the body level of list-shaped
 /// screens when an initial load failed and there's no usable cached data

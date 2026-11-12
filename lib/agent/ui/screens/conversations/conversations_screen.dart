@@ -1,12 +1,12 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_bloc.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_event.dart';
-import 'package:travel_buddy/agent/logic/buddy/conversations_service.dart';
-import 'package:travel_buddy/ui/common/centered_box.dart';
-import 'package:travel_buddy/ui/common/empty_state.dart';
-import 'package:travel_buddy/ui/common/error_state.dart';
-import 'package:travel_buddy/ui/common/modals/destructive_confirm_sheet.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_bloc.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_event.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/conversations_service.dart';
+import 'package:pathfinder_albania/ui/common/centered_box.dart';
+import 'package:pathfinder_albania/ui/common/empty_state.dart';
+import 'package:pathfinder_albania/ui/common/error_state.dart';
+import 'package:pathfinder_albania/ui/common/modals/destructive_confirm_sheet.dart';
 
 class ConversationsScreen extends StatefulWidget {
   const ConversationsScreen({super.key});

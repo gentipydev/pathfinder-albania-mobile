@@ -6,12 +6,12 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' hide Size;
 // `hide Point`: common_libs re-exports dart:math, whose Point collides with
 // the GeoJSON Point that Mapbox geometries are built from.
-import 'package:travel_buddy/common_libs.dart' hide Point;
-import 'package:travel_buddy/logic/common/platform_info.dart';
-import 'package:travel_buddy/logic/data/destination_data.dart';
-import 'package:travel_buddy/styles/map_style.dart';
-import 'package:travel_buddy/ui/common/controls/app_header.dart';
-import 'package:travel_buddy/ui/common/map_marker.dart';
+import 'package:pathfinder_albania/common_libs.dart' hide Point;
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/logic/data/destination_data.dart';
+import 'package:pathfinder_albania/styles/map_style.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_header.dart';
+import 'package:pathfinder_albania/ui/common/map_marker.dart';
 
 /// Full-screen satellite map centred on a single destination, with one pin.
 ///

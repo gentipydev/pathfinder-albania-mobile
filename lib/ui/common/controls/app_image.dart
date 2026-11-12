@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:image_fade/image_fade.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/retry_image.dart';
-import 'package:travel_buddy/ui/common/controls/app_loading_indicator.dart';
-import 'package:travel_buddy/ui/common/image_skeleton.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/retry_image.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_loading_indicator.dart';
+import 'package:pathfinder_albania/ui/common/image_skeleton.dart';
 
 class AppImage extends StatefulWidget {
   const AppImage({

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_message.dart';
-import 'package:travel_buddy/logic/common/dio_client.dart';
-import 'package:travel_buddy/logic/common/service_exception.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_message.dart';
+import 'package:pathfinder_albania/logic/common/dio_client.dart';
+import 'package:pathfinder_albania/logic/common/service_exception.dart';
 
 /// Lightweight summary returned by GET /conversations.
 class ConversationSummary {

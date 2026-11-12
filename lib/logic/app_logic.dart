@@ -6,14 +6,14 @@ import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' show MapboxOptions;
-import 'package:travel_buddy/agent/agent_module.dart';
-import 'package:travel_buddy/config/env.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_event.dart';
-import 'package:travel_buddy/logic/common/dio_client.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
-import 'package:travel_buddy/ui/common/modals/fullscreen_video_viewer.dart';
-import 'package:travel_buddy/ui/common/utils/page_routes.dart';
+import 'package:pathfinder_albania/agent/agent_module.dart';
+import 'package:pathfinder_albania/config/env.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_event.dart';
+import 'package:pathfinder_albania/logic/common/dio_client.dart';
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/ui/common/modals/fullscreen_video_viewer.dart';
+import 'package:pathfinder_albania/ui/common/utils/page_routes.dart';
 
 class AppLogic {
   Size _appSize = Size.zero;
@@ -56,7 +56,7 @@ class AppLogic {
     }
 
     if (kIsWeb) {
-      debugPrint('Thanks for checking out Travel Buddy on the web!');
+      debugPrint('Thanks for checking out Pathfinder Albania on the web!');
       // Required on web to automatically enable accessibility features
       WidgetsFlutterBinding.ensureInitialized().ensureSemantics();
     }
@@ -81,7 +81,7 @@ class AppLogic {
     // Agent side: restore the auth session and load preferences.
     if (Env.agentEnabled) AgentModule.onBootstrap();
 
-    // Localizations: LocaleLogic resolves from persisted/system locale and
+    // Localizations: LocaleLogic resolves the persisted locale (else English) and
     // returns the code; SettingsBloc adopts it without re-running the
     // destinations/timeline cascade (we call those next, in order).
     final resolvedLocaleCode = await localeLogic.load();

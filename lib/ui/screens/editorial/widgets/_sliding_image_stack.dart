@@ -43,9 +43,11 @@ class _SlidingImageStack extends StatelessWidget {
                 TopRight(
                   child: FractionalTranslation(
                     translation: Offset(0, -.1 + .2 * pctVisible),
+                    // The large slot takes photo-4: in every destination folder it is the bigger file
+                    // (240x408 @1x, 160x248 for photo-3), so it stays sharp and has room to slide.
                     child: buildPhoto(
                       .73,
-                      type.photo3,
+                      type.photo4,
                       Alignment(0, -.3 + .6 * pctVisible),
                     ),
                   ),
@@ -55,7 +57,7 @@ class _SlidingImageStack extends StatelessWidget {
                     translation: Offset(0, -.14 * pctVisible),
                     child: buildPhoto(
                       .45,
-                      type.photo4,
+                      type.photo3,
                       Alignment(0, .3 - .6 * pctVisible),
                       top: false,
                     ),

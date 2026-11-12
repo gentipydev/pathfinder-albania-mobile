@@ -7,12 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_bloc.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_event.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_state.dart';
-import 'package:travel_buddy/logic/destinations_logic.dart';
-import 'package:travel_buddy/logic/locale_logic.dart';
-import 'package:travel_buddy/logic/timeline_logic.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_bloc.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_event.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_state.dart';
+import 'package:pathfinder_albania/logic/destinations_logic.dart';
+import 'package:pathfinder_albania/logic/locale_logic.dart';
+import 'package:pathfinder_albania/logic/timeline_logic.dart';
 
 class _MockLocaleLogic extends Mock implements LocaleLogic {}
 

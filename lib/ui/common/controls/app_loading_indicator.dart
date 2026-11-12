@@ -1,4 +1,4 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 class AppLoadingIndicator extends StatelessWidget {
   const AppLoadingIndicator({super.key, this.value, this.color});

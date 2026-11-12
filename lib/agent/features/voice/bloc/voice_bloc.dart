@@ -4,8 +4,8 @@ import 'dart:math' as math;
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
-import 'package:travel_buddy/agent/features/voice/bloc/voice_event.dart';
-import 'package:travel_buddy/agent/features/voice/bloc/voice_state.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_event.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_state.dart';
 
 /// Bloc replacement for the legacy `VoiceLogic`. Wraps `package:speech_to_text`
 /// to expose continuous-listen dictation as a stream of state updates. Restart

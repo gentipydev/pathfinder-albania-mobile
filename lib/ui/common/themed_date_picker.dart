@@ -1,4 +1,4 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 /// App-themed wrapper around Material's [showDatePicker].
 ///

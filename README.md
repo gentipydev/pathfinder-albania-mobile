@@ -1,6 +1,6 @@
-# Travel Buddy
+# Pathfinder Albania
 
-Travel Buddy is an AI-powered guide to the eight destinations of Albania — Apollonia, Kruja, Gjirokastër, Butrint, Theth, Korça, Berat, and the Albanian Alps. Explore each site through history, photography, artifacts, and a built-in conversational travel assistant tailored to Albania.
+Pathfinder Albania is an AI travel assistant and guide to the eight destinations of Albania — Apollonia, Kruja, Gjirokastër, Butrint, Theth, Korça, Berat, and the Albanian Alps. Explore each site through history, photography, artifacts, and a built-in conversational travel assistant tailored to Albania.
 
 The Flutter app is a rebrand and reimagining of an upstream open-source Flutter template (see [LICENSE](LICENSE)), reworked around Albanian destinations and paired with a custom `travel-buddy-backend`.
 
@@ -47,11 +47,11 @@ The app uses the [Impeller renderer](https://docs.flutter.dev/perf/impeller) by 
 
 ## License
 
-This application is released under the [MIT license](LICENSE), inherited from the upstream MIT-licensed Flutter template. The Travel Buddy rebrand is built on top of that codebase.
+This application is released under the [MIT license](LICENSE), inherited from the upstream MIT-licensed Flutter template. The Pathfinder Albania rebrand is built on top of that codebase.
 
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Credits
 
 - Built on an upstream open-source Flutter template (see [LICENSE](LICENSE)) that provides the original UI, animation, and architecture foundation.
-- Albanian content, AI travel-assistant integration, and the `travel-buddy-backend` service are part of the Travel Buddy project.
+- Albanian content, AI travel-assistant integration, and the `travel-buddy-backend` service are part of the Pathfinder Albania project.

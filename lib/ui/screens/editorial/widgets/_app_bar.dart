@@ -40,52 +40,53 @@ class _AppBar extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             AnimatedSwitcher(
-              duration: $styles.times.med,
-              child: Stack(
-                key: ValueKey(showOverlay),
-                fit: StackFit.expand,
-                children: [
-                  /// Masked image
-                  BottomCenter(
-                    child: SizedBox(
-                      width: showOverlay ? double.infinity : $styles.sizes.maxContentWidth1,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 50),
-                        child:
-                            ClipPath(
-                                  // Switch arch type to Rect if we are showing the title bar
-                                  clipper: showOverlay ? null : ArchClipper(arch),
-                                  child: ValueListenableBuilder<double>(
-                                    valueListenable: scrollPos,
-                                    builder: (_, value, child) {
-                                      double opacity = (.4 + (value / 1500)).clamp(0, 1);
-                                      return ScalingListItem(
-                                        scrollPos: scrollPos,
-                                        child: Image.asset(
-                                          destinationType.photo1,
-                                          fit: BoxFit.cover,
-                                          opacity: AlwaysStoppedAnimation(opacity),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                )
-                                .maybeAnimate(delay: $styles.times.pageTransition + 500.delayMs)
-                                .fadeIn(duration: $styles.times.slow),
+                  duration: $styles.times.med,
+                  child: Stack(
+                    key: ValueKey(showOverlay),
+                    fit: StackFit.expand,
+                    children: [
+                      /// Masked image
+                      BottomCenter(
+                        child: SizedBox(
+                          width: showOverlay ? double.infinity : $styles.sizes.maxContentWidth1,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 50),
+                            child: ClipPath(
+                              // Switch arch type to Rect if we are showing the title bar
+                              clipper: showOverlay ? null : ArchClipper(arch),
+                              child: ValueListenableBuilder<double>(
+                                valueListenable: scrollPos,
+                                builder: (_, value, child) {
+                                  double opacity = (.4 + (value / 1500)).clamp(0, 1);
+                                  return ScalingListItem(
+                                    scrollPos: scrollPos,
+                                    child: Image.asset(
+                                      destinationType.photo1,
+                                      fit: BoxFit.cover,
+                                      opacity: AlwaysStoppedAnimation(opacity),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
 
-                  /// Colored overlay
-                  if (showOverlay) ...[
-                    AnimatedContainer(
-                      duration: $styles.times.med,
-                      color: destinationType.bgColor.withValues(alpha: showOverlay ? .8 : 0),
-                    ),
-                  ],
-                ],
-              ),
-            ),
+                      /// Colored overlay
+                      if (showOverlay) ...[
+                        AnimatedContainer(
+                          duration: $styles.times.med,
+                          color: destinationType.bgColor.withValues(alpha: showOverlay ? .8 : 0),
+                        ),
+                      ],
+                    ],
+                  ),
+                )
+                // The delayed intro fade wraps the switcher so it plays once when the page opens. Inside the
+                // switched child it replayed on every arch <-> overlay swap, hiding the photo for ~0.7s.
+                .maybeAnimate(delay: $styles.times.pageTransition + 500.delayMs)
+                .fadeIn(duration: $styles.times.slow),
 
             /// Circular Titlebar
             BottomCenter(

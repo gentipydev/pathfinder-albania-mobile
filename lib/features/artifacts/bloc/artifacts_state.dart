@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:travel_buddy/logic/data/artifact_data.dart';
-import 'package:travel_buddy/logic/data/destination_artifacts.dart';
-import 'package:travel_buddy/logic/data/destination_type.dart';
+import 'package:pathfinder_albania/logic/data/artifact_data.dart';
+import 'package:pathfinder_albania/logic/data/destination_artifacts.dart';
+import 'package:pathfinder_albania/logic/data/destination_type.dart';
 
 class ArtifactsState extends Equatable {
   const ArtifactsState({

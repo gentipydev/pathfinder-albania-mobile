@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/assets.dart';
-import 'package:travel_buddy/logic/common/http_client.dart';
-import 'package:travel_buddy/logic/data/destination_type.dart';
-import 'package:travel_buddy/logic/destination_photos_logic.dart';
+import 'package:pathfinder_albania/assets.dart';
+import 'package:pathfinder_albania/logic/common/http_client.dart';
+import 'package:pathfinder_albania/logic/data/destination_type.dart';
+import 'package:pathfinder_albania/logic/destination_photos_logic.dart';
 
 void main() {
   const type = DestinationType.butrint;

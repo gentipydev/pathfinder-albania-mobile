@@ -1,5 +1,5 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_builder.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_builder.dart';
 
 /// Combines [Align], [FractionalBoxWithMinSize], [Image] and [Transform.translate]
 /// to standardize behavior across the various destination illustrations
@@ -60,6 +60,12 @@ class IllustrationPiece extends StatefulWidget {
 }
 
 class _IllustrationPieceState extends State<IllustrationPiece> {
+  /// Aspect ratios of pieces that were already decoded, shared by every instance.
+  /// A piece that was shown once (e.g. on Home) lays out at its real size on the very first frame of
+  /// the next screen. Without this, the LayoutBuilder below is re-keyed when the async decode lands,
+  /// which remounts the destination Hero mid-flight, so the flight fades out instead of landing.
+  static final _aspectRatios = <String, double>{};
+
   double? aspectRatio = 1;
   bool aspectRatioLoadCalled = false;
 
@@ -69,14 +75,17 @@ class _IllustrationPieceState extends State<IllustrationPiece> {
     final type = destinationBuilder.widget.destinationType;
     final imgPath = '${type.assetPath}/${widget.fileName}';
     // Dynamically determine the aspect ratio of the image, so we can more easily position it
-    if (!aspectRatioLoadCalled) {
-      setState(
-        () => aspectRatioLoadCalled = true,
-      ); // indicates load has started, so we don't run twice
+    final cachedAspectRatio = _aspectRatios[imgPath];
+    if (cachedAspectRatio != null) {
+      aspectRatio = cachedAspectRatio;
+    } else if (!aspectRatioLoadCalled) {
+      aspectRatioLoadCalled = true; // indicates load has started, so we don't run twice
       rootBundle.load(imgPath).then((img) async {
-        var image = await decodeImageFromList(img.buffer.asUint8List());
+        final image = await decodeImageFromList(img.buffer.asUint8List());
+        _aspectRatios[imgPath] = image.width / image.height;
+        image.dispose();
         if (!mounted) return;
-        setState(() => aspectRatio = image.width / image.height);
+        setState(() => aspectRatio = _aspectRatios[imgPath]);
       });
     }
     return Align(

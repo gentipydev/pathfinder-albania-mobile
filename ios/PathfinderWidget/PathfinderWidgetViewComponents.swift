@@ -5,7 +5,7 @@ import SwiftUI
 // Loads a default image from the flutter assets bundle,
 // or  displays a base64 encoded image that has been saved from the flutter application
 struct BgImage : View {
-    var entry: TravelBuddyTimelineEntry
+    var entry: PathfinderTimelineEntry
     var body: some View {
         var uiImage:UIImage?;
         // If there is no saved imageData, use the default bg image

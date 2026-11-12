@@ -1,5 +1,5 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/app_scroll_behavior.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/app_scroll_behavior.dart';
 
 class DestinationsAppScaffold extends StatelessWidget {
   const DestinationsAppScaffold({super.key, required this.child});
@@ -12,14 +12,14 @@ class DestinationsAppScaffold extends StatelessWidget {
     // Listen to the device size, and update AppStyle when it changes
     final mq = MediaQuery.of(context);
     appLogic.handleAppSizeChanged(mq.size);
-    // Set default timing for animations in the app
-    Animate.defaultDuration = _style.times.fast;
     // Create a style object that will be passed down the widget tree
     _style = AppStyle(
       screenSize: context.sizePx,
       disableAnimations: mq.disableAnimations,
       highContrast: mq.highContrast,
     );
+    // Set default timing for animations in the app (from the new style, so reduce-motion applies on the first build)
+    Animate.defaultDuration = _style.times.fast;
     return KeyedSubtree(
       key: ValueKey($styles.scale),
       child: Theme(

@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/logic/common/retry_interceptor.dart';
+import 'package:pathfinder_albania/logic/common/retry_interceptor.dart';
 
 /// HttpClientAdapter stub that replays a queued list of responses (or throws)
 /// and counts how many times it was hit, so we can assert retry behavior

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
 
 /// Inline 16:9 static-map preview rendered in an assistant chat bubble after
 /// a streamed itinerary has been saved as a Trip. The image URL is a Mapbox

@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/app_icons.dart';
-import 'package:travel_buddy/ui/common/controls/app_header.dart';
-import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
-import 'package:travel_buddy/ui/common/remote_photo.dart';
-import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/app_icons.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_header.dart';
+import 'package:pathfinder_albania/ui/common/fullscreen_keyboard_listener.dart';
+import 'package:pathfinder_albania/ui/common/remote_photo.dart';
+import 'package:pathfinder_albania/ui/common/utils/app_haptics.dart';
 
 class FullscreenUrlImgViewer extends StatefulWidget {
   const FullscreenUrlImgViewer({super.key, required this.urls, this.thumbUrls, this.index = 0});

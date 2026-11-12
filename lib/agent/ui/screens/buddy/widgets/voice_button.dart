@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/features/voice/bloc/voice_bloc.dart';
-import 'package:travel_buddy/agent/features/voice/bloc/voice_event.dart';
-import 'package:travel_buddy/agent/features/voice/bloc/voice_state.dart';
-import 'package:travel_buddy/logic/locale_logic.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_bloc.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_event.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_state.dart';
+import 'package:pathfinder_albania/logic/locale_logic.dart';
 
 /// Tap-toggle mic button. Tap to start listening; tap again (or wait for the
 /// recognizer's silence cutoff + auto-restart cycle) to stop. The screen

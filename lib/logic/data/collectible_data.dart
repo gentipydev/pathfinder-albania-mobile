@@ -1,5 +1,5 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/data/artifact_data.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/data/artifact_data.dart';
 
 class CollectibleState {
   static const int lost = 0;

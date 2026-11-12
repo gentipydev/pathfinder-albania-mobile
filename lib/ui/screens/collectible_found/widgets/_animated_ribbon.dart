@@ -39,6 +39,9 @@ class _AnimatedRibbon extends StatelessWidget {
     Widget end = Image.asset(ImagePaths.ribbonEnd, height: height);
     if (flip) end = Transform.scale(scaleX: -1, child: end);
     double m = flip ? 1 : -1;
+    // With reduce-motion the move effect never runs, so place the ends at their final spot directly
+    // (otherwise they stay hidden behind the ribbon).
+    if ($styles.disableAnimations) return Transform.translate(offset: Offset(m * 32, 10), child: end);
     return end.maybeAnimate().move(
       begin: Offset(m * 8, 2),
       end: Offset(m * 32, 10),

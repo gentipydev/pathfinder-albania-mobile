@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:travel_buddy/logic/data/destination_type.dart';
-import 'package:travel_buddy/logic/destinations_logic.dart';
-import 'package:travel_buddy/logic/locale_logic.dart';
-import 'package:travel_buddy/ui/common/destinations_timeline_builder.dart';
+import 'package:pathfinder_albania/logic/data/destination_type.dart';
+import 'package:pathfinder_albania/logic/destinations_logic.dart';
+import 'package:pathfinder_albania/logic/locale_logic.dart';
+import 'package:pathfinder_albania/ui/common/destinations_timeline_builder.dart';
 
 void main() {
   setUpAll(() async {

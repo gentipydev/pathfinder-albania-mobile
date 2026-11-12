@@ -4,12 +4,12 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:travel_buddy/features/artifacts/bloc/artifacts_bloc.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_event.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_state.dart';
-import 'package:travel_buddy/logic/common/save_load_mixin.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
-import 'package:travel_buddy/logic/native_widget_service.dart';
+import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_bloc.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_event.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_state.dart';
+import 'package:pathfinder_albania/logic/common/save_load_mixin.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/logic/native_widget_service.dart';
 
 /// Persistent collection state — which collectibles the user has
 /// discovered, explored, or not yet found.

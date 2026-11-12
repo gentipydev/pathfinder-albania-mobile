@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/controls/trackpad_listener.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/controls/trackpad_listener.dart';
 
 class EightWaySwipeDetector extends StatefulWidget {
   const EightWaySwipeDetector({

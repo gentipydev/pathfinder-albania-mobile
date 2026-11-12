@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_event.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_state.dart';
-import 'package:travel_buddy/logic/common/save_load_mixin.dart';
-import 'package:travel_buddy/logic/destinations_logic.dart';
-import 'package:travel_buddy/logic/locale_logic.dart';
-import 'package:travel_buddy/logic/timeline_logic.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_event.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_state.dart';
+import 'package:pathfinder_albania/logic/common/save_load_mixin.dart';
+import 'package:pathfinder_albania/logic/destinations_logic.dart';
+import 'package:pathfinder_albania/logic/locale_logic.dart';
+import 'package:pathfinder_albania/logic/timeline_logic.dart';
 
 /// Persistent app-settings state — onboarding flag, locale and last-viewed
 /// destination index.

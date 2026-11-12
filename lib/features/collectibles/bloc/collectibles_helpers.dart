@@ -1,5 +1,5 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
 
 /// Returns the first discovered collectible by `destinationsLogic.all`
 /// order, or null if none have been discovered.

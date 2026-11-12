@@ -3,9 +3,9 @@ import SwiftUI
 import Intents
 
 /// Defines the view / layout of the widget
-struct TravelBuddyWidgetView : View {
+struct PathfinderWidgetView : View {
     @Environment(\.widgetFamily) var family: WidgetFamily
-    var entry: TravelBuddyTimelineProvider.Entry
+    var entry: PathfinderTimelineProvider.Entry
     var body: some View {
         let showTitle = family == .systemLarge
         let showIcon = family != .systemSmall
@@ -14,7 +14,7 @@ struct TravelBuddyWidgetView : View {
             ? min(1, Double(entry.discoveredCount) / Double(entry.totalCount))
             : 0
         let iconImage = FlutterImages.icon;
-        let title = entry.title.isEmpty ? "Travel Buddy" : entry.title;
+        let title = entry.title.isEmpty ? "Pathfinder Albania" : entry.title;
         let subTitle = entry.subTitle.isEmpty ? "Search for hidden artifacts" : entry.subTitle;
         
         let content = VStack{
@@ -71,7 +71,7 @@ struct TravelBuddyWidgetView : View {
         // Ios requires that widgets have a background color
         .widgetBackground(Color.darkGrey)
         // Deeplink into collections view when tapped
-        .widgetURL(URL(string: "travelbuddy:///home/collection"))
+        .widgetURL(URL(string: "pathfinderalbania:///home/collection"))
         
     }
 }

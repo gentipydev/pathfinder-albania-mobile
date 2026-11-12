@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="88 97 848 711" width="848" height="711">
+  <!-- Pathfinder Albania mark: an eight-point compass star above two peaks,
+       with a trail cut out of the mountains (transparent, so it works on any
+       background). Star geometry is the app's compass-simple.svg scaled x12. -->
+  <defs>
+    <mask id="trail" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
+      <rect width="1024" height="1024" fill="#fff"/>
+      <path d="M470 548 C430 610 560 640 520 690 S420 760 470 800" fill="none" stroke="#000" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <g id="star" fill="#E4935D" transform="translate(350.9 90.7) scale(13)">
+    <path d="m12.3923 1.09937 1.2 10.11373 10.1137 1.2-10.1137 1.2-1.2 10.1137-1.2-10.1137-10.11369-1.2 10.11369-1.2z"/>
+    <path d="m18.3923 6.39233-5.1514 5.99997 5.1514 6-6-5.1514-5.99997 5.1514 5.15147-6-5.15147-5.99997 5.99997 5.15147z"/>
+  </g>
+  <polygon id="peaks" points="96,800 372,420 470,548 640,356 928,800" fill="#F8ECE5" mask="url(#trail)"/>
+</svg>

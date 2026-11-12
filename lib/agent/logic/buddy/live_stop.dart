@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
 
 /// One stop streamed live from Claude's `emit_itinerary` tool call, geocoded
 /// server-side and shipped as an `event: itinerary_stop` SSE frame while the

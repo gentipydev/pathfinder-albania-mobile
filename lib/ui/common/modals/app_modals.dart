@@ -1,5 +1,5 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/themed_text.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/themed_text.dart';
 
 Future<bool?> showModal(BuildContext context, {required Widget child}) async {
   return await showModalBottomSheet(

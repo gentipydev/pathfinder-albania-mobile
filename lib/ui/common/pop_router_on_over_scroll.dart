@@ -1,4 +1,4 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 class PopRouterOnOverScroll extends StatefulWidget {
   const PopRouterOnOverScroll({super.key, required this.child, required this.controller});

@@ -1,9 +1,9 @@
 import 'dart:math' as math;
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/logic/buddy/place_card.dart';
-import 'package:travel_buddy/agent/utils/open_in_maps.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/place_card.dart';
+import 'package:pathfinder_albania/agent/utils/open_in_maps.dart';
 
 class PlaceCardWidget extends StatefulWidget {
   const PlaceCardWidget({super.key, required this.place});

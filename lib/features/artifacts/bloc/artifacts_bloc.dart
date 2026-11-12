@@ -2,15 +2,15 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travel_buddy/config/env.dart';
-import 'package:travel_buddy/features/artifacts/bloc/artifacts_event.dart';
-import 'package:travel_buddy/features/artifacts/bloc/artifacts_state.dart';
-import 'package:travel_buddy/logic/common/http_client.dart';
-import 'package:travel_buddy/logic/data/artifact_data.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
-import 'package:travel_buddy/logic/data/destination_artifacts.dart';
-import 'package:travel_buddy/logic/data/destination_type.dart';
-import 'package:travel_buddy/logic/data/highlight_data.dart';
+import 'package:pathfinder_albania/config/env.dart';
+import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_event.dart';
+import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_state.dart';
+import 'package:pathfinder_albania/logic/common/http_client.dart';
+import 'package:pathfinder_albania/logic/data/artifact_data.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/logic/data/destination_artifacts.dart';
+import 'package:pathfinder_albania/logic/data/destination_type.dart';
+import 'package:pathfinder_albania/logic/data/highlight_data.dart';
 
 typedef ArtifactsHttpFetcher =
     Future<HttpResponse> Function(String url, {Map<String, String>? headers});

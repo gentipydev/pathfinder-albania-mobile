@@ -6,19 +6,19 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_bloc.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_event.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_state.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_bloc.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_event.dart';
-import 'package:travel_buddy/agent/features/tts/bloc/tts_bloc.dart';
-import 'package:travel_buddy/agent/features/tts/bloc/tts_event.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_message.dart';
-import 'package:travel_buddy/agent/logic/buddy/live_trip.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_service.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_stream_event.dart';
-import 'package:travel_buddy/agent/logic/buddy/conversations_service.dart';
-import 'package:travel_buddy/utils/dlog.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_bloc.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_event.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_state.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_bloc.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_event.dart';
+import 'package:pathfinder_albania/agent/features/tts/bloc/tts_bloc.dart';
+import 'package:pathfinder_albania/agent/features/tts/bloc/tts_event.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_message.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/live_trip.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_service.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_stream_event.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/conversations_service.dart';
+import 'package:pathfinder_albania/utils/dlog.dart';
 
 /// Bloc replacement for the legacy `BuddyLogic`. Owns chat history, the SSE
 /// pump (with 401 token refresh), and the refine-with-buddy flow.

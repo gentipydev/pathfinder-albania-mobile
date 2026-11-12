@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "travel-buddy",
+            "name": "pathfinder-albania",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "travel-buddy (profile mode)",
+            "name": "pathfinder-albania (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "travel-buddy (release mode)",
+            "name": "pathfinder-albania (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

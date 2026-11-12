@@ -11,19 +11,19 @@ import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' hide Size;
 // `hide Point`: common_libs re-exports dart:math, whose Point collides with
 // the GeoJSON Point every Mapbox geometry is built from. Nothing here wants
 // the dart:math one.
-import 'package:travel_buddy/common_libs.dart' hide Point;
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_route.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_stop.dart';
-import 'package:travel_buddy/logic/common/concurrency.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
-import 'package:travel_buddy/styles/map_style.dart';
-import 'package:travel_buddy/ui/common/controls/app_header.dart';
-import 'package:travel_buddy/ui/common/map_marker.dart';
-import 'package:travel_buddy/agent/ui/common/place_photo_placeholder.dart';
-import 'package:travel_buddy/agent/ui/screens/trip_map/trip_map_colors.dart';
-import 'package:travel_buddy/agent/utils/open_in_maps.dart';
-import 'package:travel_buddy/agent/utils/polyline_decoder.dart';
+import 'package:pathfinder_albania/common_libs.dart' hide Point;
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_route.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_stop.dart';
+import 'package:pathfinder_albania/logic/common/concurrency.dart';
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/styles/map_style.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_header.dart';
+import 'package:pathfinder_albania/ui/common/map_marker.dart';
+import 'package:pathfinder_albania/agent/ui/common/place_photo_placeholder.dart';
+import 'package:pathfinder_albania/agent/ui/screens/trip_map/trip_map_colors.dart';
+import 'package:pathfinder_albania/agent/utils/open_in_maps.dart';
+import 'package:pathfinder_albania/agent/utils/polyline_decoder.dart';
 
 /// Phases of the entrance choreography. Drives [_TripMapScreenState._phase].
 ///

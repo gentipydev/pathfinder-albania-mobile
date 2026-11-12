@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
 
 class AppScrollBehavior extends ScrollBehavior {
   @override

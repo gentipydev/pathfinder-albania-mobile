@@ -5,16 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 import 'package:supabase_flutter/supabase_flutter.dart' as sb show AuthState;
-import 'package:travel_buddy/agent/features/auth/bloc/auth_event.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_state.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_bloc.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_event.dart';
-import 'package:travel_buddy/agent/features/preferences/bloc/preferences_bloc.dart';
-import 'package:travel_buddy/agent/features/preferences/bloc/preferences_event.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_bloc.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_event.dart';
-import 'package:travel_buddy/agent/services/user_service.dart';
-import 'package:travel_buddy/utils/dlog.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_event.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_state.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_bloc.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_event.dart';
+import 'package:pathfinder_albania/agent/features/preferences/bloc/preferences_bloc.dart';
+import 'package:pathfinder_albania/agent/features/preferences/bloc/preferences_event.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_bloc.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_event.dart';
+import 'package:pathfinder_albania/agent/services/user_service.dart';
+import 'package:pathfinder_albania/utils/dlog.dart';
 
 /// Reactive auth state for the app. Replaces the legacy `AuthLogic`.
 ///

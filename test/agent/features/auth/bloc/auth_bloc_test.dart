@@ -5,10 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 import 'package:supabase_flutter/supabase_flutter.dart' as sb show AuthState;
-import 'package:travel_buddy/agent/features/auth/bloc/auth_bloc.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_event.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_state.dart';
-import 'package:travel_buddy/agent/services/user_service.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_bloc.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_event.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_state.dart';
+import 'package:pathfinder_albania/agent/services/user_service.dart';
 
 class _MockSupabaseClient extends Mock implements SupabaseClient {}
 

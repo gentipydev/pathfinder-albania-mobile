@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_bloc.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_event.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_state.dart';
-import 'package:travel_buddy/agent/ui/screens/buddy/buddy_screen.dart';
-import 'package:travel_buddy/ui/screens/home/destinations_home_screen.dart';
-import 'package:travel_buddy/agent/ui/screens/my_trips/my_trips_screen.dart';
-import 'package:travel_buddy/agent/ui/screens/profile/profile_screen.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_bloc.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_event.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_state.dart';
+import 'package:pathfinder_albania/agent/ui/screens/buddy/buddy_screen.dart';
+import 'package:pathfinder_albania/ui/screens/home/destinations_home_screen.dart';
+import 'package:pathfinder_albania/agent/ui/screens/my_trips/my_trips_screen.dart';
+import 'package:pathfinder_albania/agent/ui/screens/profile/profile_screen.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -81,8 +81,8 @@ class _AppShellState extends State<AppShell> {
                   NavigationDestination(
                     icon: Icon(Icons.chat_bubble_outline, color: $styles.colors.greyMedium),
                     selectedIcon: Icon(Icons.chat_bubble, color: $styles.colors.accent1),
-                    label: 'Buddy',
-                    tooltip: 'Travel buddy chat',
+                    label: 'Pathfinder',
+                    tooltip: 'Pathfinder chat',
                   ),
                   NavigationDestination(
                     icon: Icon(Icons.luggage_outlined, color: $styles.colors.greyMedium),

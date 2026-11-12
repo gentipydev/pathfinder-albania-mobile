@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_route.dart';
-import 'package:travel_buddy/agent/logic/buddy/chat_stream_event.dart';
-import 'package:travel_buddy/agent/logic/buddy/live_stop.dart';
-import 'package:travel_buddy/logic/common/dio_client.dart';
-import 'package:travel_buddy/utils/dlog.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_route.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/chat_stream_event.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/live_stop.dart';
+import 'package:pathfinder_albania/logic/common/dio_client.dart';
+import 'package:pathfinder_albania/utils/dlog.dart';
 
 const String _channel = 'chat.stream';
 

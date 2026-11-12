@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/utils/duration_utils.dart';
 
 export 'colors.dart';
 

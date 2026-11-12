@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/common/utils/context_utils.dart';
-import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/common/utils/context_utils.dart';
+import 'package:pathfinder_albania/ui/common/utils/duration_utils.dart';
 
-// TODO: Clouds should fade in and out
 // Shows a set of clouds that animated onto stage.
 // When value-key is changed, a new set of clouds will animate into place and the old ones will animate out.
 // Uses a random seed system, to make sure we get the same set of clouds for each destination, without actually having to hand-position them.
@@ -70,8 +69,10 @@ class _AnimatedCloudsState extends State<AnimatedClouds> with SingleTickerProvid
   Widget build(BuildContext context) {
     // Old clouds animate from 0 to startOffset, new clouds do the opposite.
     Widget buildCloud(_Cloud c, {required bool isOld, required int startOffset}) {
-      // Use a positive, or negative start offset, based on index
-      final stOffset = _clouds.indexOf(c) % 2 == 0 ? -startOffset : startOffset;
+      // Use a positive, or negative start offset, based on index (within the cloud's own set, so
+      // outgoing clouds alternate sides too and each lane keeps drifting the same way)
+      final index = (isOld ? _oldClouds : _clouds).indexOf(c);
+      final stOffset = index % 2 == 0 ? -startOffset : startOffset;
       // If old, we will end at the stOffset and start at 0, if new, start at stOffset, and end at 0
       double curvedValue = Curves.easeOut.transform(_anim.value);
       return Positioned(

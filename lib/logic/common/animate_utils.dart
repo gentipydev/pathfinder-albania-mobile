@@ -1,4 +1,4 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 // ignore: must_be_immutable
 class NeverAnimate extends Animate {

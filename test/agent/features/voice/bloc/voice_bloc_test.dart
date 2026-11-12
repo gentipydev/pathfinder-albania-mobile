@@ -4,9 +4,9 @@ import 'package:mocktail/mocktail.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
-import 'package:travel_buddy/agent/features/voice/bloc/voice_bloc.dart';
-import 'package:travel_buddy/agent/features/voice/bloc/voice_event.dart';
-import 'package:travel_buddy/agent/features/voice/bloc/voice_state.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_bloc.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_event.dart';
+import 'package:pathfinder_albania/agent/features/voice/bloc/voice_state.dart';
 
 class _MockStt extends Mock implements stt.SpeechToText {}
 

@@ -1,13 +1,13 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/animate_utils.dart';
-import 'package:travel_buddy/logic/data/artifact_data.dart';
-import 'package:travel_buddy/ui/common/compass_divider.dart';
-import 'package:travel_buddy/ui/common/controls/app_header.dart';
-import 'package:travel_buddy/ui/common/controls/app_loading_indicator.dart';
-import 'package:travel_buddy/ui/common/gradient_container.dart';
-import 'package:travel_buddy/ui/common/modals/fullscreen_url_img_viewer.dart';
-import 'package:travel_buddy/ui/common/remote_photo.dart';
-import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/animate_utils.dart';
+import 'package:pathfinder_albania/logic/data/artifact_data.dart';
+import 'package:pathfinder_albania/ui/common/compass_divider.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_header.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_loading_indicator.dart';
+import 'package:pathfinder_albania/ui/common/gradient_container.dart';
+import 'package:pathfinder_albania/ui/common/modals/fullscreen_url_img_viewer.dart';
+import 'package:pathfinder_albania/ui/common/remote_photo.dart';
+import 'package:pathfinder_albania/ui/common/utils/duration_utils.dart';
 
 part 'widgets/_artifact_image_btn.dart';
 part 'widgets/_info_column.dart';

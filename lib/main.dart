@@ -4,24 +4,24 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:travel_buddy/agent/agent_module.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/config/env.dart';
-import 'package:travel_buddy/features/artifacts/bloc/artifacts_bloc.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_bloc.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_state.dart';
-import 'package:travel_buddy/l10n/app_localizations.dart';
-import 'package:travel_buddy/logic/locale_logic.dart';
-import 'package:travel_buddy/logic/native_widget_service.dart';
-import 'package:travel_buddy/logic/timeline_logic.dart';
-import 'package:travel_buddy/logic/destination_photos_logic.dart';
-import 'package:travel_buddy/logic/destinations_logic.dart';
-import 'package:travel_buddy/ui/common/app_shortcuts.dart';
-import 'package:travel_buddy/utils/dev_bloc_observer.dart';
-import 'package:travel_buddy/utils/sentry_scrubber.dart';
-import 'package:travel_buddy/utils/url_strategy_native.dart'
-    if (dart.library.js_interop) 'package:travel_buddy/utils/url_strategy_web.dart';
+import 'package:pathfinder_albania/agent/agent_module.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/config/env.dart';
+import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_bloc.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_bloc.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_bloc.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_state.dart';
+import 'package:pathfinder_albania/l10n/app_localizations.dart';
+import 'package:pathfinder_albania/logic/locale_logic.dart';
+import 'package:pathfinder_albania/logic/native_widget_service.dart';
+import 'package:pathfinder_albania/logic/timeline_logic.dart';
+import 'package:pathfinder_albania/logic/destination_photos_logic.dart';
+import 'package:pathfinder_albania/logic/destinations_logic.dart';
+import 'package:pathfinder_albania/ui/common/app_shortcuts.dart';
+import 'package:pathfinder_albania/utils/dev_bloc_observer.dart';
+import 'package:pathfinder_albania/utils/sentry_scrubber.dart';
+import 'package:pathfinder_albania/utils/url_strategy_native.dart'
+    if (dart.library.js_interop) 'package:pathfinder_albania/utils/url_strategy_web.dart';
 
 void main() async {
   // Path URLs (no `/#/`) on web; no-op elsewhere. Must run before the router

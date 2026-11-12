@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:travel_buddy/utils/sentry_scrubber.dart';
+import 'package:pathfinder_albania/utils/sentry_scrubber.dart';
 
 void main() {
   group('scrubSentryEvent — robustness audit (2026-05-21)', () {

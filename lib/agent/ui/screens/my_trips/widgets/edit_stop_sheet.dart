@@ -1,6 +1,6 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_stop.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_stop.dart';
 
 /// Modal bottom sheet for both adding a new stop and editing an existing
 /// one. Returns a JSON-shaped Map ready to send to the backend, or `null`

@@ -44,7 +44,7 @@ class LocationService {
     };
   }
 
-  /// Opens the OS app-permission page for Travel Buddy (used when location
+  /// Opens the OS app-permission page for Pathfinder Albania (used when location
   /// access is `deniedForever`).
   Future<bool> openAppSettings() => Geolocator.openAppSettings();
 

@@ -1,6 +1,6 @@
 {
-    "name": "Travel Buddy",
-    "short_name": "Travel Buddy",
+    "name": "Pathfinder Albania",
+    "short_name": "Pathfinder",
     "id": "/",
     "start_url": "/",
     "scope": "/",
@@ -10,7 +10,7 @@
     "display": "standalone",
     "background_color": "#1e1b18",
     "theme_color": "#1e1b18",
-    "description": "Travel Buddy is your AI-powered guide to the eight destinations of Albania.",
+    "description": "Pathfinder Albania is your AI travel assistant and guide to the eight destinations of Albania.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:travel_buddy/agent/logic/preferences/user_preferences.dart';
+import 'package:pathfinder_albania/agent/logic/preferences/user_preferences.dart';
 
 class PreferencesState extends Equatable {
   const PreferencesState({

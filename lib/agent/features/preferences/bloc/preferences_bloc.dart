@@ -4,9 +4,9 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:travel_buddy/agent/features/preferences/bloc/preferences_event.dart';
-import 'package:travel_buddy/agent/features/preferences/bloc/preferences_state.dart';
-import 'package:travel_buddy/agent/logic/preferences/preferences_service.dart';
+import 'package:pathfinder_albania/agent/features/preferences/bloc/preferences_event.dart';
+import 'package:pathfinder_albania/agent/features/preferences/bloc/preferences_state.dart';
+import 'package:pathfinder_albania/agent/logic/preferences/preferences_service.dart';
 
 /// Reactive user-preferences state. Replaces the legacy `PreferencesLogic`.
 ///

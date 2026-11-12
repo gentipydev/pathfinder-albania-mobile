@@ -1,10 +1,10 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_bloc.dart';
-import 'package:travel_buddy/agent/features/auth/bloc/auth_event.dart';
-import 'package:travel_buddy/agent/services/user_service.dart';
-import 'package:travel_buddy/ui/common/centered_box.dart';
-import 'package:travel_buddy/agent/ui/screens/profile/widgets/delete_account_sheet.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_bloc.dart';
+import 'package:pathfinder_albania/agent/features/auth/bloc/auth_event.dart';
+import 'package:pathfinder_albania/agent/services/user_service.dart';
+import 'package:pathfinder_albania/ui/common/centered_box.dart';
+import 'package:pathfinder_albania/agent/ui/screens/profile/widgets/delete_account_sheet.dart';
 
 class ProfileScreen extends StatefulWidget with GetItStatefulWidgetMixin {
   ProfileScreen({super.key});

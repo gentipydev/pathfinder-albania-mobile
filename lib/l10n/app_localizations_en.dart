@@ -148,23 +148,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fullscreenImageViewerSemanticFull => 'full screen image, no description available';
 
   @override
-  String get introTitleJourney => 'Step into the past';
+  String get introTitleWelcome => 'Meet Pathfinder Albania';
 
   @override
-  String get introDescriptionNavigate =>
-      'Three thousand years of Albanian history, from Illyrian hill forts to Ottoman bazaars.';
+  String get introDescWelcome =>
+      'Your AI travel assistant for Albania, from the Ionian coast to the Accursed Mountains.';
 
   @override
-  String get introTitleExplore => 'Explore Albania';
+  String get introTitleExplore => 'Explore eight destinations';
 
   @override
-  String get introDescriptionUncover => 'Ancient cities, castle towns and mountain valleys in eight destinations.';
+  String get introDescExplore =>
+      'Ancient cities, castle towns and mountain valleys, each with its story, photos and timeline.';
 
   @override
-  String get introTitleDiscover => 'Find hidden artifacts';
+  String get introTitleStory => 'Three thousand years of story';
 
   @override
-  String get introDescriptionLearn => 'Discover objects from every era and build your own collection.';
+  String get introDescStory =>
+      'Walk the timeline from Illyrian hill forts to Ottoman bazaars and collect hidden artifacts on the way.';
+
+  @override
+  String get introTitleAsk => 'Ask, plan, go';
+
+  @override
+  String get introDescAsk =>
+      'Chat with Pathfinder to plan an itinerary, find places and save trips. It knows Albania like a local.';
+
+  @override
+  String get introSkip => 'Skip';
 
   @override
   String get introSemanticNavigate => 'Navigate';
@@ -176,7 +188,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get introSemanticEnterApp => 'Enter the app';
 
   @override
-  String get introSemanticAppName => 'Travel Buddy';
+  String get appName => 'Pathfinder Albania';
+
+  @override
+  String get appTagline => 'AI travel assistant for Albania';
 
   @override
   String photoGallerySemanticFocus(Object photoIndex, Object photoTotal) {
@@ -1318,7 +1333,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authPasswordRequired => 'Password is required';
 
   @override
-  String get buddyHeaderTitle => 'Travel Buddy';
+  String get buddyHeaderTitle => 'Pathfinder';
 
   @override
   String get buddyHeaderSubtitle => 'Your Albania-native AI guide';
@@ -1330,7 +1345,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get buddyEmptySubtitle => 'Ask me about places, food, budgets, or itineraries in Albania.';
 
   @override
-  String get buddyComposerHint => 'Message your travel buddy…';
+  String get buddyComposerHint => 'Message Pathfinder…';
 
   @override
   String get buddySuggestionTirana => 'Plan a 3-day Tirana trip';
@@ -1354,16 +1369,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get buddyItineraryUnstructured => 'Couldn\'t structure that itinerary — your reply is above.';
 
   @override
-  String get refineWithBuddyButton => 'Refine with Buddy';
+  String get refineWithBuddyButton => 'Refine with Pathfinder';
 
   @override
-  String get refineComposerHint => 'Ask Buddy to refine this trip…';
+  String get refineComposerHint => 'Ask Pathfinder to refine this trip…';
 
   @override
   String get refineEmptyTitle => 'What should we change?';
 
   @override
-  String get refineEmptySubtitle => 'Ask Buddy to tweak this trip — shorten a day, swap a stop, add something new.';
+  String get refineEmptySubtitle =>
+      'Ask Pathfinder to tweak this trip — shorten a day, swap a stop, add something new.';
 
   @override
   String get refineSuggestionShortenDay => 'Shorten day 2';
@@ -1555,7 +1571,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get preferencesPersonaInfoBody =>
-      'Pick the persona that feels closest to you right now. It\'s just the starting point — the more you chat with Travel Buddy, the better it understands how you actually travel. Your budget, your pace, what you skip, what you never miss. Over time, recommendations stop feeling generic and start feeling like they were made for you.';
+      'Pick the persona that feels closest to you right now. It\'s just the starting point — the more you chat with Pathfinder, the better it understands how you actually travel. Your budget, your pace, what you skip, what you never miss. Over time, recommendations stop feeling generic and start feeling like they were made for you.';
 
   @override
   String get preferencesPersonaInfoDismiss => 'Got it';
@@ -1729,7 +1745,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myTripsEmptyTitle => 'No saved trips yet';
 
   @override
-  String get myTripsEmptySubtitle => 'Plan one with Buddy and tap Save itinerary.';
+  String get myTripsEmptySubtitle => 'Plan one with Pathfinder and tap Save itinerary.';
 
   @override
   String get myTripsDatesNotSet => 'Dates not set';
@@ -1812,7 +1828,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripDetailAutoTrackPromptBody =>
-      'Travel Buddy can check off stops automatically when you\'re nearby during their scheduled time. Location stays on your device.';
+      'Pathfinder Albania can check off stops automatically when you\'re nearby during their scheduled time. Location stays on your device.';
 
   @override
   String get tripDetailAutoTrackEnable => 'Enable';
@@ -1835,7 +1851,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripDetailAutoTrackErrorBlockedBody =>
-      'Location access is currently blocked. Open Settings to allow it for Travel Buddy.';
+      'Location access is currently blocked. Open Settings to allow it for Pathfinder Albania.';
 
   @override
   String get tripDetailAutoTrackErrorServiceTitle => 'Turn on Location Services';

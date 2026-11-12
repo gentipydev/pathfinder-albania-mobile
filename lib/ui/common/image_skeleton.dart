@@ -1,5 +1,5 @@
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:travel_buddy/common_libs.dart' hide ShimmerEffect;
+import 'package:pathfinder_albania/common_libs.dart' hide ShimmerEffect;
 
 /// Which background a skeleton sits on: [dark] for photo areas (gallery
 /// tiles, artifact cards), [light] for the off-white text panel of the

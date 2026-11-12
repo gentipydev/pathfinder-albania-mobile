@@ -1,4 +1,4 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 /// Type-to-confirm bottom sheet for destructive account deletion. Returns
 /// `true` only when the user typed the confirmation word AND tapped the

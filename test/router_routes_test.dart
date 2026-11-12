@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
-import 'package:travel_buddy/router.dart';
+import 'package:pathfinder_albania/router.dart';
 
 /// Full paths of every GoRoute in [routes], e.g. `/home/trip/:tripId`.
 List<String> _paths(List<RouteBase> routes, [String parent = '']) {

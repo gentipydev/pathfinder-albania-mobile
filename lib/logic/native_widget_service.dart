@@ -1,10 +1,10 @@
 import 'package:home_widget/home_widget.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
 
 /// Small facade for the HomeWidget package
 class NativeWidgetService {
-  static const _iosAppGroupId = 'group.com.travelbuddy.app.widget';
-  static const _iosAppName = 'TravelBuddyWidget';
+  static const _iosAppGroupId = 'group.com.pathfinderalbania.app.widget';
+  static const _iosAppName = 'PathfinderWidget';
 
   final bool isSupported = PlatformInfo.isIOS;
 

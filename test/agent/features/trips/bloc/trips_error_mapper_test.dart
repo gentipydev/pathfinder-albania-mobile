@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/agent/features/trips/bloc/trips_error_mapper.dart';
-import 'package:travel_buddy/agent/services/trip_service.dart';
+import 'package:pathfinder_albania/agent/features/trips/bloc/trips_error_mapper.dart';
+import 'package:pathfinder_albania/agent/services/trip_service.dart';
 
 void main() {
   group('mapTripsError', () {

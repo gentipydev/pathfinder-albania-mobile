@@ -1,6 +1,6 @@
 // Simple class wrapping HapticFeedback to make testing a bit simpler.
 
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 class AppHaptics {
   static Future<void> lightImpact() => HapticFeedback.lightImpact();

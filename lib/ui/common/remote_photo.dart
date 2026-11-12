@@ -1,8 +1,8 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/photo_cache.dart';
-import 'package:travel_buddy/ui/common/image_skeleton.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/photo_cache.dart';
+import 'package:pathfinder_albania/ui/common/image_skeleton.dart';
 
-export 'package:travel_buddy/logic/common/photo_cache.dart' show photoImageProvider, prefetchPhotoUrls;
+export 'package:pathfinder_albania/logic/common/photo_cache.dart' show photoImageProvider, prefetchPhotoUrls;
 
 /// Renders a backend photo (public Supabase Storage URL) or a bundled asset
 /// path, with a shimmering skeleton until it arrives. `AppImage` retries

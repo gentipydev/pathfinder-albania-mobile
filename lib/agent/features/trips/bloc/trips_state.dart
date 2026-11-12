@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
 
 class TripsState extends Equatable {
   const TripsState({

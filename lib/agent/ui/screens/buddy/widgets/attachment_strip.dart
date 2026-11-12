@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/agent/logic/buddy/attachment.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/attachment.dart';
 
 class AttachmentStrip extends StatelessWidget {
   const AttachmentStrip({

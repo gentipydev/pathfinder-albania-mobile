@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_stop.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_stop.dart';
 
 /// Server-acknowledged day with its ordered stops.
 class TripDay extends Equatable {

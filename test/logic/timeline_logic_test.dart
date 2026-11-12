@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:travel_buddy/logic/data/timeline_data.dart';
-import 'package:travel_buddy/logic/destinations_logic.dart';
-import 'package:travel_buddy/logic/locale_logic.dart';
-import 'package:travel_buddy/logic/timeline_logic.dart';
+import 'package:pathfinder_albania/logic/data/timeline_data.dart';
+import 'package:pathfinder_albania/logic/destinations_logic.dart';
+import 'package:pathfinder_albania/logic/locale_logic.dart';
+import 'package:pathfinder_albania/logic/timeline_logic.dart';
 
 void main() {
   for (final lang in const ['en', 'sq']) {

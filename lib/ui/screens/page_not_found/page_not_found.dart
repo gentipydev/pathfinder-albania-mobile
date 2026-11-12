@@ -1,7 +1,7 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
-import 'package:travel_buddy/ui/common/themed_text.dart';
-import 'package:travel_buddy/ui/common/travel_buddy_logo.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/ui/common/themed_text.dart';
+import 'package:pathfinder_albania/ui/common/app_logo.dart';
 
 class PageNotFound extends StatelessWidget {
   const PageNotFound(this.url, {super.key});
@@ -18,10 +18,10 @@ class PageNotFound extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TravelBuddyLogo(),
+            AppLogo(),
             Gap(10),
             Text(
-              'Travel Buddy',
+              $strings.appName,
               style: $styles.text.destinationTitle.copyWith(color: $styles.colors.accent1, fontSize: 28),
             ),
             Gap(70),

@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_stop.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_stop.dart';
 
 /// Pure-Dart visit detection. No Flutter / geolocator imports so it's
 /// trivially testable with synthetic coordinates and times.

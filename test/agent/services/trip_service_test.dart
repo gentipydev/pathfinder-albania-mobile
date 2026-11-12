@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/logic/common/service_exception.dart';
-import 'package:travel_buddy/agent/services/trip_service.dart';
+import 'package:pathfinder_albania/logic/common/service_exception.dart';
+import 'package:pathfinder_albania/agent/services/trip_service.dart';
 
 /// Returns a canned JSON body + status for every request and records the
 /// [RequestOptions] it saw, so tests can assert on query params / headers /

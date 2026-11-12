@@ -32,7 +32,7 @@ String mapBuddyStreamError(String message, int? statusCode) {
     // Backend reachable through a proxy that itself is unhealthy
     // (a deploy rolling out, or a cold-start past the 90s receive
     // timeout). Recoverable; the next send usually works.
-    return 'Travel Buddy is temporarily unavailable. Try again in a moment.';
+    return 'Pathfinder is temporarily unavailable. Try again in a moment.';
   }
   if (statusCode >= 500) {
     // Catch-all server error. Distinct from 502/503 to allow analytics

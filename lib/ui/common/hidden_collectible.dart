@@ -1,7 +1,7 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/features/artifacts/bloc/artifacts_bloc.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
-import 'package:travel_buddy/ui/common/collectible_item.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_bloc.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/ui/common/collectible_item.dart';
 
 /// Shows a [CollectibleItem], for a specific set of destinations.
 /// The item is looked up via index. If `destinations` is empty, then the

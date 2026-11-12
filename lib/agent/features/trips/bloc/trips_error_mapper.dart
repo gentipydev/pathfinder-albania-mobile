@@ -1,5 +1,5 @@
-import 'package:travel_buddy/main.dart' show $strings;
-import 'package:travel_buddy/agent/services/trip_service.dart';
+import 'package:pathfinder_albania/main.dart' show $strings;
+import 'package:pathfinder_albania/agent/services/trip_service.dart';
 
 /// Stable identifiers for user-facing trips errors. The Bloc emits one of
 /// these via `TripsState.lastError`; the UI resolves to a localized string

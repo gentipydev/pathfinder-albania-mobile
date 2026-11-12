@@ -1,4 +1,4 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 /// Loads bitmap assets into memory that may be required later
 class AppBitmaps {
@@ -28,13 +28,13 @@ class ImagePaths {
   static String roller1 = '$textures/roller-1-white.gif';
   static String roller2 = '$textures/roller-2-white.gif';
 
-  static String appLogoPlain = '$common/app-logo-plain.png';
 }
 
 /// Consolidates SCG image paths in their own class, hints to the UI to use an SvgPicture to render
 class SvgPaths {
   static String compassFull = '${ImagePaths.common}/compass-full.svg';
   static String compassSimple = '${ImagePaths.common}/compass-simple.svg';
+  static String appLogo = '${ImagePaths.common}/app-logo.svg';
 }
 
 /// For destination specific assets, add an extension to [DestinationType] for easy lookup

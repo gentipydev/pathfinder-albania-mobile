@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' show Position;
-import 'package:travel_buddy/agent/utils/polyline_decoder.dart';
+import 'package:pathfinder_albania/agent/utils/polyline_decoder.dart';
 
 void main() {
   group('decodeEncodedPolyline', () {

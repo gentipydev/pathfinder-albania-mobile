@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_day.dart';
-import 'package:travel_buddy/agent/domain/entities/trip_route.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_day.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip_route.dart';
 
 /// Server-acknowledged itinerary returned by `POST /trips` and `GET /trips`.
 /// Carries DB IDs and timestamps; days are ordered by `dayNumber`.

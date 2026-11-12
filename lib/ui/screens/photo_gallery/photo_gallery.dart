@@ -2,20 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/features/artifacts/bloc/artifacts_bloc.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_helpers.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_state.dart';
-import 'package:travel_buddy/logic/common/animate_utils.dart';
-import 'package:travel_buddy/logic/destination_photos_logic.dart';
-import 'package:travel_buddy/ui/common/controls/eight_way_swipe_detector.dart';
-import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
-import 'package:travel_buddy/ui/common/hidden_collectible.dart';
-import 'package:travel_buddy/ui/common/image_skeleton.dart';
-import 'package:travel_buddy/ui/common/modals/fullscreen_url_img_viewer.dart';
-import 'package:travel_buddy/ui/common/remote_photo.dart';
-import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_bloc.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_bloc.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_helpers.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_state.dart';
+import 'package:pathfinder_albania/logic/destination_photos_logic.dart';
+import 'package:pathfinder_albania/ui/common/controls/eight_way_swipe_detector.dart';
+import 'package:pathfinder_albania/ui/common/fullscreen_keyboard_listener.dart';
+import 'package:pathfinder_albania/ui/common/hidden_collectible.dart';
+import 'package:pathfinder_albania/ui/common/image_skeleton.dart';
+import 'package:pathfinder_albania/ui/common/modals/fullscreen_url_img_viewer.dart';
+import 'package:pathfinder_albania/ui/common/remote_photo.dart';
+import 'package:pathfinder_albania/ui/common/utils/app_haptics.dart';
 
 part 'widgets/_animated_cutout_overlay.dart';
 
@@ -296,9 +295,9 @@ class _PhotoGalleryState extends State<PhotoGallery> {
             curve: Curves.easeOut,
             tween: Tween(begin: 1, end: isSelected ? 1.15 : 1),
             builder: (_, value, child) => Transform.scale(scale: value, child: child),
-            child: photo == null
-                ? const ImageSkeleton()
-                : RemotePhoto(photo.thumbUrl, fit: BoxFit.cover).maybeAnimate().fade(),
+            // No extra fade on the photo: RemotePhoto starts on the same dark skeleton and fades the
+            // image in over it. An outer fade dipped every tile to transparent before that.
+            child: photo == null ? const ImageSkeleton() : RemotePhoto(photo.thumbUrl, fit: BoxFit.cover),
           );
 
           return MergeSemantics(

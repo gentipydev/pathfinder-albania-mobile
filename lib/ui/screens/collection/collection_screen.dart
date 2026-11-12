@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_bloc.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_event.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_helpers.dart';
-import 'package:travel_buddy/logic/common/animate_utils.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
-import 'package:travel_buddy/logic/data/destination_data.dart';
-import 'package:travel_buddy/ui/common/centered_box.dart';
-import 'package:travel_buddy/ui/common/controls/app_header.dart';
-import 'package:travel_buddy/ui/common/modals/app_modals.dart';
-import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_bloc.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_event.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_helpers.dart';
+import 'package:pathfinder_albania/logic/common/animate_utils.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/logic/data/destination_data.dart';
+import 'package:pathfinder_albania/ui/common/centered_box.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_header.dart';
+import 'package:pathfinder_albania/ui/common/modals/app_modals.dart';
+import 'package:pathfinder_albania/ui/common/utils/duration_utils.dart';
 
 part 'widgets/_collectible_image.dart';
 part 'widgets/_collection_footer.dart';

@@ -1,5 +1,5 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_config.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_config.dart';
 
 /// Takes a builder for each of the 3 illustration layers.
 /// Each builder returns a list of Widgets which will be added directly to a Stack.

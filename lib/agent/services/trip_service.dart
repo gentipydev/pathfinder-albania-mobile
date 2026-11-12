@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:travel_buddy/agent/domain/entities/trip.dart';
-import 'package:travel_buddy/logic/common/dio_client.dart';
-import 'package:travel_buddy/logic/common/service_exception.dart';
+import 'package:pathfinder_albania/agent/domain/entities/trip.dart';
+import 'package:pathfinder_albania/logic/common/dio_client.dart';
+import 'package:pathfinder_albania/logic/common/service_exception.dart';
 
 /// One page of GET /trips. `nextCursor` is null when no more pages remain.
 /// The cursor is opaque (`"{updated_at_iso}|{uuid}"`) — clients must not parse it.

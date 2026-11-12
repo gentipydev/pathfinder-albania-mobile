@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
 
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/config/env.dart';
-import 'package:travel_buddy/logic/common/http_client.dart';
-import 'package:travel_buddy/logic/common/photo_cache.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/config/env.dart';
+import 'package:pathfinder_albania/logic/common/http_client.dart';
+import 'package:pathfinder_albania/logic/common/photo_cache.dart';
 
 typedef PhotosHttpFetcher = Future<HttpResponse> Function(String url, {Map<String, String>? headers});
 

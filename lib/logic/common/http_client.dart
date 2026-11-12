@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:travel_buddy/logic/common/dio_client.dart';
+import 'package:pathfinder_albania/logic/common/dio_client.dart';
 
 enum NetErrorType {
   none,

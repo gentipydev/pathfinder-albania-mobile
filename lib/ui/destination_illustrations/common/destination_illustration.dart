@@ -1,13 +1,13 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/ui/destination_illustrations/albanian_alps_illustration.dart';
-import 'package:travel_buddy/ui/destination_illustrations/apollonia_illustration.dart';
-import 'package:travel_buddy/ui/destination_illustrations/berat_illustration.dart';
-import 'package:travel_buddy/ui/destination_illustrations/butrint_illustration.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_config.dart';
-import 'package:travel_buddy/ui/destination_illustrations/gjirokaster_illustration.dart';
-import 'package:travel_buddy/ui/destination_illustrations/korca_illustration.dart';
-import 'package:travel_buddy/ui/destination_illustrations/kruja_illustration.dart';
-import 'package:travel_buddy/ui/destination_illustrations/theth_illustration.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/albanian_alps_illustration.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/apollonia_illustration.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/berat_illustration.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/butrint_illustration.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_config.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/gjirokaster_illustration.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/korca_illustration.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/kruja_illustration.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/theth_illustration.dart';
 
 /// Convenience class for showing an illustration when all you have is the type.
 class DestinationIllustration extends StatelessWidget {

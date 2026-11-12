@@ -1,6 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/config/env.dart';
+import 'package:pathfinder_albania/config/env.dart';
 
 void main() {
   group('Env.parseAppMode', () {

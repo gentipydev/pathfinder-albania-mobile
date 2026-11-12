@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/agent/features/buddy/bloc/buddy_error_mapper.dart';
+import 'package:pathfinder_albania/agent/features/buddy/bloc/buddy_error_mapper.dart';
 
 void main() {
   group('mapBuddyStreamError', () {

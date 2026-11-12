@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:travel_buddy/agent/logic/buddy/conversations_service.dart' show HttpException;
-import 'package:travel_buddy/logic/common/dio_client.dart';
-import 'package:travel_buddy/agent/logic/preferences/user_preferences.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/conversations_service.dart' show HttpException;
+import 'package:pathfinder_albania/logic/common/dio_client.dart';
+import 'package:pathfinder_albania/agent/logic/preferences/user_preferences.dart';
 
 class PreferencesService {
   Map<String, dynamic> _headers(String? bearerToken, {bool isJson = false}) {

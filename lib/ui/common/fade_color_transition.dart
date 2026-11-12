@@ -1,4 +1,4 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 /// Colored box that can fade in and out, should yield better performance than
 /// fading with an additional Opacity layer.

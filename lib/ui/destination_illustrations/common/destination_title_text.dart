@@ -1,6 +1,6 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/string_utils.dart';
-import 'package:travel_buddy/logic/data/destination_data.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/string_utils.dart';
+import 'package:pathfinder_albania/logic/data/destination_data.dart';
 
 /// To match designs:
 /// - need a line-break after the first line
@@ -16,7 +16,9 @@ class DestinationTitleText extends StatelessWidget {
     var textStyle = $styles.text.destinationTitle.copyWith(
       color: $styles.colors.offWhite,
     );
-    bool smallText = [DestinationType.berat, DestinationType.gjirokaster].contains(data.type);
+    // Only titles too wide for a 375pt screen at full size step down to 56px:
+    // "Gjirokastër" / "Gjirokastra" are ~367px wide at 64px, the next widest word is ~317px.
+    bool smallText = [DestinationType.gjirokaster].contains(data.type);
     if (smallText) {
       textStyle = textStyle.copyWith(fontSize: 56 * $styles.scale);
     }
@@ -54,7 +56,8 @@ class DestinationTitleText extends StatelessWidget {
         children: pieces.map(buildTextSpan).toList(),
       ),
     );
-    return enableHero
+    // Respect reduce-motion like the illustration heroes do (see IllustrationPiece).
+    return enableHero && !$styles.disableAnimations
         ? Hero(
             tag: 'destinationTitle-$title',
             child: content,

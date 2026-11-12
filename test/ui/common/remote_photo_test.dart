@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/ui/common/remote_photo.dart';
+import 'package:pathfinder_albania/ui/common/remote_photo.dart';
 
 void main() {
   test('http(s) URLs load from the network through the disk cache', () {

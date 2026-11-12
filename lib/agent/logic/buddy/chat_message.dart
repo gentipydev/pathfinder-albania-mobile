@@ -1,5 +1,5 @@
-import 'package:travel_buddy/agent/domain/entities/itinerary_draft.dart';
-import 'package:travel_buddy/agent/logic/buddy/live_stop.dart';
+import 'package:pathfinder_albania/agent/domain/entities/itinerary_draft.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/live_stop.dart';
 
 enum ChatRole { user, assistant }
 

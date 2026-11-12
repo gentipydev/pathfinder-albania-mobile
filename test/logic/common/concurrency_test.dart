@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/logic/common/concurrency.dart';
+import 'package:pathfinder_albania/logic/common/concurrency.dart';
 
 void main() {
   group('mapBounded', () {

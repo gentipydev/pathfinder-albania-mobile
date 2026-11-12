@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/logic/common/platform_info.dart';
-import 'package:travel_buddy/ui/common/app_icons.dart';
-import 'package:travel_buddy/ui/common/fullscreen_keyboard_listener.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/logic/common/platform_info.dart';
+import 'package:pathfinder_albania/ui/common/app_icons.dart';
+import 'package:pathfinder_albania/ui/common/fullscreen_keyboard_listener.dart';
 
 class PreviousNextNavigation extends StatefulWidget {
   const PreviousNextNavigation({

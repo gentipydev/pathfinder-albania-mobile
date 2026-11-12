@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:travel_buddy/logic/destinations_logic.dart';
-import 'package:travel_buddy/logic/locale_logic.dart';
-import 'package:travel_buddy/logic/timeline_logic.dart';
-import 'package:travel_buddy/ui/common/destinations_timeline_builder.dart';
-import 'package:travel_buddy/ui/screens/timeline/timeline_screen.dart';
+import 'package:pathfinder_albania/logic/destinations_logic.dart';
+import 'package:pathfinder_albania/logic/locale_logic.dart';
+import 'package:pathfinder_albania/logic/timeline_logic.dart';
+import 'package:pathfinder_albania/ui/common/destinations_timeline_builder.dart';
+import 'package:pathfinder_albania/ui/screens/timeline/timeline_screen.dart';
 
 import '../../helpers/widget_test_harness.dart';
 

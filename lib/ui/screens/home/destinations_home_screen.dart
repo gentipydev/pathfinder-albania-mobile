@@ -1,21 +1,21 @@
-import 'package:travel_buddy/common_libs.dart';
-import 'package:travel_buddy/features/settings/bloc/settings_event.dart';
-import 'package:travel_buddy/logic/common/animate_utils.dart';
-import 'package:travel_buddy/logic/data/destination_data.dart';
-import 'package:travel_buddy/ui/common/app_icons.dart';
-import 'package:travel_buddy/ui/common/controls/app_page_indicator.dart';
-import 'package:travel_buddy/ui/common/controls/locale_switcher.dart';
-import 'package:travel_buddy/ui/common/controls/trackpad_listener.dart';
-import 'package:travel_buddy/ui/common/gradient_container.dart';
-import 'package:travel_buddy/ui/common/ignore_pointer.dart';
-import 'package:travel_buddy/ui/common/previous_next_navigation.dart';
-import 'package:travel_buddy/ui/common/themed_text.dart';
-import 'package:travel_buddy/ui/common/utils/app_haptics.dart';
-import 'package:travel_buddy/ui/common/utils/duration_utils.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/animated_clouds.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_illustration_config.dart';
-import 'package:travel_buddy/ui/destination_illustrations/common/destination_title_text.dart';
+import 'package:pathfinder_albania/common_libs.dart';
+import 'package:pathfinder_albania/features/settings/bloc/settings_event.dart';
+import 'package:pathfinder_albania/logic/common/animate_utils.dart';
+import 'package:pathfinder_albania/logic/data/destination_data.dart';
+import 'package:pathfinder_albania/ui/common/app_icons.dart';
+import 'package:pathfinder_albania/ui/common/controls/app_page_indicator.dart';
+import 'package:pathfinder_albania/ui/common/controls/locale_switcher.dart';
+import 'package:pathfinder_albania/ui/common/controls/trackpad_listener.dart';
+import 'package:pathfinder_albania/ui/common/gradient_container.dart';
+import 'package:pathfinder_albania/ui/common/ignore_pointer.dart';
+import 'package:pathfinder_albania/ui/common/previous_next_navigation.dart';
+import 'package:pathfinder_albania/ui/common/themed_text.dart';
+import 'package:pathfinder_albania/ui/common/utils/app_haptics.dart';
+import 'package:pathfinder_albania/ui/common/utils/duration_utils.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/animated_clouds.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_illustration_config.dart';
+import 'package:pathfinder_albania/ui/destination_illustrations/common/destination_title_text.dart';
 
 part '_vertical_swipe_controller.dart';
 part 'widgets/_animated_arrow_button.dart';
@@ -135,7 +135,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    if (_fadeInOnNextBuild == true) {
+    // Depending on the route's "current" status makes Home rebuild when it is revealed again
+    // (returning from details), even when it is kept alive as a const child of the full-mode AppShell.
+    // Only fade in once we're actually back, never while hidden underneath the details page.
+    final isCurrentRoute = ModalRoute.isCurrentOf(context) ?? true;
+    if (_fadeInOnNextBuild && isCurrentRoute) {
       _startDelayedFgFade();
       _fadeInOnNextBuild = false;
     }
@@ -305,7 +309,26 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               onIncrease: () => _setPageIndex(_destinationIndex + 1),
                               onDecrease: () => _setPageIndex(_destinationIndex - 1),
                               onTap: () => _showDetailsPage(),
-                              child: DestinationTitleText(currentDestination, enableShadows: true),
+                              // Cross-fade the title along with the illustrations when the page changes.
+                              child: AnimatedSwitcher(
+                                duration: $styles.times.fast,
+                                // Bottom-aligned so 1- and 2-line titles don't jump when the old one is removed.
+                                // Outgoing titles drop their Hero (a quick A->B->A swipe would otherwise show two
+                                // heroes with the same tag) and their semantics (only the new title is announced).
+                                layoutBuilder: (current, previous) => Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: [
+                                    for (final c in previous)
+                                      HeroMode(enabled: false, child: ExcludeSemantics(child: c)),
+                                    if (current != null) current,
+                                  ],
+                                ),
+                                child: DestinationTitleText(
+                                  currentDestination,
+                                  key: ValueKey(currentDestination.type),
+                                  enableShadows: true,
+                                ),
+                              ),
                             ),
                             Gap($styles.insets.md),
                             AppPageIndicator(

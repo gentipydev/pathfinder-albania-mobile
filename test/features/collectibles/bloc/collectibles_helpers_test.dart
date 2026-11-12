@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:travel_buddy/features/collectibles/bloc/collectibles_helpers.dart';
-import 'package:travel_buddy/logic/data/artifact_data.dart';
-import 'package:travel_buddy/logic/data/collectible_data.dart';
-import 'package:travel_buddy/logic/data/destination_type.dart';
+import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_helpers.dart';
+import 'package:pathfinder_albania/logic/data/artifact_data.dart';
+import 'package:pathfinder_albania/logic/data/collectible_data.dart';
+import 'package:pathfinder_albania/logic/data/destination_type.dart';
 
 ArtifactData _artifact(String id) => ArtifactData(
       objectId: id,

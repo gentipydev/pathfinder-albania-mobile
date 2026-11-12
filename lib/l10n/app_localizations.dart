@@ -326,41 +326,59 @@ abstract class AppLocalizations {
   /// **'full screen image, no description available'**
   String get fullscreenImageViewerSemanticFull;
 
-  /// No description provided for @introTitleJourney.
+  /// No description provided for @introTitleWelcome.
   ///
   /// In en, this message translates to:
-  /// **'Step into the past'**
-  String get introTitleJourney;
+  /// **'Meet Pathfinder Albania'**
+  String get introTitleWelcome;
 
-  /// No description provided for @introDescriptionNavigate.
+  /// No description provided for @introDescWelcome.
   ///
   /// In en, this message translates to:
-  /// **'Three thousand years of Albanian history, from Illyrian hill forts to Ottoman bazaars.'**
-  String get introDescriptionNavigate;
+  /// **'Your AI travel assistant for Albania, from the Ionian coast to the Accursed Mountains.'**
+  String get introDescWelcome;
 
   /// No description provided for @introTitleExplore.
   ///
   /// In en, this message translates to:
-  /// **'Explore Albania'**
+  /// **'Explore eight destinations'**
   String get introTitleExplore;
 
-  /// No description provided for @introDescriptionUncover.
+  /// No description provided for @introDescExplore.
   ///
   /// In en, this message translates to:
-  /// **'Ancient cities, castle towns and mountain valleys in eight destinations.'**
-  String get introDescriptionUncover;
+  /// **'Ancient cities, castle towns and mountain valleys, each with its story, photos and timeline.'**
+  String get introDescExplore;
 
-  /// No description provided for @introTitleDiscover.
+  /// No description provided for @introTitleStory.
   ///
   /// In en, this message translates to:
-  /// **'Find hidden artifacts'**
-  String get introTitleDiscover;
+  /// **'Three thousand years of story'**
+  String get introTitleStory;
 
-  /// No description provided for @introDescriptionLearn.
+  /// No description provided for @introDescStory.
   ///
   /// In en, this message translates to:
-  /// **'Discover objects from every era and build your own collection.'**
-  String get introDescriptionLearn;
+  /// **'Walk the timeline from Illyrian hill forts to Ottoman bazaars and collect hidden artifacts on the way.'**
+  String get introDescStory;
+
+  /// No description provided for @introTitleAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask, plan, go'**
+  String get introTitleAsk;
+
+  /// No description provided for @introDescAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat with Pathfinder to plan an itinerary, find places and save trips. It knows Albania like a local.'**
+  String get introDescAsk;
+
+  /// No description provided for @introSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get introSkip;
 
   /// No description provided for @introSemanticNavigate.
   ///
@@ -380,11 +398,17 @@ abstract class AppLocalizations {
   /// **'Enter the app'**
   String get introSemanticEnterApp;
 
-  /// No description provided for @introSemanticAppName.
+  /// No description provided for @appName.
   ///
   /// In en, this message translates to:
-  /// **'Travel Buddy'**
-  String get introSemanticAppName;
+  /// **'Pathfinder Albania'**
+  String get appName;
+
+  /// No description provided for @appTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'AI travel assistant for Albania'**
+  String get appTagline;
 
   /// No description provided for @photoGallerySemanticFocus.
   ///
@@ -2297,7 +2321,7 @@ abstract class AppLocalizations {
   /// No description provided for @buddyHeaderTitle.
   ///
   /// In en, this message translates to:
-  /// **'Travel Buddy'**
+  /// **'Pathfinder'**
   String get buddyHeaderTitle;
 
   /// No description provided for @buddyHeaderSubtitle.
@@ -2321,7 +2345,7 @@ abstract class AppLocalizations {
   /// No description provided for @buddyComposerHint.
   ///
   /// In en, this message translates to:
-  /// **'Message your travel buddy…'**
+  /// **'Message Pathfinder…'**
   String get buddyComposerHint;
 
   /// No description provided for @buddySuggestionTirana.
@@ -2369,13 +2393,13 @@ abstract class AppLocalizations {
   /// Body button on the trip detail screen that opens a chat scoped to that saved trip. Tapping it routes to the buddy tab with the trip's 1:1 conversation hydrated.
   ///
   /// In en, this message translates to:
-  /// **'Refine with Buddy'**
+  /// **'Refine with Pathfinder'**
   String get refineWithBuddyButton;
 
   /// Replaces buddyComposerHint when the chat is in refine-with-buddy mode for a saved trip.
   ///
   /// In en, this message translates to:
-  /// **'Ask Buddy to refine this trip…'**
+  /// **'Ask Pathfinder to refine this trip…'**
   String get refineComposerHint;
 
   /// Welcome title shown on a fresh refine chat (scopedTrip != null, no messages yet). Replaces buddyEmptyTitle in refine mode so the user isn't greeted with planning-mode copy.
@@ -2387,7 +2411,7 @@ abstract class AppLocalizations {
   /// Welcome subtitle shown on a fresh refine chat. Replaces buddyEmptySubtitle in refine mode.
   ///
   /// In en, this message translates to:
-  /// **'Ask Buddy to tweak this trip — shorten a day, swap a stop, add something new.'**
+  /// **'Ask Pathfinder to tweak this trip — shorten a day, swap a stop, add something new.'**
   String get refineEmptySubtitle;
 
   /// Quick-pick chip on the refine welcome screen. Tapping sends this text verbatim to the chat.
@@ -2765,7 +2789,7 @@ abstract class AppLocalizations {
   /// No description provided for @preferencesPersonaInfoBody.
   ///
   /// In en, this message translates to:
-  /// **'Pick the persona that feels closest to you right now. It\'s just the starting point — the more you chat with Travel Buddy, the better it understands how you actually travel. Your budget, your pace, what you skip, what you never miss. Over time, recommendations stop feeling generic and start feeling like they were made for you.'**
+  /// **'Pick the persona that feels closest to you right now. It\'s just the starting point — the more you chat with Pathfinder, the better it understands how you actually travel. Your budget, your pace, what you skip, what you never miss. Over time, recommendations stop feeling generic and start feeling like they were made for you.'**
   String get preferencesPersonaInfoBody;
 
   /// No description provided for @preferencesPersonaInfoDismiss.
@@ -3113,7 +3137,7 @@ abstract class AppLocalizations {
   /// No description provided for @myTripsEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Plan one with Buddy and tap Save itinerary.'**
+  /// **'Plan one with Pathfinder and tap Save itinerary.'**
   String get myTripsEmptySubtitle;
 
   /// No description provided for @myTripsDatesNotSet.
@@ -3257,7 +3281,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripDetailAutoTrackPromptBody.
   ///
   /// In en, this message translates to:
-  /// **'Travel Buddy can check off stops automatically when you\'re nearby during their scheduled time. Location stays on your device.'**
+  /// **'Pathfinder Albania can check off stops automatically when you\'re nearby during their scheduled time. Location stays on your device.'**
   String get tripDetailAutoTrackPromptBody;
 
   /// No description provided for @tripDetailAutoTrackEnable.
@@ -3299,7 +3323,7 @@ abstract class AppLocalizations {
   /// Body of the auto-track error sheet when location permission is permanently denied — only Settings can re-enable it.
   ///
   /// In en, this message translates to:
-  /// **'Location access is currently blocked. Open Settings to allow it for Travel Buddy.'**
+  /// **'Location access is currently blocked. Open Settings to allow it for Pathfinder Albania.'**
   String get tripDetailAutoTrackErrorBlockedBody;
 
   /// Title of the auto-track error sheet when device-wide Location Services are off.

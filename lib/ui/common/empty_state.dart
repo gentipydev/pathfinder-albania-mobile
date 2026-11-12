@@ -1,4 +1,4 @@
-import 'package:travel_buddy/common_libs.dart';
+import 'package:pathfinder_albania/common_libs.dart';
 
 /// Reusable inline empty-state placeholder. Used at the body level of list-
 /// shaped screens (My Trips, Conversations, etc.) when a successful load

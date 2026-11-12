@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:travel_buddy/utils/dlog.dart';
+import 'package:pathfinder_albania/utils/dlog.dart';
 
 const String _channel = 'nav';
 

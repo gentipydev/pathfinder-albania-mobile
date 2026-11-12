@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:travel_buddy/agent/logic/buddy/attachment_service.dart';
+import 'package:pathfinder_albania/agent/logic/buddy/attachment_service.dart';
 
 /// These exercise the pre-upload validation, which short-circuits BEFORE any
 /// Supabase call — so no network / plugin init is needed. A valid file's
