@@ -36,22 +36,15 @@ jobs:
     - name: Enable Flutter web
       run: flutter config --enable-web
 
-    - name: Materialize .env from secrets
-      env:
-        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-        SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        API_BASE_URL: ${{ secrets.API_BASE_URL }}
+    - name: Materialize .env
+      # `.env` is a bundled asset the app loads at startup. Its only key is the
+      # Mapbox token, left empty here: mapbox_maps_flutter is iOS/Android only,
+      # so every map surface renders its unsupported-platform fallback on web.
+      # All other content ships inside the app (assets/backend_snapshot/).
       run: |
-        : "${SUPABASE_URL:?repo secret SUPABASE_URL is empty or missing}"
-        : "${SUPABASE_ANON_KEY:?repo secret SUPABASE_ANON_KEY is empty or missing}"
-        : "${API_BASE_URL:?repo secret API_BASE_URL is empty or missing}"
         cat > .env <<EOF
-        SUPABASE_URL=${SUPABASE_URL}
-        SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
-        API_BASE_URL=${API_BASE_URL}
+        MAPBOX_ACCESS_TOKEN=
         EOF
-        # No MAPBOX_ACCESS_TOKEN: mapbox_maps_flutter is iOS/Android only, so
-        # every map surface renders its unsupported-platform fallback on web.
 
     - name: Build Flutter web app - with WASM
       if: ${{ inputs.wasm }}

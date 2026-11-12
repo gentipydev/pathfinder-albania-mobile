@@ -10,7 +10,7 @@
     "display": "standalone",
     "background_color": "#1e1b18",
     "theme_color": "#1e1b18",
-    "description": "Pathfinder Albania is your AI travel assistant and guide to the eight destinations of Albania.",
+    "description": "Pathfinder Albania is a guide to the eight destinations of Albania.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

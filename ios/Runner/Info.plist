@@ -33,28 +33,8 @@
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
 		<false/>
-		<key>LSApplicationQueriesSchemes</key>
-		<array>
-			<string>https</string>
-			<string>http</string>
-		</array>
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
-		<key>NSAppTransportSecurity</key>
-		<dict>
-			<key>NSAllowsLocalNetworking</key>
-			<true/>
-		</dict>
-		<key>NSCameraUsageDescription</key>
-		<string>Used to send photos of places to Pathfinder.</string>
-		<key>NSMicrophoneUsageDescription</key>
-		<string>Used for voice messages to Pathfinder.</string>
-		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Used to attach photos to messages for Pathfinder.</string>
-		<key>NSSpeechRecognitionUsageDescription</key>
-		<string>Turns your voice messages into text to send to Pathfinder.</string>
-		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>Used to automatically check off stops on your itinerary when you're near them. Your location stays on this device and is never shared.</string>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
 		<key>UILaunchStoryboardName</key>

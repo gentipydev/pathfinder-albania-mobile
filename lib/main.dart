@@ -4,9 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:pathfinder_albania/agent/agent_module.dart';
 import 'package:pathfinder_albania/common_libs.dart';
-import 'package:pathfinder_albania/config/env.dart';
 import 'package:pathfinder_albania/features/artifacts/bloc/artifacts_bloc.dart';
 import 'package:pathfinder_albania/features/collectibles/bloc/collectibles_bloc.dart';
 import 'package:pathfinder_albania/features/settings/bloc/settings_bloc.dart';
@@ -19,7 +17,6 @@ import 'package:pathfinder_albania/logic/destination_photos_logic.dart';
 import 'package:pathfinder_albania/logic/destinations_logic.dart';
 import 'package:pathfinder_albania/ui/common/app_shortcuts.dart';
 import 'package:pathfinder_albania/utils/dev_bloc_observer.dart';
-import 'package:pathfinder_albania/utils/sentry_scrubber.dart';
 import 'package:pathfinder_albania/utils/url_strategy_native.dart'
     if (dart.library.js_interop) 'package:pathfinder_albania/utils/url_strategy_web.dart';
 
@@ -32,20 +29,19 @@ void main() async {
   if (!kIsWeb) {
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   }
-  // Phase 3 risk mitigation: log every Bloc transition during debug builds so
-  // a silent no-op emit (e.g. forgotten copyWith on ChatMessage) is visible.
+  // Log every Bloc transition during debug builds so a silent no-op emit
+  // (e.g. a forgotten copyWith) is visible.
   if (kDebugMode) Bloc.observer = DevBlocObserver();
   GoRouter.optionURLReflectsImperativeAPIs = true;
 
-  // Wrap the entire bootstrap chain so a failure in dotenv/Env/Supabase/
-  // warmup/runApp/bootstrap can never leave the native splash up forever.
-  // Always remove the splash; rethrow so crash reporters still see the cause.
+  // Wrap the entire bootstrap chain so a failure in dotenv/runApp/bootstrap
+  // can never leave the native splash up forever. Always remove the splash;
+  // rethrow so crash reporters still see the cause.
   //
   // Sentry wraps the appRunner so unhandled exceptions inside reach the SDK.
   // The DSN comes from `--dart-define=SENTRY_DSN=…`; when empty (the local-
   // dev default) the SDK accepts the empty string as "disabled" and the rest
-  // of bootstrap runs unchanged. `beforeSend` redacts user-generated content
-  // via `scrubSentryEvent` so chat / persona / emails never leave the device.
+  // of bootstrap runs unchanged.
   await SentryFlutter.init(
     (options) {
       options.dsn = const String.fromEnvironment('SENTRY_DSN', defaultValue: '');
@@ -58,25 +54,13 @@ void main() async {
       // a future SDK default flip doesn't silently start leaking headers /
       // cookies / IP addresses.
       options.sendDefaultPii = false;
-      options.beforeSend = (event, hint) async => scrubSentryEvent(event);
     },
     appRunner: () async {
       try {
         await dotenv.load(fileName: '.env');
-        Env.assertValid();
-        // APP_MODE=showcase skips the agent side entirely, Supabase included.
-        if (Env.agentEnabled) await AgentModule.initServices();
 
         // Start app
         registerSingletons();
-        if (Env.agentEnabled) AgentModule.registerSingletons();
-
-        // Wake the backend in parallel with the rest of bootstrap: the
-        // showcase's artifact preload waits on it, and in full mode the first
-        // chat send doesn't pay a scale-from-zero cold-start cost either.
-        // Stored on AppLogic so bootstrap can sequence preloadAll behind it.
-        appLogic.startWarmup();
-
         runApp(const DestinationsApp());
         await appLogic.bootstrap();
       } catch (e, st) {
@@ -119,7 +103,6 @@ class _DestinationsAppState extends State<DestinationsApp> {
         BlocProvider<CollectiblesBloc>.value(
           value: GetIt.I<CollectiblesBloc>(),
         ),
-        if (Env.agentEnabled) ...AgentModule.blocProviders(),
       ],
       child: BlocSelector<SettingsBloc, SettingsState, String?>(
         selector: (s) => s.currentLocale,
@@ -145,8 +128,7 @@ class _DestinationsAppState extends State<DestinationsApp> {
   }
 }
 
-/// Create the showcase / shared singletons (logic and services). Agent-side
-/// singletons are registered by `AgentModule.registerSingletons`.
+/// Create the app singletons (logic and services).
 void registerSingletons() {
   // Top level app controller
   GetIt.I.registerLazySingleton<AppLogic>(() => AppLogic());
@@ -156,14 +138,14 @@ void registerSingletons() {
   GetIt.I.registerLazySingleton<TimelineLogic>(() => TimelineLogic());
   // Settings
   GetIt.I.registerLazySingleton<SettingsBloc>(() => SettingsBloc());
-  // Destination photo gallery manifest (Supabase via backend)
+  // Destination photo gallery (bundled snapshot)
   GetIt.I.registerLazySingleton<DestinationPhotosLogic>(() => DestinationPhotosLogic());
   // Localizations
   GetIt.I.registerLazySingleton<LocaleLogic>(() => LocaleLogic());
   // Home Widget Service (must register before CollectiblesBloc, which resolves
   // it via GetIt in its constructor default).
   GetIt.I.registerLazySingleton<NativeWidgetService>(() => NativeWidgetService());
-  // Artifacts (curated Albanian catalog served by the backend)
+  // Artifacts (curated Albanian catalog, bundled snapshot)
   GetIt.I.registerLazySingleton<ArtifactsBloc>(() => ArtifactsBloc());
   // Collectibles (resolves NativeWidgetService and ArtifactsBloc lazily)
   GetIt.I.registerLazySingleton<CollectiblesBloc>(() => CollectiblesBloc());

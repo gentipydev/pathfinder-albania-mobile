@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     // Depending on the route's "current" status makes Home rebuild when it is revealed again
-    // (returning from details), even when it is kept alive as a const child of the full-mode AppShell.
+    // (returning from details).
     // Only fade in once we're actually back, never while hidden underneath the details page.
     final isCurrentRoute = ModalRoute.isCurrentOf(context) ?? true;
     if (_fadeInOnNextBuild && isCurrentRoute) {
@@ -386,9 +386,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                       ],
                     ),
                   ),
-                  // Keep the arrow clear of the iOS home indicator when this
-                  // screen is shown full-screen (APP_MODE=showcase). Inside the
-                  // full-mode bottom nav the inset is already consumed, so this is 0.
+                  // Keep the arrow clear of the iOS home indicator.
                   Gap($styles.insets.md + MediaQuery.paddingOf(context).bottom),
                 ],
               ),

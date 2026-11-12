@@ -1,7 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -32,7 +31,6 @@ void main() {
   setUpAll(() => registerFallbackValue(_FakeSettingsEvent()));
 
   setUp(() async {
-    dotenv.loadFromString(envString: 'APP_MODE=showcase');
     bloc = _MockSettingsBloc();
     whenListen(bloc, const Stream<SettingsState>.empty(), initialState: const SettingsState(currentLocale: 'en'));
     if (!GetIt.I.isRegistered<LocaleLogic>()) {
@@ -46,7 +44,7 @@ void main() {
     await GetIt.I<LocaleLogic>().loadIfChanged(const Locale('en'));
   });
 
-  Future<void> pumpIntro(WidgetTester tester, {Size size = _phoneLarge, bool? includeAssistantPage}) async {
+  Future<void> pumpIntro(WidgetTester tester, {Size size = _phoneLarge}) async {
     tester.view.physicalSize = size;
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
@@ -56,7 +54,7 @@ void main() {
       routes: [
         GoRoute(
           path: '/welcome',
-          builder: (_, _) => Scaffold(body: IntroScreen(includeAssistantPage: includeAssistantPage)),
+          builder: (_, _) => Scaffold(body: IntroScreen()),
         ),
         GoRoute(path: '/home', builder: (_, _) => const Scaffold(body: Text('HOME'))),
       ],
@@ -78,7 +76,7 @@ void main() {
 
   int pageCount(WidgetTester tester) => tester.widget<AppPageIndicator>(find.byType(AppPageIndicator)).count;
 
-  testWidgets('showcase mode shows the three showcase pages, starting with the welcome', (tester) async {
+  testWidgets('shows the three pages, starting with the welcome', (tester) async {
     await pumpIntro(tester);
     expect(pageCount(tester), 3);
     expect(find.text('Meet Pathfinder Albania'), findsOneWidget);
@@ -86,11 +84,6 @@ void main() {
     // The intro is always English: no language picker.
     expect(find.text('English'), findsNothing);
     expect(find.text('Shqip'), findsNothing);
-  });
-
-  testWidgets('the assistant page is added when the agent side is on', (tester) async {
-    await pumpIntro(tester, includeAssistantPage: true);
-    expect(pageCount(tester), 4);
   });
 
   testWidgets('Skip completes onboarding and goes home', (tester) async {
@@ -108,8 +101,8 @@ void main() {
       ) async {
         await GetIt.I<LocaleLogic>().loadIfChanged(Locale(locale));
         whenListen(bloc, const Stream<SettingsState>.empty(), initialState: SettingsState(currentLocale: locale));
-        await pumpIntro(tester, size: size, includeAssistantPage: true);
-        for (var page = 0; page < 3; page++) {
+        await pumpIntro(tester, size: size);
+        for (var page = 0; page < 2; page++) {
           await tester.drag(find.byType(PageView), Offset(-size.width, 0));
           await tester.pumpAndSettle();
         }

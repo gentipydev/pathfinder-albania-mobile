@@ -1,5 +1,4 @@
 import 'package:pathfinder_albania/common_libs.dart';
-import 'package:pathfinder_albania/config/env.dart';
 import 'package:pathfinder_albania/features/settings/bloc/settings_bloc.dart';
 import 'package:pathfinder_albania/features/settings/bloc/settings_event.dart';
 import 'package:pathfinder_albania/logic/common/platform_info.dart';
@@ -15,11 +14,7 @@ import 'package:pathfinder_albania/ui/common/utils/app_haptics.dart';
 import 'package:pathfinder_albania/ui/common/utils/duration_utils.dart';
 
 class IntroScreen extends StatefulWidget {
-  const IntroScreen({super.key, this.includeAssistantPage});
-
-  /// Whether to end with the page about the AI assistant. Defaults to
-  /// [Env.agentEnabled], so showcase builds keep the three showcase pages.
-  final bool? includeAssistantPage;
+  const IntroScreen({super.key});
 
   @override
   State<IntroScreen> createState() => _IntroScreenState();
@@ -59,7 +54,7 @@ class _IntroScreenState extends State<IntroScreen> {
   /// Shared by the finish button on the last page and Skip on the others.
   void _completeIntro() {
     context.read<SettingsBloc>().add(const SettingsOnboardingCompletedToggled(true));
-    context.go(needsLogin ? ScreenPaths.auth : ScreenPaths.home);
+    context.go(ScreenPaths.home);
   }
 
   void _handlePageChanged() {
@@ -92,14 +87,12 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     final availableHeight = MediaQuery.sizeOf(context).height - MediaQuery.paddingOf(context).vertical;
     final bool smallMode = availableHeight < _smallModeBelowHeight;
-    final bool includeAssistantPage = widget.includeAssistantPage ?? Env.agentEnabled;
 
     // Set the page data, as strings may have changed based on locale
     pageData = [
       _PageData($strings.introTitleWelcome, $strings.introDescWelcome, 'theth', '1'),
       _PageData($strings.introTitleExplore, $strings.introDescExplore, 'butrint', '2'),
       _PageData($strings.introTitleStory, $strings.introDescStory, 'apollonia', '3'),
-      if (includeAssistantPage) _PageData($strings.introTitleAsk, $strings.introDescAsk, 'kruja', '1'),
     ];
 
     // This view uses a full screen PageView to enable swipe navigation.

@@ -5,7 +5,7 @@ import 'package:pathfinder_albania/ui/common/remote_photo.dart';
 
 void main() {
   test('http(s) URLs load from the network through the disk cache', () {
-    for (final url in ['https://cdn.test/a.jpg', 'http://127.0.0.1:8001/a.jpg']) {
+    for (final url in ['https://cdn.test/a.jpg', 'http://cdn.test:8001/a.jpg']) {
       final provider = photoImageProvider(url);
       expect(provider, isA<CachedNetworkImageProvider>());
       expect((provider as CachedNetworkImageProvider).url, url);

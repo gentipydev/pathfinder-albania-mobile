@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pathfinder_albania/router.dart';
 
-/// Full paths of every GoRoute in [routes], e.g. `/home/trip/:tripId`.
+/// Full paths of every GoRoute in [routes], e.g. `/home/destination/:detailsType`.
 List<String> _paths(List<RouteBase> routes, [String parent = '']) {
   final out = <String>[];
   for (final r in routes) {
@@ -18,12 +18,6 @@ List<String> _paths(List<RouteBase> routes, [String parent = '']) {
 }
 
 void main() {
-  const agentPaths = [
-    '/auth',
-    '/home/conversations',
-    '/home/preferences',
-    '/home/trip/:tripId',
-  ];
   const showcasePaths = [
     '/',
     '/welcome',
@@ -36,16 +30,20 @@ void main() {
     '/home/collection',
   ];
 
-  test('showcase mode registers only the showcase routes', () {
-    final paths = _paths(buildAppRoutes(agentEnabled: false));
-    expect(paths, containsAll(showcasePaths));
-    for (final p in agentPaths) {
-      expect(paths, isNot(contains(p)), reason: '$p must not exist in showcase mode');
-    }
-  });
+  // Pages of the removed agent side (sign-in, chat history, preferences,
+  // trips). Kept as a regression guard: nothing should bring them back.
+  const removedPaths = [
+    '/auth',
+    '/home/conversations',
+    '/home/preferences',
+    '/home/trip/:tripId',
+  ];
 
-  test('full mode registers showcase and agent routes', () {
-    final paths = _paths(buildAppRoutes(agentEnabled: true));
-    expect(paths, containsAll([...showcasePaths, ...agentPaths]));
+  test('the route tree is the showcase and nothing else', () {
+    final paths = _paths(buildAppRoutes());
+    expect(paths, containsAll(showcasePaths));
+    for (final p in removedPaths) {
+      expect(paths, isNot(contains(p)), reason: '$p must not exist');
+    }
   });
 }

@@ -41,13 +41,10 @@ jobs:
           cache: true
 
       - name: Materialize dummy .env
-        # Required because lib/config/env.dart reads these at startup. Tests
-        # mock outbound network so placeholder values are safe.
+        # `.env` is a bundled asset read by lib/config/env.dart; the only key
+        # is the Mapbox token, which no test exercises.
         run: |
           cat > .env <<'EOF'
-          SUPABASE_URL=https://example.supabase.co
-          SUPABASE_ANON_KEY=test-placeholder
-          API_BASE_URL=http://localhost:8000
           MAPBOX_ACCESS_TOKEN=pk.test-placeholder
           EOF
 

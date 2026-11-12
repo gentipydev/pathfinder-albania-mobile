@@ -1,27 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Mapbox tiles, YouTube embeds and crash reporting. -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <!-- Foreground-only visit auto-detection. Background variants
-         (ACCESS_BACKGROUND_LOCATION, FOREGROUND_SERVICE_LOCATION) are
-         intentionally NOT requested — see docs/privacy.md. -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <queries>
-        <intent>
-            <action android:name="android.speech.RecognitionService" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.TTS_SERVICE" />
-        </intent>
-    </queries>
     <application
         android:label="Pathfinder Albania"
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher"
-        android:name="${applicationName}"
-        
-        android:usesCleartextTraffic="true">
+        android:name="${applicationName}">
 
         <activity
             android:name=".MainActivity"
@@ -60,24 +44,6 @@
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
-        </intent>
-    </queries>
-    <!-- url_launcher: required on Android 11+ so canLaunchUrl/launchUrl can
-         resolve these schemes. `geo:` is what utils/open_in_maps.dart uses to
-         hand a stop to whichever maps app the user has installed; without it
-         the launch silently fails and falls through to the web map. -->
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="https" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="http" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="geo" />
         </intent>
     </queries>
 </manifest>

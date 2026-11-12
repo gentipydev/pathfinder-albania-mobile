@@ -1,8 +1,8 @@
 # Pathfinder Albania
 
-Pathfinder Albania is an AI travel assistant and guide to the eight destinations of Albania — Apollonia, Kruja, Gjirokastër, Butrint, Theth, Korça, Berat, and the Albanian Alps. Explore each site through history, photography, artifacts, and a built-in conversational travel assistant tailored to Albania.
+Pathfinder Albania is a guide to the eight destinations of Albania — Apollonia, Kruja, Gjirokastër, Butrint, Theth, Korça, Berat, and the Albanian Alps. Explore each site through illustration, history, photography, artifacts, a hidden-collectibles hunt and the Albanian Story Timeline.
 
-The Flutter app is a rebrand and reimagining of an upstream open-source Flutter template (see [LICENSE](LICENSE)), reworked around Albanian destinations and paired with a custom `travel-buddy-backend`.
+The Flutter app is a rebrand and reimagining of an upstream open-source Flutter template (see [LICENSE](LICENSE)), reworked around Albanian destinations.
 
 ## Installation
 
@@ -15,23 +15,26 @@ flutter channel stable
 flutter upgrade
 ```
 
-Then run the app on a device or simulator:
+Copy `.env.example` to `.env` (see [Configuration](#configuration)), then run the app on a device or simulator:
 
 ```
 flutter run -d ios
 flutter run -d android
 ```
 
-### App modes
+### Configuration
 
-The app has two parts, and `APP_MODE` in `.env` picks which are switched on:
+`.env` is a bundled asset read at startup, so changing it needs a full `flutter run`, not a hot restart. It has a single key:
 
-| `APP_MODE` | What runs |
+| Key | What |
 |---|---|
-| `showcase` | Only the destinations showcase: the home carousel of the eight destinations and everything reachable from it (editorial, photos, artifacts, timeline, collection). No bottom nav, chat, trips, profile or sign-in, and Supabase is never initialized, so the `SUPABASE_*` keys can stay empty. Still needs `API_BASE_URL` for photos and artifacts. |
-| `full` (default) | The showcase plus the agent side: the Explore / Buddy / My Trips / Profile bottom nav, chat, trips, profile and sign-in. |
+| `MAPBOX_ACCESS_TOKEN` | Public `pk.…` token for the two destination maps. Optional: without it the maps render blank. Setup and scope advice in [docs/maps-setup.md](docs/maps-setup.md). |
 
-The code is split the same way. Everything agent-side lives in `lib/agent/`, and `lib/agent/agent_module.dart` is the one place that plugs it in. Only the composition root (`lib/main.dart`, `lib/router.dart`, `lib/logic/app_logic.dart`) may import `lib/agent/`. `test/architecture/import_boundary_test.dart` enforces this.
+There is no backend URL and no sign-in to configure.
+
+### Bundled content
+
+The artifact catalog (highlights and collectibles) and the destination photo galleries ship inside the app, under `assets/backend_snapshot/`. That folder is a temporary snapshot of the content the previous backend served; [its README](assets/backend_snapshot/README.md) documents the layout, the manifests the app reads, and where the photo credits live. The loaders are `lib/features/artifacts/bloc/artifacts_bloc.dart` and `lib/logic/destination_photos_logic.dart`.
 
 ### Web (WASM)
 
@@ -40,6 +43,8 @@ The app supports Flutter Web's WebAssembly target. To run it locally:
 ```
 flutter run -d chrome --wasm
 ```
+
+Maps are iOS/Android only; the web build renders a fallback in their place.
 
 ### Impeller Rendering
 
@@ -54,4 +59,5 @@ This application is released under the [MIT license](LICENSE), inherited from th
 ## Credits
 
 - Built on an upstream open-source Flutter template (see [LICENSE](LICENSE)) that provides the original UI, animation, and architecture foundation.
-- Albanian content, AI travel-assistant integration, and the `travel-buddy-backend` service are part of the Pathfinder Albania project.
+- The Albanian content, illustrations and curation are part of the Pathfinder Albania project.
+- Destination and artifact photographs come from Wikimedia Commons under CC BY / CC BY-SA; per-picture credits are kept in `assets/backend_snapshot/credits/`.

@@ -3,25 +3,17 @@ import 'dart:ui';
 
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart' show MapboxOptions;
-import 'package:pathfinder_albania/agent/agent_module.dart';
 import 'package:pathfinder_albania/config/env.dart';
 import 'package:pathfinder_albania/common_libs.dart';
 import 'package:pathfinder_albania/features/settings/bloc/settings_event.dart';
-import 'package:pathfinder_albania/logic/common/dio_client.dart';
 import 'package:pathfinder_albania/logic/common/platform_info.dart';
 import 'package:pathfinder_albania/ui/common/modals/fullscreen_video_viewer.dart';
 import 'package:pathfinder_albania/ui/common/utils/page_routes.dart';
 
 class AppLogic {
   Size _appSize = Size.zero;
-
-  /// Set by `startWarmup`. `bootstrap` awaits it before kicking off
-  /// `artifactsBloc.preloadAll()` so the eight catalog requests don't
-  /// race the backend's scale-from-zero cold-start.
-  Future<void>? _warmupFuture;
 
   /// Held for the lifetime of the app to flush throttled saves on
   /// background/hide, so a backgrounded-then-killed app doesn't lose a
@@ -78,9 +70,6 @@ class AppLogic {
     // Settings
     await settingsBloc.loadFromPersistence();
 
-    // Agent side: restore the auth session and load preferences.
-    if (Env.agentEnabled) AgentModule.onBootstrap();
-
     // Localizations: LocaleLogic resolves the persisted locale (else English) and
     // returns the code; SettingsBloc adopts it without re-running the
     // destinations/timeline cascade (we call those next, in order).
@@ -107,11 +96,9 @@ class AppLogic {
       onPause: _flushPendingSaves,
     );
 
-    // Warm the artifact catalog cache for all destinations in the
-    // background. Best-effort — screens still re-fetch on mount if this
-    // fails. Sequenced after the backend warmup ping (if started) so the
-    // eight requests hit a hot backend.
-    unawaited(_warmupThenPreload());
+    // Warm the artifact catalog for all destinations in the background.
+    // Best-effort — screens still re-read on mount if this fails.
+    unawaited(artifactsBloc.preloadAll());
 
     // Wait at least 1 frame to give GoRouter time to catch the initial deeplink
     await Future.delayed(1.milliseconds);
@@ -123,37 +110,9 @@ class AppLogic {
     final showIntro = settingsBloc.state.hasCompletedOnboarding == false;
     if (showIntro) {
       appRouter.go(ScreenPaths.intro);
-    } else if (needsLogin) {
-      appRouter.go(ScreenPaths.auth);
     } else {
       appRouter.go(initialDeeplink ?? ScreenPaths.home);
     }
-  }
-
-  /// Fires a fire-and-forget GET `/` against the backend so an idled
-  /// instance wakes up while the rest of bootstrap runs. Stores the
-  /// future so `_warmupThenPreload` can wait on it. Safe to call multiple
-  /// times — subsequent calls are no-ops.
-  ///
-  /// The backend has no `GET /` route, so this 404s by design — the point
-  /// is the round trip, not the response.
-  void startWarmup() {
-    if (_warmupFuture != null || !Env.hasApiBaseUrl) return;
-    _warmupFuture = appDio
-        .get<dynamic>(
-          '/',
-          options: Options(
-            receiveTimeout: const Duration(seconds: 90),
-            validateStatus: (_) => true,
-          ),
-        )
-        .then((_) {}, onError: (_) {});
-  }
-
-  Future<void> _warmupThenPreload() async {
-    final warmup = _warmupFuture;
-    if (warmup != null) await warmup;
-    await artifactsBloc.preloadAll();
   }
 
   /// Fire-and-forget: kick the throttled save chain so any pending toggle

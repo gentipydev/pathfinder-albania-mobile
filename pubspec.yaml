@@ -1,5 +1,5 @@
 name: pathfinder_albania
-description: Pathfinder Albania — AI travel assistant and guide to the eight destinations of Albania.
+description: Pathfinder Albania — a guide to the eight destinations of Albania.
 publish_to: "none"
 version: 2.2.7+236
 
@@ -43,9 +43,7 @@ dependencies:
   gap: ^3.0.1
   get_it: ^7.2.0
   get_it_mixin: ^4.2.2
-  geolocator: ^13.0.1
   mapbox_maps_flutter: ^2.29.0
-  flutter_polyline_points: 2.1.0
   go_router: ^17.0.1
   # Pinned to ^0.7.0 — 0.9.x pulls in androidx.glance:glance-appwidget:1.3.0-alpha01
   # + androidx.compose.remote:remote-creation-android:1.0.0-alpha11 transitively,
@@ -54,15 +52,8 @@ dependencies:
   # overhead. The iOS API (setAppGroupId / saveWidgetData / updateWidget) is
   # stable across 0.7 → 0.9.
   home_widget: ^0.7.0
-  flutter_markdown_plus: ^1.0.3
-  dio: ^5.7.0
-  speech_to_text: ^7.3.0
-  flutter_tts: ^4.2.5
-  siri_wave: ^2.3.1
   image_fade: ^0.6.2
-  image_picker: ^1.1.0
   intl: ^0.20.2
-  lottie: ^3.0.0
   particle_field: ^1.0.0
   pointer_interceptor: ^0.10.1+1
   provider: ^6.0.5
@@ -72,9 +63,6 @@ dependencies:
   skeletonizer: ^3.0.0
   smooth_page_indicator: ^2.0.1
   sentry_flutter: ^8.12.0
-  supabase_flutter: ^2.8.0
-  url_launcher: ^6.1.14
-  uuid: ^4.5.1
   youtube_player_iframe: ^5.2.2
 
 dev_dependencies:
@@ -86,8 +74,6 @@ dev_dependencies:
   bloc_test: ^10.0.0
   mocktail: ^1.0.4
   golden_toolkit: ^0.15.0
-  integration_test:
-    sdk: flutter
 
 icons_launcher:
   image_path: "assets/marketing/app-icon-1024.png"
@@ -125,7 +111,6 @@ flutter:
     - assets/images/korca/
     - assets/images/collectibles/
     - assets/images/widget/
-    - assets/lottie/
     # Backend snapshot: artifact catalog + destination photos bundled while the
     # backend is rewritten (assets/backend_snapshot/README.md). credits/ is not bundled.
     - assets/backend_snapshot/artifact-photos/albanian_alps/

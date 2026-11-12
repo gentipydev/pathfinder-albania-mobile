@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pathfinder_albania/agent/agent_module.dart';
 import 'package:pathfinder_albania/common_libs.dart';
-import 'package:pathfinder_albania/config/env.dart';
 import 'package:pathfinder_albania/ui/common/modals//fullscreen_video_viewer.dart';
 import 'package:pathfinder_albania/ui/common/modals/fullscreen_maps_viewer.dart';
 import 'package:pathfinder_albania/ui/screens/artifact/artifact_details/artifact_details_screen.dart';
@@ -19,11 +17,7 @@ import 'package:pathfinder_albania/utils/route_logger.dart';
 class ScreenPaths {
   static String splash = '/';
   static String intro = '/welcome';
-  static String auth = '/auth';
   static String home = '/home';
-  static String conversations = '$home/conversations';
-  static String preferences = '$home/preferences';
-  static String trip(String id) => '$home/trip/$id';
 
   static String destinationDetails(DestinationType type, {required int tabIndex}) => '$home/destination/${type.name}?t=$tabIndex';
 
@@ -69,14 +63,12 @@ final appRouter = GoRouter(
   redirect: _handleRedirect,
   observers: [if (kDebugMode) LoggingNavigatorObserver()],
   errorPageBuilder: (context, state) => MaterialPage(child: PageNotFound(state.uri.toString())),
-  routes: buildAppRoutes(agentEnabled: Env.agentEnabled),
+  routes: buildAppRoutes(),
 );
 
-/// The route tree for the current [AppMode]. In showcase mode `/home` is the
-/// destinations carousel itself; in full mode it is the agent's bottom-nav
-/// shell (whose first tab is that same carousel) and the sign-in, chat
-/// history, preferences and trip pages are added.
-List<RouteBase> buildAppRoutes({required bool agentEnabled}) => [
+/// The route tree: `/home` is the destinations carousel, and the timeline,
+/// collection and destination pages hang off it.
+List<RouteBase> buildAppRoutes() => [
     ShellRoute(
       builder: (context, router, navigator) {
         return DestinationsAppScaffold(child: navigator);
@@ -87,12 +79,10 @@ List<RouteBase> buildAppRoutes({required bool agentEnabled}) => [
           (_) => Container(color: $styles.colors.greyStrong),
         ), // This will be hidden
         AppRoute(ScreenPaths.intro, (_) => IntroScreen()),
-        if (agentEnabled) AgentModule.authRoute,
         AppRoute(
           ScreenPaths.home,
-          (_) => agentEnabled ? AgentModule.shell() : HomeScreen(),
+          (_) => HomeScreen(),
           routes: [
-            if (agentEnabled) ...AgentModule.homeRoutes,
             _timelineRoute,
             _collectionRoute,
             AppRoute(
@@ -163,12 +153,6 @@ class AppRoute extends GoRoute {
 String? get initialDeeplink => _initialDeeplink;
 String? _initialDeeplink;
 
-/// True when the user must sign in before reaching `/home`. Never in
-/// showcase mode; in full mode, unless already signed in or the temporary
-/// BYPASS_LOGIN dev flag is on. Shared by the router redirect, the bootstrap
-/// start screen and the end of the intro.
-bool get needsLogin => Env.agentEnabled && !AgentModule.isAuthenticated && !Env.bypassLogin;
-
 String? _handleRedirect(BuildContext context, GoRouterState state) {
   final path = state.uri.path;
 
@@ -181,21 +165,9 @@ String? _handleRedirect(BuildContext context, GoRouterState state) {
   }
   if (!appLogic.isBootstrapComplete) return null;
 
+  // Onboarding gate: a fresh install sees the intro first.
   final onboarded = settingsBloc.state.hasCompletedOnboarding;
-
-  // Onboarding gate — must come before auth so a fresh install sees intro first.
   if (!onboarded && path != ScreenPaths.intro) return ScreenPaths.intro;
-
-  // Auth gate — only after onboarding is complete, and only in full mode.
-  if (onboarded && needsLogin && path != ScreenPaths.auth) {
-    return ScreenPaths.auth;
-  }
-
-  // Bounce signed-in users off splash/auth.
-  final authed = Env.agentEnabled && AgentModule.isAuthenticated;
-  if (authed && (path == ScreenPaths.splash || path == ScreenPaths.auth)) {
-    return initialDeeplink ?? ScreenPaths.home;
-  }
 
   if (!kIsWeb) dlog('navigate to ${state.uri}', name: 'nav');
   return null;

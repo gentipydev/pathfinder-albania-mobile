@@ -167,9 +167,8 @@ class _YouTubeThumbnail extends StatelessWidget {
   final String id;
   final String caption;
 
-  // YouTube serves thumbnails directly off its CDN — no need to mirror
-  // them through our backend. `hqdefault` is 480x360 and exists for every
-  // public video.
+  // YouTube serves thumbnails directly off its CDN. `hqdefault` is 480x360
+  // and exists for every public video.
   String get imageUrl => 'https://img.youtube.com/vi/$id/hqdefault.jpg';
 
   @override
